@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:05:45 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/09/12 14:49:52 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/09/12 15:44:36 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int				main(void);
 
 // Lexer functions.
 void			lexer(void);
-void			create_token(char *word);
+void			gen_tokens(char *word);
 
 // Parser functions.
 void			parser(void);

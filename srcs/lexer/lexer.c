@@ -6,13 +6,19 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/12 13:31:08 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/09/12 14:49:50 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/09/12 15:44:23 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exer(void)
+void	lexer(void)
 {
-	return ;
+	char	*input;
+
+	input = readline("$ ");
+	if (!input)
+		exit(EXIT_FAILURE);
+	printf("Input: %s\n", input);
+	gen_tokens(input);
 }
