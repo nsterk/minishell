@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:05:45 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/09/07 15:07:17 by arthurbezni   ########   odam.nl         */
+/*   Updated: 2022/09/12 14:49:52 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,19 @@
 # include <stdlib.h> // EXIT_
 # include <stddef.h> // size_t
 # include <stdio.h> // printf
-
+# include <unistd.h> // write
+# include <readline/readline.h> // readline
+# include <readline/history.h> // readline
 
 // Main functions.
-int				main(int argc, char **argv);
+int				main(void);
+
+// Lexer functions.
+void			lexer(void);
+void			create_token(char *word);
+
+// Parser functions.
+void			parser(void);
 
 // Utils.
 int				error_msg(char *msg);

@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2022/09/07 15:06:48 by arthurbezni   ########   odam.nl          #
+#    Updated: 2022/09/12 14:48:53 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,10 @@ VPATH 		:=	$(subst $(space),:,$(shell find srcs -type d))
 
 # Srcs
 SRCS		=	main.c \
+				lexer.c \
+				token.c \
+				parser.c \
+				prompt.c \
 				messages.c \
 				ft_split.c \
 				ft_strlen.c \
@@ -42,14 +46,14 @@ OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 # Config
 CC			:=	cc
-FLAGS		:=	-Wall -Wextra -g #-Werror
+FLAGS		:= -Wall -Wextra -g #-Werror
 ARGS		:=	2 800 200 200
 
 all:		$(NAME)
 	
 $(NAME):	$(OBJS)
 	@echo "$(YEL)\n  Compiling srcs$(DEF)"
-	$(CC) $(OBJS) $(FLAGS) -o $(NAME)
+	$(CC) $(OBJS) $(FLAGS) -lreadline -o $(NAME)
 	@echo "$(GRN)\n  Success!$(DEF)"
 
 $(OBJ_DIR)/%.o: $(notdir %.c)
