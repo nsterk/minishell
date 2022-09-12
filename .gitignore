@@ -1,0 +1,6 @@
+*.o
+minishell
+a.out
+objs/
+srcs/lexer/test.c
+.vscode
