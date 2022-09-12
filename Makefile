@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2022/09/12 14:48:53 by abeznik       ########   odam.nl          #
+#    Updated: 2022/09/12 20:14:35 by nsterk        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 # Config
 CC			:=	cc
-FLAGS		:= -Wall -Wextra -g #-Werror
+FLAGS		:= -Wall -Wextra -g -Iincludes #-Werror
 ARGS		:=	2 800 200 200
 
 all:		$(NAME)
