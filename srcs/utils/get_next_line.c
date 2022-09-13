@@ -6,11 +6,11 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/05 21:02:52 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/09/13 18:05:55 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/13 19:47:52 by arthurbezni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <get_next_line.h>
+#include "utils.h"
 
 static int	has_newline(char *buffer)
 {
