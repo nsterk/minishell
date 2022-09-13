@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2022/09/13 03:09:20 by nsterk        ########   odam.nl          #
+#    Updated: 2022/09/13 16:06:23 by arthurbezni   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,23 +27,6 @@ VPATH 		:=	$(subst $(space),:,$(shell find srcs -type d))
 
 # Srcs
 SRCS		=	main.c \
-				lexer.c \
-				token.c \
-				parser.c \
-				prompt.c \
-				messages.c \
-				ft_split.c \
-				ft_strlen.c \
-				ft_substr.c \
-				ft_isdigit.c \
-				ft_atoi.c \
-				ft_atoll.c \
-				ft_isspace.c \
-				ft_bzero.c \
-				ft_calloc.c \
-				utils_01.c \
-				get_next_line.c \
-				get_next_line_utils.c
 
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
@@ -63,6 +46,10 @@ $(OBJ_DIR)/%.o: $(notdir %.c)
 	@mkdir -p $(OBJ_DIR)
 	@echo "compiling $(notdir $(basename $@))"
 	@$(CC) $(FLAGS) -c $< -I$(INCL_DIR) -o $@
+
+
+## Add GNL, libft Makefiles
+
 
 db: all
 	lldb $(NAME) -- $(ARGS)

@@ -6,40 +6,31 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:03:59 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/09/13 03:12:41 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/13 16:05:55 by arthurbezni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <pipex.h>
 
-void	lexern(void);
+void	display_prompt()
+{
+	write(1, "$ ", 3);
+}
 
 void	shell(void)
 {
 	while (1)
 	{
-		//display_prompt();
-		lexern();
-		//parser();
-		// system("leaks minishell");
+		display_prompt();
+		// char **tokens = lexer();
+		// struct cmd_table = parser(tokens);
+		// struct expanded_table = expander(cmd_table);
+		// executor(expanded_table);
 	}
 }
 
 void	enter_shell(void)
 {
-	int	status;
-	int	pid;
-
-//init stuff 
-	pid = fork();
-	if (pid == 0)
-	{
-		shell();
-	}
-	waitpid(pid, &status, 0);
-	if (WIFEXITED(status))
-		status = WEXITSTATUS(status);
 
 }
 
