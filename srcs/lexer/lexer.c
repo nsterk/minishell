@@ -6,42 +6,13 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/12 13:31:08 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/09/13 03:14:57 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/13 21:24:27 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <get_next_line.h>
 #include <pipex.h>
-
-void	lexer(void)
-{
-	char	*input;
-
-	input = readline("$ ");
-	if (!input)
-		exit(EXIT_FAILURE);
-	printf("Input: %s\n", input);
-	gen_tokens(input);
-}
-
-void	wait_for_children(t_pipex *pipex)
-{
-	int	i;
-	int	status;
-
-	if (pipex->here_doc)
-		i = 1;
-	else
-		i = 0;
-	while (i < pipex->nr_children)
-	{
-		waitpid(pipex->pid[i], &status, 0);
-		if (WIFEXITED(status))
-			pipex->status = WEXITSTATUS(status);
-		i++;
-	}
-}
 
 //need to trim whitespaces from the command before comparing to exit
 void	lexern(void)

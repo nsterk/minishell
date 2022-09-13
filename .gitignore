@@ -4,3 +4,4 @@ a.out
 objs/
 srcs/lexer/test.c
 .vscode
+srcs/utils/get_next_line/submit

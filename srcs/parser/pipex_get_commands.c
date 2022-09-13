@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/03 16:39:13 by naomisterk    #+#    #+#                 */
-/*   Updated: 2022/09/12 23:24:16 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/13 19:39:38 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ operators. What might be useful though:
 	differently based on whether they are builtins or not? Could be usable for
 	establishing whether something is a builtin or not?
 	- sed command probably also an edge case for minishell (this is what is 
-	)
+	being handlde in get_commands)
 */
 
 static int	try_pathname(char *path, t_cmd *cmd)
