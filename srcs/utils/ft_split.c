@@ -3,93 +3,79 @@
 /*                                                        ::::::::            */
 /*   ft_split.c                                         :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
+/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/11/15 09:15:26 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/09/07 15:05:26 by arthurbezni   ########   odam.nl         */
+/*   Created: 2020/10/30 19:00:03 by nsterk        #+#    #+#                 */
+/*   Updated: 2022/09/13 14:35:57 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include <minishell.h>
 
-static char	**ft_free(int j, char **buff)
+static char	**free_split(char **rstr, int len)
 {
-	int	i;
-
-	i = 0;
-	while (j >= i)
+	while (len)
 	{
-		free(buff[j]);
-		j--;
+		len--;
+		free(rstr[len]);
 	}
-	free(buff);
+	free(rstr);
 	return (NULL);
 }
 
-static int	ft_wordlength(int j, const char *s, char c)
+static char	**make_substrs(char **rstr, char const *s, char c, size_t len)
 {
-	int	i;
-	int	x;
-
-	i = 0;
-	while (j >= 0)
-	{
-		while ((s[i] == c) && (s[i] != '\0'))
-			i++;
-		x = i;
-		while ((s[i] != c) && (s[i] != '\0'))
-			i++;
-		j--;
-	}
-	return (i - x);
-}
-
-static int	ft_countwords(char const *s, char c, int x)
-{
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	j = 0;
-	i = 0;
-	while (s[i] != '\0')
+	while (*s == (unsigned char)c)
+		s++;
+	while (j < len)
 	{
-		while (s[i] == c)
+		i = 0;
+		while (s[i] != '\0' && s[i] != (unsigned char)c)
 			i++;
-		while (s[i] != c && s[i] != '\0')
-		{
-			if (x >= 0)
-			{
-				if (x == 0)
-					return (i);
-			}
+		rstr[j] = (char *)malloc(sizeof(char) * (i + 1));
+		if (!rstr[j])
+			return (free_split(rstr, (int)j));
+		ft_strlcpy(rstr[j], s, (i + 1));
+		while (s[i] == (unsigned char)c)
 			i++;
-		}
-		x--;
+		s += i;
 		j++;
 	}
-	if (s[i - 1] == c)
-		j--;
-	return (j);
+	rstr[j] = NULL;
+	return (rstr);
+}
+
+static size_t	find_amount(char const *s, char c)
+{
+	size_t	i;
+	size_t	len;
+
+	i = 0;
+	len = 0;
+	while (s[i] != '\0')
+	{
+		if ((s[i] != c) && ((s[i + 1] == c) || (s[i + 1] == '\0')))
+			len++;
+		i++;
+	}
+	return (len);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**buff;
-	int		j;
+	char	**rstr;
+	size_t	len;
 
-	if (s == NULL)
+	if (!s)
 		return (NULL);
-	buff = (char **)malloc(sizeof(char *) * (1 + ft_countwords(s, c, -1)));
-	if (buff == NULL)
+	len = find_amount(s, c);
+	rstr = (char **)malloc(sizeof(char *) * (len + 1));
+	if (!rstr)
 		return (NULL);
-	j = 0;
-	while (j < ft_countwords(s, c, -1))
-	{
-		buff[j] = ft_substr(s, ft_countwords(s, c, j), ft_wordlength(j, s, c));
-		if (buff[j] == NULL)
-			return (ft_free(j, buff));
-		j++;
-	}
-	buff[j] = NULL;
-	return (buff);
+	rstr = make_substrs(rstr, s, c, len);
+	return (rstr);
 }
