@@ -6,6 +6,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+/**
+ * GNL utils.
+ */
 int		get_next_line(int fd, char **line);
 char	*ft_strndup(char *src, int n);
 char	*ft_strgjoin(char *s1, char *s2, int len_s2);
