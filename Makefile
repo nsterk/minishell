@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2022/09/12 20:14:35 by nsterk        ########   odam.nl          #
+#    Updated: 2022/09/13 03:09:20 by nsterk        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,12 +41,15 @@ SRCS		=	main.c \
 				ft_isspace.c \
 				ft_bzero.c \
 				ft_calloc.c \
+				utils_01.c \
+				get_next_line.c \
+				get_next_line_utils.c
 
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 # Config
 CC			:=	cc
-FLAGS		:= -Wall -Wextra -g -Iincludes #-Werror
+FLAGS		:= -Wall -Wextra -g #-Werror
 ARGS		:=	2 800 200 200
 
 all:		$(NAME)

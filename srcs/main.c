@@ -6,19 +6,41 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:03:59 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/09/12 15:56:24 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/09/13 03:12:41 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <pipex.h>
 
-void	enter_shell(void)
+void	lexern(void);
+
+void	shell(void)
 {
 	while (1)
 	{
-		lexer();
+		//display_prompt();
+		lexern();
+		//parser();
 		// system("leaks minishell");
 	}
+}
+
+void	enter_shell(void)
+{
+	int	status;
+	int	pid;
+
+//init stuff 
+	pid = fork();
+	if (pid == 0)
+	{
+		shell();
+	}
+	waitpid(pid, &status, 0);
+	if (WIFEXITED(status))
+		status = WEXITSTATUS(status);
+
 }
 
 int	main(void)
