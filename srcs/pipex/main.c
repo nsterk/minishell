@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/21 12:59:54 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/03/27 04:36:34 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/13 13:47:41 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	init_pipex(t_pipex *pipex, int argc)
 
 	pipe = 0;
 	pipex->paths = NULL;
-	pipex->status = 0;
+	pipex->status = 0; 
 	if (pipex->here_doc)
 		pipex->nr_children = argc - 4;
 	else
