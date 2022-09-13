@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:03:59 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/09/13 16:05:55 by arthurbezni   ########   odam.nl         */
+/*   Updated: 2022/09/13 17:10:24 by arthurbezni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	display_prompt()
 	write(1, "$ ", 3);
 }
 
-void	shell(void)
+void	enter_shell(void)
 {
 	while (1)
 	{
@@ -27,11 +27,6 @@ void	shell(void)
 		// struct expanded_table = expander(cmd_table);
 		// executor(expanded_table);
 	}
-}
-
-void	enter_shell(void)
-{
-
 }
 
 int	main(void)
