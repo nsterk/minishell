@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/12 13:31:08 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/09/14 16:34:57 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/14 22:06:20 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,37 @@ static void	display_prompt(void)
 	write(1, "$ ", 3);
 }
 
-//need to trim whitespaces from the command before comparing to exit
+/**
+ * think of making fucking wrappers for all fts that deal with malloc so we
+ * can catch malloc failures accordingly and stop checking if success each time.
+ * Also, it's ridiculous that I'm mallocing input from raw_input when all
+ * the only difference is that whitespaces are trimmed. Might as well iterate
+ * input from start to find the first non whitespace char and from end to
+ * find the last non white space char and then use 
+ * ft_strncmp(raw_input + start, "exit, ft_strlen(raw_input" - start - end).
+ * Can avoid using malloc for this
+ */
+
 void	lexer(void)
 {
 	int		ret;
+	char	*raw_in;
 	char	*input;
 
 	ret = 1;
 	while (ret)
 	{
 		display_prompt();
-		ret = get_next_line(STDIN_FILENO, &input);
-		if (!ft_strncmp(input, "exit", 100))
+		ret = get_next_line(STDIN_FILENO, &raw_in);
+		if (ret < 0)
+			exit(1);
+		input = ft_strtrim(raw_in, " \t\n\v\r\f");
+		free(raw_in);
+		if (!input)
+			exit(1);
+		if (!ft_strcmp(input, "exit"))
 			exit(0);
+		free(input);
 	}
-	if (!input)
-		exit(EXIT_FAILURE);
-	printf("Input: %s\n", input);
-	// gen_tokens(input);
-	free(input);
 	exit(0);
 }
