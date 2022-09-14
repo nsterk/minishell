@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strncmp.c                                       :+:    :+:            */
+/*   ft_strchr.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: nsterk <marvin@codam.nl>                     +#+                     */
+/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/09/22 10:35:14 by nsterk        #+#    #+#                 */
-/*   Updated: 2021/03/03 01:44:36 by nsterk        ########   odam.nl         */
+/*   Created: 2020/10/26 14:05:46 by nsterk        #+#    #+#                 */
+/*   Updated: 2022/09/14 16:57:37 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "utils.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t len)
+char	*ft_strchr(const char *s, int c)
 {
 	size_t	i;
 
 	i = 0;
-	while ((s1[i] != '\0' || s2[i] != '\0') && i < len)
+	while (s[i] != '\0')
 	{
-		if (s1[i] == s2[i])
-			i++;
-		else
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		if (s[i] == (char)c)
+			return ((char *)s + i);
+		i++;
 	}
-	return (0);
+	if ((char)c == '\0')
+		return ((char *)s + i);
+	return (NULL);
 }

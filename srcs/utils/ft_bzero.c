@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strcpy.c                                        :+:    :+:            */
+/*   ft_bzero.c                                         :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: nsterk <marvin@codam.nl>                     +#+                     */
+/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/09/22 09:36:19 by nsterk        #+#    #+#                 */
-/*   Updated: 2021/03/03 01:41:25 by nsterk        ########   odam.nl         */
+/*   Created: 2020/10/26 20:09:15 by nsterk        #+#    #+#                 */
+/*   Updated: 2022/09/14 16:50:25 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcpy(char *dest, char *src)
+#include "utils.h"
+
+void	ft_bzero(void *s, size_t n)
 {
-	int	i;
+	size_t			i;
+	unsigned char	*ptr;
 
 	i = 0;
-	while (src[i] != '\0')
+	ptr = s;
+	while (i < n)
 	{
-		dest[i] = src[i];
+		ptr[i] = 0;
 		i++;
 	}
-	dest[i] = '\0';
-	return (dest);
 }

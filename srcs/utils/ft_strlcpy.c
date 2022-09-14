@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strchr.c                                        :+:    :+:            */
+/*   ft_strlcpy.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
+/*   By: nsterk <marvin@codam.nl>                     +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/10/26 14:05:46 by nsterk        #+#    #+#                 */
-/*   Updated: 2020/11/14 22:55:58 by nsterk        ########   odam.nl         */
+/*   Created: 2020/09/17 15:10:54 by nsterk        #+#    #+#                 */
+/*   Updated: 2022/09/14 16:57:48 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "utils.h"
 
-char	*ft_strchr(const char *s, int c)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t	i;
 
 	i = 0;
-	while (s[i] != '\0')
+	while (src[i] != '\0' && i < (size - 1))
 	{
-		if (s[i] == (char)c)
-			return ((char *)s + i);
+		dst[i] = src[i];
 		i++;
 	}
-	if ((char)c == '\0')
-		return ((char *)s + i);
-	return (NULL);
+	dst[i] = '\0';
+	return (i);
 }

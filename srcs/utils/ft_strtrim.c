@@ -6,11 +6,11 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/29 21:10:11 by nsterk        #+#    #+#                 */
-/*   Updated: 2021/03/03 01:45:43 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/14 16:51:05 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "utils.h"
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
