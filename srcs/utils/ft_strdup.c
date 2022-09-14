@@ -6,11 +6,11 @@
 /*   By: nsterk <marvin@codam.nl>                     +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/24 21:24:38 by nsterk        #+#    #+#                 */
-/*   Updated: 2021/03/03 01:41:57 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/14 16:55:37 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "utils.h"
 
 char	*ft_strdup(const char *src)
 {

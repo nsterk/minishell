@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_skipspace.c                                     :+:    :+:            */
+/*   ft_strlen.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
+/*   By: nsterk <marvin@codam.nl>                     +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/03/02 18:59:59 by nsterk        #+#    #+#                 */
-/*   Updated: 2021/03/03 07:40:54 by nsterk        ########   odam.nl         */
+/*   Created: 2020/09/16 12:26:39 by nsterk        #+#    #+#                 */
+/*   Updated: 2022/09/14 16:55:31 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "utils.h"
 
-const char	*ft_skipspace(const char *str)
+size_t	ft_strlen(const char *s)
 {
-	while (*str == '\t' || *str == '\n' || *str == '\f'
-		|| *str == '\r' || *str == '\v' || *str == ' ')
-		str++;
-	return (str);
+	size_t	i;
+
+	i = 0;
+	if (s)
+	{
+		while (s[i] != '\0')
+			i++;
+	}
+	return (i);
 }
