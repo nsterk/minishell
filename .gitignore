@@ -3,5 +3,6 @@ minishell
 a.out
 objs/
 srcs/lexer/test.c
+srcs/utils/get_next_line/submit/*
 .vscode
-srcs/utils/get_next_line/submit
+*.a

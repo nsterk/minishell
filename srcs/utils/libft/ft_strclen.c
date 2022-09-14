@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   minishell.h                                        :+:    :+:            */
+/*   ft_strclen.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
+/*   By: nsterk <marvin@codam.nl>                     +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/09/07 15:05:45 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/09/13 20:01:25 by arthurbezni   ########   odam.nl         */
+/*   Created: 2020/09/16 12:26:39 by nsterk        #+#    #+#                 */
+/*   Updated: 2021/03/24 16:17:45 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include <stdlib.h>
 
-/**
- * Needed libs.
- */
-# include <unistd.h>
+size_t	ft_strclen(const char *s, char c)
+{
+	size_t	i;
 
-/**
- * Minishell libs.
- */
-# include <lexer.h>
-# include <parser.h>
-# include <utils.h>
-
-int				main(void);
-
-#endif
+	i = 0;
+	if (s)
+	{
+		while (s[i] != '\0')
+		{
+			if (s[i] != c)
+				i++;
+		}
+	}
+	return (i);
+}

@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   minishell.h                                        :+:    :+:            */
+/*   ft_skipspace.c                                     :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
+/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/09/07 15:05:45 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/09/13 20:01:25 by arthurbezni   ########   odam.nl         */
+/*   Created: 2021/03/02 18:59:59 by nsterk        #+#    #+#                 */
+/*   Updated: 2021/03/03 07:40:54 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-/**
- * Needed libs.
- */
-# include <unistd.h>
-
-/**
- * Minishell libs.
- */
-# include <lexer.h>
-# include <parser.h>
-# include <utils.h>
-
-int				main(void);
-
-#endif
+const char	*ft_skipspace(const char *str)
+{
+	while (*str == '\t' || *str == '\n' || *str == '\f'
+		|| *str == '\r' || *str == '\v' || *str == ' ')
+		str++;
+	return (str);
+}

@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_isdigit.c                                       :+:    :+:            */
+/*   ft_strlcpy.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
+/*   By: nsterk <marvin@codam.nl>                     +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/10/26 14:20:59 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/09/07 15:05:26 by arthurbezni   ########   odam.nl         */
+/*   Created: 2020/09/17 15:10:54 by nsterk        #+#    #+#                 */
+/*   Updated: 2021/06/22 17:37:24 by naomisterk    ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	ft_isdigit(int c)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	return (c >= '0' && c <= '9');
+	size_t	i;
+
+	i = 0;
+	while (src[i] != '\0' && i < (size - 1))
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (i);
 }

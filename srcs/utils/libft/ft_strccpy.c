@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   minishell.h                                        :+:    :+:            */
+/*   ft_strccpy.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
+/*   By: nsterk <marvin@codam.nl>                     +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/09/07 15:05:45 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/09/13 20:01:25 by arthurbezni   ########   odam.nl         */
+/*   Created: 2020/09/22 09:36:19 by nsterk        #+#    #+#                 */
+/*   Updated: 2021/03/24 16:24:25 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+char	*ft_strccpy(char *dest, char *src, char c)
+{
+	int	i;
 
-/**
- * Needed libs.
- */
-# include <unistd.h>
-
-/**
- * Minishell libs.
- */
-# include <lexer.h>
-# include <parser.h>
-# include <utils.h>
-
-int				main(void);
-
-#endif
+	i = 0;
+	while (src[i] != '\0')
+	{
+		if (src[i] != c)
+			dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}

@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   minishell.h                                        :+:    :+:            */
+/*   ft_lstadd_back.c                                   :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
+/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/09/07 15:05:45 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/09/13 20:01:25 by arthurbezni   ########   odam.nl         */
+/*   Created: 2020/11/03 15:35:22 by nsterk        #+#    #+#                 */
+/*   Updated: 2021/03/03 01:36:48 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-/**
- * Needed libs.
- */
-# include <unistd.h>
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list	*current;
 
-/**
- * Minishell libs.
- */
-# include <lexer.h>
-# include <parser.h>
-# include <utils.h>
-
-int				main(void);
-
-#endif
+	if (!lst)
+		return ;
+	if (*lst == NULL)
+		*lst = new;
+	else
+	{
+		current = ft_lstlast(*lst);
+		current->next = new;
+	}
+}

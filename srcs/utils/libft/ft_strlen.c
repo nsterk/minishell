@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   minishell.h                                        :+:    :+:            */
+/*   ft_strlen.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
+/*   By: nsterk <marvin@codam.nl>                     +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/09/07 15:05:45 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/09/13 20:01:25 by arthurbezni   ########   odam.nl         */
+/*   Created: 2020/09/16 12:26:39 by nsterk        #+#    #+#                 */
+/*   Updated: 2021/03/03 01:43:35 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include <stdlib.h>
 
-/**
- * Needed libs.
- */
-# include <unistd.h>
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
 
-/**
- * Minishell libs.
- */
-# include <lexer.h>
-# include <parser.h>
-# include <utils.h>
-
-int				main(void);
-
-#endif
+	i = 0;
+	if (s)
+	{
+		while (s[i] != '\0')
+			i++;
+	}
+	return (i);
+}

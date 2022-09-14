@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_isspace.c                                       :+:    :+:            */
+/*   ft_isalnum.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
+/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/03 12:57:27 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/02/03 12:57:28 by abeznik       ########   odam.nl         */
+/*   Created: 2020/10/22 15:50:36 by nsterk        #+#    #+#                 */
+/*   Updated: 2021/03/03 01:36:08 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isspace(int c)
+#include "libft.h"
+
+int	ft_isalnum(int c)
 {
-	return ((c == ' ' || c == '\t' || c == '\n' || \
-			c == '\v' || c == '\f' || c == '\r'));
+	return (ft_isdigit(c) || ft_isalpha(c));
 }

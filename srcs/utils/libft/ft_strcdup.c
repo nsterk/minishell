@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_calloc.c                                        :+:    :+:            */
+/*   ft_strcdup.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
+/*   By: nsterk <marvin@codam.nl>                     +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/03/29 11:04:23 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/09/07 15:05:26 by arthurbezni   ########   odam.nl         */
+/*   Created: 2020/09/24 21:24:38 by nsterk        #+#    #+#                 */
+/*   Updated: 2021/03/24 16:25:10 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+char	*ft_strcdup(const char *src, char c)
 {
-	unsigned char	*ptr;
+	char	*str;
+	size_t	len;
 
-	ptr = (unsigned char *)malloc(count * size);
-	if (!ptr)
+	len = ft_strclen((char *)src, c);
+	str = (char *)malloc(sizeof(*str) * (len + 1));
+	if (!str)
 		return (NULL);
-	ft_bzero(ptr, count * size);
-	return (ptr);
+	str = ft_strccpy(str, src, c);
+	return (str);
 }

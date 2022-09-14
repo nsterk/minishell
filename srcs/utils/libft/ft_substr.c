@@ -3,38 +3,35 @@
 /*                                                        ::::::::            */
 /*   ft_substr.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
+/*   By: nsterk <marvin@codam.nl>                     +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/11/01 11:03:44 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/09/07 15:05:26 by arthurbezni   ########   odam.nl         */
+/*   Created: 2020/09/24 21:24:38 by nsterk        #+#    #+#                 */
+/*   Updated: 2021/03/03 01:45:55 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*buff;
-	size_t	i;
+	unsigned int	i;
+	char			*sub;
 
+	if (!s)
+		return (NULL);
+	if ((ft_strlen(s) - start) < len)
+		len = ft_strlen(s) - start;
+	if (start >= ft_strlen(s))
+		len = 0;
+	sub = (char *)malloc(sizeof(*s) * (len + 1));
+	if (!sub)
+		return (NULL);
 	i = 0;
-	if (s == NULL)
-		return (NULL);
-	if (start >= (unsigned int)ft_strlen(s))
+	while (s[start + i] != '\0' && i < len)
 	{
-		buff = (char *)malloc(1);
-		buff[0] = '\0';
-		return (buff);
-	}
-	buff = (char *)malloc(sizeof(char) * (len + 1));
-	if (buff == NULL)
-		return (NULL);
-	while ((len > i) && (s[start] != '\0'))
-	{
-		buff[i] = s[start];
+		sub[i] = s[start + i];
 		i++;
-		start++;
 	}
-	buff[i] = '\0';
-	return (buff);
+	sub[i] = '\0';
+	return (sub);
 }

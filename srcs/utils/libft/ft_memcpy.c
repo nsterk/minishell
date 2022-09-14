@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   get_next_line.h                                    :+:    :+:            */
+/*   ft_memcpy.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/12/05 21:04:10 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/03/26 23:34:26 by nsterk        ########   odam.nl         */
+/*   Created: 2020/10/26 20:36:55 by nsterk        #+#    #+#                 */
+/*   Updated: 2021/03/03 01:39:31 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <unistd.h>
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	unsigned char	*dptr;
+	unsigned char	*sptr;
+	size_t			i;
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 128
-# endif
-
-int		get_next_line(int fd, char **line);
-size_t	ft_strglen(const char *s);
-void	ft_strglcpy(char *dst, const char *src, size_t size);
-char	*ft_strndup(const char *src, size_t n);
-char	*ft_strgjoin(const char *s1, const char *s2, size_t len_s2);
-
-#endif
+	if (!dst && !src)
+		return (NULL);
+	dptr = (unsigned char *)dst;
+	sptr = (unsigned char *)src;
+	i = 0;
+	while (i < n)
+	{
+		dptr[i] = sptr[i];
+		i++;
+	}
+	return (dptr);
+}

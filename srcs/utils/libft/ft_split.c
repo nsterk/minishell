@@ -6,11 +6,11 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/30 19:00:03 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/09/13 14:35:57 by nsterk        ########   odam.nl         */
+/*   Updated: 2021/03/03 01:40:39 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "libft.h"
 
 static char	**free_split(char **rstr, int len)
 {
