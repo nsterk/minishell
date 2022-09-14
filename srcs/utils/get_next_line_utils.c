@@ -6,13 +6,13 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/05 20:59:45 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/09/13 19:47:55 by arthurbezni   ########   odam.nl         */
+/*   Updated: 2022/09/14 15:44:07 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-char	*ft_strndup(char *src, int n)
+char	*ft_strndup(char *src, size_t n)
 {
 	char	*str;
 

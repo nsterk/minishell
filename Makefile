@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2022/09/13 19:52:42 by arthurbezni   ########   odam.nl          #
+#    Updated: 2022/09/14 15:48:10 by nsterk        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ LIBFT_DIR	:=	./srcs/utils/libft
 
 # Srcs
 SRCS		=	main.c \
+				lexer.c \
 				get_next_line.c \
 				get_next_line_utils.c \
 

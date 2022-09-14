@@ -6,7 +6,7 @@
 #    By: nsterk <nsterk@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/10/27 11:29:07 by nsterk        #+#    #+#                  #
-#    Updated: 2022/09/13 19:00:37 by arthurbezni   ########   odam.nl          #
+#    Updated: 2022/09/14 16:36:42 by nsterk        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,18 +19,19 @@ REG_FILES 	=	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 				ft_memcpy.c ft_memmove.c ft_memset.c ft_split.c \
 				ft_strchr.c ft_strcmp.c ft_strcpy.c ft_strdup.c ft_strjoin.c \
 				ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strncmp.c \
-				ft_strnlen.c ft_strnstr.c ft_strmapi.c ft_strrchr.c \
-				ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c \
-				ft_strclen.c ft_strcdup.c ft_strccpy.c ft_skipspace.c \
-				ft_free_array.c
+				ft_strndup.c ft_strnlen.c ft_strnstr.c ft_strmapi.c \
+				ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c \
+				ft_toupper.c ft_strclen.c ft_strcdup.c ft_strccpy.c \
+				ft_skipspace.c ft_free_array.c
 BONUS_FILES =	ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c \
 				ft_lstdelone.c ft_lstiter.c ft_lstlast.c ft_lstmap.c \
 				ft_lstnew.c ft_lstsize.c
 REG_OBJS	=	$(REG_FILES:%.c=%.o)
 BONUS_OBJS	=	$(BONUS_FILES:%.c=%.o)
+HEADER_DIR	=	../../includes/
 
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -g
+CFLAGS		=	-Wall -Wextra -g -I$(HEADER_DIR)
 OPTIONS		=	ar rcs
 RM			=	rm -f
 

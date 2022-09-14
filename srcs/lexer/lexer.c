@@ -6,16 +6,19 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/12 13:31:08 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/09/14 14:29:15 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/14 16:34:57 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <get_next_line.h>
-#include <pipex.h>
+#include "lexer.h"
+
+static void	display_prompt(void)
+{
+	write(1, "$ ", 3);
+}
 
 //need to trim whitespaces from the command before comparing to exit
-void	lexern(void)
+void	lexer(void)
 {
 	int		ret;
 	char	*input;
@@ -23,6 +26,7 @@ void	lexern(void)
 	ret = 1;
 	while (ret)
 	{
+		display_prompt();
 		ret = get_next_line(STDIN_FILENO, &input);
 		if (!ft_strncmp(input, "exit", 100))
 			exit(0);
@@ -30,7 +34,7 @@ void	lexern(void)
 	if (!input)
 		exit(EXIT_FAILURE);
 	printf("Input: %s\n", input);
-	gen_tokens(input);
+	// gen_tokens(input);
 	free(input);
 	exit(0);
 }

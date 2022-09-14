@@ -6,22 +6,18 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:03:59 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/09/14 14:32:22 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/14 15:47:06 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	display_prompt()
-{
-	write(1, "$ ", 3);
-}
-
 void	enter_shell(void)
 {
 	while (1)
 	{
-		display_prompt();
+		lexer();
+		
 		// char **tokens = lexer();
 		// struct cmd_table = parser(tokens);
 		// struct expanded_table = expander(cmd_table);
