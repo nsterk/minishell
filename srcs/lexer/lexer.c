@@ -6,16 +6,11 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/12 13:31:08 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/09/15 15:00:28 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/09/15 20:21:35 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
-
-static void	display_prompt(void)
-{
-	write(1, "$ ", 3);
-}
 
 /**
  * think of making fucking wrappers for all fts that deal with malloc so we
@@ -30,27 +25,6 @@ static void	display_prompt(void)
 
 t_token	*lexer(void)
 {
-	int		ret;
-	char	*raw_in;
-	char	*input;
 	t_token	*token = NULL;
-
-	ret = 1;
-	while (ret)
-	{
-		display_prompt();
-		ret = get_next_line(STDIN_FILENO, &raw_in);
-		if (ret < 0)
-			exit(1);
-		input = ft_strtrim(raw_in, " \t\n\v\r\f");
-		free(raw_in);
-		if (!input)
-			exit(1); 
-		if (!ft_strcmp(input, "exit"))
-			exit(0);
-		// free(input);
-	}
-	token->word = input;
-	// exit(0);
 	return (token);
 }

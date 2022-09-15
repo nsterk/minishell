@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2022/09/15 14:50:38 by abeznik       ########   odam.nl          #
+#    Updated: 2022/09/15 20:22:16 by nsterk        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ VPATH 		:=	$(subst $(space),:,$(shell find srcs -type d))
 
 # Srcs
 SRCS		=	main.c \
+				prompt.c \
 				lexer.c \
 				parser.c \
 				get_next_line.c \

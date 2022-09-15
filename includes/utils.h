@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 12:09:43 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/09/15 12:12:32 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/09/15 17:53:35 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,15 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+typedef enum e_status
+{
+	EXIT_MINISHELL
+}	t_status;
+
 /**
  * Exit functions.
  */
-void				exit_minishell(void);
+void				exit_minishell(int status);
 
 /**
  * GNL functions.
@@ -48,6 +53,7 @@ char				*ft_strchr(const char *s, int c);
 char				*ft_strdup(const char *src);
 char				*ft_strjoin(char const *s1, char const *s2);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
+char				*ft_strcpy(char *dest, char *src);
 size_t				ft_strlcpy(char *dest, const char *src, size_t size);
 size_t				ft_strlen(const char *s);
 int					ft_strncmp(const char *s1, const char *s2, size_t len);
@@ -94,5 +100,4 @@ int					ft_free_array(char **str);
 // size_t				ft_strnlen(const char *s, size_t maxlen);
 // size_t				ft_strclen(const char *s, char c);
 // char				*ft_strcdup(const char *src, char c);
-// char				*ft_strcpy(char *dest, const char *src);
 // char				*ft_strccpy(char *dest, const char *src, char c);

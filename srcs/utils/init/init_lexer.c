@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   init_lexer.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
+/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/09/07 15:03:59 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/09/15 17:47:16 by nsterk        ########   odam.nl         */
+/*   Created: 2022/09/15 17:57:14 by nsterk        #+#    #+#                 */
+/*   Updated: 2022/09/15 18:02:07 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "lexer.h"
 
-void	enter_shell(void)
+void	init_lexer(t_lexer *lexer)
 {
-	t_data	data;
-
-	while (prompt(&data.lexer))
-	{
-		data.tokens = lexer();
-		data.table = parser(data.tokens);
-	}
-}
-
-int	main(void)
-{
-	enter_shell();
-	return (0);
+	lexer->input = NULL;
+	lexer->tokens = NULL;
 }

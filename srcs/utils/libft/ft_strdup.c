@@ -6,13 +6,13 @@
 /*   By: nsterk <marvin@codam.nl>                     +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/24 21:24:38 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/09/14 21:15:06 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/15 17:10:49 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-char	*ft_strcpy(char *dest, char *src);
+// char	*ft_strcpy(char *dest, char *src);
 
 char	*ft_strdup(const char *src)
 {

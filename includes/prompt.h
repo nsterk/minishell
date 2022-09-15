@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   prompt.h                                           :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
+/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/09/07 15:03:59 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/09/15 17:47:16 by nsterk        ########   odam.nl         */
+/*   Created: 2022/09/15 17:08:36 by nsterk        #+#    #+#                 */
+/*   Updated: 2022/09/15 20:21:05 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef PROMPT_H
+# define PROMPT_H
 
-void	enter_shell(void)
-{
-	t_data	data;
+# include "utils.h"
+# include "lexer.h"
+# include <stdio.h>
 
-	while (prompt(&data.lexer))
-	{
-		data.tokens = lexer();
-		data.table = parser(data.tokens);
-	}
-}
+int		prompt(t_lexer *lexer);
+void	display_prompt(void);
+int		grab_input(t_lexer *lexer);
 
-int	main(void)
-{
-	enter_shell();
-	return (0);
-}
+#endif

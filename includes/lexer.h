@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/09/15 15:13:24 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/09/15 20:21:19 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define LEXER_H
 
 # include "utils.h"
-
 # include <stdio.h>
 
 typedef enum e_type
@@ -33,6 +32,12 @@ typedef struct s_token
 	t_type			type;
 	struct s_token	*next;
 }	t_token;
+
+typedef struct s_lexer
+{
+	char	*input;
+	t_token	*tokens;
+}	t_lexer;
 
 t_token	*lexer(void);
 
