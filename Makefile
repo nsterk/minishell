@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2022/09/15 12:19:38 by abeznik       ########   odam.nl          #
+#    Updated: 2022/09/15 14:50:38 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,14 +59,14 @@ FLAGS		:= -Wall -Wextra -g #-Werror
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-	@echo "$(YEL)\n\n  Compiling objects$(DEF)"
+	@printf "$(YEL)\n\n  Compiling objects$(DEF)"
 	$(CC) $(OBJS) $(FLAGS) -lreadline -o $(NAME)
-	@echo "$(GRN)\n  Success!$(DEF)"
+	@printf "$(GRN)\n  Success!$(DEF)"
 
 $(OBJ_DIR)/%.o: $(notdir %.c)
 	@mkdir -p $(OBJ_DIR)
 	@printf "Creating objects... %-33.33s\r" $(notdir $(basename $@))
-	@$(CC) $(FLAGS) -c $< -I$(INCL_DIR) -o $@
+	$(CC) $(FLAGS) -c $< -I$(INCL_DIR) -o $@
 
 db: all
 	lldb $(NAME) -- $(ARGS)

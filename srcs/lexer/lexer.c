@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/12 13:31:08 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/09/14 22:06:20 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/15 15:00:28 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,12 @@ static void	display_prompt(void)
  * Can avoid using malloc for this
  */
 
-void	lexer(void)
+t_token	*lexer(void)
 {
 	int		ret;
 	char	*raw_in;
 	char	*input;
+	t_token	*token = NULL;
 
 	ret = 1;
 	while (ret)
@@ -44,10 +45,12 @@ void	lexer(void)
 		input = ft_strtrim(raw_in, " \t\n\v\r\f");
 		free(raw_in);
 		if (!input)
-			exit(1);
+			exit(1); 
 		if (!ft_strcmp(input, "exit"))
 			exit(0);
-		free(input);
+		// free(input);
 	}
-	exit(0);
+	token->word = input;
+	// exit(0);
+	return (token);
 }

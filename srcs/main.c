@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:03:59 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/09/15 12:19:25 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/09/15 13:27:19 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 void	enter_shell(void)
 {
+	t_token	*tokens;
+	t_table	*table;
+
 	while (1)
 	{
-		// lexer();
-		parser();
-		// char **tokens = lexer();
-		// struct cmd_table = parser(tokens);
-		// struct expanded_table = expander(cmd_table);
-		// executor(expanded_table);
+		tokens = lexer();
+		table = parser(tokens);
 	}
 }
 
