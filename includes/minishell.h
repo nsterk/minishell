@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:05:45 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/09/14 16:22:25 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/15 11:52:48 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
  * Needed libs.
  */
 # include <unistd.h>
-# include <libft.h> 
 
 /**
  * Minishell libs.

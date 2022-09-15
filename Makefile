@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2022/09/14 21:21:23 by nsterk        ########   odam.nl          #
+#    Updated: 2022/09/15 12:01:12 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,19 +52,19 @@ OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 # Config
 CC			:=	cc
-FLAGS		:= -Wall -Wextra -g#-Werror
+FLAGS		:= -Wall -Wextra -g #-Werror
 # ARGS		:=	2 800 200 200
 
 all:		$(NAME)
-	
+
 $(NAME):	$(OBJS)
-	@echo "$(YEL)\n  Compiling srcs$(DEF)"
+	@echo "$(YEL)\n\n  Compiling objects$(DEF)"
 	$(CC) $(OBJS) $(FLAGS) -lreadline -o $(NAME)
 	@echo "$(GRN)\n  Success!$(DEF)"
 
 $(OBJ_DIR)/%.o: $(notdir %.c)
 	@mkdir -p $(OBJ_DIR)
-	@echo "compiling $(notdir $(basename $@))"
+	@printf "Creating objects... %-33.33s\r" $(notdir $(basename $@))
 	@$(CC) $(FLAGS) -c $< -I$(INCL_DIR) -o $@
 
 db: all
@@ -77,7 +77,7 @@ test: all
 	./$(NAME) $(ARGS)
 
 clean:
-	@rm -rf $(OBJ_DIR)
+	rm -rf $(OBJ_DIR)
 
 fclean:	clean
 	rm -f $(NAME)
