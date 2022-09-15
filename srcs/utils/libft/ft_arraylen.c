@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   init_data.c                                        :+:    :+:            */
+/*   ft_arraylen.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/09/15 18:02:52 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/09/15 21:17:19 by nsterk        ########   odam.nl         */
+/*   Created: 2022/09/15 20:49:11 by nsterk        #+#    #+#                 */
+/*   Updated: 2022/09/15 20:50:44 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "utils.h"
 
-void	init_data(t_data *data)
+size_t	ft_arraylen(char **arr)
 {
-	init_lexer();
+	size_t	i;
+
+	i = 0;
+	if (arr)
+	{
+		while (arr[i])
+			i++;
+	}
+	return (i);
 }

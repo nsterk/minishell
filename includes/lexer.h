@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/09/15 20:21:19 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/15 21:54:39 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,19 @@ typedef struct s_token
 {
 	char			*word;
 	t_type			type;
-	struct s_token	*next;
 }	t_token;
 
 typedef struct s_lexer
 {
 	char	*input;
+	char	**words;
 	t_token	*tokens;
+	size_t	nr_tokens;
 }	t_lexer;
 
-t_token	*lexer(void);
+void	lexer(t_lexer *lexer);
+void	fill_tokens(t_token *tokens, char **words, size_t len);
+void	print_tokens(t_token *tokens, size_t len);
+
 
 #endif

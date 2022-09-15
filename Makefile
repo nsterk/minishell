@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2022/09/15 20:22:16 by nsterk        ########   odam.nl          #
+#    Updated: 2022/09/15 21:29:17 by nsterk        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRCS		=	main.c \
 				parser.c \
 				get_next_line.c \
 				get_next_line_utils.c \
+				ft_arraylen.c \
 				ft_atoi.c \
 				ft_bzero.c \
 				ft_calloc.c \
@@ -49,6 +50,12 @@ SRCS		=	main.c \
 				ft_strchr.c \
 				ft_strlcpy.c \
 				ft_strcpy.c \
+				ft_lstadd_back.c \
+				ft_lstclear.c \
+				ft_lstdelone.c \
+				ft_lstnew.c \
+				ft_lstsize.c \
+				ft_lstlast.c
 
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 

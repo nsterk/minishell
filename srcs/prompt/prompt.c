@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 17:07:39 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/09/15 20:23:13 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/15 20:47:48 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,8 @@
  * - sanitizing the input
  * - checking if exit command was called
  * - input->input can then be passed along to lexer to produce tokens.
- * 
- * 
  */
 
-//! I don't like that the function is called lexer and the data structuer
-//! is also called lexer. Want to change this later.
 int	prompt(t_lexer *lexer)
 {
 	display_prompt();
@@ -45,10 +41,16 @@ int	grab_input(t_lexer *lexer)
 	if (get_next_line(STDIN_FILENO, &raw_input) < 0)
 		exit(1);
 	if (!raw_input)
-		return (1); //TODO Handle empty input (user pressed enter on an empty prompt)
+		return (1);
 	lexer->input = ft_strtrim(raw_input, " \t\n\v\r\f");
 	free(raw_input);
 	if (!ft_strcmp(lexer->input, "exit"))
 		return (free(lexer->input), 0);
+	lexer->words = ft_split((const char *)lexer->input, ' ');
+	if (!lexer->words)
+	{
+		free(lexer->input);
+		exit(EXIT_FAILURE);
+	}
 	return (1);
 }
