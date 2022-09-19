@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstadd_front.c                                  :+:    :+:            */
+/*   token_first.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/11/03 14:36:24 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/09/19 20:21:58 by nsterk        ########   odam.nl         */
+/*   Created: 2022/09/19 20:06:00 by nsterk        #+#    #+#                 */
+/*   Updated: 2022/09/19 20:08:08 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "lexer.h"
 #include "utils.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+t_token	*token_first(t_token *token)
 {
-	if (!lst || !new)
-		return ;
-	new->next = *lst;
-	*lst = new;
+	t_token	*current;
+
+	if (!token)
+		return (NULL);
+	current = token;
+	while (current->prev)
+		current = current->prev;
+	return (current);
 }

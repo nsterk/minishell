@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/12 13:31:08 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/09/15 21:59:18 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/19 21:02:00 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,18 @@ void	print_tokens(t_token *tokens, size_t len)
 	}
 }
 
+void	print_list(t_token **lst)
+{
+	t_token	*tmp;
+
+	tmp = (*lst);
+	while (tmp)
+	{
+		printf("prev: %p		current: %p		next: %p\n", tmp->prev, tmp, tmp->next);
+		tmp = tmp->next;
+	}
+}
+
 void	lexer(t_lexer *lexer)
 {
 	lexer->nr_tokens = ft_arraylen(lexer->words);
@@ -43,19 +55,22 @@ void	lexer(t_lexer *lexer)
 	if (!lexer->tokens)
 		exit(1);
 	// printf("Input string is: %s\n", lexer->input);
-	fill_tokens(lexer->tokens, lexer->words, ft_arraylen(lexer->words));
+	fill_tokens(lexer, ft_arraylen(lexer->words));
 	print_tokens(lexer->tokens, ft_arraylen(lexer->words));
+	print_list(&(lexer->lst));
 }
 
-void	fill_tokens(t_token *tokens, char **words, size_t len)
+void	fill_tokens(t_lexer *lexer, size_t len)
 {
 	size_t	i;
 
 	i = 0;
+	lexer->lst = NULL;
 	while (i < len)
 	{
-		tokens[i].word = ft_strdup((const char *)words[i]);
-		if (!tokens[i].word)
+		token_append(&(lexer->lst), token_new(lexer->words[i]));
+		lexer->tokens[i].word = ft_strdup((const char *)lexer->words[i]);
+		if (!lexer->tokens[i].word)
 			exit(EXIT_FAILURE);
 		i++;
 	}

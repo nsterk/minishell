@@ -6,11 +6,12 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/04 00:11:08 by nsterk        #+#    #+#                 */
-/*   Updated: 2020/11/14 22:59:45 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/19 20:23:56 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "utils.h"
+#include "lexer.h"
 
 void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
@@ -23,5 +24,19 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 		temp = (*lst)->next;
 		ft_lstdelone(*lst, del);
 		*lst = temp;
+	}
+}
+
+void	tokenclear(t_token **token, void (*del)(void*))
+{
+	t_token	*temp;
+
+	if (!token)
+		return ;
+	while (*token)
+	{
+		temp = (*token)->next;
+		token_delone(*token, del);
+		*token = temp;
 	}
 }

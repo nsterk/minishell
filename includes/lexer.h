@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/09/15 21:54:39 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/19 20:32:41 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ typedef enum e_type
 
 typedef struct s_token
 {
+	struct s_token	*prev;
 	char			*word;
 	t_type			type;
+	struct s_token	*next;
 }	t_token;
 
 typedef struct s_lexer
@@ -37,12 +39,26 @@ typedef struct s_lexer
 	char	*input;
 	char	**words;
 	t_token	*tokens;
+	t_token	*lst;
 	size_t	nr_tokens;
 }	t_lexer;
 
 void	lexer(t_lexer *lexer);
-void	fill_tokens(t_token *tokens, char **words, size_t len);
+void	fill_tokens(t_lexer *lexer, size_t len);
 void	print_tokens(t_token *tokens, size_t len);
 
+/**
+ * Token list functions
+ */
+
+int		tokensize(t_token *token);
+void	token_delone(t_token *token, void (*del)(void*));
+void	tokenclear(t_token **token, void (*del)(void*));
+t_token	*token_new(char *word);
+int		token_addafter(t_token **spot, t_token **new);
+t_token	*token_last(t_token *token);
+t_token	*token_first(t_token *token);
+void	token_append(t_token **token, t_token *new);
+void	token_prepend(t_token **token, t_token *new);
 
 #endif

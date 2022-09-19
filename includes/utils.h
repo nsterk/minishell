@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 12:09:43 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/09/15 21:31:11 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/19 20:22:07 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ size_t				ft_arraylen(char **arr);
  * Linked list functions.
  */
 
-t_list				*ft_lstnew(void *content);
-int					ft_lstadd_back(t_list **lst, t_list *new);
-void				ft_lstadd_front(t_list **lst, t_list *new);
-t_list				*ft_lstlast(t_list *lst);
-void				ft_lstclear(t_list **lst, void (*del)(void *));
-void				ft_lstdelone(t_list *lst, void (*del)(void *));
-void				ft_lstiter(t_list *lst, void (*f)(void *));
+// t_list				*ft_lstnew(void *content);
+// int					ft_lstadd_back(t_list **lst, t_list *new);
+// void				ft_lstadd_front(t_list **lst, t_list *new);
+// t_list				*ft_lstlast(t_list *lst);
+// void				ft_lstclear(t_list **lst, void (*del)(void *));
+// void				ft_lstdelone(t_list *lst, void (*del)(void *));
+// void				ft_lstiter(t_list *lst, void (*f)(void *));
 
 #	endif
 
