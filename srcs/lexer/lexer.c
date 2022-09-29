@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/12 13:31:08 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/09/22 17:55:40 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/29 18:12:55 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	lexer(t_lexer *lexer)
 {
 	fill_tokens(lexer);
 	ft_free_array(lexer->words);
+	test_remove(&(lexer->tokens), lexer->tokens);
 }
 
 void	fill_tokens(t_lexer *lexer)

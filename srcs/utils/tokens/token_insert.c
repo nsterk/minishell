@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/22 17:36:40 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/09/22 17:37:47 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/29 17:18:16 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,14 @@
 
 int	token_addafter(t_token **spot, t_token *new)
 {
-	t_token	*prev;
 	t_token	*next;
 
 	if (!spot || !(*spot) || !new)
 		return (1);
 	next = (*spot)->next;
-	prev = (*spot)->prev;
 	new->prev = *spot;
-	if ((*spot)->next == NULL)
-	{
-		(*spot)->next = new;
-		return (0);
-	}
+	(*spot)->next = new;
 	new->next = next;
 	next->prev = new;
-	prev->next = new;
 	return (0);
 }

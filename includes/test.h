@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/22 11:32:28 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/09/22 14:59:37 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/29 18:18:38 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,8 @@ void	test_insert(t_token **lst);
 
 /* This function tests whether insert works correctly if spot is tail of list */
 void	test_insert_end(t_token **lst);
+
+void	test_append(t_token **lst);
+void	test_remove(t_token **head, t_token *token);
 
 #endif
