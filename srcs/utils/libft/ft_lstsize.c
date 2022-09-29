@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/03 15:17:02 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/09/19 18:13:26 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/22 17:43:46 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ int	ft_lstsize(t_list *lst)
 	return (i);
 }
 
-int	tokensize(t_token *token)
-{
-	int		i;
+// int	tokensize(t_token *token)
+// {
+// 	int		i;
 
-	i = 0;
-	while (token)
-	{
-		token = token->next;
-		i++;
-	}
-	return (i);
-}
+// 	i = 0;
+// 	while (token)
+// 	{
+// 		token = token->next;
+// 		i++;
+// 	}
+// 	return (i);
+// }

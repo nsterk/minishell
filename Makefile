@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2022/09/19 20:24:43 by nsterk        ########   odam.nl          #
+#    Updated: 2022/09/22 17:55:01 by nsterk        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,7 @@ SRCS		=	main.c \
 				prompt.c \
 				lexer.c \
 				parser.c \
-				get_next_line.c \
-				get_next_line_utils.c \
+				get_next_line.c get_next_line_utils.c \
 				ft_arraylen.c \
 				ft_atoi.c \
 				ft_bzero.c \
@@ -50,18 +49,16 @@ SRCS		=	main.c \
 				ft_strchr.c \
 				ft_strlcpy.c \
 				ft_strcpy.c \
-				ft_lstadd_back.c \
-				ft_lstdelone.c \
+				token_new.c token_append.c token_insert.c token_last.c \
+				token_remove.c token_first.c token_size.c \
 				ft_lstclear.c \
-				ft_lstnew.c \
-				ft_lstsize.c \
-				ft_lstlast.c
+				test_list.c
 
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 # Config
 CC			:=	cc
-FLAGS		:= -Wall -Wextra -g #-Werror
+FLAGS		:= -Wall -Wextra -g#-Werror
 # ARGS		:=	2 800 200 200
 
 all:		$(NAME)

@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/09/19 20:32:41 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/22 18:22:31 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,26 @@ typedef struct s_lexer
 	char	*input;
 	char	**words;
 	t_token	*tokens;
-	t_token	*lst;
 	size_t	nr_tokens;
 }	t_lexer;
 
 void	lexer(t_lexer *lexer);
-void	fill_tokens(t_lexer *lexer, size_t len);
+void	fill_tokens(t_lexer *lexer);
 void	print_tokens(t_token *tokens, size_t len);
 
 /**
- * Token list functions
+ * Token list functions.
  */
 
 int		tokensize(t_token *token);
 void	token_delone(t_token *token, void (*del)(void*));
 void	tokenclear(t_token **token, void (*del)(void*));
 t_token	*token_new(char *word);
-int		token_addafter(t_token **spot, t_token **new);
+int		token_addafter(t_token **spot, t_token *new);
 t_token	*token_last(t_token *token);
 t_token	*token_first(t_token *token);
-void	token_append(t_token **token, t_token *new);
+int		token_append(t_token **token, t_token *new);
 void	token_prepend(t_token **token, t_token *new);
+t_token	*token_remove(t_token *token);
 
 #endif
