@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 17:08:36 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/09/15 20:21:05 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/30 21:00:41 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdio.h>
 
 int		prompt(t_lexer *lexer);
-void	display_prompt(void);
-int		grab_input(t_lexer *lexer);
+char	*grab_input(t_lexer *lexer, char *prompt);
 
 #endif

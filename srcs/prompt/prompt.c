@@ -6,12 +6,14 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 17:07:39 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/09/15 20:47:48 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/09/30 21:40:40 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 #include "prompt.h"
+#include <readline/readline.h>
+#include <readline/history.h>
 
 /**
  * instead of while (1) can do while (prompt). prompt can return an int
@@ -25,24 +27,14 @@
 
 int	prompt(t_lexer *lexer)
 {
-	display_prompt();
-	return (grab_input(lexer));
-}
-
-void	display_prompt(void)
-{
-	write(1, "$ ", 3);
-}
-
-int	grab_input(t_lexer *lexer)
-{
 	char	*raw_input;
 
-	if (get_next_line(STDIN_FILENO, &raw_input) < 0)
-		exit(1);
+	raw_input = grab_input(lexer, "momoshell-0.2$ ");
 	if (!raw_input)
 		return (1);
-	lexer->input = ft_strtrim(raw_input, " \t\n\v\r\f");
+	if (*raw_input)
+		add_history(raw_input);
+	lexer->input = ft_strdup(raw_input); //! malloc protection
 	free(raw_input);
 	if (!ft_strcmp(lexer->input, "exit"))
 		return (free(lexer->input), 0);
@@ -53,4 +45,15 @@ int	grab_input(t_lexer *lexer)
 		exit(EXIT_FAILURE);
 	}
 	return (1);
+}
+
+char	*grab_input(t_lexer *lexer, char *prompt)
+{
+	char	*line;
+	char	*tmp;
+
+	tmp = readline(prompt);
+	if (tmp && *tmp && tmp[ft_strlen(tmp - 1)] == '\\')
+		
+	return (line);
 }

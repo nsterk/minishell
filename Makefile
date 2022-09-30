@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2022/09/22 17:55:01 by nsterk        ########   odam.nl          #
+#    Updated: 2022/09/29 21:24:43 by nsterk        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,9 @@ db: all
 
 norm:
 	norminette srcs/*
+
+run: all
+	./$(NAME)
 
 test: all
 	./$(NAME) $(ARGS)
