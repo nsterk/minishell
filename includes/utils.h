@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 12:09:43 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/09/19 20:22:07 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/10/05 18:06:47 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,60 @@ void				exit_minishell(int status);
 int					get_next_line(int fd, char **line);
 char				*ft_strndup(char *src, size_t n);
 char				*ft_strgjoin(char *s1, char *s2, int len_s2);
+
+/**
+ * Pipex functions.
+ */
+typedef struct s_command
+{
+	char	**cmdv;
+	char	*pathname;
+}				t_command;
+
+typedef struct s_pipex
+{
+	char	**paths;
+	t_command	*command;
+	int		*pid;
+	int		infile;
+	int		outfile;
+	int		**fd;
+	int		nr_children;
+	int		current_child;
+	int		status;
+	int		here_doc;
+	char	*delimiter;
+	int		offset;
+}				t_pipex;
+
+// int		ft_strncmp(const char *s1, const char *s2, int len);
+// char	*ft_strjoin(char const *s1, char const *s2);
+// int		ft_strlen(const char *s);
+// char	*ft_strdup(const char *src);
+// char	**ft_split(char const *s, char c);
+// char	*ft_strtrim(char const *s1, char const *set);
+// int		ft_strlcpy(char *dest, const char *src, int size);
+// int		ft_strcmp(char *s1, char *s2);
+
+int		get_commands(t_pipex *pipex, char **argv, char **envp);
+
+// Child processes
+void	last_child(t_pipex *pipex, char *file, char **envp);
+void	middle_children(t_pipex *pipex, char **envp);
+void	first_child(t_pipex *pipex, char *file, char **envp);
+void	handle_the_children(t_pipex *pipex, char **argv, char **envp);
+void	wait_for_children(t_pipex *pipex);
+void	fork_process(t_pipex *pipex);
+
+// Pipes
+void	close_pipes(t_pipex *pipex);
+void	open_pipes(t_pipex *pipex);
+
+void	exit_pipex(t_pipex *pipex, int status, char *message);
+void	free_strings(char **strings, int len);
+int		nr_strings(char **strings);
+
+int		read_from_cmdl(char *delimiter);
 
 /**
  * Libft functions.

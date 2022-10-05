@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   minishell.h                                        :+:    :+:            */
+/*   executor.h                                         :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
+/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/09/07 15:05:45 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/10/05 17:44:34 by abeznik       ########   odam.nl         */
+/*   Created: 2022/09/29 12:50:02 by abeznik       #+#    #+#                 */
+/*   Updated: 2022/10/05 17:54:36 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef EXECUTOR_H
+# define EXECUTOR_H
 
 /**
  * Needed libs.
  */
-# include <unistd.h>
+# include <unistd.h> // execve
 
 /**
  * Minishell libs.
  */
-# include "prompt.h"
 # include "lexer.h"
 # include "parser.h"
 # include "utils.h"
-# include "executor.h"
 
-typedef struct s_data
-{
-	t_lexer	lexer;
-	t_token	*tokens;
-	t_table	*table;
-}	t_data;
+void	executor(t_table *table);
 
-int				main(void);
+char	*search_path(char *file);
+int		exec_cmd(int argc, char **argv);
+int		simple_cmd(t_token *tokens);
 
 #endif

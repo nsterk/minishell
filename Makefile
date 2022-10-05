@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2022/09/19 20:24:43 by nsterk        ########   odam.nl          #
+#    Updated: 2022/09/29 12:51:09 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS		=	main.c \
 				prompt.c \
 				lexer.c \
 				parser.c \
+				executor.c \
 				get_next_line.c \
 				get_next_line_utils.c \
 				ft_arraylen.c \

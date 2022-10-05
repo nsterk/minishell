@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:03:59 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/09/15 21:59:25 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/10/05 17:46:06 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	enter_shell(void)
 		lexer(&data.lexer);
 		// print_tokens(data.lexer.tokens, ft_arraylen(data.lexer.words));
 		data.table = parser(data.tokens);
+		executor(&data.table);
 	}
 }
 
