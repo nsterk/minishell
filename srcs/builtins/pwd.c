@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   prompt.h                                           :+:    :+:            */
+/*   pwd.c                                              :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
+/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/09/15 17:08:36 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/09/30 21:00:41 by nsterk        ########   odam.nl         */
+/*   Created: 2022/10/05 19:15:07 by abeznik       #+#    #+#                 */
+/*   Updated: 2022/10/05 19:41:29 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PROMPT_H
-# define PROMPT_H
+#include "builtins.h"
 
-# include "utils.h"
-# include "lexer.h"
-# include <stdio.h>
+/**
+ * ! work in progress
+ */
+int	exec_pwd(void)
+{
+	char	*str;
 
-int		prompt(t_lexer *lexer);
-char	*grab_input(t_lexer *lexer, char *prompt);
-
-#endif
+	str = getcwd(NULL, 0);
+	if (!str)
+	{
+		perror("");
+		exit(3000);
+	}
+	else
+		ft_putendl_fd(str, STDOUT_FILENO);
+	free(str);
+	return (EXIT_SUCCESS);
+}

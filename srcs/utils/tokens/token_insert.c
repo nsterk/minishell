@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstdelone.c                                     :+:    :+:            */
+/*   token_insert.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/11/03 17:50:34 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/09/22 17:40:43 by nsterk        ########   odam.nl         */
+/*   Created: 2022/09/22 17:36:40 by nsterk        #+#    #+#                 */
+/*   Updated: 2022/09/29 17:18:16 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "lexer.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
-{
-	if (!lst || !del)
-		return ;
-	del(lst->content);
-	free(lst);
-}
+//! this is really ugly and unoptimized but it works
 
-// void	token_delone(t_token *token, void (*del)(void*))
-// {
-// 	if (!token || !del)
-// 		return ;
-// 	del(token->word);
-// 	free(token);
-// }
+int	token_addafter(t_token **spot, t_token *new)
+{
+	t_token	*next;
+
+	if (!spot || !(*spot) || !new)
+		return (1);
+	next = (*spot)->next;
+	new->prev = *spot;
+	(*spot)->next = new;
+	new->next = next;
+	next->prev = new;
+	return (0);
+}

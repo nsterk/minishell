@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2022/09/29 12:51:09 by abeznik       ########   odam.nl          #
+#    Updated: 2022/10/05 19:30:17 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ SRCS		=	main.c \
 				lexer.c \
 				parser.c \
 				executor.c \
+				builtins.c \
+				pwd.c \
 				get_next_line.c \
 				get_next_line_utils.c \
 				ft_arraylen.c \
@@ -51,18 +53,18 @@ SRCS		=	main.c \
 				ft_strchr.c \
 				ft_strlcpy.c \
 				ft_strcpy.c \
-				ft_lstadd_back.c \
-				ft_lstdelone.c \
+				token_new.c token_append.c token_insert.c token_last.c \
+				token_remove.c token_first.c token_size.c \
 				ft_lstclear.c \
-				ft_lstnew.c \
-				ft_lstsize.c \
-				ft_lstlast.c
+				test_list.c \
+				ft_putendl_fd.c \
+				ft_putstr_fd.c \
 
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 # Config
 CC			:=	cc
-FLAGS		:= -Wall -Wextra -g #-Werror
+FLAGS		:= -Wall -Wextra -g#-Werror
 # ARGS		:=	2 800 200 200
 
 all:		$(NAME)
@@ -82,6 +84,9 @@ db: all
 
 norm:
 	norminette srcs/*
+
+run: all
+	./$(NAME)
 
 test: all
 	./$(NAME) $(ARGS)

@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   prompt.h                                           :+:    :+:            */
+/*   builtins.h                                         :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
+/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/09/15 17:08:36 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/09/30 21:00:41 by nsterk        ########   odam.nl         */
+/*   Created: 2022/10/05 19:02:58 by abeznik       #+#    #+#                 */
+/*   Updated: 2022/10/05 19:41:48 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PROMPT_H
-# define PROMPT_H
+#ifndef BUILTINS_H
+# define BUILTINS_H
 
+# include "parser.h"
+# include "executor.h"
 # include "utils.h"
-# include "lexer.h"
-# include <stdio.h>
 
-int		prompt(t_lexer *lexer);
-char	*grab_input(t_lexer *lexer, char *prompt);
+int	read_builtin(char *cmd);
+
+int	exec_pwd(void);
 
 #endif

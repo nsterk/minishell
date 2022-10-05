@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   token_first.c                                      :+:    :+:            */
+/*   token_new.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/09/19 20:06:00 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/09/19 20:08:08 by nsterk        ########   odam.nl         */
+/*   Created: 2020/11/03 14:04:12 by nsterk        #+#    #+#                 */
+/*   Updated: 2022/09/22 17:43:33 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
-#include "utils.h"
 
-t_token	*token_first(t_token *token)
+t_token	*token_new(char *word)
 {
-	t_token	*current;
+	t_token	*new;
 
-	if (!token)
+	new = malloc(sizeof(t_token));
+	if (!new)
 		return (NULL);
-	current = token;
-	while (current->prev)
-		current = current->prev;
-	return (current);
+	new->prev = NULL;
+	new->word = ft_strdup((const char *)word);
+	if (!new->word)
+		return (NULL);
+	new->next = NULL;
+	return (new);
 }
