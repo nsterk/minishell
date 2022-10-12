@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2022/09/29 21:24:43 by nsterk        ########   odam.nl          #
+#    Updated: 2022/10/11 20:56:24 by nsterk        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,18 +37,14 @@ SRCS		=	main.c \
 				ft_calloc.c \
 				ft_free_array.c \
 				ft_itoa.c \
-				ft_split.c \
-				ft_strdup.c \
-				ft_strjoin.c \
 				ft_strlen.c \
 				ft_strcmp.c \
 				ft_strncmp.c \
-				ft_strtrim.c \
-				ft_substr.c \
 				ft_skipspace.c \
 				ft_strchr.c \
-				ft_strlcpy.c \
-				ft_strcpy.c \
+				ft_isspace.c \
+				ft_strlcpy.c ft_strcpy.c ft_substr.c ft_strtrim.c \
+				ft_strdup.c ft_strjoin.c ft_split.c \
 				token_new.c token_append.c token_insert.c token_last.c \
 				token_remove.c token_first.c token_size.c \
 				ft_lstclear.c \
