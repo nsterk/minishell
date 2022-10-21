@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:05:45 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/09/15 17:48:40 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/10/13 15:19:04 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,12 @@ typedef struct s_data
 }	t_data;
 
 int				main(void);
+
+/**
+ * Init functions.
+ */
+
+void			init_data(t_data *data);
+void			init_lexer(t_lexer *lexer);
 
 #endif

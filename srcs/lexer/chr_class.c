@@ -1,20 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   init_lexer.c                                       :+:    :+:            */
+/*   chr_class.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/09/15 17:57:14 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/10/18 13:37:29 by nsterk        ########   odam.nl         */
+/*   Created: 2022/10/11 20:09:52 by nsterk        #+#    #+#                 */
+/*   Updated: 2022/10/18 14:55:27 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "defines.h"
 
-void	init_lexer(t_lexer *lexer)
-{
-	lexer->input = NULL;
-	lexer->tokens = NULL;
-	lexer->start = 0;
-}
+t_chr_class
