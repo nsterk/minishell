@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/10/19 21:43:56 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/10/23 20:35:55 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ typedef enum e_toktype
 	TOK_ERROR,
 	TOK_CMD,
 	TOK_ARG,
-	I_RED,
-	WORD,
-	PIPE,
-	HERE_DOC,
-	O_RED,
-	C_EOF
+	TOK_RIN,
+	TOK_ROUT,
+	TOK_PIPE,
+	TOK_SPACE,
+	TOK_EOF,
+	TOK_MAX
 }	t_toktype;
 
 typedef struct s_token
