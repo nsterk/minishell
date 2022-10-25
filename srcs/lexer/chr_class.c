@@ -6,10 +6,19 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/11 20:09:52 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/10/18 14:55:27 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/10/25 16:49:32 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "defines.h"
+#include "lexer.h"
 
-t_chr_class
+t_toktype	get_type(int c)
+{
+	if (ft_isspace(c))
+		return (TOK_SPACE);
+	if (c == '<' || c == '>' || c == '|')
+		return (TOK_OP);
+	if (c == '\0')
+		return (TOK_EOF);
+	return (TOK_ARG);
+}

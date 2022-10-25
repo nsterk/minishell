@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/10/23 20:35:55 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/10/25 15:56:02 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,34 @@
 typedef enum e_toktype
 {
 	TOK_ERROR,
-	TOK_CMD,
 	TOK_ARG,
-	TOK_RIN,
-	TOK_ROUT,
-	TOK_PIPE,
+	TOK_OP,
 	TOK_SPACE,
 	TOK_EOF,
 	TOK_MAX
 }	t_toktype;
+
+
+// typedef enum e_toktype
+// {
+// 	TOK_ERROR,
+// 	TOK_CMD,
+// 	TOK_ARG,
+// 	TOK_RIN,
+// 	TOK_ROUT,
+// 	TOK_PIPE,
+// 	TOK_SPACE,
+// 	TOK_EOF,
+// 	TOK_MAX
+// }	t_toktype;
 
 typedef struct s_token
 {
 	struct s_token	*prev;
 	char			*word;
 	t_toktype		type;
+	size_t			start;
+	size_t			end;
 	struct s_token	*next;
 }	t_token;
 
@@ -61,6 +74,16 @@ t_token	*token_first(t_token **token);
 int		token_append(t_token **token, t_token *new);
 void	token_prepend(t_token **token, t_token *new);
 t_token	*token_remove(t_token **head, t_token *token);
+
+//	trying out a different version where i don't malloc the cmd itself
+//	but just store the start and end index  of that token in the original
+//	input string
+
+t_token	*token_new2(size_t start, t_toktype type);
+
+// want to make a lookup table for the character token types
+// and this is my attempt
+typedef
 
 void	print_tokens(t_token *tokens, size_t len);
 
