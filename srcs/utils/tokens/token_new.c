@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/03 14:04:12 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/10/25 15:43:32 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/10/26 18:04:11 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_token	*token_new(char *word, t_toktype type)
 	return (new);
 }
 
-t_token	*token_new2(size_t start, t_toktype type)
+t_token	*token_new2(size_t start, size_t end, t_toktype type)
 {
 	t_token	*new;
 
@@ -38,7 +38,7 @@ t_token	*token_new2(size_t start, t_toktype type)
 	new->prev = NULL;
 	new->type = type;
 	new->start = start;
-	new->end = start;
+	new->end = end;
 	new->next = NULL;
 	return (new);
 }

@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2022/10/20 19:20:30 by nsterk        ########   odam.nl          #
+#    Updated: 2022/10/26 17:36:12 by nsterk        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,8 @@ SRCS		=	main.c \
 				token_new.c token_append.c token_insert.c token_last.c \
 				token_remove.c token_first.c token_size.c \
 				ft_lstclear.c test_list.c \
-				init_data.c init_lexer.c
+				init_data.c init_lexer.c \
+				chr_class.c
 
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 

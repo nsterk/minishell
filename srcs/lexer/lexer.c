@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/12 13:31:08 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/10/25 16:52:52 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/10/26 18:14:00 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,21 @@ static void	get_token(t_lexer *lexer, t_toktype type);
 
 void	lexer(t_lexer *lexer)
 {
-	tokenizer(lexer);
+	t_toktype	state;
+	//do smth w/ quotes
+	while (lexer->input[lexer->start])
+	{
+		//or do something with quotes here
+		while (lexer->input[lexer->start] && ft_isspace(lexer->input[lexer->start]))
+			lexer->start++;
+		state = get_type(lexer->input[lexer->start]);
+		get_token(lexer, state);
+	}
+	// tokenizer(lexer);
 }
 
 void	tokenizer(t_lexer *lexer)
-{	
+{
 	token_printHtT(lexer->tokens);
 }
 
@@ -30,11 +40,9 @@ static void	get_token(t_lexer *lexer, t_toktype type)
 	size_t	i;
  
 	i = 0;
-	while (lexer->input[lexer->start] && ft_isspace(lexer->input[lexer->start]))
-		lexer->start++;
-	while (lexer->input[lexer->start + i] && !ft_isspace(lexer->input[lexer->start + i]))
+	while (get_type(lexer->input[lexer->start + i]) == type)
 		i++;
-	if (token_append(&(lexer->tokens), token_new(lexer->start, type)))
+	if (token_append(&(lexer->tokens), token_new2(lexer->start, lexer->start + i, type)))
 		exit(EXIT_FAILURE); //!malloc protection
 	lexer->start += i;
 }
