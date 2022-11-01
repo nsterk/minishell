@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   init_lexer.c                                       :+:    :+:            */
+/*   lex_word.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/09/15 17:57:14 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/11/01 18:28:14 by nsterk        ########   odam.nl         */
+/*   Created: 2022/11/01 20:52:51 by nsterk        #+#    #+#                 */
+/*   Updated: 2022/11/01 20:56:36 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-void	init_lexer(t_lexer *lexer)
+bool	lex_word(t_lexer *lexer, t_toktype type)
 {
-	lexer->input = NULL;
-	lexer->tokens = NULL;
-	lexer->idx = 0;
+	if (lexer && type < TOK_MAX)
+		printf("lex_word works!\n");
+	return (true);
 }

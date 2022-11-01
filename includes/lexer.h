@@ -6,25 +6,35 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/10/26 18:04:22 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/11/01 20:18:55 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
 
+# include <stdbool.h>
 # include "utils.h"
 # include <stdio.h>
 
 typedef enum e_toktype
 {
-	TOK_ERROR,
 	TOK_CMD,
 	TOK_OP,
 	TOK_SPACE,
 	TOK_EOF,
 	TOK_MAX
 }	t_toktype;
+
+typedef enum e_lexstate
+{
+	S_SPACE,
+	S_OPERATOR,
+	S_WORD,
+	S_DQUOTE,
+	S_SQUOTE,
+	S_EOF
+}	t_lexstate;
 
 // typedef enum e_toktype
 // {
@@ -51,13 +61,22 @@ typedef struct s_token
 
 typedef struct s_lexer
 {
-	char	*input;
-	t_token	*tokens;
-	size_t	start;
+	char		*input;
+	t_token		*tokens;
+	size_t		idx;
+	t_lexstate	state;
 }	t_lexer;
 
 void		lexer(t_lexer *lexer);
 void		tokenizer(t_lexer *lexer);
+t_lexstate	get_state(char c);
+
+// Lexer functions and dispatch table to these functions.
+
+typedef bool	(*t_lexfunction)(t_lexer *lexer, t_toktype type);
+bool		lex_operator(t_lexer *lexer, t_toktype type);
+bool		lex_word(t_lexer *lexer, t_toktype type);
+bool		lex_space(t_lexer *lexer, t_toktype type);
 
 /**
  * Token list functions.
@@ -80,7 +99,7 @@ t_token		*token_remove(t_token **head, t_token *token);
 
 t_token		*token_new2(size_t start, size_t end, t_toktype type);
 
-t_toktype	get_type(int c);
+t_toktype	get_type(char c);
 
 void		print_tokens(t_token *tokens, size_t len);
 

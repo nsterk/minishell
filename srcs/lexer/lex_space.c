@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   chr_class.c                                        :+:    :+:            */
+/*   lex_space.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/11 20:09:52 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/10/26 14:08:35 by nsterk        ########   odam.nl         */
+/*   Created: 2022/11/01 20:52:09 by nsterk        #+#    #+#                 */
+/*   Updated: 2022/11/01 20:56:25 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-t_toktype	get_type(int c)
+bool	lex_space(t_lexer *lexer, t_toktype type)
 {
-	if (ft_isspace(c))
-		return (TOK_SPACE);
-	if (c == '<' || c == '>' || c == '|')
-		return (TOK_OP);
-	if (c == '\0')
-		return (TOK_EOF);
-	return (TOK_CMD);
+	if (lexer && type < TOK_MAX)
+		printf("lex_space works!\n");
+	return (true);
 }
