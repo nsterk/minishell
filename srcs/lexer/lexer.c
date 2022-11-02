@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/12 13:31:08 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/11/01 21:04:30 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/11/02 16:43:21 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	lexer(t_lexer *lexer)
 {
 	lexer->state = get_state(lexer->input[0]);
 	s_lexfunction(lexer, s_type[lexer->state]);
+	printf("idx after lex_word call: %d\n", lexer->idx);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/01 19:38:05 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/11/01 19:43:10 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/11/02 16:45:28 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,9 @@ t_lexstate	get_state(char c)
 	if (c == '<' || c == '>' || c == '|')
 		return (S_OPERATOR);
 	return (S_WORD);
+}
+
+void	switch_state(t_lexer *lexer, t_lexstate new_state)
+{
+	lexer->state = new_state;
 }
