@@ -6,20 +6,25 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/12 13:31:08 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/11/02 16:43:21 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/11/02 22:21:52 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 #include "test.h"
 
-static const t_toktype	s_type[] = {
+static t_toktype	s_get_type(t_lexstate state)
+{
+	static const t_toktype	s_type[] = {
 	[S_SPACE] = TOK_SPACE,
 	[S_OPERATOR] = TOK_OP,
 	[S_WORD] = TOK_CMD,
 	[S_DQUOTE] = TOK_CMD,
 	[S_SQUOTE] = TOK_CMD,
-	[S_EOF] = TOK_EOF	
+	[S_EOF] = TOK_EOF
+	};
+
+	return (s_type[state]);
 };
 
 static bool	s_lexfunction(t_lexer *lexer, t_toktype type)
@@ -35,8 +40,12 @@ static bool	s_lexfunction(t_lexer *lexer, t_toktype type)
 void	lexer(t_lexer *lexer)
 {
 	lexer->state = get_state(lexer->input[0]);
-	s_lexfunction(lexer, s_type[lexer->state]);
-	printf("idx after lex_word call: %d\n", lexer->idx);
+	while (lexer->state != S_EOF)
+	{
+		s_lexfunction(lexer, s_get_type(lexer->state));
+		// printf("idx after lex_word call: %zu\n", lexer->idx);
+	}
+	token_printHtT(lexer->input, lexer->tokens);
 }
 
 /*

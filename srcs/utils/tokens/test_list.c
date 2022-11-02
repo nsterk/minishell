@@ -6,21 +6,23 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/22 11:31:11 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/10/19 21:49:21 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/11/02 22:50:06 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 #include "utils.h"
 
-void	token_printHtT(t_token *lst)
+void	token_printHtT(char *input, t_token *lst)
 {
 	t_token	*tmp;
 
 	tmp = lst;
 	while (tmp)
 	{
-		printf("type: %d word: %s - ", tmp->type, tmp->word);
+		write(STDOUT_FILENO, input + tmp->start, tmp->end - tmp->start + 1);
+		write(STDOUT_FILENO, " - ", 3);
+		// printf("type: %d word: %s - ", tmp->type, tmp->word);
 		tmp = tmp->next;
 	}
 	printf("\n");

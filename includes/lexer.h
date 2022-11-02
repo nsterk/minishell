@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/11/01 20:18:55 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/11/02 17:07:33 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ typedef bool	(*t_lexfunction)(t_lexer *lexer, t_toktype type);
 bool		lex_operator(t_lexer *lexer, t_toktype type);
 bool		lex_word(t_lexer *lexer, t_toktype type);
 bool		lex_space(t_lexer *lexer, t_toktype type);
+
+void		switch_state(t_lexer *lexer, t_lexstate new_state);
 
 /**
  * Token list functions.
