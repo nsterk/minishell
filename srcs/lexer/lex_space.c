@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parser.c                                           :+:    :+:            */
+/*   lex_space.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
+/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/09/15 12:18:59 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/10/05 15:37:49 by nsterk        ########   odam.nl         */
+/*   Created: 2022/11/01 20:52:09 by nsterk        #+#    #+#                 */
+/*   Updated: 2022/11/02 22:12:06 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "lexer.h"
 
-t_table	*parser(t_token *token)
+bool	lex_space(t_lexer *lexer, t_toktype type)
 {
-	t_table	*table = NULL;
-
-	// printf("parser works!\n");
-	return (table);
+	(void)type;
+	while (lexer->state == get_state(lexer->input[lexer->idx + 1]))
+		lexer->idx++;
+	switch_state(lexer, get_state(lexer->input[lexer->idx + 1]));
+	return (true);
 }

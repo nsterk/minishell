@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 17:07:39 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/10/05 19:21:04 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/11/15 15:09:20 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,33 +27,18 @@
 
 int	prompt(t_lexer *lexer)
 {
-	char	*raw_input;
-
-	raw_input = grab_input(lexer, "momoshell-0.2$ ");
-	if (!raw_input)
+	lexer->input = grab_input(lexer, "momoshell-0.2$ ");
+	if (!lexer->input)
 		return (1);
-	if (*raw_input)
-		add_history(raw_input);
-	lexer->input = ft_strdup(raw_input); // ! malloc protection
-	free(raw_input);
-	if (!ft_strcmp(lexer->input, "exit"))
-		return (free(lexer->input), 0);
-	lexer->words = ft_split((const char *)lexer->input, ' ');
-	if (!lexer->words)
-	{
-		free(lexer->input);
-		exit(EXIT_FAILURE);
-	}
+	if (*lexer->input)
+		add_history(lexer->input);
 	return (1);
 }
 
 char	*grab_input(t_lexer *lexer, char *prompt)
 {
 	char	*line;
-	char	*tmp;
 
-	tmp = readline(prompt);
-	// if (tmp && *tmp && tmp[ft_strlen(tmp - 1)] == '\\')
-	return (tmp);
-	// return (line);
+	line = readline(prompt);
+	return (line);
 }

@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2022/10/05 19:30:17 by abeznik       ########   odam.nl          #
+#    Updated: 2022/11/15 15:07:41 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,31 +41,27 @@ SRCS		=	main.c \
 				ft_calloc.c \
 				ft_free_array.c \
 				ft_itoa.c \
-				ft_split.c \
-				ft_strdup.c \
-				ft_strjoin.c \
 				ft_strlen.c \
 				ft_strcmp.c \
 				ft_strncmp.c \
-				ft_strtrim.c \
-				ft_substr.c \
 				ft_skipspace.c \
 				ft_strchr.c \
-				ft_strlcpy.c \
-				ft_strcpy.c \
+				ft_isspace.c \
+				ft_strlcpy.c ft_strcpy.c ft_substr.c ft_strtrim.c \
+				ft_strdup.c ft_strjoin.c ft_split.c \
 				token_new.c token_append.c token_insert.c token_last.c \
 				token_remove.c token_first.c token_size.c \
-				ft_lstclear.c \
-				test_list.c \
+				ft_lstclear.c test_list.c \
+				init_data.c init_lexer.c state_type.c \
+				lex_word.c lex_operator.c lex_space.c \
 				ft_putendl_fd.c \
 				ft_putstr_fd.c \
 
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 # Config
-CC			:=	cc
-FLAGS		:= -Wall -Wextra -g#-Werror
-# ARGS		:=	2 800 200 200
+CC			:=	gcc
+FLAGS		:= -Wall -Wextra -g -fsanitize=address #-Werror
 
 all:		$(NAME)
 

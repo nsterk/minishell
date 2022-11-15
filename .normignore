@@ -1,1 +1,3 @@
 srcs/utils/tokens/test_list.c
+srcs/lexer/lexer.c
+srcs/lexer/test.c

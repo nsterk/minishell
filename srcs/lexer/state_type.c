@@ -1,20 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   init_lexer.c                                       :+:    :+:            */
+/*   state_type.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/09/15 17:57:14 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/11/01 18:28:14 by nsterk        ########   odam.nl         */
+/*   Created: 2022/11/01 19:38:05 by nsterk        #+#    #+#                 */
+/*   Updated: 2022/11/02 17:06:07 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-void	init_lexer(t_lexer *lexer)
+t_lexstate	get_state(char c)
 {
-	lexer->input = NULL;
-	lexer->tokens = NULL;
-	lexer->idx = 0;
+	if (c == '\0')
+		return (S_EOF);
+	if (c == '\'')
+		return (S_SQUOTE);
+	if (c == '"')
+		return (S_DQUOTE);
+	if (ft_isspace(c))
+		return (S_SPACE);
+	if (c == '<' || c == '>' || c == '|')
+		return (S_OPERATOR);
+	return (S_WORD);
+}
+
+void	switch_state(t_lexer *lexer, t_lexstate new_state)
+{
+	lexer->state = new_state;
+	lexer->idx++;
 }
