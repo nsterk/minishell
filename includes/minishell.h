@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:05:45 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/11/15 15:11:53 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/11/22 12:16:05 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_data
 	t_table	*table;
 }	t_data;
 
-int				main(void);
+int				main(int argc, char **argv, char **envp);
 
 /**
  * Init functions.

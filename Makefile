@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2022/11/15 15:07:41 by abeznik       ########   odam.nl          #
+#    Updated: 2022/11/22 12:09:00 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,7 @@ SRCS		=	main.c \
 				lexer.c \
 				parser.c \
 				executor.c \
-				builtins.c \
-				pwd.c \
+				builtins.c echo.c pwd.c exit.c env.c \
 				get_next_line.c \
 				get_next_line_utils.c \
 				ft_arraylen.c \
@@ -66,7 +65,7 @@ FLAGS		:= -Wall -Wextra -g -fsanitize=address #-Werror
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-	@printf "$(YEL)\n\n  Compiling objects$(DEF)"
+	@printf "$(YEL)\n\n  Compiling objects\n$(DEF)"
 	$(CC) $(OBJS) $(FLAGS) -lreadline -o $(NAME)
 	@printf "$(GRN)\n  Success!$(DEF)"
 

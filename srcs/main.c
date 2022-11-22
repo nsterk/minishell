@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:03:59 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/11/15 15:12:29 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/11/22 12:15:58 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,31 @@
 // 	}
 // }
 
-void	enter_shell(void)
+void	enter_shell(char **envp)
 {
 	t_data	data;
 
 	init_data(&data);
+	data.lexer.envp = envp;
 	while (prompt(&data.lexer))
 	{
 		lexer(&data.lexer);
 		data.table = parser(data.tokens);
-		init_lexer(&data.lexer);
-		executor(data.lexer.tokens);
+		// init_lexer(&data.lexer);
+		// printf("%s", data.tokens->word);
+		// executor(data.lexer.tokens);
+		// executor(&data.lexer); // ? testing
+
+
+		// executor("echo", "-n", "test"); // ? testing
+		// executor("pwd", "", ""); // ? testing
+		// executor("exit", "", ""); // ? testing
+		executor("env", "", "", &data.lexer); // ? testing
 	}
 }
 
-int	main(void)
+int	main(int argc, char **argv, char **envp)
 {
-	enter_shell();
+	enter_shell(envp);
 	return (0);
 }

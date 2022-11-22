@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/29 12:50:02 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/10/05 19:28:17 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/11/22 12:13:45 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@
 # include "utils.h"
 # include "builtins.h"
 
-void	executor(t_token *tokens);
+// void	executor(t_lexer *lexer);
+// void	executor(char *cmd, char *option, const char *STRING); // ? testing
+void	executor(char *cmd, char *option, const char *STRING, t_lexer *lexer); // ? testing
 
 // char	*search_path(char *file);
 // int		exec_cmd(int argc, char **argv);
