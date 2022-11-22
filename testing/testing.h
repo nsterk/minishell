@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   env.c                                              :+:    :+:            */
+/*   testing.h                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/11/22 12:05:50 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/11/22 14:13:26 by abeznik       ########   odam.nl         */
+/*   Created: 2022/11/22 14:04:33 by abeznik       #+#    #+#                 */
+/*   Updated: 2022/11/22 14:04:35 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#ifndef TESTING_H
+# define TESTING_H
 
-int	exec_env(char **envp)
-{
-	int		i;
+# include <minishell.h>
+# include <stdio.h>
+# include <string.h>
+# include <unity.h>
 
-	i = 0;
-	while (envp[i])
-	{
-		ft_putendl_fd(envp[i], STDOUT_FILENO);
-		i++;
-	}
-	return (EXIT_SUCCESS);
-}
+#endif

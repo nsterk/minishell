@@ -6,15 +6,15 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/11/22 12:14:54 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/11/22 14:08:39 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
 
-# include <stdbool.h>
 # include "utils.h"
+# include <stdbool.h>
 # include <stdio.h>
 
 typedef enum e_toktype
