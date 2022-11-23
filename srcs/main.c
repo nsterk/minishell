@@ -6,49 +6,65 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:03:59 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/11/22 15:04:00 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/11/23 12:37:24 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	quick_parser(t_lexer *lexer)
+static int	quick_lexer(t_lexer *lexer)
+{
+	char	**tokens;
+	int		i;
+	int		ret;
+
+	i = 0;
+	tokens = ft_split(lexer->input, ' ');
+	while (tokens[i] != NULL)
+		i++;
+	ret = i;
+	ft_free_array(tokens);
+	return (i);
+}
+
+static int	quick_parser(t_lexer *lexer, int count)
 {
 	char	**tokens;
 	int		i;
 
 	i = 0;
-	// printf("%s\n", lexer->input);
+	lexer->tokens = (t_token *)malloc(sizeof(t_token) * count);
 	tokens = ft_split(lexer->input, ' ');
 	while (tokens[i] != NULL)
 	{
-		lexer->tokens->word = tokens[i];
-		printf("%s\n", tokens[i]);
+		lexer->tokens[i].word = tokens[i];
+		// printf("token: %s\n", tokens[i]);
+		// printf("parser: %s\n", lexer->tokens[i].word);
 		i++;
 	}
+	return (i);
 }
 
 void	enter_shell(int argc, char **argv, char **envp)
 {
 	t_data	data;
+	int		count;
 
 	init_data(&data);
 	data.lexer.envp = envp;
 	while (prompt(&data.lexer))
 	{
-		lexer(&data.lexer);
-		data.table = parser(data.tokens);
+		// lexer(&data.lexer);
+		count = quick_lexer(&data.lexer);
+		quick_parser(&data.lexer, count);
+		// data.table = parser(data.tokens);
 		// init_lexer(&data.lexer);
-		// printf("%s", data.tokens->word);
-		// executor(data.lexer.tokens);
-		// executor(&data.lexer); // ? testing
-		
-		quick_parser(&data.lexer);
+		executor(&data.lexer); // ? testing
 
 		/**
 		 * ? Testing builtins
 		*/
-		executor("echo", "", "", &data.lexer);
+		// executor("echo", "", "", &data.lexer);
 		// executor("echo", "-n", "", &data.lexer);
 		// executor("echo", "-n", "test", &data.lexer);
 		// executor("echo", "", "test", &data.lexer);

@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/22 10:37:54 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/11/22 14:49:27 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/11/23 12:29:51 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	exec_echo(char *cmd, char *option, const char *STRING)
 	char	*output;
 
 	// Print input
-	// printf("cmd: %s\n", cmd);
-	// printf("STRING: %s\n", STRING);
+	printf("cmd: %s\n", cmd);
+	printf("STRING: %s\n", STRING);
 
 	// Grab input (= str)
 	if (!STRING)

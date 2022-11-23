@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2022/11/22 12:09:00 by abeznik       ########   odam.nl          #
+#    Updated: 2022/11/23 11:10:41 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,7 @@ $(OBJ_DIR)/%.o: $(notdir %.c)
 	$(CC) $(FLAGS) -c $< -I$(INCL_DIR) -o $@
 
 db: all
-	lldb $(NAME) -- $(ARGS)
+	lldb $(NAME)
 
 norm:
 	norminette srcs/*
