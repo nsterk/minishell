@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/29 12:50:02 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/11/23 12:22:59 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/11/24 11:51:32 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,9 @@ void	executor(t_lexer *lexer);
 // char	*search_path(char *file);
 // int		exec_cmd(int argc, char **argv);
 // int		simple_cmd(t_token *tokens);
+
+int	init_heredoc(t_cmd *cmd);
+char	*find_in_env(char **env);
+char	**init_paths(char **env);
 
 #endif

@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   init_data.c                                        :+:    :+:            */
+/*   malloc_check.c                                     :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
+/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/09/15 18:02:52 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/11/23 13:04:14 by abeznik       ########   odam.nl         */
+/*   Created: 2022/11/24 12:07:14 by abeznik       #+#    #+#                 */
+/*   Updated: 2022/11/24 12:07:44 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "utils.h"
 
-void	init_data(t_data *data, char **envp)
+void	ft_check_malloc(void *ptr, char *func)
 {
-	init_lexer(&data->lexer);
-	data->env = envp;
+	if (!ptr)
+	{
+		errno = ENOMEM;
+		exit_error(errno, func, NULL);
+	}
+	return ;
 }

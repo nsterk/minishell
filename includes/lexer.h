@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/11/22 14:08:39 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/11/23 12:59:30 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,7 @@ t_token		*token_new2(size_t start, size_t end, t_toktype type);
 t_toktype	get_type(char c);
 
 void		print_tokens(t_token *tokens, size_t len);
+
+int	quick_lexer(t_lexer *lexer);
 
 #endif

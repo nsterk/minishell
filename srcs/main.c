@@ -6,13 +6,13 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:03:59 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/11/23 12:37:24 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/11/23 13:03:23 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	quick_lexer(t_lexer *lexer)
+int	quick_lexer(t_lexer *lexer)
 {
 	char	**tokens;
 	int		i;
@@ -50,7 +50,7 @@ void	enter_shell(int argc, char **argv, char **envp)
 	t_data	data;
 	int		count;
 
-	init_data(&data);
+	init_data(&data, envp);
 	data.lexer.envp = envp;
 	while (prompt(&data.lexer))
 	{
