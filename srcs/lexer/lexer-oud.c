@@ -1,78 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   lexer.c                                            :+:    :+:            */
+/*   lexer-oud.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/12 13:31:08 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/11/07 14:18:35 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/11/02 17:00:48 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 #include "test.h"
 
-static t_toktype	s_get_type(t_lexstate state)
-{
-	static const t_toktype	s_type[] = {
-	[S_SPACE] = TOK_SPACE,
-	[S_OPERATOR] = TOK_OP,
-	[S_WORD] = TOK_CMD,
-	[S_DQUOTE] = TOK_CMD,
-	[S_SQUOTE] = TOK_CMD,
-	[S_EOF] = TOK_EOF
-	};
-
-	return (s_type[state]);
-}
-
-static bool	s_lexfunction(t_lexer *lexer, t_toktype type)
-{
-	static const t_lexfunction lex[] = {
-		[TOK_SPACE] = &lex_space,
-		[TOK_CMD] = &lex_word,
-		[TOK_OP] = &lex_operator
-	};
-	return (lex[type](lexer, type));
-}
-
-void	lexer(t_lexer *lexer)
-{
-	lexer->state = get_state(lexer->input[0]);
-	while (lexer->state != S_EOF)
-	{
-		s_lexfunction(lexer, s_get_type(lexer->state));
-		// printf("idx after lex_word call: %zu\n", lexer->idx);
-	}
-	token_printHtT(lexer->input, lexer->tokens);
-}
-
-void	delimit_token(t_lexer *lexer, size_t start, t_toktype type)
-{
-	t_token	*new;
-
-	new = token_new2(start, lexer->idx, type);
-	if (!new)
-		exit(EXIT_FAILURE);
-	if (token_append(&(lexer->tokens), new))
-		exit(EXIT_FAILURE);
-}
-
-/*
 static void	get_token(t_lexer *lexer, t_toktype type);
 
 void	lexer(t_lexer *lexer)
 {
 	t_toktype	state;
-
+	//do smth w/ quotes
 	while (lexer->input[lexer->start])
 	{
+		//or do something with quotes here
 		while (lexer->input[lexer->start] && ft_isspace(lexer->input[lexer->start]))
 			lexer->start++;
 		state = get_type(lexer->input[lexer->start]);
 		get_token(lexer, state);
-	}
+	}  
+	// tokenizer(lexer);
+}
+
+void	tokenizer(t_lexer *lexer)
+{
+	token_printHtT(lexer->tokens);
 }
 
 static void	get_token(t_lexer *lexer, t_toktype type)
@@ -86,4 +46,45 @@ static void	get_token(t_lexer *lexer, t_toktype type)
 		exit(EXIT_FAILURE); //!malloc protection
 	lexer->start += i;
 }
-*/
+
+// void	tokenizer(t_lexer *lexer)
+// {
+// 	while (lexer->input[lexer->start])
+// 	{
+// 		if (!lexer->start)
+// 			get_token(lexer, TOK_CMD);
+// 		else
+// 			get_token(lexer, TOK_ARG);
+// 	}
+// 	token_printHtT(lexer->tokens);
+// }
+
+// static void	get_token(t_lexer *lexer, t_toktype type)
+// {
+// 	char	*tmp;
+// 	size_t	i;
+ 
+// 	i = 0;
+// 	while (lexer->input[lexer->start] && ft_isspace(lexer->input[lexer->start]))
+// 		lexer->start++;
+// 	while (lexer->input[lexer->start + i] && !ft_isspace(lexer->input[lexer->start + i]))
+// 		i++;
+// 	tmp = ft_substr(lexer->input, lexer->start, i);
+// 	if (!tmp || token_append(&(lexer->tokens), token_new(tmp, type)))
+// 		exit(EXIT_FAILURE); //!malloc protection
+// 	free(tmp);
+// 	lexer->start += i;
+// }
+
+// t_toktype	get_type(char c)
+// {
+// 	if (c == '\0')
+// 		return (TOK_EOF);
+// 	if (c == SQUOTE)
+// 		return (TOK)
+// 	if (ft_isspace(c))
+// 		return (TOK_SPACE);
+// 	if (c == '<' || c == '>' || c == '|')
+// 		return (TOK_OP);
+// 	return (TOK_CMD);
+// }

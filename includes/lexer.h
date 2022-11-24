@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/11/02 17:07:33 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/11/21 16:20:21 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,6 @@ typedef enum e_lexstate
 	S_EOF
 }	t_lexstate;
 
-// typedef enum e_toktype
-// {
-// 	TOK_ERROR,
-// 	TOK_CMD,
-// 	TOK_ARG,
-// 	TOK_RIN,
-// 	TOK_ROUT,
-// 	TOK_PIPE,
-// 	TOK_SPACE,
-// 	TOK_EOF,
-// 	TOK_MAX
-// }	t_toktype;
-
 typedef struct s_token
 {
 	struct s_token	*prev;
@@ -70,6 +57,7 @@ typedef struct s_lexer
 void		lexer(t_lexer *lexer);
 void		tokenizer(t_lexer *lexer);
 t_lexstate	get_state(char c);
+void		delimit_token(t_lexer *lexer, size_t start, t_toktype type);
 
 // Lexer functions and dispatch table to these functions.
 

@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/22 11:31:11 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/11/02 22:50:06 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/11/03 14:46:57 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,24 @@ void	token_printHtT(char *input, t_token *lst)
 	while (tmp)
 	{
 		write(STDOUT_FILENO, input + tmp->start, tmp->end - tmp->start + 1);
-		write(STDOUT_FILENO, " - ", 3);
+		if (tmp->next)
+			write(STDOUT_FILENO, " - ", 3);
 		// printf("type: %d word: %s - ", tmp->type, tmp->word);
 		tmp = tmp->next;
 	}
 	printf("\n");
 }
 
-void	token_printTtH(t_token *lst)
+void	token_printTtH(char *input, t_token *lst)
 {
 	t_token	*tmp;
 
 	tmp = token_last(lst);
 	while (tmp)
 	{
-		printf("%s - ", tmp->word);
+		write(STDOUT_FILENO, input + tmp->start, tmp->end - tmp->start + 1);
+		if (tmp->prev)
+			write(STDOUT_FILENO, " - ", 3);
 		tmp = tmp->prev;
 	}
 	printf("\n");
