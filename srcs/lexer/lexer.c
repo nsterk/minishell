@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/12 13:31:08 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/11/07 14:18:35 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/11/24 21:28:23 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,47 +43,19 @@ void	lexer(t_lexer *lexer)
 	while (lexer->state != S_EOF)
 	{
 		s_lexfunction(lexer, s_get_type(lexer->state));
-		// printf("idx after lex_word call: %zu\n", lexer->idx);
 	}
-	token_printHtT(lexer->input, lexer->tokens);
 }
 
 void	delimit_token(t_lexer *lexer, size_t start, t_toktype type)
 {
 	t_token	*new;
 
-	new = token_new2(start, lexer->idx, type);
+	new = token_new(start, lexer->idx, type);
 	if (!new)
+		exit(EXIT_FAILURE);
+	new->word = ft_strndup(lexer->input + start, lexer->idx - start + 1);
+	if (!new->word)
 		exit(EXIT_FAILURE);
 	if (token_append(&(lexer->tokens), new))
 		exit(EXIT_FAILURE);
 }
-
-/*
-static void	get_token(t_lexer *lexer, t_toktype type);
-
-void	lexer(t_lexer *lexer)
-{
-	t_toktype	state;
-
-	while (lexer->input[lexer->start])
-	{
-		while (lexer->input[lexer->start] && ft_isspace(lexer->input[lexer->start]))
-			lexer->start++;
-		state = get_type(lexer->input[lexer->start]);
-		get_token(lexer, state);
-	}
-}
-
-static void	get_token(t_lexer *lexer, t_toktype type)
-{
-	size_t	i;
-
-	i = 0;
-	while (get_type(lexer->input[lexer->start + i]) == type)
-		i++;
-	if (token_append(&(lexer->tokens), token_new2(lexer->start, lexer->start + i, type)))
-		exit(EXIT_FAILURE); //!malloc protection
-	lexer->start += i;
-}
-*/

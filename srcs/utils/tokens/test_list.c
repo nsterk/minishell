@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/22 11:31:11 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/11/03 14:46:57 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/11/24 21:28:39 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	token_printHtT(char *input, t_token *lst)
 	t_token	*tmp;
 
 	tmp = lst;
+	printf("list of token->word as stored in node: \n");
 	while (tmp)
 	{
-		write(STDOUT_FILENO, input + tmp->start, tmp->end - tmp->start + 1);
+		printf("%s", tmp->word);
 		if (tmp->next)
-			write(STDOUT_FILENO, " - ", 3);
-		// printf("type: %d word: %s - ", tmp->type, tmp->word);
+			printf(" - ");
 		tmp = tmp->next;
 	}
 	printf("\n");

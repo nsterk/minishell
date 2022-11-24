@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/11/21 16:20:21 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/11/24 21:30:24 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,22 +72,16 @@ void		switch_state(t_lexer *lexer, t_lexstate new_state);
  * Token list functions.
  */
 
+t_token		*token_new(size_t start, size_t end, t_toktype type);
 int			token_size(t_token *token);
 void		token_delone(t_token *token, void (*del)(void*));
 void		tokenclear(t_token **token, void (*del)(void*));
-t_token		*token_new(char *word, t_toktype type);
 int			token_addafter(t_token **spot, t_token *new);
 t_token		*token_last(t_token *token);
 t_token		*token_first(t_token **token);
 int			token_append(t_token **token, t_token *new);
 void		token_prepend(t_token **token, t_token *new);
 t_token		*token_remove(t_token **head, t_token *token);
-
-//	trying out a different version where i don't malloc the cmd itself
-//	but just store the start and end index  of that token in the original
-//	input string
-
-t_token		*token_new2(size_t start, size_t end, t_toktype type);
 
 t_toktype	get_type(char c);
 
