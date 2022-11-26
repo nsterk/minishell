@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstclear.c                                      :+:    :+:            */
+/*   token_clear.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/11/04 00:11:08 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/11/25 16:21:15 by nsterk        ########   odam.nl         */
+/*   Created: 2022/11/25 16:19:08 by nsterk        #+#    #+#                 */
+/*   Updated: 2022/11/25 16:19:21 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
 #include "lexer.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+void	tokenclear(t_token **token, void (*del)(void*))
 {
-	t_list	*temp;
+	t_token	*tmp;
 
-	if (!lst)
+	if (!token)
 		return ;
-	while (*lst)
+	while (*token)
 	{
-		temp = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = temp;
+		tmp = (*token)->next;
+		token_delone(*token, del);
+		*token = tmp;
 	}
 }

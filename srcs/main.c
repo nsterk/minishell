@@ -6,12 +6,11 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:03:59 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/11/24 21:28:55 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/11/25 16:32:15 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "test.h"
 
 void	enter_shell(void)
 {
@@ -22,6 +21,7 @@ void	enter_shell(void)
 	{
 		lexer(&data.lexer);
 		data.table = parser(data.tokens);
+		tokenclear(&data.lexer.tokens, free);
 		init_lexer(&data.lexer);
 	}
 }
