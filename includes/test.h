@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/22 11:32:28 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/11/03 14:46:41 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/12/05 20:44:47 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "utils.h"
 
 /* Print tokens head to tail */
-void	token_printHtT(char *input, t_token *lst);
+void	token_printHtT(t_token *lst);
 
 /* Print tokens tail to head */
 void	token_printTtH(char *input, t_token *lst);

@@ -6,11 +6,12 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:03:59 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/11/25 16:32:15 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/12/05 23:48:48 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "test.h"
 
 void	enter_shell(void)
 {
@@ -20,6 +21,7 @@ void	enter_shell(void)
 	while (prompt(&data.lexer))
 	{
 		lexer(&data.lexer);
+		token_printHtT(data.lexer.tokens);
 		data.table = parser(data.tokens);
 		tokenclear(&data.lexer.tokens, free);
 		init_lexer(&data.lexer);

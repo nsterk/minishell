@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/03 15:29:51 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/09/22 17:34:02 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/12/05 21:28:53 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ t_token	*token_last(t_token *token)
 	if (!token)
 		return (NULL);
 	current = token;
+	// printf("%p\n", token->next);
+	// printf("%s\n", token->word);
 	while (current->next != NULL)
 		current = current->next;
 	return (current);

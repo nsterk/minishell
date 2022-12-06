@@ -6,14 +6,14 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/22 11:31:11 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/11/24 21:28:39 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/12/05 20:44:29 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 #include "utils.h"
 
-void	token_printHtT(char *input, t_token *lst)
+void	token_printHtT(t_token *lst)
 {
 	t_token	*tmp;
 

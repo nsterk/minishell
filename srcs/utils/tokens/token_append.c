@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/03 15:35:22 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/09/22 17:48:40 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/12/05 21:28:48 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	token_append(t_token **token, t_token *new)
 
 	if (!token || !new)
 		return (1);
+	// write(1, new->word, ft_strlen(new->word));
+	// fprintf(stderr, "new content: %s\n", new->word);
 	if (*token == NULL)
 		*token = new;
 	else
