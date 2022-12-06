@@ -6,13 +6,13 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/01 20:52:51 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/12/06 18:49:01 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/12/06 21:25:59 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-static void	lex_quote(t_lexer *lexer, t_lexstate state, int quote)
+static void	lex_quote(t_lexer *lexer, int quote)
 {
 	size_t	start;
 
@@ -32,7 +32,7 @@ bool	lex_word(t_lexer *lexer, t_toktype type)
 
 	start = lexer->idx;
 	if (lexer->state == S_SQUOTE || lexer->state == S_DQUOTE)
-		lex_quote(lexer, lexer->state, lexer->str[start]);
+		lex_quote(lexer, lexer->str[start]);
 	else
 	{
 		while (lexer->state == get_state(lexer->str[lexer->idx + 1]))

@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/12 13:31:08 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/12/06 18:26:16 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/12/06 21:22:03 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ static t_toktype	s_get_type(t_lexstate state)
 {
 	static const t_toktype	s_type[] = {
 	[S_SPACE] = TOK_SPACE,
-	[S_OPERATOR] = TOK_OP,
+	[S_REDIR_IN] = TOK_REDIR_IN,
+	[S_REDIR_OUT] = TOK_REDIR_OUT,
+	[S_PIPE] = TOK_PIPE,
 	[S_WORD] = TOK_CMD,
 	[S_DQUOTE] = TOK_CMD,
 	[S_SQUOTE] = TOK_CMD,
@@ -32,7 +34,9 @@ static bool	s_lexfunction(t_lexer *lexer, t_toktype type)
 	static const t_lexfunction lex[] = {
 		[TOK_SPACE] = &lex_space,
 		[TOK_CMD] = &lex_word,
-		[TOK_OP] = &lex_operator
+		[TOK_REDIR_IN] = &lex_operator,
+		[TOK_REDIR_OUT] = &lex_operator,
+		[TOK_PIPE] = &lex_operator
 	};
 	return (lex[type](lexer, type));
 }

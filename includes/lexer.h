@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/12/06 18:24:47 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/12/06 21:26:54 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@
 typedef enum e_toktype
 {
 	TOK_CMD,
-	TOK_OP,
+	TOK_REDIR_IN,
+	TOK_REDIR_OUT,
+	TOK_PIPE,
 	TOK_SPACE,
 	TOK_EOF,
 	TOK_MAX
@@ -30,7 +32,9 @@ typedef enum e_toktype
 typedef enum e_lexstate
 {
 	S_SPACE,
-	S_OPERATOR,
+	S_REDIR_IN,
+	S_REDIR_OUT,
+	S_PIPE,
 	S_WORD,
 	S_DQUOTE,
 	S_SQUOTE,
@@ -44,6 +48,7 @@ typedef struct s_token
 	char			*word;
 	t_toktype		type;
 	t_lexstate		state;
+	int				flags;
 }	t_token;
 
 typedef struct s_lexer
@@ -52,6 +57,7 @@ typedef struct s_lexer
 	t_token		*tokens;
 	size_t		idx;
 	t_lexstate	state;
+	int			flags;
 }	t_lexer;
 
 void		lexer(t_lexer *lexer);
