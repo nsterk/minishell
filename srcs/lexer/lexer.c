@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/12 13:31:08 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/12/06 21:22:03 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/12/06 22:19:23 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	delimit_token(t_lexer *lexer, size_t start, t_toktype type)
 		ft_strndup(lexer->str + start, lexer->idx - start + 1));
 	if (!new)
 		exit(EXIT_FAILURE);
+	new->flags = lexer->flags;
 	if (token_append(&(lexer->tokens), new))
 		exit(EXIT_FAILURE);
 }
