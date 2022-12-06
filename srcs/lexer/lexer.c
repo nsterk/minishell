@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/12 13:31:08 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/12/05 21:10:19 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/12/06 18:26:16 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static bool	s_lexfunction(t_lexer *lexer, t_toktype type)
 
 void	lexer(t_lexer *lexer)
 {
-	lexer->state = get_state(lexer->input[0]);
+	lexer->state = get_state(lexer->str[0]);
 	while (lexer->state != S_EOF)
 	{
 		s_lexfunction(lexer, s_get_type(lexer->state));
@@ -50,11 +50,9 @@ void	delimit_token(t_lexer *lexer, size_t start, t_toktype type)
 {
 	t_token	*new;
 
-	new = token_new(start, lexer->idx, type);
+	new = token_new(type, lexer->state, \
+		ft_strndup(lexer->str + start, lexer->idx - start + 1));
 	if (!new)
-		exit(EXIT_FAILURE);
-	new->word = ft_strndup(lexer->input + start, lexer->idx - start + 1);
-	if (!new->word)
 		exit(EXIT_FAILURE);
 	if (token_append(&(lexer->tokens), new))
 		exit(EXIT_FAILURE);

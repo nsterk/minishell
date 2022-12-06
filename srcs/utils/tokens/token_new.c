@@ -6,23 +6,25 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/03 14:04:12 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/11/24 21:30:40 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/12/06 18:24:57 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-t_token	*token_new(size_t start, size_t end, t_toktype type)
+t_token	*token_new(t_toktype type, t_lexstate state, char *str)
 {
 	t_token	*new;
 
+	if (!str)
+		return (NULL);
 	new = malloc(sizeof(t_token));
 	if (!new)
 		return (NULL);
 	new->prev = NULL;
-	new->type = type;
-	new->start = start;
-	new->end = end;
 	new->next = NULL;
+	new->word = str;
+	new->type = type;
+	new->state = state;
 	return (new);
 }

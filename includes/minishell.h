@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:05:45 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/10/13 15:19:04 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/12/06 17:44:02 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ int				main(void);
 
 void			init_data(t_data *data);
 void			init_lexer(t_lexer *lexer);
+void			reinit_lexer(t_lexer *lexer);
 
 #endif

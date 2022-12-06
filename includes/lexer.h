@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/11/24 21:30:24 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/12/06 18:24:47 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdbool.h>
 # include "utils.h"
+# include "defines.h"
 # include <stdio.h>
 
 typedef enum e_toktype
@@ -39,16 +40,15 @@ typedef enum e_lexstate
 typedef struct s_token
 {
 	struct s_token	*prev;
-	char			*word;
-	size_t			start;
-	size_t			end;
 	struct s_token	*next;
+	char			*word;
 	t_toktype		type;
+	t_lexstate		state;
 }	t_token;
 
 typedef struct s_lexer
 {
-	char		*input;
+	char		*str;
 	t_token		*tokens;
 	size_t		idx;
 	t_lexstate	state;
@@ -72,7 +72,7 @@ void		switch_state(t_lexer *lexer, t_lexstate new_state);
  * Token list functions.
  */
 
-t_token		*token_new(size_t start, size_t end, t_toktype type);
+t_token		*token_new(t_toktype type, t_lexstate state, char *str);
 int			token_size(t_token *token);
 void		token_delone(t_token *token, void (*del)(void*));
 void		tokenclear(t_token **token, void (*del)(void*));

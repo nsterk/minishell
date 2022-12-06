@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/22 11:32:28 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/12/05 20:44:47 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/12/06 16:38:58 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 void	token_printHtT(t_token *lst);
 
 /* Print tokens tail to head */
-void	token_printTtH(char *input, t_token *lst);
+void	token_printTtH(t_token *lst);
 
 /* Print token addresses */
 void	token_printaddress(t_token *lst);
