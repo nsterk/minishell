@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/12/06 21:26:54 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/12/07 14:43:52 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct s_lexer
 	int			flags;
 }	t_lexer;
 
-void		lexer(t_lexer *lexer);
+bool		lexer(t_lexer *lexer);
 void		tokenizer(t_lexer *lexer);
 t_lexstate	get_state(char c);
 void		delimit_token(t_lexer *lexer, size_t start, t_toktype type);

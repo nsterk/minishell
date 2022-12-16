@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/09/15 14:55:55 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/12/11 20:33:32 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PARSER_H
 
 # include "lexer.h"
-
 # include <stdio.h>
 
 typedef struct s_io

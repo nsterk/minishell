@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/12 13:31:08 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/12/06 22:19:23 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/12/07 14:47:07 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,14 @@ static bool	s_lexfunction(t_lexer *lexer, t_toktype type)
 	return (lex[type](lexer, type));
 }
 
-void	lexer(t_lexer *lexer)
+bool	lexer(t_lexer *lexer)
 {
 	lexer->state = get_state(lexer->str[0]);
 	while (lexer->state != S_EOF)
 	{
-		s_lexfunction(lexer, s_get_type(lexer->state));
+		s_lexfunction(lexer, s_get_type(lexer->state)); //if false don't go into parsing and shit but clean and show prompt again
 	}
+	return (true);
 }
 
 void	delimit_token(t_lexer *lexer, size_t start, t_toktype type)

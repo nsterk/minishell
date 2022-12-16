@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:03:59 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/12/06 17:44:57 by nsterk        ########   odam.nl         */
+/*   Updated: 2022/12/07 14:43:37 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	enter_shell(void)
 	while (prompt(&data.lexer))
 	{
 		lexer(&data.lexer);
-		token_printHtT(data.lexer.tokens);
+		// token_printHtT(data.lexer.tokens);
 		data.table = parser(data.tokens);
 		reinit_lexer(&data.lexer);
 	}
