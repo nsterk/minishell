@@ -6,15 +6,12 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 19:15:07 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/10/05 19:41:29 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/11/24 13:32:32 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-/**
- * ! work in progress
- */
 int	exec_pwd(void)
 {
 	char	*str;
