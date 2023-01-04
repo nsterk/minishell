@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/09/15 14:55:55 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/03 14:58:25 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,17 @@ typedef struct s_cmd
 {
 	char	*cmd;
 	char	**args;
+	int		len;
+	t_io	*in;
+	t_io	*out;
+	struct s_cmd *next;
 }	t_cmd;
 
 typedef struct s_table
 {
 	t_cmd	*cmd;
-	t_io	*in;
-	t_io	*out;
+	// t_io	*in;
+	// t_io	*out;
 }	t_table;
 
 t_table		*parser(t_token *token);

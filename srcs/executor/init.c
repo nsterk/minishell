@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   here_doc.c                                         :+:    :+:            */
+/*   init_paths.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/24 11:50:43 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/11/24 11:51:02 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/04 14:57:35 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 
+// TODO fix struct
 int	init_heredoc(t_cmd *cmd)
 {
-	t_red	*i;
+	t_io	*i;
 
 	while (cmd)
 	{
@@ -23,7 +24,7 @@ int	init_heredoc(t_cmd *cmd)
 		{
 			if (i->type == HERE_DOC)
 			{
-				i->heredoc = here_doc(i->file_name);
+				i->heredoc = here_doc(i->filename);
 				if (i->heredoc == -1)
 					return (EXIT_FAILURE);
 			}
@@ -34,7 +35,7 @@ int	init_heredoc(t_cmd *cmd)
 	return (EXIT_SUCCESS);
 }
 
-char	*find_in_env(char **env)
+static char	*st_find_in_env(char **env)
 {
 	int		i;
 
@@ -55,7 +56,7 @@ char	**init_paths(char **env)
 	int		i;
 
 	i = 0;
-	temp = find_in_env(env);
+	temp = st_find_in_env(env);
 	if (!temp)
 		path = ft_split("", ':');
 	else

@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 19:02:58 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/11/23 12:28:27 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/04 15:18:07 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,12 @@
 # include "utils.h"
 # include "stdlib.h" // getenv
 
-int	read_builtin(t_lexer *lexer);
-// int	read_builtin(char *cmd, char *option, const char *STRING); // ? testing
-// int	read_builtin(char *cmd, char *option, const char *STRING, t_lexer *lexer); // ? testing
+int			check_builtin(t_cmd *cmd, t_exec *exec);
+int			special_builtin(char *cmd);
 
-int	exec_pwd(void);
-int	exec_echo(char *cmd, char *option, const char *STRING);
-int	exec_exit(void);
-int	exec_env(char **envp);
+int			exec_pwd(void);
+int			exec_echo(char *cmd, char *option, const char *STRING);
+int			exec_exit(void);
+int			exec_env(char **envp);
 
 #endif

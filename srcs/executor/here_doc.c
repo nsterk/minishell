@@ -6,13 +6,13 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/24 11:52:56 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/11/24 11:53:31 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/04 14:58:51 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 
-static int	delim_in_line(char *line, char *delim, int len)
+static int	st_delim_in_line(char *line, char *delim, int len)
 {
 	if (!ft_strncmp(line, delim, len))
 	{
@@ -24,7 +24,8 @@ static int	delim_in_line(char *line, char *delim, int len)
 	return (0);
 }
 
-static char	*get_text(char *delim)
+// TODO fix struct
+static char	*st_get_text(char *delim)
 {
 	char	*line;
 	char	*text;
@@ -36,7 +37,7 @@ static char	*get_text(char *delim)
 	{
 		ft_putstr_fd("> ", 2);
 		line = get_next_line(STDIN_FILENO);
-		if (delim_in_line(line, delim, len))
+		if (st_delim_in_line(line, delim, len))
 		{
 			free(line);
 			break ;
@@ -46,12 +47,12 @@ static char	*get_text(char *delim)
 	return (text);
 }
 
-static void	child_process(int end[2], char *delim)
+static void	st_child_process(int end[2], char *delim)
 {
 	char	*text;
 
 	signal(SIGINT, SIG_DFL);
-	text = get_text(delim);
+	text = st_get_text(delim);
 	ft_putstr_fd(text, end[WRITE]);
 	free(text);
 	close(end[WRITE]);
@@ -60,25 +61,25 @@ static void	child_process(int end[2], char *delim)
 
 int	here_doc(char *delim)
 {
-	int		end[2];
+	int		pend[2];
 	int		pid;
 	int		status;
 
-	if (pipe(end) < 0)
+	if (pipe(pend) < 0)
 		exit_error(errno, "here_doc", NULL);
 	g_state = HEREDOC_INPUT;
 	pid = fork();
 	if (pid < 0)
 		exit_error(errno, "here_doc", NULL);
 	else if (pid == CHILD)
-		child_process(end, delim);
-	close(end[WRITE]);
+		st_child_process(pend, delim);
+	close(pend[WRITE]);
 	waitpid(pid, &status, 0);
 	g_state = EXECUTING;
 	if (WIFSIGNALED(status))
 	{
-		close(end[READ]);
+		close(pend[READ]);
 		return (-1);
 	}
-	return (end[READ]);
+	return (pend[READ]);
 }
