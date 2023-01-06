@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2022/11/23 11:10:41 by abeznik       ########   odam.nl          #
+#    Updated: 2023/01/06 15:08:13 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,11 @@ SRCS		=	main.c \
 				prompt.c \
 				lexer.c \
 				parser.c \
-				executor.c \
+				executor.c exec_cmd.c here_doc.c init.c redirects.c \
 				builtins.c echo.c pwd.c exit.c env.c \
-				get_next_line.c \
-				get_next_line_utils.c \
+				get_next_line.c get_next_line_utils.c \
+				ms_gnl.c ms_gnl_utils.c \
+				strjoin_free.c exit_error.c \
 				ft_arraylen.c \
 				ft_atoi.c \
 				ft_bzero.c \

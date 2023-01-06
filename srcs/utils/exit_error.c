@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/24 12:12:50 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/11/24 12:13:12 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/06 12:05:36 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 	both functions exit with given exit code after displaying error message
 */
 
-void	write_custom_msg(const char *func, const char *msg)
+void	write_msg(const char *func, const char *msg)
 {
 	if (func)
 	{
@@ -49,6 +49,6 @@ void	write_custom_msg(const char *func, const char *msg)
 void	exit_error(const int code, const char *func, const char *msg)
 {
 	if (func || msg)
-		write_custom_msg(func, msg);
+		write_msg(func, msg);
 	exit(code);
 }

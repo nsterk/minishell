@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:05:45 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/11/23 13:04:10 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/06 15:16:22 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,16 @@
 # include "prompt.h"
 # include "lexer.h"
 # include "parser.h"
-# include "utils.h"
 # include "executor.h"
+# include "builtins.h"
+# include "utils.h"
 
 typedef struct s_data
 {
 	t_lexer	lexer;
 	t_token	*tokens;
 	t_table	*table;
-	char	**env;
+	char	**envp;
 }	t_data;
 
 int				main(int argc, char **argv, char **envp);

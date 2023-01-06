@@ -1,25 +1,82 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   init_paths.c                                       :+:    :+:            */
+/*   init.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/24 11:50:43 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/04 14:57:35 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/06 15:01:43 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 
-// TODO fix struct
+static char	*st_find_in_envp(char **envp)
+{
+	int		i;
+
+	i = 0;
+	while (envp[i])
+	{
+		if (!ft_strncmp(envp[i], "PATH=", 5))
+			return (envp[i]);
+		i++;
+	}
+	return (NULL);
+}
+
+/**
+ * Initialises paths from the environment paths.
+ * 	1. Find PATH in env and save to tmp.
+ * 	2. Check path.
+ * 	3. Check malloc error.
+ * 	4. Loop over path:
+ * 		- Append path and / to tmp.
+ * 		- Check malloc error.
+ * 		- Free path.
+ * 		- Set path to tmp.
+ * 	5. Return path.
+*/
+char	**init_paths(char **envp)
+{
+	char	**path;
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = st_find_in_envp(envp);
+	if (!tmp)
+		path = ft_split("", ':');
+	else
+		path = ft_split(tmp + 5, ':');
+	check_malloc(path, "init_paths split");
+	i = 0;
+	while (path[i])
+	{
+		tmp = ft_strjoin(path[i], "/");
+		check_malloc(tmp, "init_paths strjoin");
+		free(path[i]);
+		path[i] = tmp;
+		i++;
+	}
+	return (path);
+}
+
+/**
+ * @details here_doc.
+ * 	Loop over command struct:
+ * 		- Loop over command input:
+ * 			1. Check if input type is here_doc:
+ * 				- 
+*/
 int	init_heredoc(t_cmd *cmd)
 {
-	t_io	*i;
+	t_red	*i;
 
 	while (cmd)
 	{
-		i = cmd->input;
+		i = cmd->in;
 		while (i)
 		{
 			if (i->type == HERE_DOC)
@@ -33,42 +90,4 @@ int	init_heredoc(t_cmd *cmd)
 		cmd = cmd->next;
 	}
 	return (EXIT_SUCCESS);
-}
-
-static char	*st_find_in_env(char **env)
-{
-	int		i;
-
-	i = 0;
-	while (env[i])
-	{
-		if (!ft_strncmp(env[i], "PATH=", 5))
-			return (env[i]);
-		i++;
-	}
-	return (NULL);
-}
-
-char	**init_paths(char **env)
-{
-	char	**path;
-	char	*temp;
-	int		i;
-
-	i = 0;
-	temp = st_find_in_env(env);
-	if (!temp)
-		path = ft_split("", ':');
-	else
-		path = ft_split(temp + 5, ':');
-	ft_check_malloc(path, "make_path_env");
-	i = 0;
-	while (path[i])
-	{
-		temp = ft_strjoin(path[i], "/");
-		ft_check_malloc(temp, "init_path");
-		free(path[i]);
-		path[i] = temp;
-		i++;
-	}
 }

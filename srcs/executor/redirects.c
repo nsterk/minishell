@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/24 11:53:25 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/04 15:06:10 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/06 12:39:23 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ static int	st_file_error(const char *filename)
 	return (1);
 }
 
-static int	st_duplicate(int fd, int in_out_fileno, t_exec *exec)
+static int	st_duplicate(int fd, int in_out_fileno, t_data_exe *data_exe)
 {
 	int	exit_status;
 
 	if (dup2(fd, in_out_fileno) < 0)
 	{
 		perror(ft_itoa(errno)); // ! error check itoa
-		exec->last_pid = errno;
+		data_exe->last_pid = errno;
 		exit_status = EXIT_FAILURE;
 	}
 	exit_status = EXIT_SUCCESS;
@@ -46,8 +46,7 @@ static int	st_duplicate(int fd, int in_out_fileno, t_exec *exec)
 	return (exit_status);
 }
 
-// TODO fix struct
-int	redirect_in(t_io *input, int fd, t_exec *exec)
+int	redirect_in(t_red *input, int fd, t_data_exe *data_exe)
 {
 	while (input)
 	{
@@ -61,11 +60,10 @@ int	redirect_in(t_io *input, int fd, t_exec *exec)
 			return (file_error(input->filename));
 		input = input->next;
 	}
-	return (duplicate(fd, STDIN_FILENO, exec));
+	return (duplicate(fd, STDIN_FILENO, data_exe));
 }
 
-// TODO fix struct
-int	redirect_out(t_io *output, int fd, t_exec *exec)
+int	redirect_out(t_red *output, int fd, t_data_exe *data_exe)
 {
 	int		flags;
 
@@ -83,5 +81,5 @@ int	redirect_out(t_io *output, int fd, t_exec *exec)
 			return (st_file_error(output->filename));
 		output = output->next;
 	}
-	return (st_duplicate(fd, STDOUT_FILENO, exec));
+	return (st_duplicate(fd, STDOUT_FILENO, data_exe));
 }

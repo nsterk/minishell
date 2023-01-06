@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   builtins.h                                         :+:    :+:            */
+/*   strjoin_free.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/05 19:02:58 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/06 15:32:45 by abeznik       ########   odam.nl         */
+/*   Created: 2023/01/06 14:51:06 by abeznik       #+#    #+#                 */
+/*   Updated: 2023/01/06 14:51:33 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTINS_H
-# define BUILTINS_H
+#include "utils.h"
 
-# include "minishell.h"
-# include "executor.h"
-# include "utils.h"
+char	*strjoin_free(char *s1, char *s2)
+{
+	char	*str;
+	size_t	len1;
+	size_t	len2;
 
-# include "stdlib.h" // getenv
-
-int			check_builtin(t_cmd *cmd, t_data_exe *exec);
-int			special_builtin(char *cmd);
-
-int			exec_pwd(void);
-int			exec_echo(char *cmd, char *option, const char *STRING);
-int			exec_exit(void);
-int			exec_env(char **envp);
-
-#endif
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	str = (char *)ft_calloc(len1 + len2 + 1, sizeof(char));
+	if (!str)
+		return (NULL);
+	ft_memcpy(str, s1, len1);
+	ft_memcpy(str + len1, s2, len2);
+	free(s1);
+	free(s2);
+	return (str);
+}

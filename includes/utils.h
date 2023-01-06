@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 12:09:43 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/04 14:01:10 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/06 15:20:49 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,16 @@ void				exit_minishell(int status);
 int					get_next_line(int fd, char **line);
 char				*ft_strndup(char *src, size_t n);
 char				*ft_strgjoin(char *s1, char *s2, int len_s2);
+
+char				*ms_get_next_line(int fd);
+int					check_buffer(char *buffer);
+char				*add_buffer(char *line, char *buffer, int buffer_size, int size_line);
+void				make_newline(char *new_line, char *line, char *buffer, int buffer_size);
+void				change_buffer(char *buffer, int buffer_size);
+int					check_line(char *line);
+
+void	exit_error(const int code, const char *func, const char *msg);
+void	write_msg(const char *func, const char *msg);
 
 /**
  * Pipex functions.
@@ -139,6 +149,12 @@ void				ft_putstr_fd(char *s, int fd);
 // void				ft_lstclear(t_list **lst, void (*del)(void *));
 // void				ft_lstdelone(t_list *lst, void (*del)(void *));
 // void				ft_lstiter(t_list *lst, void (*f)(void *));
+
+/**
+ * Misc.
+*/
+void				check_malloc(void *ptr, char *func);
+char				*strjoin_free(char *s1, char *s2);
 
 #	endif
 

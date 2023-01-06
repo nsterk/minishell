@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/04 13:48:56 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/04 15:21:47 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/06 15:29:38 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,39 +52,39 @@ static char	*st_get_full_cmd(char *command, char **paths)
 	return (NULL);
 }
 
-void	execute_cmd(t_cmd *cmd, t_exec *exec)
+void	execute_cmd(t_cmd *cmd, t_exec *exec, t_data_exe *data_exe)
 {
 	char	*full_cmd;
 
-	if (!check_builtin(cmd, exec))
-		exit(exec->last_pid);
-	full_cmd = st_get_full_cmd(exec->cmd, exec->paths);
+	if (!check_builtin(cmd, data_exe))
+		exit(data_exe->last_pid);
+	full_cmd = st_get_full_cmd(exec->cmd, data_exe->paths);
 	if (!full_cmd)
 		st_cmd_not_found(exec->cmd);
-	if (execve(full_cmd, exec->args, exec->env) < 0)
+	if (execve(full_cmd, exec->args, data_exe->envp) < 0)
 		exit_error(errno, "minishell", " : No such file or directory");
 }
 
-static void	st_child_process(t_cmd *cmd, t_exec *exec, int pend[2], int fd)
+static void	st_child_process(t_cmd *cmd, t_data_exe *data_exe, int pend[2], int fd)
 {
 	int	status;
 
 	close(pend[READ]);
-	if (redirect_in(cmd->in, fd, exec))
-		exit(exec->last_pid);
+	if (redirect_in(cmd->in, fd, data_exe))
+		exit(data_exe->last_pid);
 	if (cmd->next)
-		status = redirect_out(cmd->out, pend[WRITE], exec);
+		status = redirect_out(cmd->out, pend[WRITE], data_exe);
 	else
 	{
 		close(pend[WRITE]);
-		status = redirect_out(cmd->out, STDOUT_FILENO, exec);
+		status = redirect_out(cmd->out, STDOUT_FILENO, data_exe);
 	}
 	if (status)
-		exit(exec->last_pid);
-	execute_cmd(cmd, exec);
+		exit(data_exe->last_pid);
+	execute_cmd(cmd, cmd->exec, data_exe);
 }
 
-int	exec_piped_cmd(t_proc *proc, t_cmd *cmd, t_exec *exec, int fd)
+int	exec_piped_cmd(t_proc *proc, t_cmd *cmd, t_data_exe *data_exe, int fd)
 {
 	int		pend[2];
 
@@ -94,7 +94,7 @@ int	exec_piped_cmd(t_proc *proc, t_cmd *cmd, t_exec *exec, int fd)
 	if (proc->pid < 0)
 		exit_error(errno, "exec_piped_cmd", NULL);
 	else if (proc->pid == CHILD)
-		st_child_process(cmd, exec, pend, fd);
+		st_child_process(cmd, data_exe, pend, fd);
 	else if (proc->pid > 0)
 	{
 		if (fd != 0)
