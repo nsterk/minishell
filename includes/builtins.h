@@ -6,18 +6,20 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 19:02:58 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/06 15:32:45 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/07 13:55:13 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILTINS_H
 # define BUILTINS_H
 
-# include "minishell.h"
+// # include "parser.h"
 # include "executor.h"
-# include "utils.h"
 
-# include "stdlib.h" // getenv
+// # include "minishell.h"
+// # include "utils.h"
+
+// # include "stdlib.h" // getenv
 
 int			check_builtin(t_cmd *cmd, t_data_exe *exec);
 int			special_builtin(char *cmd);

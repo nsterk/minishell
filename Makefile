@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2023/01/06 15:08:13 by abeznik       ########   odam.nl          #
+#    Updated: 2023/01/07 15:09:22 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,15 +26,25 @@ OBJ_DIR		:=	objs
 VPATH 		:=	$(subst $(space),:,$(shell find srcs -type d))
 
 # Srcs
-SRCS		=	main.c \
+SRCS		:=	main.c \
 				prompt.c \
 				lexer.c \
 				parser.c \
-				executor.c exec_cmd.c here_doc.c init.c redirects.c \
-				builtins.c echo.c pwd.c exit.c env.c \
-				get_next_line.c get_next_line_utils.c \
-				ms_gnl.c ms_gnl_utils.c \
-				strjoin_free.c exit_error.c \
+				executor.c \
+				exec_cmd.c \
+				here_doc.c \
+				init.c \
+				redirects.c \
+				builtins.c \
+				ms_echo.c \
+				ms_pwd.c \
+				ms_env.c \
+				ms_exit.c \
+				get_next_line.c \
+				get_next_line_utils.c \
+				ms_gnl.c \
+				ms_gnl_utils.c \
+				strjoin_free.c \
 				ft_arraylen.c \
 				ft_atoi.c \
 				ft_bzero.c \
@@ -47,15 +57,34 @@ SRCS		=	main.c \
 				ft_skipspace.c \
 				ft_strchr.c \
 				ft_isspace.c \
-				ft_strlcpy.c ft_strcpy.c ft_substr.c ft_strtrim.c \
-				ft_strdup.c ft_strjoin.c ft_split.c \
-				token_new.c token_append.c token_insert.c token_last.c \
-				token_remove.c token_first.c token_size.c \
-				ft_lstclear.c test_list.c \
-				init_data.c init_lexer.c state_type.c \
-				lex_word.c lex_operator.c lex_space.c \
+				ft_strlcpy.c \
+				ft_strcpy.c \
+				ft_substr.c \
+				ft_strtrim.c \
+				ft_strdup.c \
+				ft_strjoin.c \
+				ft_split.c \
+				token_new.c \
+				token_append.c \
+				token_insert.c \
+				token_last.c \
+				token_remove.c \
+				token_first.c \
+				token_size.c \
+				ft_lstclear.c \
+				test_list.c \
+				init_data.c \
+				init_lexer.c \
+				state_type.c \
+				lex_word.c \
+				lex_operator.c \
+				lex_space.c \
 				ft_putendl_fd.c \
 				ft_putstr_fd.c \
+				ft_putchar_fd.c \
+				ft_memcpy.c \
+				exit.c \
+				malloc_check.c \
 
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
@@ -72,8 +101,8 @@ $(NAME):	$(OBJS)
 
 $(OBJ_DIR)/%.o: $(notdir %.c)
 	@mkdir -p $(OBJ_DIR)
-	@printf "Creating objects... %-33.33s\r" $(notdir $(basename $@))
-	$(CC) $(FLAGS) -c $< -I$(INCL_DIR) -o $@
+	@printf "$(YEL)  Creating objects...$(DEF) %-33.33s\r" $(notdir $(basename $@))
+	@$(CC) $(FLAGS) -c $< -I$(INCL_DIR) -o $@
 
 db: all
 	lldb $(NAME)

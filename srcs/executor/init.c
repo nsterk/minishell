@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/24 11:50:43 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/06 15:01:43 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/07 15:13:01 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	**init_paths(char **envp)
 }
 
 /**
- * @details here_doc.
+ * Init. here_doc.
  * 	Loop over command struct:
  * 		- Loop over command input:
  * 			1. Check if input type is here_doc:

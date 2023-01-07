@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/04 13:48:56 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/06 15:29:38 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/07 14:40:59 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static char	*st_get_full_cmd(char *command, char **paths)
 	while (paths[i])
 	{
 		temp = ft_strjoin(paths[i], command);
-		ft_check_malloc(temp, "get_full_cmd");
+		check_malloc(temp, "get_full_cmd");
 		if (!access(temp, X_OK))
 			return (temp);
 		free(temp);
@@ -62,7 +62,7 @@ void	execute_cmd(t_cmd *cmd, t_exec *exec, t_data_exe *data_exe)
 	if (!full_cmd)
 		st_cmd_not_found(exec->cmd);
 	if (execve(full_cmd, exec->args, data_exe->envp) < 0)
-		exit_error(errno, "minishell", " : No such file or directory");
+		exit_error(errno, "momoshell", " : No such file or directory");
 }
 
 static void	st_child_process(t_cmd *cmd, t_data_exe *data_exe, int pend[2], int fd)
@@ -89,10 +89,10 @@ int	exec_piped_cmd(t_proc *proc, t_cmd *cmd, t_data_exe *data_exe, int fd)
 	int		pend[2];
 
 	if (pipe(pend) < 0)
-		exit_error(errno, "exec_piped_cmd", NULL);
+		exit_error(errno, "exec_piped_cmd pipe", NULL);
 	proc->pid = fork();
 	if (proc->pid < 0)
-		exit_error(errno, "exec_piped_cmd", NULL);
+		exit_error(errno, "exec_piped_cmd fork", NULL);
 	else if (proc->pid == CHILD)
 		st_child_process(cmd, data_exe, pend, fd);
 	else if (proc->pid > 0)

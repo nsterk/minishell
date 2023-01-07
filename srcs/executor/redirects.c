@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/24 11:53:25 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/06 12:39:23 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/07 14:10:36 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ int	redirect_in(t_red *input, int fd, t_data_exe *data_exe)
 		else if (input->type == HERE_DOC)
 			fd = input->heredoc;
 		if (fd < 0)
-			return (file_error(input->filename));
+			return (st_file_error(input->filename));
 		input = input->next;
 	}
-	return (duplicate(fd, STDIN_FILENO, data_exe));
+	return (st_duplicate(fd, STDIN_FILENO, data_exe));
 }
 
 int	redirect_out(t_red *output, int fd, t_data_exe *data_exe)

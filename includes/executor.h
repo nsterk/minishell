@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/29 12:50:02 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/06 15:36:02 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/07 14:33:48 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@
 /**
  * Minishell libs.
  */
-# include "minishell.h"
+# include "parser.h"
 // # include "builtins.h"
+
+// # include "minishell.h"
 // # include "lexer.h"
-// # include "parser.h"
 // # include "utils.h"
 
 # define READ 0
@@ -48,7 +49,7 @@ int	g_state;
 */
 typedef struct s_proc {
 	pid_t			pid;
-	struct t_proc	*next;
+	struct s_proc	*next;
 }	t_proc;
 
 /**
@@ -154,5 +155,8 @@ void		execute_cmd(t_cmd *cmd, t_exec *exec, t_data_exe *data_exe);
 // static char		*st_get_full_cmd(char *command, char **paths);
 // static void		st_cmd_not_found(char *cmd);
 // static void		st_child_process(int end[2], char *delim);
+
+int			check_builtin(t_cmd *cmd, t_data_exe *exec);
+int			special_builtin(char *cmd);
 
 #endif

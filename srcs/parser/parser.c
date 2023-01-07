@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 12:18:59 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/10/05 15:37:49 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/01/07 14:14:27 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@ t_table	*parser(t_token *token)
 {
 	t_table	*table = NULL;
 
-	// printf("parser works!\n");
+	printf("%s\n", token->word);
 	return (table);
 }

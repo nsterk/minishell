@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 12:09:43 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/06 15:20:49 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/07 15:07:09 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 
 # define BUFFER_SIZE 10
 
-# include <stdlib.h>
 # include <unistd.h>
+# include <stdlib.h>
+# include <stdbool.h>
 # include <errno.h>
+# include <stdio.h>
 
 typedef enum e_status
 {
@@ -33,24 +35,27 @@ typedef struct s_list
 /**
  * Exit functions.
  */
-void				exit_minishell(int status);
+void			exit_minishell(int status);
+void			exit_error(const int code, const char *func, const char *msg);
+
+/**
+ * Needed by executor.
+*/
+void			check_malloc(void *ptr, char *func);
+char			*strjoin_free(char *s1, char *s2);
+char			*ms_get_next_line(int fd);
+int				check_buffer(char *buffer);
+char			*add_buffer(char *line, char *buffer, int buffer_size, int size_line);
+void			make_newline(char *new_line, char *line, char *buffer, int buffer_size);
+void			change_buffer(char *buffer, int buffer_size);
+int				check_line(char *line);
 
 /**
  * GNL functions.
  */
-int					get_next_line(int fd, char **line);
-char				*ft_strndup(char *src, size_t n);
-char				*ft_strgjoin(char *s1, char *s2, int len_s2);
-
-char				*ms_get_next_line(int fd);
-int					check_buffer(char *buffer);
-char				*add_buffer(char *line, char *buffer, int buffer_size, int size_line);
-void				make_newline(char *new_line, char *line, char *buffer, int buffer_size);
-void				change_buffer(char *buffer, int buffer_size);
-int					check_line(char *line);
-
-void	exit_error(const int code, const char *func, const char *msg);
-void	write_msg(const char *func, const char *msg);
+int				get_next_line(int fd, char **line);
+char			*ft_strndup(char *src, size_t n);
+char			*ft_strgjoin(char *s1, char *s2, int len_s2);
 
 /**
  * Pipex functions.
@@ -136,7 +141,8 @@ const char			*ft_skipspace(const char *str);
 int					ft_free_array(char **str);
 size_t				ft_arraylen(char **arr);
 void				ft_putendl_fd(char *s, int fd);
-void				ft_putstr_fd(char *s, int fd);
+void				ft_putstr_fd(const  char *s, int fd);
+void				ft_putchar_fd(char c, int fd);
 
 /**
  * Linked list functions.
@@ -149,12 +155,6 @@ void				ft_putstr_fd(char *s, int fd);
 // void				ft_lstclear(t_list **lst, void (*del)(void *));
 // void				ft_lstdelone(t_list *lst, void (*del)(void *));
 // void				ft_lstiter(t_list *lst, void (*f)(void *));
-
-/**
- * Misc.
-*/
-void				check_malloc(void *ptr, char *func);
-char				*strjoin_free(char *s1, char *s2);
 
 #	endif
 
@@ -171,7 +171,6 @@ char				*strjoin_free(char *s1, char *s2);
 // t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 // 						void (*del)(void *));
 
-// void				ft_putchar_fd(char c, int fd);
 // void				ft_putnbr_fd(int n, int fd);
 
 // char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));

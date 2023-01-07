@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 17:41:10 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/06 15:30:02 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/07 15:43:32 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 /**
  * ? testing
 */
-static void	print_stuff(t_lexer *lexer)
-{
-	int		i;
+// static void	print_stuff(t_lexer *lexer)
+// {
+// 	int		i;
 
-	i = 0;
-	while (lexer->tokens[i].word != NULL)
-	{
-		printf("print_stuff: %s\n", lexer->tokens[i].word);
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (lexer->tokens[i].word != NULL)
+// 	{
+// 		printf("print_stuff: %s\n", lexer->tokens[i].word);
+// 		i++;
+// 	}
+// }
 
 /**
  * Wait for processes to end.
@@ -103,21 +103,14 @@ static void	st_piped_cmd(t_proc **current, t_cmd *cmd, t_data_exe *data_exe)
 	proc = NULL;
 	fd = 0;
 	first_cmd = true;
-
-	// ? loop over cmd struct
 	while (cmd)
 	{
-		// ? malloc new fork
 		proc = st_new_process(proc);
-
-		// ? 
 		if (first_cmd)
 		{
 			*current = proc;
 			first_cmd = false;
 		}
-
-		// ?
 		fd = exec_piped_cmd(proc, cmd, data_exe, fd);
 		cmd = cmd->next;
 	}
@@ -145,51 +138,59 @@ static t_proc	*st_simple_cmd(t_cmd *cmd, t_data_exe *data_exe)
 {
 	t_proc	*proc;
 
-	// ? special builtin?
 	if (special_builtin(cmd->exec->cmd))
 	{
-		// ? redirect input => dup
 		if (redirect_in(cmd->in, STDIN_FILENO, data_exe))
 			return (NULL);
-
-		// ? redirect output => dup
 		if (redirect_out(cmd->out, STDOUT_FILENO, data_exe))
 			return (NULL);
-
-		// ? exec builtin
 		check_builtin(cmd, data_exe);
-
-		// ? return NULL =>
 		return (NULL);
 	}
-
-	// ? new fork (NULL)
 	proc = st_new_process(NULL);
-	
-	// ? fork process
 	proc->pid = fork();
-	
-	// ? fork pid < 0 ? => exit_error
 	if (proc->pid < 0)
 		exit_error(errno, "simple_cmd", NULL);
-
-	// ? fork pid = 0 (child) ?
 	else if (proc->pid == CHILD)
 	{
-		// ? redirect input => dup
 		if (redirect_in(cmd->in, STDIN_FILENO, data_exe))
 			exit(data_exe->last_pid);
-		
-		// ? redirect output => dup
 		if (redirect_out(cmd->out, STDOUT_FILENO, data_exe))
 			exit(data_exe->last_pid);
-		
-		// ? exec cmd
 		execute_cmd(cmd, cmd->exec, data_exe);
 	}
-	
-	// ? return fork (= NULL)
 	return (proc);
+}
+
+/**
+ * ? testing function
+*/
+static void	st_init_lexer_data(t_lexer *lexer, t_cmd **cmd, \
+			t_data_exe **data_exe, t_exec **exec)
+{
+	t_data_exe 	*tmp_data;
+	t_cmd 		*tmp_cmd;
+	t_exec 		*tmp_exec;
+
+	tmp_data = (t_data_exe *)malloc(sizeof(t_data_exe));
+	tmp_cmd = (t_cmd *)malloc(sizeof(t_cmd));
+	tmp_exec = (t_exec *)malloc(sizeof(t_exec));
+
+	// Save lexer envp to tmp 
+	// Save tmp to data_exe
+	tmp_data->envp = (char **)malloc(sizeof(char **) * 1024);
+	tmp_data->envp = lexer->envp;
+	*data_exe = tmp_data;
+
+	// Save token word to exec cmd
+	tmp_exec->cmd = (char *)malloc(sizeof(char *) * ft_strlen(lexer->tokens->word));
+	tmp_exec->cmd = lexer->tokens->word;
+	*exec = tmp_exec;
+
+	// Save exec to cmd exec
+	tmp_cmd->exec = (t_exec *)malloc(sizeof(t_exec));
+	tmp_cmd->exec = *exec;
+	*cmd = tmp_cmd;
 }
 
 /**
@@ -208,37 +209,21 @@ void	executor(t_lexer *lexer)
 	t_proc 		*proc;
 	t_cmd 		*cmd;
 	t_data_exe	*data_exe;
+	t_exec		*exec;
 
-	cmd = NULL;
-	data_exe = NULL;
+	st_init_lexer_data(lexer, &cmd, &data_exe, &exec);
 
-	data_exe->envp = NULL;
-	data_exe->envp = lexer->envp;
-
-	// ? init heredoc
 	if (init_heredoc(cmd))
 	{
 		data_exe->last_pid = 1;
 		return ;
 	}
-
-	// ? init paths
 	data_exe->paths = init_paths(data_exe->envp);
-
-	// ? check if has next cmd
 	if (!cmd->next)
-
-		// ? no, exec simple cmd
 		proc = st_simple_cmd(cmd, data_exe);
-
 	else
-		// ? yes, exec cmds in pipeline
 		st_piped_cmd(&proc, cmd, data_exe);
-
-	// ? wait processes if pipes
 	if (proc)
 		st_wait_processes(proc, data_exe);
-
-	// ? free paths
 	ft_free_array(data_exe->paths);
 }

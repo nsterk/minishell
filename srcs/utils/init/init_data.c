@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 18:02:52 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/11/23 13:04:14 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/07 14:04:17 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void	init_data(t_data *data, char **envp)
 {
 	init_lexer(&data->lexer);
-	data->env = envp;
+	data->envp = envp;
 }

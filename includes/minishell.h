@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:05:45 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/01/06 15:16:22 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/07 14:55:28 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
  * Minishell libs.
  */
 # include "prompt.h"
-# include "lexer.h"
-# include "parser.h"
-# include "executor.h"
 # include "builtins.h"
+# include "executor.h"
+# include "parser.h"
+# include "lexer.h"
 # include "utils.h"
 
 typedef struct s_data

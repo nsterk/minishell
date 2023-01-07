@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:03:59 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/01/06 15:12:01 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/07 12:55:09 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,11 @@ void	enter_shell(int argc, char **argv, char **envp)
 	t_data	data;
 	int		count;
 
+	int	tmp;
+	char **temp;
+
+	tmp = argc; // ? removes annoying errors
+	temp = argv; // ? removes annoying errors
 	init_data(&data, envp);
 	data.lexer.envp = envp;
 	while (prompt(&data.lexer))
