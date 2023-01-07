@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2023/01/07 15:09:22 by abeznik       ########   odam.nl          #
+#    Updated: 2023/01/07 15:50:00 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,8 +89,8 @@ SRCS		:=	main.c \
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 # Config
-CC			:=	gcc
-FLAGS		:= -Wall -Wextra -g -fsanitize=address #-Werror
+CC			:=	cc
+FLAGS		:= -Wall -Wextra -Werror -g -fsanitize=address
 
 all:		$(NAME)
 
