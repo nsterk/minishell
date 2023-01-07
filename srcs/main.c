@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:03:59 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/01/07 12:55:09 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/07 17:02:28 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	enter_shell(int argc, char **argv, char **envp)
 
 	tmp = argc; // ? removes annoying errors
 	temp = argv; // ? removes annoying errors
+	
 	init_data(&data, envp);
 	data.lexer.envp = envp;
 	while (prompt(&data.lexer))
@@ -79,7 +80,7 @@ void	enter_shell(int argc, char **argv, char **envp)
 		// executor("exit", "", "", &data.lexer);
 		// executor("env", "", "", &data.lexer);
 
-		printf("\n"); // ? I think we need this after every cmd right?
+		// printf("\n"); // ? I think we need this after every cmd right?
 	}
 }
 

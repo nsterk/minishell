@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/24 11:53:25 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/07 14:10:36 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/07 16:54:46 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	redirect_in(t_red *input, int fd, t_data_exe *data_exe)
 		if (input->type == RED_IPUT)
 			fd = open(input->filename, O_RDONLY);
 		else if (input->type == HERE_DOC)
-			fd = input->heredoc;
+			fd = input->here_doc;
 		if (fd < 0)
 			return (st_file_error(input->filename));
 		input = input->next;

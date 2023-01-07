@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/29 12:50:02 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/07 14:33:48 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/07 16:52:50 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef enum e_red_type {
 typedef struct s_red {
 	t_red_type		type;
 	char			*filename;
-	int				heredoc;
+	int				here_doc;
 	struct s_red	*next;
 }	t_red;
 

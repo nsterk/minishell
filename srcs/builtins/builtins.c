@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 19:02:19 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/07 14:16:17 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/07 17:10:02 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	check_builtin(t_cmd *cmd, t_data_exe *data_exe)
 
 	option = NULL;
 	tmp = cmd->exec->cmd;
+	printf("HERE\n");
 	if (!cmd)
 		return (EXIT_FAILURE);
 	if (!ft_strncmp(tmp, "echo", 5))

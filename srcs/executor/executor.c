@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 17:41:10 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/07 15:43:32 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/07 17:12:46 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,10 +171,14 @@ static void	st_init_lexer_data(t_lexer *lexer, t_cmd **cmd, \
 	t_data_exe 	*tmp_data;
 	t_cmd 		*tmp_cmd;
 	t_exec 		*tmp_exec;
+	t_red		*tmp_in;
+	t_red		*tmp_out;
 
 	tmp_data = (t_data_exe *)malloc(sizeof(t_data_exe));
 	tmp_cmd = (t_cmd *)malloc(sizeof(t_cmd));
 	tmp_exec = (t_exec *)malloc(sizeof(t_exec));
+	tmp_in = (t_red *)malloc(sizeof(t_red));
+	tmp_out = (t_red *)malloc(sizeof(t_red));
 
 	// Save lexer envp to tmp 
 	// Save tmp to data_exe
@@ -189,7 +193,25 @@ static void	st_init_lexer_data(t_lexer *lexer, t_cmd **cmd, \
 
 	// Save exec to cmd exec
 	tmp_cmd->exec = (t_exec *)malloc(sizeof(t_exec));
+	tmp_cmd->in = (t_red *)malloc(sizeof(t_red));
+	tmp_cmd->out = (t_red *)malloc(sizeof(t_red));
 	tmp_cmd->exec = *exec;
+	tmp_cmd->next = NULL;
+	// tmp_cmd->in->filename = "Makefile";
+	tmp_cmd->in->filename = "Makefile";
+	tmp_cmd->in->here_doc = 0;
+	tmp_cmd->in->next = NULL;
+	tmp_cmd->in->type = 0;
+	tmp_cmd->out->filename = "Test";
+	tmp_cmd->out->type = 0;
+	tmp_cmd->out->next = NULL;
+
+	/**
+	 * ? testing pwd
+	*/
+	tmp_cmd->in = NULL;
+	tmp_cmd->out = NULL;
+	
 	*cmd = tmp_cmd;
 }
 
@@ -213,11 +235,11 @@ void	executor(t_lexer *lexer)
 
 	st_init_lexer_data(lexer, &cmd, &data_exe, &exec);
 
-	if (init_heredoc(cmd))
-	{
-		data_exe->last_pid = 1;
-		return ;
-	}
+	// if (init_heredoc(cmd))
+	// {
+	// 	data_exe->last_pid = 1;
+	// 	return ;
+	// }
 	data_exe->paths = init_paths(data_exe->envp);
 	if (!cmd->next)
 		proc = st_simple_cmd(cmd, data_exe);
