@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:03:59 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/01/08 16:30:49 by arthurbezni   ########   odam.nl         */
+/*   Updated: 2023/01/09 15:20:40 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	quick_lexer(t_lexer *lexer)
 
 	i = 0;
 	tokens = ft_split(lexer->input, ' ');
+	if (!tokens)
+		return (EXIT_FAILURE);
 	while (tokens[i] != NULL)
 		i++;
 	// ret = i;
@@ -34,6 +36,8 @@ static int	quick_parser(t_lexer *lexer, int count)
 
 	i = 0;
 	lexer->tokens = (t_token *)malloc(sizeof(t_token) * count);
+	if (!lexer->tokens)
+		return (EXIT_FAILURE);
 	tokens = ft_split(lexer->input, ' ');
 	while (tokens[i] != NULL)
 	{
@@ -50,8 +54,10 @@ void	enter_shell(int argc, char **argv, char **envp)
 	t_data	data;
 	int		count;
 	
+	// ? to remove annoying errors
 	if (argv)
 		argc++;
+
 	init_data(&data, envp);
 	data.lexer.envp = envp;
 	while (prompt(&data.lexer))

@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 17:41:10 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/09 10:06:25 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/09 13:25:21 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,8 +187,8 @@ static void	st_init_lexer_data(t_lexer *lexer, t_cmd **cmd, \
 	*data_exe = tmp_data;
 
 	// Save token word to exec cmd
-	tmp_exec->cmd = (char *)malloc(sizeof(char *) * ft_strlen(lexer->tokens->word));
-	tmp_exec->cmd = lexer->tokens->word;
+	tmp_exec->cmd = (char *)malloc(sizeof(char *) * 1024);
+	tmp_exec->cmd = lexer->input;
 	*exec = tmp_exec;
 
 	// Save exec to cmd exec
@@ -217,7 +217,12 @@ static void	st_init_lexer_data(t_lexer *lexer, t_cmd **cmd, \
 
 /**
  * Main executor function.
- * 	1. Init. here_doc, sets last pid to 1 and returns.
+ * 	1. Init. here_doc (see init_heredoc)
+ * 		- If failure
+ * 			=> set last pid to 1 and return.
+ * 	2. If cmd doesnt have execution command (i.e. parsing error || empty)
+ * 		=> return.
+ * 	3. Signal
  * 	2. Init. environment paths.
  * 	3. Simple command or pipes?
  * 		- simple cmd => process is null
@@ -235,11 +240,11 @@ void	executor(t_lexer *lexer)
 
 	st_init_lexer_data(lexer, &cmd, &data_exe, &exec);
 
-	// if (init_heredoc(cmd))
-	// {
-	// 	data_exe->last_pid = 1;
-	// 	return ;
-	// }
+	if (init_heredoc(cmd))
+	{
+		data_exe->last_pid = 1;
+		return ;
+	}
 	if (!cmd->exec->cmd)
 		return ;
 	signal(SIGQUIT, sigquit_handler);

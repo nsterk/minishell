@@ -6,39 +6,28 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/14 21:37:42 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/01/07 15:09:13 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/09 12:30:18 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <utils.h>
 #include "utils.h"
 
-/*
-	Exit function to use when something goes wrong.
-	Can either be used with a custom error message or errno. 
-	When used with errno, perror is used for error message.
-	Arguments:
-	(int)code:	
-		error code to exit with
-	(char *)func (nullable):	
-		function where the error was encountered
-	(char *)msg (nullable):	
-		custom error message
-	example:
-	exit_error(3, "main", "malloc failure");
-	should output to standard error:
-	"main: malloc failure"
-	or
-	exit_error(errno, "main", NULL);
-	should output to standard error:
-	main: <errno message>
-	both functions exit with given exit code after displaying error message
+/**
+ * Examples:
+ * 	exit_error(3, "main", "malloc failure");
+ * 		should output to standard error:
+ * 			"main: malloc failure" 
+ * 		or 
+ * 	exit_error(errno, "main", NULL);
+ * 		should output to standard error:
+ * 			main: <errno message>
+ * 	both functions exit with given exit code after displaying error message
 */
-static void	st_write_msg(const char *func, const char *msg)
+static void	st_write_msg(const char *fn, const char *msg)
 {
-	if (func)
+	if (fn)
 	{
-		ft_putstr_fd(func, STDERR_FILENO);
+		ft_putstr_fd(fn, STDERR_FILENO);
 		ft_putstr_fd(": ", STDERR_FILENO);
 	}
 	if (msg)
@@ -46,10 +35,16 @@ static void	st_write_msg(const char *func, const char *msg)
 	ft_putchar_fd('\n', STDERR_FILENO);
 }
 
-void	exit_error(const int code, const char *func, const char *msg)
+/**
+ * Exits program on error, and optionally displays an error message.
+ * @param code 		Error code to exit with.
+ * @param function	(optional) Function where the error was encountered.
+ * @param message	(optional) Custom error message to display.
+*/
+void	exit_error(const int code, const char *function, const char *message)
 {
-	if (func || msg)
-		st_write_msg(func, msg);
+	if (function || message)
+		st_write_msg(function, message);
 	exit(code);
 }
 

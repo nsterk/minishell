@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/09 10:05:27 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/09 11:14:47 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/09 15:19:20 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 // #include <stdio.h>
 // #include <readline/history.h>
 // #include <readline/readline.h>
+
+/**
+ * 
+*/
 
 static void	st_sigint_handler(int signum)
 {
@@ -38,6 +42,7 @@ void	sigquit_handler(int signum)
 
 void	init_signals(void)
 {
+	// ft_putstr_fd("init signals\n", 2); // ? testing
 	signal(SIGINT, st_sigint_handler);
 	signal(SIGQUIT, SIG_IGN);
 }

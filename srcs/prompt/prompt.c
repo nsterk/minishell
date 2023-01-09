@@ -6,14 +6,15 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 17:07:39 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/01/07 17:03:07 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/09 15:21:04 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 #include "prompt.h"
-#include <readline/readline.h>
-#include <readline/history.h>
+// #include <readline/readline.h>
+// #include <readline/history.h>
+// #include "signals.h"
 
 /**
  * instead of while (1) can do while (prompt). prompt can return an int
@@ -27,18 +28,22 @@
 
 int	prompt(t_lexer *lexer)
 {
-	lexer->input = grab_input("momoshell-0.4$ ");
+	g_state = COMMAND;
+	init_signals(); // ? testing
+	lexer->input = grab_input("momoshell-0.5$ ");
+	// printf("input: %s\n", lexer->input); // ? testing
 	if (!lexer->input)
-		return (1);
+		exit(EXIT_SUCCESS);
 	if (*lexer->input)
 		add_history(lexer->input);
 	return (1);
 }
 
-char	*grab_input(char *prompt)
+char	*grab_input(const char *PROMPT)
 {
 	char	*line;
 
-	line = readline(prompt);
+	// init_signals(); // ? testing
+	line = readline(PROMPT);
 	return (line);
 }

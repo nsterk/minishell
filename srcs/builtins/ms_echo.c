@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/22 10:37:54 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/09 10:47:41 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/09 14:43:56 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int	exec_echo(char *cmd, char *option, const char *STRING)
 	char	*output;
 
 	// ? testing
-	printf("cmd: %s\n", cmd);
-	printf("option: %s\n", option);
-	printf("STRING: %s\n", STRING);
+	// printf("cmd: %s\n", cmd);
+	// printf("option: %s\n", option);
+	// printf("STRING: %s\n", STRING);
 
 	if (!STRING)
 		output = "";
