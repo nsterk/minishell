@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 17:07:39 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/01/09 15:21:04 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/09 15:25:11 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ int	prompt(t_lexer *lexer)
 {
 	g_state = COMMAND;
 	init_signals(); // ? testing
-	lexer->input = grab_input("momoshell-0.5$ ");
-	// printf("input: %s\n", lexer->input); // ? testing
+	lexer->input = grab_input("momoshell-0.5 🐈 "); // ! :3
+	// lexer->input = grab_input("momoshell-0.5$ ");
+	printf("input: %s\n", lexer->input); // ? testing
 	if (!lexer->input)
 		exit(EXIT_SUCCESS);
 	if (*lexer->input)
