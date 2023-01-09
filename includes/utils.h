@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 12:09:43 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/07 15:07:09 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/09 10:49:21 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ size_t				ft_arraylen(char **arr);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putstr_fd(const  char *s, int fd);
 void				ft_putchar_fd(char c, int fd);
+void				ft_putnbr_fd(int n, int fd);
 
 /**
  * Linked list functions.
@@ -171,7 +172,6 @@ void				ft_putchar_fd(char c, int fd);
 // t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 // 						void (*del)(void *));
 
-// void				ft_putnbr_fd(int n, int fd);
 
 // char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 

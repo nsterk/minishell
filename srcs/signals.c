@@ -6,13 +6,18 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/09 10:05:27 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/09 10:07:26 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/09 11:14:47 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "signals.h"
 
-static void	sigint_handler(int signum)
+// #include <signal.h>
+// #include <stdio.h>
+// #include <readline/history.h>
+// #include <readline/readline.h>
+
+static void	st_sigint_handler(int signum)
 {
 	(void)signum;
 	rl_replace_line("", 0);
@@ -33,6 +38,6 @@ void	sigquit_handler(int signum)
 
 void	init_signals(void)
 {
-	signal(SIGINT, sigint_handler);
+	signal(SIGINT, st_sigint_handler);
 	signal(SIGQUIT, SIG_IGN);
 }

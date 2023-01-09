@@ -6,17 +6,12 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:05:45 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/01/09 10:07:46 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/09 11:20:44 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-
-/**
- * Needed libs.
- */
-# include <unistd.h>
 
 /**
  * Minishell libs.
@@ -27,7 +22,16 @@
 # include "parser.h"
 # include "lexer.h"
 # include "utils.h"
-# include "signal.h"
+# include "signals.h"
+
+/**
+ * Needed libs.
+ */
+// # include <readline/history.h>
+// # include <readline/readline.h>
+// # include <signal.h>
+
+# include <unistd.h>
 
 typedef struct s_data
 {

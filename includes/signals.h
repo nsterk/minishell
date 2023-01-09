@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/09 10:06:43 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/09 10:09:38 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/09 11:21:03 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "executor.h"
 
+# include <readline/readline.h>
+# include <readline/history.h>
 # include <signal.h>
 
 void	init_signals(void);

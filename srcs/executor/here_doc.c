@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/24 11:52:56 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/06 15:00:58 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/09 10:27:57 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void	st_child_process(int pend[2], char *delim)
 }
 
 /**
- * @brief Executes here_doc.
+ * Executes here_doc.
  * 	1. Check pipe error.
  * 	2. Set state global variable to here_doc input.
  * 	3. Fork process.

@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/04 13:48:56 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/08 16:25:35 by arthurbezni   ########   odam.nl         */
+/*   Updated: 2023/01/09 10:43:56 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,13 @@ static char	*st_get_full_cmd(char *cmd, char **paths)
 	return (NULL);
 }
 
+/**
+ * Executes the command.
+ * 	1. If builtin => exit last pid.
+ * 	2. Get full command (w/ path).
+ * 	3. If not command => throw cmd not found error.
+ * 	4. Execute command using execve => throw error if failure.
+*/
 void	execute_cmd(t_cmd *cmd, t_exec *exec, t_data_exe *data_exe)
 {
 	char	*full_cmd;
@@ -65,6 +72,19 @@ void	execute_cmd(t_cmd *cmd, t_exec *exec, t_data_exe *data_exe)
 		exit_error(errno, "momoshell", " : No such file or directory");
 }
 
+/**
+ * Executes child process.
+ * 	1. Close pipe read end.
+ * 	2. If input redirection fails => exit last pid.
+ * 	3.	- If command has a next cmd
+ * 			=> output redirection using pipe write end as fd
+ * 		- Else
+ * 			=> close pipe write end
+ * 			=> output redirection using standard output (1)
+ * 	4. If status = 1 (failure)
+ * 		=> exit last pid
+ * 	5. Execute command.
+*/
 static void	st_child_process(t_cmd *cmd, t_data_exe *data_exe, int pend[2], int fd)
 {
 	int	status;
@@ -84,6 +104,17 @@ static void	st_child_process(t_cmd *cmd, t_data_exe *data_exe, int pend[2], int 
 	execute_cmd(cmd, cmd->exec, data_exe);
 }
 
+/**
+ * Executes piped commands.
+ * 	1. Check pipe error.
+ * 	2. Fork process.
+ * 	3. 	- If fork error => exit error
+ * 		- If child => execute child process
+ * 		- If > 0
+ * 			- if fd != 0 => close fd
+ * 			- close pipe write end
+ * 	4. Return pipe read end.
+*/
 int	exec_piped_cmd(t_proc *proc, t_cmd *cmd, t_data_exe *data_exe, int fd)
 {
 	int		pend[2];

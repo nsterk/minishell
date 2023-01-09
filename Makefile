@@ -6,11 +6,15 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2023/01/08 16:31:30 by arthurbezni   ########   odam.nl          #
+#    Updated: 2023/01/09 11:18:35 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:=	minishell
+
+# Readline paths
+export RL_LIB	:= -L/Users/abeznik/.brew/opt/readline/lib
+export RL_INC	:= -I/Users/abeznik/.brew/opt/readline/include
 
 # Colours
 RED 		:=	\033[1;31m
@@ -33,7 +37,7 @@ SRCS		:=	main.c \
 				executor.c \
 				execution.c \
 				here_doc.c \
-				init.c \
+				initialisation.c \
 				redirection.c \
 				builtins.c \
 				ms_echo.c \
@@ -64,6 +68,7 @@ SRCS		:=	main.c \
 				ft_strdup.c \
 				ft_strjoin.c \
 				ft_split.c \
+				ft_putnbr_fd.c \
 				token_new.c \
 				token_append.c \
 				token_insert.c \
@@ -85,24 +90,26 @@ SRCS		:=	main.c \
 				ft_memcpy.c \
 				exit.c \
 				malloc_check.c \
+				signals.c \
 
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 # Config
 CC			:=	cc
 FLAGS		:= -Wall -Wextra -g -fsanitize=address
+LIBS		:=	-lreadline -lhistory
 
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
 	@printf "$(YEL)\n\n  Compiling objects\n$(DEF)"
-	$(CC) $(OBJS) $(FLAGS) -lreadline -o $(NAME)
+	$(CC) $(OBJS) $(FLAGS) $(LIBS) $(RL_LIB) -o $(NAME)
 	@printf "$(GRN)\n  Success!$(DEF)"
 
 $(OBJ_DIR)/%.o: $(notdir %.c)
 	@mkdir -p $(OBJ_DIR)
 	@printf "$(YEL)  Creating objects...$(DEF) %-33.33s\r" $(notdir $(basename $@))
-	@$(CC) $(FLAGS) -c $< -I$(INCL_DIR) -o $@
+	@$(CC) $(FLAGS) -c $< -I$(INCL_DIR) $(RL_INC) -o $@
 
 db: all
 	lldb $(NAME)

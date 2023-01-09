@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/29 12:50:02 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/07 16:52:50 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/09 11:19:56 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
  * Minishell libs.
  */
 # include "parser.h"
+# include "signals.h"
 // # include "builtins.h"
 
 // # include "minishell.h"

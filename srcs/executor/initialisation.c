@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   init.c                                             :+:    :+:            */
+/*   initialisation.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/24 11:50:43 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/08 16:24:03 by arthurbezni   ########   odam.nl         */
+/*   Updated: 2023/01/09 10:30:51 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,12 @@ char	**init_paths(char **envp)
  * 	Loop over command struct:
  * 		- Loop over command input:
  * 			1. Check if input type is here_doc:
- * 				- 
+ * 				- execute here_doc
+ * 				- if return error
+ * 					=> return exit failure
+ * 			2. Go to next input
+ * 		- Go to next command
+ * 	Return exit success.
 */
 int	init_heredoc(t_cmd *cmd)
 {
