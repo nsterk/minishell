@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 17:41:10 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/07 17:12:46 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/09 10:06:25 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,6 +240,9 @@ void	executor(t_lexer *lexer)
 	// 	data_exe->last_pid = 1;
 	// 	return ;
 	// }
+	if (!cmd->exec->cmd)
+		return ;
+	signal(SIGQUIT, sigquit_handler);
 	data_exe->paths = init_paths(data_exe->envp);
 	if (!cmd->next)
 		proc = st_simple_cmd(cmd, data_exe);
