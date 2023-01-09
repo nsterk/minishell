@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2023/01/07 15:50:00 by abeznik       ########   odam.nl          #
+#    Updated: 2023/01/08 16:31:30 by arthurbezni   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,10 @@ SRCS		:=	main.c \
 				lexer.c \
 				parser.c \
 				executor.c \
-				exec_cmd.c \
+				execution.c \
 				here_doc.c \
 				init.c \
-				redirects.c \
+				redirection.c \
 				builtins.c \
 				ms_echo.c \
 				ms_pwd.c \
@@ -90,7 +90,7 @@ OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 # Config
 CC			:=	cc
-FLAGS		:= -Wall -Wextra -Werror -g -fsanitize=address
+FLAGS		:= -Wall -Wextra -g -fsanitize=address
 
 all:		$(NAME)
 

@@ -1,16 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   echo.c                                             :+:    :+:            */
+/*   ms_echo.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/22 10:37:54 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/11/23 12:29:51 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/08 16:47:43 by arthurbezni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+// #include "builtins.h"
+#include "../../includes/builtins.h"
+
+#include "stdlib.h"
+#include "unistd.h"
 
 int	exec_echo(char *cmd, char *option, const char *STRING)
 {
@@ -18,6 +22,7 @@ int	exec_echo(char *cmd, char *option, const char *STRING)
 
 	// Print input
 	printf("cmd: %s\n", cmd);
+	printf("option: %s\n", option);
 	printf("STRING: %s\n", STRING);
 
 	// Grab input (= str)

@@ -6,11 +6,12 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 19:02:19 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/07 17:10:02 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/08 16:47:45 by arthurbezni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+// #include "builtins.h"
+#include "../../includes/builtins.h"
 
 /**
  * Builtins:
@@ -45,9 +46,14 @@ int	check_builtin(t_cmd *cmd, t_data_exe *data_exe)
 	char	*string;
 	char	*tmp;
 
-	option = NULL;
+	// option = "\0";
+	option = "-n";
+
 	tmp = cmd->exec->cmd;
-	printf("HERE\n");
+
+	string = "\0";
+
+	// printf("HERE\n"); // ? testing
 	if (!cmd)
 		return (EXIT_FAILURE);
 	if (!ft_strncmp(tmp, "echo", 5))

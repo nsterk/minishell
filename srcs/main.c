@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:03:59 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/01/07 17:02:28 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/08 16:30:49 by arthurbezni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ int	quick_lexer(t_lexer *lexer)
 {
 	char	**tokens;
 	int		i;
-	int		ret;
+	// int		ret;
 
 	i = 0;
 	tokens = ft_split(lexer->input, ' ');
 	while (tokens[i] != NULL)
 		i++;
-	ret = i;
+	// ret = i;
 	ft_free_array(tokens);
 	return (i);
 }
@@ -49,13 +49,9 @@ void	enter_shell(int argc, char **argv, char **envp)
 {
 	t_data	data;
 	int		count;
-
-	int	tmp;
-	char **temp;
-
-	tmp = argc; // ? removes annoying errors
-	temp = argv; // ? removes annoying errors
 	
+	if (argv)
+		argc++;
 	init_data(&data, envp);
 	data.lexer.envp = envp;
 	while (prompt(&data.lexer))

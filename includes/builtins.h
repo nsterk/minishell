@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 19:02:58 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/07 13:55:13 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/08 16:33:08 by arthurbezni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 // # include "minishell.h"
 // # include "utils.h"
 
-// # include "stdlib.h" // getenv
+# include "stdlib.h" // getenv, EXIT_...
 
 int			check_builtin(t_cmd *cmd, t_data_exe *exec);
 int			special_builtin(char *cmd);

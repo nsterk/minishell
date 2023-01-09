@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   exec_cmd.c                                         :+:    :+:            */
+/*   execution.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/04 13:48:56 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/07 14:40:59 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/08 16:25:35 by arthurbezni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,23 @@ static void	st_cmd_not_found(char *cmd)
 	}
 }
 
-static char	*st_get_full_cmd(char *command, char **paths)
+static char	*st_get_full_cmd(char *cmd, char **paths)
 {
-	char	*temp;
+	char	*tmp;
 	int		i;
 
-	if (command && *command == '\0')
+	if (cmd && *cmd == '\0')
 		return (NULL);
-	if (!access(command, X_OK))
-		return (command);
+	if (!access(cmd, X_OK))
+		return (cmd);
 	i = 0;
 	while (paths[i])
 	{
-		temp = ft_strjoin(paths[i], command);
-		check_malloc(temp, "get_full_cmd");
-		if (!access(temp, X_OK))
-			return (temp);
-		free(temp);
+		tmp = ft_strjoin(paths[i], cmd);
+		check_malloc(tmp, "get_full_cmd");
+		if (!access(tmp, X_OK))
+			return (tmp);
+		free(tmp);
 		i++;
 	}
 	return (NULL);
