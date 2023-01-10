@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/29 12:50:02 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/09 11:19:56 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/09 22:41:58 by arthurbezni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int	g_state;
 
 /**
  * Process data:
- * 	- process id, and
- * 	- next process.
+ * 	- process id
+ * 	- next process
 */
 typedef struct s_proc {
 	pid_t			pid;
@@ -55,6 +55,10 @@ typedef struct s_proc {
 
 /**
  * Redirection type enum.
+ * 	- red. input
+ * 	- here_doc
+ * 	- red. output
+ * 	- red. output append
 */
 typedef enum e_red_type {
 	RED_IPUT,
@@ -65,10 +69,10 @@ typedef enum e_red_type {
 
 /**
  * Redirection data:
- * 	- redirection type,
- * 	- file name,
- * 	- heredoc,
- * 	- next command.
+ * 	- redirection type
+ * 	- file name
+ * 	- here_doc (file descriptor)
+ * 	- next command (next here_doc or NULL)
 */
 typedef struct s_red {
 	t_red_type		type;
@@ -79,9 +83,9 @@ typedef struct s_red {
 
 /**
  * Command execution data: 
- * 	- command itself, 
- * 	- the args, and 
- * 	- the length.
+ * 	- command itself
+ * 	- args
+ * 	- length
 */
 typedef struct s_exec {
 	char	*cmd;
@@ -91,10 +95,10 @@ typedef struct s_exec {
 
 /**
  * Command data: 
- * 	- execution info, 
- * 	- input, 
- *  - output and 
- *  - next command.
+ * 	- execution info
+ * 	- input (can be NULL)
+ *  - output (can be NULL)
+ *  - next command (pipes or NULL)
 */
 typedef struct s_cmd {
 	t_exec			*exec;
@@ -105,9 +109,9 @@ typedef struct s_cmd {
 
 /**
  * Executor data:
- * 	- environment paths,
- * 	- paths of commands, and
- * 	- last process id.
+ * 	- environment paths
+ * 	- paths of commands
+ * 	- last process id
 */
 typedef struct s_data_exe {
 	char	**envp;

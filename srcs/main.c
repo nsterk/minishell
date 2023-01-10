@@ -6,17 +6,19 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:03:59 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/01/09 15:20:40 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/09 22:41:56 by arthurbezni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief Test lexer for executor testing
+*/
 int	quick_lexer(t_lexer *lexer)
 {
 	char	**tokens;
 	int		i;
-	// int		ret;
 
 	i = 0;
 	tokens = ft_split(lexer->input, ' ');
@@ -24,11 +26,13 @@ int	quick_lexer(t_lexer *lexer)
 		return (EXIT_FAILURE);
 	while (tokens[i] != NULL)
 		i++;
-	// ret = i;
 	ft_free_array(tokens);
 	return (i);
 }
 
+/**
+ * @brief Test parser for executor testing
+*/
 static int	quick_parser(t_lexer *lexer, int count)
 {
 	char	**tokens;
@@ -42,8 +46,8 @@ static int	quick_parser(t_lexer *lexer, int count)
 	while (tokens[i] != NULL)
 	{
 		lexer->tokens[i].word = tokens[i];
-		// printf("token: %s\n", tokens[i]);
-		// printf("parser: %s\n", lexer->tokens[i].word);
+		// printf("token: %s\n", tokens[i]); // ? testing
+		// printf("parser: %s\n", lexer->tokens[i].word); // ? testing
 		i++;
 	}
 	return (i);
@@ -63,25 +67,13 @@ void	enter_shell(int argc, char **argv, char **envp)
 	while (prompt(&data.lexer))
 	{
 		// lexer(&data.lexer);
-		count = quick_lexer(&data.lexer);
-		quick_parser(&data.lexer, count);
+		count = quick_lexer(&data.lexer); // ? testing
+		quick_parser(&data.lexer, count); // ? testing
 		// data.table = parser(data.tokens);
 		// init_lexer(&data.lexer);
+		g_state = EXECUTING;
 		executor(&data.lexer); // ? testing
-
-		/**
-		 * ? Testing builtins
-		*/
-		// executor("echo", "", "", &data.lexer);
-		// executor("echo", "-n", "", &data.lexer);
-		// executor("echo", "-n", "test", &data.lexer);
-		// executor("echo", "", "test", &data.lexer);
-		// executor("echo", "-n", "hi\"\"\'string\'\"\"hi", &data.lexer);
-		// executor("echo", "", "hi\"\"\'string\'\"\"hi", &data.lexer);
-		// executor("pwd", "", "", &data.lexer);
-		// executor("exit", "", "", &data.lexer);
-		// executor("env", "", "", &data.lexer);
-
+		
 		// printf("\n"); // ? I think we need this after every cmd right?
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/24 11:50:43 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/09 10:30:51 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/09 21:52:47 by arthurbezni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	**init_paths(char **envp)
  * 	Loop over command struct:
  * 		- Loop over command input:
  * 			1. Check if input type is here_doc:
- * 				- execute here_doc
+ * 				- execute here_doc and save pipe end
  * 				- if return error
  * 					=> return exit failure
  * 			2. Go to next input
@@ -81,18 +81,24 @@ int	init_heredoc(t_cmd *cmd)
 
 	while (cmd)
 	{
+		// printf("cmd: %s\n", cmd->exec->cmd);
 		i = cmd->in;
+		// printf("in: %s\n", i->filename);
 		while (i)
 		{
+			printf("in: %s\n", i->filename);
 			if (i->type == HERE_DOC)
 			{
 				i->here_doc = here_doc(i->filename);
+				// i->here_doc = 3;
 				if (i->here_doc == -1)
 					return (EXIT_FAILURE);
 			}
 			i = i->next;
+			// printf("type: %d\n", i->type);
 		}
 		cmd = cmd->next;
+		// printf("filename: %s\n", cmd->in->filename);
 	}
 	return (EXIT_SUCCESS);
 }

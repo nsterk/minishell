@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/09 10:06:43 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/09 11:21:03 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/09 19:23:02 by arthurbezni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,7 @@
 
 void	init_signals(void);
 void	sigquit_handler(int signum);
+void 	quit_handler(int signum);
+// static void	st_sigint_handler(int signum);
 
 #endif
