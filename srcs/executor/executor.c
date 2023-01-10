@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 17:41:10 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/09 21:56:10 by arthurbezni   ########   odam.nl         */
+/*   Updated: 2023/01/10 14:59:16 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,106 +169,72 @@ static void	st_init_lexer_data(t_lexer *lexer, t_cmd **cmd, \
 			t_data_exe **data_exe, t_exec **exec)
 {
 	t_data_exe 	*tmp_data;
-	t_cmd 		*tmp_cmd0;
-	t_cmd 		*tmp_cmd1;
-	t_cmd 		*tmp_cmd2;
-	t_cmd 		*tmp_cmd3;
+	t_cmd 		*cmd0;
+	t_cmd 		*cmd1;
+	t_cmd 		*cmd2;
+	t_cmd 		*cmd3;
 	t_exec 		*tmp_exec;
 	t_red		*tmp_in;
 	t_red		*tmp_out;
 
 	tmp_data = (t_data_exe *)malloc(sizeof(t_data_exe));
-	tmp_cmd0 = (t_cmd *)malloc(sizeof(t_cmd));
-	tmp_cmd1 = (t_cmd *)malloc(sizeof(t_cmd));
-	tmp_cmd2 = (t_cmd *)malloc(sizeof(t_cmd));
-	tmp_cmd3 = (t_cmd *)malloc(sizeof(t_cmd));
 	tmp_exec = (t_exec *)malloc(sizeof(t_exec));
 	tmp_in = (t_red *)malloc(sizeof(t_red));
 	tmp_out = (t_red *)malloc(sizeof(t_red));
 
-	// Save lexer envp to tmp 
-	// Save tmp to data_exe
-	tmp_data->envp = (char **)malloc(sizeof(char **));
-	// tmp_data->envp = (char **)malloc(sizeof(char **) * 1024);
-	tmp_data->envp = lexer->envp;
-	*data_exe = tmp_data;
+	cmd0 = (t_cmd *)malloc(sizeof(t_cmd));
+	cmd0->exec = (t_exec *)malloc(sizeof(t_exec));
+	cmd0->in = (t_red *)malloc(sizeof(t_red));
+	// cmd0->out = (t_red *)malloc(sizeof(t_red));
 
-	// Save token word to exec cmd
-	tmp_exec->cmd = (char *)malloc(sizeof(char *));
-	// tmp_exec->cmd = (char *)malloc(sizeof(char *) * 1024);
-	tmp_exec->cmd = lexer->input;
-	*exec = tmp_exec;
+	cmd1 = (t_cmd *)malloc(sizeof(t_cmd));
+	cmd1->exec = (t_exec *)malloc(sizeof(t_exec));
+	cmd1->in = (t_red *)malloc(sizeof(t_red));
+	cmd1->out = (t_red *)malloc(sizeof(t_red));
 
-	// Save exec to cmd exec
-	tmp_cmd0->exec = (t_exec *)malloc(sizeof(t_exec));
-	tmp_cmd0->in = (t_red *)malloc(sizeof(t_red));
-	tmp_cmd0->out = (t_red *)malloc(sizeof(t_red));
-	tmp_cmd0->exec = *exec;
-	// tmp_cmd0->next = NULL;
-	// tmp_cmd0->in->filename = "Makefile";
-	tmp_cmd0->in->filename = "Makefile";
-	// tmp_cmd0->in->here_doc = 0;
-	// tmp_cmd0->in->next = NULL;
-	tmp_cmd0->in->type = 0;
-	tmp_cmd0->out->filename = "Test";
-	tmp_cmd0->out->type = 0;
-	// tmp_cmd0->out->next = NULL;
+	cmd2 = (t_cmd *)malloc(sizeof(t_cmd));
+	cmd2->exec = (t_exec *)malloc(sizeof(t_exec));
+	cmd2->in = (t_red *)malloc(sizeof(t_red));
+	cmd2->out = (t_red *)malloc(sizeof(t_red));
+
+	cmd3 = (t_cmd *)malloc(sizeof(t_cmd));
+	cmd3->exec = (t_exec *)malloc(sizeof(t_exec));
+	cmd3->in = (t_red *)malloc(sizeof(t_red));
+	cmd3->out = (t_red *)malloc(sizeof(t_red));
 
 	/**
-	 * ? testing pwd
+	 * ? here_doc
+	 * 	<< Arthur cat -e > output0 << naomi ls > output1
 	*/
-	// tmp_cmd0->in = NULL;
-	// tmp_cmd0->out = NULL;
+	cmd0->in->filename = "Arthur";
+	cmd1->in->filename = "Naomi";
+	cmd2->in->filename = "test_out";
 
-	// << Arthur cat -e > output0 << naomi ls > output1
+	cmd0->in->type = HERE_DOC;
+	cmd1->in->type = HERE_DOC;
+	cmd2->in->type = RED_OPUT;
+	// cmd3->in->type = RED_OPUT;
 
-	// 1st cmd heredoc Arthur
-	tmp_cmd0->in->here_doc = 1;
-	tmp_cmd0->in->filename = "Arthur";
-	tmp_cmd0->in->type = HERE_DOC;
-
-	// 2nd cmd heredoc Naomi
-	tmp_cmd1->exec = (t_exec *)malloc(sizeof(t_exec));
-	tmp_cmd1->in = (t_red *)malloc(sizeof(t_red));
-	tmp_cmd1->out = (t_red *)malloc(sizeof(t_red));
-	
-	tmp_cmd1->in->filename = "Naomi";
-	tmp_cmd1->in->type = HERE_DOC;
-
-	// 3rd cmd red_out Test
-	tmp_cmd2->exec = (t_exec *)malloc(sizeof(t_exec));
-	tmp_cmd2->in = (t_red *)malloc(sizeof(t_red));
-	tmp_cmd2->out = (t_red *)malloc(sizeof(t_red));
-	
-	tmp_cmd2->in->filename = "Test";
-	tmp_cmd2->in->type = RED_OPUT;
-
-	// 4th cmd NULL
-	tmp_cmd3->exec = (t_exec *)malloc(sizeof(t_exec));
-	tmp_cmd3->in = (t_red *)malloc(sizeof(t_red));
-	tmp_cmd3->out = (t_red *)malloc(sizeof(t_red));
-
-	tmp_cmd3->in->filename = NULL;
-	tmp_cmd3->in->type = NULL;
-	tmp_cmd3->in->next = NULL;
-	tmp_cmd3->next = NULL;
+	cmd0->in->next = cmd1->in;
+	cmd1->in->next = cmd2->in;
+	cmd2->in->next = NULL;
+	// cmd3->in->next = NULL;
 
 
-	//
-	tmp_cmd0->next = tmp_cmd1;
-	// tmp_cmd0->in->next = tmp_cmd1->in;
-	tmp_cmd0->in->next = NULL;
+	/**
+	 * ? pipe
+	 * 	cat | ls
+	*/
+	// cmd0->next = cmd1;
+	// cmd1->next = cmd2;
 
-	tmp_cmd1->next = tmp_cmd2;
-	// tmp_cmd1->in->next = tmp_cmd2->in;
-	tmp_cmd1->in->next = NULL;
+	cmd0->exec->cmd = "cat";
+	cmd0->next = NULL;
+	cmd0->out = NULL;
+	*cmd = cmd0;
 
-	tmp_cmd2->next = tmp_cmd3;
-	// tmp_cmd2->in->next = tmp_cmd3->in;
-	tmp_cmd2->in->next = NULL;
-
-
-	*cmd = tmp_cmd0;
+	tmp_data->envp = lexer->envp;
+	*data_exe = tmp_data;
 }
 
 /**
@@ -303,12 +269,7 @@ void	executor(t_lexer *lexer)
 	}
 	if (!cmd->exec->cmd)
 		return ;
-	// signal(SIGQUIT, sigquit_handler);
-	if (signal(SIGQUIT, sigquit_handler) == SIG_ERR)
-	{
-		perror("Unable to catch SIGQUIT");
-		exit(EXIT_FAILURE);
-  	}
+	signal(SIGQUIT, sigquit_handler);
 	data_exe->paths = init_paths(data_exe->envp);
 	if (!cmd->next)
 		proc = st_simple_cmd(cmd, data_exe);

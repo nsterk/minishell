@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/29 12:50:02 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/09 22:41:58 by arthurbezni   ########   odam.nl         */
+/*   Updated: 2023/01/10 14:14:22 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,14 @@ typedef struct s_red {
 
 /**
  * Command execution data: 
- * 	- command itself
+ * 	- command
  * 	- args
- * 	- length
+ * 	- argument count
 */
 typedef struct s_exec {
 	char	*cmd;
 	char	**args;
-	int		len;
+	int		argc;
 }	t_exec;
 
 /**

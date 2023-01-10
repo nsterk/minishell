@@ -6,20 +6,20 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2023/01/09 16:41:28 by arthurbezni   ########   odam.nl          #
+#    Updated: 2023/01/10 14:14:43 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:=	minishell
 
 # Readline paths (change this to your machine)
-## Codam Arthur
-# export RL_LIB	:= -L/Users/abeznik/.brew/opt/readline/lib
-# export RL_INC	:= -I/Users/abeznik/.brew/opt/readline/include
+## ? Codam Arthur
+export RL_LIB	:= -L/Users/abeznik/.brew/opt/readline/lib
+export RL_INC	:= -I/Users/abeznik/.brew/opt/readline/include
 
-## Mac Arthur
-export RL_LIB	:= -L/usr/local/opt/readline/lib
-export RL_INC	:= -I/usr/local/opt/readline/include
+## ? Mac Arthur
+# export RL_LIB	:= -L/usr/local/opt/readline/lib
+# export RL_INC	:= -I/usr/local/opt/readline/include
 
 # Colours
 RED 		:=	\033[1;31m
