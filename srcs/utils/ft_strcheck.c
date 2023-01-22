@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ms_env.c                                           :+:    :+:            */
+/*   ft_strcheck.c                                      :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
+/*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/11/22 12:05:50 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/22 09:33:59 by arthurbezni   ########   odam.nl         */
+/*   Created: 2023/01/22 10:10:00 by arthurbezni   #+#    #+#                 */
+/*   Updated: 2023/01/22 10:10:10 by arthurbezni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "builtins.h"
-#include "../../includes/builtins.h" // ? I need this on my mac
+#include "utils.h"
 
-int	exec_env(char **envp, t_data_exe *data_exe)
+int	ft_strcheck(char const *s, int (*f)(int))
 {
-	int		i;
+	int	i;
 
+	if (!s || !f)
+		return (EXIT_FAILURE);
 	i = 0;
-	while (envp[i])
+	while (s[i])
 	{
-		ft_putendl_fd(envp[i], STDOUT_FILENO);
+		if (!f(s[i]))
+			return (EXIT_FAILURE);
 		i++;
 	}
-	data_exe->last_pid = 0;
 	return (EXIT_SUCCESS);
 }

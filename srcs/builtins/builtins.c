@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 19:02:19 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/08 16:47:45 by arthurbezni   ########   odam.nl         */
+/*   Updated: 2023/01/22 11:00:38 by arthurbezni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,36 +39,27 @@ int	special_builtin(char *cmd)
 	return (0);
 }
 
-int	check_builtin(t_cmd *cmd, t_data_exe *data_exe)
+int	check_builtin(t_cmd *cmds, t_data_exe *data_exe)
 {
-	// char	*test_cmd;
-	char	*option;
-	char	*string;
 	char	*tmp;
+	
+	tmp = cmds->exec->cmd; // ? testing
 
-	// option = "\0";
-	option = "-n";
-
-	tmp = cmd->exec->cmd;
-
-	string = "\0";
-
-	// printf("HERE\n"); // ? testing
-	if (!cmd)
+	if (!cmds)
 		return (EXIT_FAILURE);
 	if (!ft_strncmp(tmp, "echo", 5))
-		return (exec_echo(tmp, option, string));
+		return (exec_echo(cmds->exec->args, data_exe));
 	else if (!ft_strncmp(tmp, "cd", 2))
-		return (EXIT_SUCCESS);
+		return (exec_cd(cmds->exec->args, data_exe));
 	else if (!ft_strncmp(tmp, "pwd", 3))
-		return (exec_pwd());
+		return (exec_pwd(data_exe));
 	else if (!ft_strncmp(tmp, "export", 7))
-		return (EXIT_SUCCESS);
+		return (exec_export(cmds->exec->args, data_exe));
 	else if (!ft_strncmp(tmp, "unset", 6))
 		return (EXIT_SUCCESS);
 	else if (!ft_strncmp(tmp, "env", 3))
-		return (exec_env(data_exe->envp)); // TODO fix this
+		return (exec_env(data_exe->envp, data_exe));
 	else if (!ft_strncmp(tmp, "exit", 4))
-		return (exec_exit());
+		return (exec_exit(cmds->exec, data_exe));
 	return (EXIT_FAILURE);
 }

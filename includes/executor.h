@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/29 12:50:02 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/10 14:14:22 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/22 10:42:18 by arthurbezni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,5 +163,7 @@ void		execute_cmd(t_cmd *cmd, t_exec *exec, t_data_exe *data_exe);
 
 int			check_builtin(t_cmd *cmd, t_data_exe *exec);
 int			special_builtin(char *cmd);
+
+int			file_error(const char *filename);
 
 #endif

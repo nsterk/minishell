@@ -6,13 +6,13 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/24 11:53:25 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/08 16:24:06 by arthurbezni   ########   odam.nl         */
+/*   Updated: 2023/01/22 10:42:00 by arthurbezni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 
-static int	st_file_error(const char *filename)
+int	file_error(const char *filename)
 {
 	if (!filename)
 	{
@@ -57,7 +57,7 @@ int	redirect_in(t_red *input, int fd, t_data_exe *data_exe)
 		else if (input->type == HERE_DOC)
 			fd = input->here_doc;
 		if (fd < 0)
-			return (st_file_error(input->filename));
+			return (file_error(input->filename));
 		input = input->next;
 	}
 	return (st_duplicate(fd, STDIN_FILENO, data_exe));
@@ -78,7 +78,7 @@ int	redirect_out(t_red *output, int fd, t_data_exe *data_exe)
 			flags = flags | O_TRUNC;
 		fd = open(output->filename, flags, 0644);
 		if (fd < 0)
-			return (st_file_error(output->filename));
+			return (file_error(output->filename));
 		output = output->next;
 	}
 	return (st_duplicate(fd, STDOUT_FILENO, data_exe));

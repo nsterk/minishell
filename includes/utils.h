@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 12:09:43 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/09 10:49:21 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/22 10:53:05 by arthurbezni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,11 @@ void				ft_putendl_fd(char *s, int fd);
 void				ft_putstr_fd(const  char *s, int fd);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putnbr_fd(int n, int fd);
+int					ft_isdigit(int c);
+int					ft_strcheck(char const *s, int (*f)(int));
+int					ft_isalpha(int c);
+int					ft_isalnum(int c);
+int					ft_isalpha(int c);
 
 /**
  * Linked list functions.
@@ -163,10 +168,7 @@ void				ft_putnbr_fd(int n, int fd);
  * TAKE WHAT YOU NEED!
  */
 
-// int					ft_isalnum(int c);
-// int					ft_isalpha(int c);
 // int					ft_isascii(int c);
-// int					ft_isdigit(int c);
 // int					ft_isprint(int c);
 
 // t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),

@@ -6,26 +6,11 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 17:41:10 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/10 14:59:16 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/22 11:03:35 by arthurbezni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
-
-/**
- * ? testing
-*/
-// static void	print_stuff(t_lexer *lexer)
-// {
-// 	int		i;
-
-// 	i = 0;
-// 	while (lexer->tokens[i].word != NULL)
-// 	{
-// 		printf("print_stuff: %s\n", lexer->tokens[i].word);
-// 		i++;
-// 	}
-// }
 
 /**
  * Wait for processes to end.
@@ -173,19 +158,22 @@ static void	st_init_lexer_data(t_lexer *lexer, t_cmd **cmd, \
 	t_cmd 		*cmd1;
 	t_cmd 		*cmd2;
 	t_cmd 		*cmd3;
-	t_exec 		*tmp_exec;
-	t_red		*tmp_in;
-	t_red		*tmp_out;
+	// t_exec 		*tmp_exec;
+	// t_red		*tmp_in;
+	// t_red		*tmp_out;
 
 	tmp_data = (t_data_exe *)malloc(sizeof(t_data_exe));
-	tmp_exec = (t_exec *)malloc(sizeof(t_exec));
-	tmp_in = (t_red *)malloc(sizeof(t_red));
-	tmp_out = (t_red *)malloc(sizeof(t_red));
+	// tmp_exec = (t_exec *)malloc(sizeof(t_exec));
+	// tmp_in = (t_red *)malloc(sizeof(t_red));
+	// tmp_out = (t_red *)malloc(sizeof(t_red));
 
 	cmd0 = (t_cmd *)malloc(sizeof(t_cmd));
 	cmd0->exec = (t_exec *)malloc(sizeof(t_exec));
+	cmd0->exec->args = (char **)malloc(sizeof(char *) * 2);
+	cmd0->exec->args[0] = (char *)malloc(sizeof(char *) * 1024);
+	cmd0->exec->args[1] = (char *)malloc(sizeof(char *) * 1024);
 	cmd0->in = (t_red *)malloc(sizeof(t_red));
-	// cmd0->out = (t_red *)malloc(sizeof(t_red));
+	cmd0->out = (t_red *)malloc(sizeof(t_red));
 
 	cmd1 = (t_cmd *)malloc(sizeof(t_cmd));
 	cmd1->exec = (t_exec *)malloc(sizeof(t_exec));
@@ -206,19 +194,19 @@ static void	st_init_lexer_data(t_lexer *lexer, t_cmd **cmd, \
 	 * ? here_doc
 	 * 	<< Arthur cat -e > output0 << naomi ls > output1
 	*/
-	cmd0->in->filename = "Arthur";
-	cmd1->in->filename = "Naomi";
-	cmd2->in->filename = "test_out";
+	// cmd0->in->filename = "Arthur";
+	// cmd1->in->filename = "Naomi";
+	// cmd2->in->filename = "test_out";
 
-	cmd0->in->type = HERE_DOC;
-	cmd1->in->type = HERE_DOC;
-	cmd2->in->type = RED_OPUT;
-	// cmd3->in->type = RED_OPUT;
+	// cmd0->in->type = HERE_DOC;
+	// cmd1->in->type = HERE_DOC;
+	// cmd2->in->type = RED_OPUT;
+	// // cmd3->in->type = RED_OPUT;
 
-	cmd0->in->next = cmd1->in;
-	cmd1->in->next = cmd2->in;
-	cmd2->in->next = NULL;
-	// cmd3->in->next = NULL;
+	// cmd0->in->next = cmd1->in;
+	// cmd1->in->next = cmd2->in;
+	// cmd2->in->next = NULL;
+	// // cmd3->in->next = NULL;
 
 
 	/**
@@ -228,13 +216,25 @@ static void	st_init_lexer_data(t_lexer *lexer, t_cmd **cmd, \
 	// cmd0->next = cmd1;
 	// cmd1->next = cmd2;
 
-	cmd0->exec->cmd = "cat";
-	cmd0->next = NULL;
+	// cmd0->exec->cmd = "cat";
+	// cmd0->next = NULL;
+	// cmd0->out = NULL;
+
+	/**
+	 * ? testing exit
+	*/
+	cmd0->exec->argc = 1;
+	cmd0->exec->cmd = "exit";
+	cmd0->exec->args[0] = "exit";
+	cmd0->exec->args[1] = '\0';
+	cmd0->in = NULL;
 	cmd0->out = NULL;
-	*cmd = cmd0;
+	cmd0->next = NULL;
 
 	tmp_data->envp = lexer->envp;
 	*data_exe = tmp_data;
+
+	*cmd = cmd0;
 }
 
 /**

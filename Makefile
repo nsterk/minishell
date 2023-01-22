@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2023/01/10 14:14:43 by abeznik       ########   odam.nl          #
+#    Updated: 2023/01/22 10:53:53 by arthurbezni   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,12 @@ NAME		:=	minishell
 
 # Readline paths (change this to your machine)
 ## ? Codam Arthur
-export RL_LIB	:= -L/Users/abeznik/.brew/opt/readline/lib
-export RL_INC	:= -I/Users/abeznik/.brew/opt/readline/include
+# export RL_LIB	:= -L/Users/abeznik/.brew/opt/readline/lib
+# export RL_INC	:= -I/Users/abeznik/.brew/opt/readline/include
 
 ## ? Mac Arthur
-# export RL_LIB	:= -L/usr/local/opt/readline/lib
-# export RL_INC	:= -I/usr/local/opt/readline/include
+export RL_LIB	:= -L/usr/local/opt/readline/lib
+export RL_INC	:= -I/usr/local/opt/readline/include
 
 # Colours
 RED 		:=	\033[1;31m
@@ -49,6 +49,11 @@ SRCS		:=	main.c \
 				ms_pwd.c \
 				ms_env.c \
 				ms_exit.c \
+				ms_cd.c \
+				cd_utils.c \
+				ms_export.c \
+				export_utils.c \
+				builtins_utils.c \
 				get_next_line.c \
 				get_next_line_utils.c \
 				ms_gnl.c \
@@ -96,6 +101,10 @@ SRCS		:=	main.c \
 				exit.c \
 				malloc_check.c \
 				signals.c \
+				ft_strcheck.c \
+				ft_isdigit.c \
+				ft_isalnum.c \
+				ft_isalpha.c \
 
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
