@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/29 12:50:02 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/22 10:42:18 by arthurbezni   ########   odam.nl         */
+/*   Updated: 2023/01/22 11:54:15 by arthurbezni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
  */
 # include "parser.h"
 # include "signals.h"
-// # include "builtins.h"
 
 // # include "minishell.h"
+// # include "builtins.h"
 // # include "lexer.h"
 // # include "utils.h"
 
@@ -123,7 +123,8 @@ typedef struct s_data_exe {
  * executor.c + statics
 */
 // void		executor(t_lexer *lexer, t_cmd *cmd, t_data_exe *data_exe);
-void		executor(t_lexer *lexer); // ? testing
+// void		executor(t_lexer *lexer); // ? testing
+void		executor(t_lexer *lexer, int last_pid); // ? testing
 // static int		st_simple_cmd(t_cmd *cmd, t_data_exe *data_exe);
 // static void		st_piped_cmd(t_proc **current, t_cmd *cmd, t_data_exe *data_exe);
 // static void		st_wait_processes(t_proc *proc, t_data_exe *data_exe);
@@ -165,5 +166,9 @@ int			check_builtin(t_cmd *cmd, t_data_exe *exec);
 int			special_builtin(char *cmd);
 
 int			file_error(const char *filename);
+
+// ! testing
+void	init_lexer_data(t_lexer *lexer, t_cmd **cmd, \
+			t_data_exe **data_exe, t_exec **exec);
 
 #endif

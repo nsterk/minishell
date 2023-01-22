@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:05:45 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/01/09 11:20:44 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/01/22 11:53:01 by arthurbezni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_data
 	t_token	*tokens;
 	t_table	*table;
 	char	**envp;
+	int		last_pid;
 }	t_data;
 
 int				main(int argc, char **argv, char **envp);

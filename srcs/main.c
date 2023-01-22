@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:03:59 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/01/09 22:41:56 by arthurbezni   ########   odam.nl         */
+/*   Updated: 2023/01/22 11:54:08 by arthurbezni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,10 @@ void	enter_shell(int argc, char **argv, char **envp)
 	data.lexer.envp = envp;
 	while (prompt(&data.lexer))
 	{
-		// lexer(&data.lexer);
 		count = quick_lexer(&data.lexer); // ? testing
 		quick_parser(&data.lexer, count); // ? testing
-		// data.table = parser(data.tokens);
-		// init_lexer(&data.lexer);
 		g_state = EXECUTING;
-		executor(&data.lexer); // ? testing
+		executor(&data.lexer, data.last_pid); // ? testing
 		
 		// printf("\n"); // ? I think we need this after every cmd right?
 	}

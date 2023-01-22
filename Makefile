@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2023/01/22 11:29:04 by arthurbezni   ########   odam.nl          #
+#    Updated: 2023/01/22 11:40:25 by arthurbezni   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,6 +106,7 @@ SRCS		:=	main.c \
 				ft_isdigit.c \
 				ft_isalnum.c \
 				ft_isalpha.c \
+				testing_init.c \
 
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
