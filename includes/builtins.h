@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 19:02:58 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/22 10:58:16 by arthurbezni   ########   odam.nl         */
+/*   Updated: 2023/01/22 11:31:34 by arthurbezni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,14 @@ int			exec_env(char **envp, t_data_exe *data_exe);
 */
 int			exec_export(char **args, t_data_exe *data_exe);
 char		**ft_export(char *arg, char **envp, t_data_exe *data_exe);
-int			search_in_envp(char *args, char **envp, t_data_exe *data_exe, char c);
+int			search_envp(char *args, char **envp, t_data_exe *data_exe, char c);
 void		error_message(char *arg, t_data_exe *data_exe);
 void		ms_single_export(char **envp);
+
+/**
+ * unset
+*/
+int			exec_unset(char **args, t_data_exe *data_exe);
 
 /**
  * cd

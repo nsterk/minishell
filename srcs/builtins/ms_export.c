@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/22 10:31:12 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/01/22 10:46:08 by arthurbezni   ########   odam.nl         */
+/*   Updated: 2023/01/22 11:32:12 by arthurbezni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char	**st_edit_envp_export(char **envp, char *args, int row_nr, int size_
 	return (new_envp);
 }
 
-int	search_in_envp(char *args, char **envp, t_data_exe *data_exe, char c)
+int	search_envp(char *args, char **envp, t_data_exe *data_exe, char c)
 {
 	int		orig_len;
 	int		len;
@@ -75,7 +75,7 @@ char	**ft_export(char *arg, char **envp, t_data_exe *data_exe)
 	size_envp = 0;
 	while (envp[size_envp])
 		size_envp++;
-	row_nr = search_in_envp(arg, envp, data_exe, '=');
+	row_nr = search_envp(arg, envp, data_exe, '=');
 	if (row_nr == NOT_FOUND)
 		return (envp);
 	else if (row_nr == ADD_NEW)

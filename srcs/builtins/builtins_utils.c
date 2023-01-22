@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/22 10:43:32 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/01/22 10:58:07 by arthurbezni   ########   odam.nl         */
+/*   Updated: 2023/01/22 11:31:41 by arthurbezni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static char	*st_change_arg(char *arg, char **env, int *i)
 	char	*env_var;
 	char	*new_arg_var;
 
-	row = search_in_envp(arg, env, NULL, '+');
+	row = search_envp(arg, env, NULL, '+');
 	if (row < 0)
 		return (arg);
 	env_name = ft_calloc(*i + 2, sizeof(char));

@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2023/01/22 10:53:53 by arthurbezni   ########   odam.nl          #
+#    Updated: 2023/01/22 11:29:04 by arthurbezni   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ SRCS		:=	main.c \
 				cd_utils.c \
 				ms_export.c \
 				export_utils.c \
+				ms_unset.c \
 				builtins_utils.c \
 				get_next_line.c \
 				get_next_line_utils.c \
