@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2022/11/25 16:21:29 by nsterk        ########   odam.nl          #
+#    Updated: 2023/01/31 20:34:54 by nsterk        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,8 @@ SRCS		=	main.c \
 				token_remove.c token_first.c token_size.c token_clear.c \
 				test_list.c \
 				init_data.c init_lexer.c state_type.c \
-				lex_word.c lex_operator.c lex_space.c
+				lex_word.c lex_operator.c lex_space.c \
+				parse_command.c parse_pipe.c
 
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 

@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/12/11 20:33:32 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/01/31 22:21:51 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@ typedef struct s_table
 }	t_table;
 
 t_table		*parser(t_token *token);
+void		parse_command(t_token *token, t_table *table);
+void		parse_pipe(t_token *token, t_table *table);
 
 #endif

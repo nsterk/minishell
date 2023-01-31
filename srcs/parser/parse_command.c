@@ -1,34 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   prompt.c                                           :+:    :+:            */
+/*   parse_command.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/09/15 17:07:39 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/01/31 22:25:17 by nsterk        ########   odam.nl         */
+/*   Created: 2023/01/31 20:31:55 by nsterk        #+#    #+#                 */
+/*   Updated: 2023/01/31 22:22:15 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
-#include "prompt.h"
-#include <readline/readline.h>
-#include <readline/history.h>
+#include "parser.h"
 
-int	prompt(t_lexer *lexer)
+void	parse_command(t_token *token, t_table *table)
 {
-	lexer->str = grab_input(lexer, "momoshell-0.2$ ");
-	if (!lexer->str)
-		return (1);
-	if (*lexer->str)
-		add_history(lexer->str);
-	return (1);
-}
-
-char	*grab_input(t_lexer *lexer, char *prompt)
-{
-	char	*line;
-
-	line = readline(prompt);
-	return (line);
+	printf("parse_command works!\n");
+	return ;
 }

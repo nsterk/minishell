@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   prompt.c                                           :+:    :+:            */
+/*   init_parser.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/09/15 17:07:39 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/01/31 22:25:17 by nsterk        ########   odam.nl         */
+/*   Created: 2023/01/31 22:23:22 by nsterk        #+#    #+#                 */
+/*   Updated: 2023/01/31 22:24:35 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
-#include "prompt.h"
-#include <readline/readline.h>
-#include <readline/history.h>
+#include "parser.h"
 
-int	prompt(t_lexer *lexer)
+t_table	*init_parser(t_token *token)
 {
-	lexer->str = grab_input(lexer, "momoshell-0.2$ ");
-	if (!lexer->str)
-		return (1);
-	if (*lexer->str)
-		add_history(lexer->str);
-	return (1);
-}
+	t_table	*table;
 
-char	*grab_input(t_lexer *lexer, char *prompt)
-{
-	char	*line;
-
-	line = readline(prompt);
-	return (line);
+	table = malloc(sizeof(t_table));
+	return (table);
 }
