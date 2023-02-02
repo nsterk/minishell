@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/01/31 22:21:51 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/02/02 21:23:46 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,72 @@
 # include "lexer.h"
 # include <stdio.h>
 
-typedef struct s_io
-{
-	int		fd;
-	char	*filename;
-}	t_io;
+/**
+ * Redirection type enum.
+ * 	- red. input
+ * 	- here_doc
+ * 	- red. output
+ * 	- red. output append
+*/
 
-typedef struct s_cmd
+typedef enum e_red_type
+{
+	DEFAULT,
+	RED_IPUT,
+	HERE_DOC,
+	RED_OPUT,
+	RED_OPUT_A
+}	t_red_type;
+
+/**
+ * Redirection data:
+ * 	- redirection type
+ * 	- file name
+ * 	- here_doc (file descriptor)
+ * 	- next command (next here_doc or NULL)
+*/
+
+typedef struct s_red
+{
+	t_red_type		type;
+	char			*filename;
+	int				here_doc;
+	struct s_red	*next;
+}	t_red;
+
+/**
+ * Command execution data: 
+ * 	- command
+ * 	- args
+ * 	- argument count
+*/
+
+typedef struct s_exec
 {
 	char	*cmd;
 	char	**args;
+	int		argc;
+}	t_exec;
+
+/**
+ * Command data: 
+ * 	- execution info
+ * 	- input (can be NULL)
+ *  - output (can be NULL)
+ *  - next command (pipes or NULL)
+*/
+
+typedef struct s_cmd
+{
+	t_exec			exec;
+	t_red			in;
+	t_red			out;
+	struct s_cmd	*next;
 }	t_cmd;
 
-typedef struct s_table
-{
-	t_cmd	*cmd;
-	t_io	*in;
-	t_io	*out;
-}	t_table;
 
-t_table		*parser(t_token *token);
-void		parse_command(t_token *token, t_table *table);
-void		parse_pipe(t_token *token, t_table *table);
+void		parser(t_token *token, t_cmd **cmd);
+t_token		*parse_command(t_token *tmp_token, t_cmd *cmd);
+t_token		*parse_pipe(t_token *tmp_token, t_cmd *cmd);
 
 #endif

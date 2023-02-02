@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:05:45 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/12/06 17:44:02 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/02/02 21:02:46 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_data
 {
 	t_lexer	lexer;
 	t_token	*tokens;
-	t_table	*table;
+	t_cmd	*cmd;
 }	t_data;
 
 int				main(void);
@@ -42,5 +42,6 @@ int				main(void);
 void			init_data(t_data *data);
 void			init_lexer(t_lexer *lexer);
 void			reinit_lexer(t_lexer *lexer);
+void			init_parser(t_cmd **cmd);
 
 #endif
