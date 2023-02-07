@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/02/02 21:23:46 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/02/03 18:31:07 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,42 +45,29 @@ typedef struct s_red
 {
 	t_red_type		type;
 	char			*filename;
-	int				here_doc;
-	struct s_red	*next;
+	int				fd;
 }	t_red;
-
-/**
- * Command execution data: 
- * 	- command
- * 	- args
- * 	- argument count
-*/
-
-typedef struct s_exec
-{
-	char	*cmd;
-	char	**args;
-	int		argc;
-}	t_exec;
 
 /**
  * Command data: 
  * 	- execution info
  * 	- input (can be NULL)
  *  - output (can be NULL)
- *  - next command (pipes or NULL)
+ *  - next command (pipes or NULL) <-- removed this b/c information about pipe will be added to the cmd info itself
 */
 
 typedef struct s_cmd
 {
-	t_exec			exec;
+	char			*cmd;
+	char			**args;
+	int				argc;
 	t_red			in;
 	t_red			out;
 	struct s_cmd	*next;
 }	t_cmd;
 
-
 void		parser(t_token *token, t_cmd **cmd);
+void		init_parser(t_cmd **cmd);
 t_token		*parse_command(t_token *tmp_token, t_cmd *cmd);
 t_token		*parse_pipe(t_token *tmp_token, t_cmd *cmd);
 
