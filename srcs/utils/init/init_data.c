@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 18:02:52 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/02/08 00:08:07 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/02/08 13:59:04 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ void	init_data(t_data *data)
 void	reinit_data(t_data *data)
 {
 	reinit_lexer(&data->lexer);
+	cmdclear(&data->cmd, free);
 	data->cmd = NULL;
 }

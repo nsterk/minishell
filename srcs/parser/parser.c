@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 12:18:59 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/02/07 23:51:17 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/02/08 16:07:35 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	parser(t_token *token, t_cmd **cmd)
 	tmp = token;
 	while (tmp)
 	{
-		if (tmp->type != TOK_PIPE)
+		if (tmp->type == TOK_CMD)
 			tmp = parse_command(tmp, *cmd);
 		else
 			tmp = parse_pipe(tmp, *cmd);

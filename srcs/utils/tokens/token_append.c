@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/03 15:35:22 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/02/08 00:17:21 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/02/08 13:56:17 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,11 @@ int	cmd_append(t_cmd **cmd, t_cmd *new)
 
 	if (!cmd || !new)
 		return (1);
-	// write(1, new->word, ft_strlen(new->word));
-	// fprintf(stderr, "new content: %s\n", new->word);
 	if (*cmd == NULL)
 		*cmd = new;
 	else
 	{
 		tail = cmd_last(*cmd);
-		// new->prev = tail;
 		tail->next = new;
 	}
 	return (0);

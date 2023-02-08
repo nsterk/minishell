@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 22:23:22 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/02/08 00:07:56 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/02/08 22:18:55 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,12 @@ static void	init_redirs(t_red *in, t_red *out);
 // 	return ;
 // }
 
-void	init_cmd(t_cmd *cmd)
+void	init_cmd(t_cmd *cmd, char *str, int argc)
 {
 	cmd->cmd = NULL;
 	cmd->args = NULL;
+	cmd->argc = argc;
+	cmd->next = NULL;
 	init_redirs(&cmd->in, &cmd->out);
 }
 
