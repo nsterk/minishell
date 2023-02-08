@@ -6,12 +6,13 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/03 15:29:51 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/12/05 21:28:53 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/02/08 00:12:59 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "lexer.h"
+#include "parser.h"
 
 t_token	*token_last(t_token *token)
 {
@@ -20,8 +21,18 @@ t_token	*token_last(t_token *token)
 	if (!token)
 		return (NULL);
 	current = token;
-	// printf("%p\n", token->next);
-	// printf("%s\n", token->word);
+	while (current->next != NULL)
+		current = current->next;
+	return (current);
+}
+
+t_cmd	*cmd_last(t_cmd	*cmd)
+{
+	t_cmd	*current;
+
+	if (!cmd)
+		return (NULL);
+	current = cmd;
 	while (current->next != NULL)
 		current = current->next;
 	return (current);

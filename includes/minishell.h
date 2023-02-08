@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:05:45 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/02/03 18:30:57 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/02/07 23:48:48 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@
 typedef struct s_data
 {
 	t_lexer	lexer;
-	t_token	*tokens;
 	t_cmd	*cmd;
+	char	**envp;
+	int		last_pid;
 }	t_data;
 
 int				main(void);
