@@ -6,32 +6,26 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 22:23:22 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/02/08 22:18:55 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/02/09 21:00:44 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static void	init_redirs(t_red *in, t_red *out);
+static void		init_redirs(t_red *in, t_red *out);
+static t_token	*add_args(t_token *token, t_cmd *cmd);
 
-// void	init_parser(t_cmd **cmd)
-// {
-// 	*cmd = malloc(sizeof(*cmd));
-// 	if (!*cmd)
-// 		exit(1); // exit correctly
-// 	(*cmd)->cmd = NULL;
-// 	(*cmd)->args = NULL;
-// 	init_redirs(&(*cmd)->in, &(*cmd)->out);
-// 	return ;
-// }
-
-void	init_cmd(t_cmd *cmd, char *str, int argc)
+t_token	*init_cmd(t_token *token, t_cmd *cmd, int argc)
 {
-	cmd->cmd = NULL;
-	cmd->args = NULL;
 	cmd->argc = argc;
+	cmd->args = NULL;
+	cmd->args = (char **)malloc(sizeof(char *) * (argc + 1));
+	if (!cmd->args)
+		return (NULL);
+	cmd->args[argc] = NULL;
 	cmd->next = NULL;
 	init_redirs(&cmd->in, &cmd->out);
+	return (add_args(token, cmd));
 }
 
 static void	init_redirs(t_red *in, t_red *out)
@@ -42,4 +36,20 @@ static void	init_redirs(t_red *in, t_red *out)
 	out->type = DEFAULT;
 	out->filename = NULL;
 	out->fd = STDOUT_FILENO;
+}
+
+static t_token	*add_args(t_token *token, t_cmd *cmd)
+{
+	int	i;
+
+	i = 0;
+	while (i < cmd->argc)
+	{
+		cmd->args[i] = ft_strdup(token->word);
+		if (!cmd->args[i])
+			exit(EXIT_FAILURE); //!proper freeing of tha shit
+		token = token->next;
+		i++;
+	}
+	return (token);
 }

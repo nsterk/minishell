@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/03 14:04:12 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/02/08 22:20:50 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/02/09 20:55:35 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,13 @@ t_token	*token_new(t_toktype type, t_lexstate state, char *str)
 	return (new);
 }
 
-t_cmd	*cmd_new(char *str, int argc)
+t_cmd	*cmd_new(char *str)
 {
 	t_cmd	*cmd;
 
-	cmd = malloc(sizeof(*cmd));
+	cmd = malloc(sizeof(t_cmd));
 	if (!cmd)
 		return (NULL);
-	init_cmd(cmd, str, argc);
-	cmd->args = malloc(sizeof(char *) * (argc + 1));
-	if (!cmd->args)
-		return (free(cmd), NULL);
 	cmd->cmd = ft_strdup(str); //maybe allocating memory not needed here since original str (token->word) won't be freed until after executor is done
 	if (!cmd->cmd)
 		return (cmd_delone(cmd, free), NULL);
