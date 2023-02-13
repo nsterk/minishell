@@ -6,11 +6,12 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 12:18:59 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/02/10 01:02:11 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/02/13 21:20:52 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+#include "test.h"
 
 void	parser(t_token *token, t_cmd **cmd)
 {
@@ -30,12 +31,6 @@ void	parser(t_token *token, t_cmd **cmd)
 			tmp = parse_pipe(tmp, *cmd);
 		}
 	}
-	while (*tmp_cmd)
-	{
-		printf("cmd->cmd: %s\ncmd->args: \n", (*tmp_cmd)->cmd);
-		for (int i = 0; i <= (*tmp_cmd)->argc; i++)
-			printf("%s\n", (*tmp_cmd)->args[i]);
-		*tmp_cmd = (*tmp_cmd)->next;
-	}
+	print_tbl(*cmd);
 	return ;
 }

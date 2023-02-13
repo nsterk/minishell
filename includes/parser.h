@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/02/09 20:56:48 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/02/13 15:40:08 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PARSER_H
 
 # include "lexer.h"
+# include "colours.h"
 # include <stdio.h>
 
 /**
@@ -53,7 +54,8 @@ typedef struct s_red
  * 	- execution info
  * 	- input (can be NULL)
  *  - output (can be NULL)
- *  - next command (pipes or NULL) <-- removed this b/c information about pipe will be added to the cmd info itself
+ *  - next command (pipes or NULL) <-- removed this b/c information about
+ * 	pipe will be added to the cmd info itself
 */
 
 typedef struct s_cmd
@@ -71,7 +73,10 @@ t_token		*init_cmd(t_token *token, t_cmd *cmd, int argc);
 t_token		*parse_command(t_token *token, t_cmd **cmd);
 t_token		*parse_pipe(t_token *token, t_cmd *cmd);
 
-/*	PARSER UTILS	*/
+/**
+ * Parser utils
+*/
+
 t_cmd		*cmd_new(char *str);
 t_cmd		*cmd_last(t_cmd	*cmd);
 int			cmd_append(t_cmd **cmd, t_cmd *new);

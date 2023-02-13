@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   test.h                                             :+:    :+:            */
+/*   colours.h                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/09/22 11:32:28 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/02/13 16:55:48 by nsterk        ########   odam.nl         */
+/*   Created: 2023/02/13 15:30:44 by nsterk        #+#    #+#                 */
+/*   Updated: 2023/02/13 21:06:20 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_H
-# define TEST_H
+#ifndef COLOURS_H
+# define COLOURS_H
 
-# include "lexer.h"
-# include "parser.h"
-# include "utils.h"
-
-/* Print tokens head to tail */
-void	token_printHtT(t_token *lst);
-
-/* Print tokens tail to head */
-void	token_printTtH(t_token *lst);
-
-void	print_tbl(t_cmd *cmd);
+# define BLU	"\033[36m"
+# define RED	"\033[31m"
+# define GRN	"\033[32m"
+# define WHT_B	"\033[1;37m"
+# define BLU_B	"\033[1;36m"
+# define GRN_B	"\033[1;32m"
+# define WHT_I	"\033[3;37m"
+# define WHT_U	"\033[4;37m"
+# define RST	"\033[0m"
 
 #endif
