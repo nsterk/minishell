@@ -6,14 +6,14 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 16:26:52 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/02/13 21:19:34 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/02/13 21:26:56 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "test.h"
 
-static void	print_redir(t_red red);
+static void	print_redir(t_red red, char *str);
 static void	print_args(t_cmd *cmd);
 
 void	print_tbl(t_cmd *cmd)
@@ -27,10 +27,8 @@ void	print_tbl(t_cmd *cmd)
 	{
 		printf(WHT_B"command %i\n"RST, i);
 		print_args(tmp);
-		printf(WHT_U"in\n"RST);
-		print_redir(tmp->in);
-		printf(WHT_U"out\n"RST);
-		print_redir(tmp->out);
+		print_redir(tmp->in, "out");
+		print_redir(tmp->out, "out");
 		if (tmp->next)
 			printf("next: %s\n", tmp->next->cmd);
 		else
@@ -57,7 +55,7 @@ static void	print_args(t_cmd *cmd)
 	}
 }
 
-static void	print_redir(t_red red)
+static void	print_redir(t_red red, char *str)
 {
 	static const char	type[6][15] = {
 	[DEFAULT] = "default",
@@ -67,7 +65,7 @@ static void	print_redir(t_red red)
 	[RED_OPUT_A] = ">>"
 	};
 
-	printf("type: %s\n", type[red.type]);
-	printf("filename: %s\n", red.filename);
-	printf("fd: %d\n", red.fd);
+	printf("%s->type: %s\n", str, type[red.type]);
+	printf("%s->filename: %s\n", str, red.filename);
+	printf("%s->fd: %d\n", str, red.fd);
 }
