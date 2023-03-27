@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/03 14:04:12 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/02/09 20:55:35 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/03/27 17:25:39 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,20 @@ t_cmd	*cmd_new(char *str)
 	cmd = malloc(sizeof(t_cmd));
 	if (!cmd)
 		return (NULL);
-	cmd->cmd = ft_strdup(str); //maybe allocating memory not needed here since original str (token->word) won't be freed until after executor is done
-	if (!cmd->cmd)
-		return (cmd_delone(cmd, free), NULL);
+	
 	return (cmd);
+}
+
+t_red	*red_new(t_red_type type)
+{
+	t_red	*red;
+
+	red = malloc(sizeof(t_red));
+	if (!red)
+		return (NULL);
+	red->type = type;
+	red->fd = -1; //dunno why i'm initing it to -1 maybe change later
+	red->filename = NULL;
+	red->next = NULL;
+	return (red);
 }

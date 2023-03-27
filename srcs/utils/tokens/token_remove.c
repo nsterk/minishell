@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/03 17:50:34 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/12/11 17:24:07 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/02/16 13:36:10 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	token_delone(t_token *token, void (*del)(void*))
 		return ;
 	if (token->word)
 		del(token->word);
-	free(token);
+	del(token);
 }
 
 static t_token	*remove_head(t_token *head, t_token *token)

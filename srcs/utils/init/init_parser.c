@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 22:23:22 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/02/09 21:00:44 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/02/16 13:53:53 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,9 @@ t_token	*init_cmd(t_token *token, t_cmd *cmd, int argc)
 		return (NULL);
 	cmd->args[argc] = NULL;
 	cmd->next = NULL;
-	init_redirs(&cmd->in, &cmd->out);
+	cmd->in = NULL;
+	cmd->out = NULL;
 	return (add_args(token, cmd));
-}
-
-static void	init_redirs(t_red *in, t_red *out)
-{
-	in->type = DEFAULT;
-	in->filename = NULL;
-	in->fd = STDIN_FILENO;
-	out->type = DEFAULT;
-	out->filename = NULL;
-	out->fd = STDOUT_FILENO;
 }
 
 static t_token	*add_args(t_token *token, t_cmd *cmd)
