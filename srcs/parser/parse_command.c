@@ -6,25 +6,28 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 20:31:55 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/02/14 18:28:39 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/03/27 23:54:09 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static int	get_cmd_argc(t_token *token);
+static int		get_cmd_argc(t_token *token);
+static t_token	*add_args(t_token *token, t_cmd *cmd);
 
-t_token	*parse_command(t_token *token, t_cmd **cmd)
+t_token	*parse_args(t_token *token, t_cmd *cmd)
 {
-	t_cmd	*new;
+	t_cmd	*current;
 
-	new = cmd_new(token->word);
-	if (!new)
-		exit(EXIT_FAILURE); //! do proper error handling
-	token = init_cmd(token, new, get_cmd_argc(token));
-	if (cmd_append(cmd, new))
-		exit(EXIT_FAILURE); //! error checking
-	return (token);
+	current = cmd_last(cmd);
+	if (current->argc)
+		exit(EXIT_FAILURE); //! syntax error
+	current->argc = get_cmd_argc(token);
+	current->args = malloc(sizeof(char *) * (current->argc + 1));
+	if (!current->args)
+		exit(EXIT_FAILURE); //! syntax error
+	current->args[current->argc] = NULL;
+	return (add_args(token, current));
 }
 
 static int	get_cmd_argc(t_token *token)
@@ -40,4 +43,20 @@ static int	get_cmd_argc(t_token *token)
 		tmp = tmp->next;
 	}
 	return (i);
+}
+
+static t_token	*add_args(t_token *token, t_cmd *cmd)
+{
+	int	i;
+
+	i = 0;
+	while (i < cmd->argc)
+	{
+		cmd->args[i] = ft_strdup(token->word);
+		if (!cmd->args[i])
+			exit(EXIT_FAILURE); //!proper freeing of tha shit
+		token = token->next;
+		i++;
+	}
+	return (token);
 }
