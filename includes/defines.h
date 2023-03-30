@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/11 19:40:39 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/02/16 14:43:34 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/03/30 16:52:46 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
  * F_APPEND		special redirection (heredoc for redir_in, append for redir_out)
  */
 
-# define SQUOTE		0
+# define SQUOTE		1
 # define DQUOTE		2
 # define LESS		4
 # define DLESS		8

@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 17:07:39 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/01/31 22:25:17 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/03/30 19:34:49 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 int	prompt(t_lexer *lexer)
 {
-	lexer->str = grab_input(lexer, "momoshell-0.2$ ");
+	lexer->str = grab_input(lexer, "momoshell-0.3$ ");
 	if (!lexer->str)
 		return (1);
 	if (*lexer->str)

@@ -6,13 +6,12 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 22:23:22 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/03/27 23:44:01 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/03/30 17:17:59 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static void		init_redirs(t_red *in, t_red *out);
 static t_token	*add_args(t_token *token, t_cmd *cmd);
 
 t_token	*init_cmd(t_token *token, t_cmd *cmd, int argc)

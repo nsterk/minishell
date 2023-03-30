@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parse_command.c                                    :+:    :+:            */
+/*   parse_args.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 20:31:55 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/03/27 23:54:09 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/03/30 19:37:16 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ t_token	*parse_args(t_token *token, t_cmd *cmd)
 
 	current = cmd_last(cmd);
 	if (current->argc)
-		exit(EXIT_FAILURE); //! syntax error
+		exit_minishelll(SYNTAX_ERR, "Syntax error: parse_args");
 	current->argc = get_cmd_argc(token);
 	current->args = malloc(sizeof(char *) * (current->argc + 1));
 	if (!current->args)
-		exit(EXIT_FAILURE); //! syntax error
+		exit_minishell(MALLOC_ERR, "Malloc failure in parse_args"); //! syntax error
 	current->args[current->argc] = NULL;
 	return (add_args(token, current));
 }

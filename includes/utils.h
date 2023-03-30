@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 12:09:43 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/10/13 15:18:51 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/03/30 18:23:14 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@
 
 typedef enum e_status
 {
-	EXIT_MINISHELL
+	SUCCESS,
+	MALLOC_ERR,
+	SYNTAX_ERR
 }	t_status;
 
 typedef struct s_list
@@ -32,7 +34,7 @@ typedef struct s_list
 /**
  * Exit functions.
  */
-void				exit_minishell(int status);
+void				exit_minishell(int status, char *msg);
 
 /**
  * GNL functions.

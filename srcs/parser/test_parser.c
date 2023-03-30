@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 16:26:52 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/03/28 00:06:54 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/03/30 19:00:14 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void	print_tbl(t_cmd *cmd)
 	tmp = cmd;
 	while (tmp)
 	{
-		printf(WHT_B"command %i\n"RST, i);
+		printf(WHT_B"command %i: "RST, i);
 		print_args(tmp);
 		if (tmp->in)
-			print_redir(tmp->in, "out");
+			print_redir(tmp->in, "in");
 		if (tmp->out)
 			print_redir(tmp->out, "out");
-		if (tmp->next)
-			printf("next: %s\n", "something");
+		if (tmp->next && tmp->next->args)
+			printf("next: %s\n", tmp->next->args[0]);
 		else
 			printf("next: (null)\n");
 		tmp = tmp->next;
@@ -45,12 +45,12 @@ static void	print_args(t_cmd *cmd)
 	int	i;
 
 	i = 0;
-	// printf("cmd: %s\n", cmd->cmd);
 	while (i <= cmd->argc)
 	{
 		if (!i)
-			printf("args: ");
-		printf("[%i] %s ", i, cmd->args[i]);
+			printf("[%i] "WHT_B"%s "RST, i, cmd->args[i]);
+		else
+			printf("[%i] %s ", i, cmd->args[i]);
 		if (i == cmd->argc)
 			printf("\n");
 		i++;
@@ -67,7 +67,14 @@ static void	print_redir(t_red *red, char *str)
 	[RED_OPUT_A] = ">>"
 	};
 
-	printf("%s->type: %s\n", str, type[red->type]);
-	printf("%s->filename: %s\n", str, red->filename);
-	printf("%s->fd: %d\n", str, red->fd);
+	printf(WHT_U"%s"RST": ", str);
+	while (red)
+	{
+		printf(" %s%s-> ", type[red->type], red->filename);
+		red = red->next;
+	}
+	printf("null\n");
+	// printf("%s.type: %s\n", str, type[red->type]);
+	// printf("%s->filename: %s\n", str, red->filename);
+	// printf("%s->fd: %d\n", str, red->fd);
 }
