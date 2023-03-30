@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 12:18:59 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/03/30 18:20:01 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/03/30 20:33:23 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,10 @@ void	parser(t_token *token, t_cmd **cmd)
 	tmp = token;
 	*cmd = cmd_new();
 	if (!(*cmd))
-		exit(EXIT_FAILURE); //! error handling
+		exit_minishell(MALLOC_ERR, "Malloc failure in parser");
 	while (tmp)
 	{
 		tmp = parse_command(tmp, cmd);
-		// if (tmp->type == TOK_CMD)
-		// {
-		// 	tmp = parse_args(tmp, *cmd);
-		// }
-		// else if (tmp->type)
-		// {
-		// 	tmp = parse_pipe(tmp, cmd);
-		// }
 	}
 	print_tbl(*cmd);
 	return ;
