@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/01 20:51:55 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/02/08 14:21:07 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/03/31 21:56:16 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ bool	lex_operator(t_lexer *lex, t_toktype type)
 
 	if (type != TOK_PIPE && c == lex->str[lex->idx + 1])
 	{
-		if (lex->str[lex->idx + 1] && lex->str[lex->idx + 2] == c)
-			printf("syntax error\n");
+		// if (lex->str[lex->idx + 1] && lex->str[lex->idx + 2] == c)
+		// 	return (error_msg("Syntax error: lex_operator"));
 		lex->flags |= F_APPEND;
 		lex->idx++;
 	}
 	delimit_token(lex, start, type);
 	switch_state(lex, get_state(lex->str[lex->idx + 1]));
-	return (true);
+	return (false);
 }

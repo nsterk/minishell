@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/03/30 19:58:56 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/03/31 22:04:24 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ typedef struct s_cmd
 
 typedef struct s_tbl
 {
-	t_cmd			*cmds;         
+	t_cmd			*cmds;
 }	t_tbl;
 
-void		parser(t_token *token, t_cmd **cmd);
+bool		parser(t_token *token, t_cmd **cmd);
 t_token		*parse_command(t_token *token, t_cmd **cmd);
 t_token		*init_cmd(t_token *token, t_cmd *cmd, int argc);
 t_token		*parse_args(t_token *token, t_cmd *cmd);
@@ -85,6 +85,10 @@ t_token		*parse_pipe(t_token *token, t_cmd **cmd);
  * Parser utils
 */
 
+
+/**
+ * Command node utils
+ */
 t_cmd		*cmd_new(void);
 t_cmd		*cmd_last(t_cmd	*cmd);
 int			cmd_append(t_cmd **cmd, t_cmd *new);

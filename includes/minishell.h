@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:05:45 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/02/07 23:48:48 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/03/31 21:12:59 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 /**
  * Minishell libs.
  */
-# include "prompt.h"
 # include "lexer.h"
 # include "parser.h"
 # include "utils.h"
@@ -34,16 +33,16 @@ typedef struct s_data
 	int		last_pid;
 }	t_data;
 
-int				main(void);
+int			main(void);
+int			prompt(t_lexer *lexer);
 
 /**
  * Init functions.
  */
 
-void			init_data(t_data *data);
-void			reinit_data(t_data *data);
-void			init_lexer(t_lexer *lexer);
-void			reinit_lexer(t_lexer *lexer);
-void			init_parser(t_cmd **cmd);
+void		init_data(t_data *data);
+void		reinit_data(t_data *data);
+void		init_lexer(t_lexer *lexer);
+void		reinit_lexer(t_lexer *lexer);
 
 #endif

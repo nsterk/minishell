@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/25 16:19:08 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/03/27 23:50:05 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/03/31 22:02:26 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ void	cmd_delone(t_cmd *cmd, void (*del)(void*))
 		return ;
 	if (cmd->args)
 		ft_free_array(cmd->args); //! no check in ft_free_array before dereferencing str so check if that isnt a problem
+	if (cmd->in)
+		redclear(&cmd->in, del);
+	if (cmd->out)
+		redclear(&cmd->out, del);
 	del(cmd);
 }
 

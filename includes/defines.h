@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/11 19:40:39 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/03/30 16:52:46 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/03/31 21:51:14 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@
 # define DLESS		8
 # define GREAT		16
 # define DGREAT		32
+# define F_APPEND	64
 
 #endif

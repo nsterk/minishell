@@ -6,14 +6,14 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 12:18:59 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/03/30 20:33:23 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/03/31 22:04:14 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "test.h"
 
-void	parser(t_token *token, t_cmd **cmd)
+bool	parser(t_token *token, t_cmd **cmd)
 {
 	t_token	*tmp;
 
@@ -31,7 +31,7 @@ void	parser(t_token *token, t_cmd **cmd)
 
 t_token	*parse_command(t_token *token, t_cmd **cmd)
 {
-	if (token->type == TOK_CMD)
+	if (token->type == TOK_WRD)
 		return (parse_args(token, *cmd));
 	if (token->type == TOK_REDIR_IN || token->type == TOK_REDIR_OUT)
 		return (parse_redir(token, *cmd));
@@ -40,7 +40,8 @@ t_token	*parse_command(t_token *token, t_cmd **cmd)
 	return (NULL);
 }
 
-int	parse_error(void)
+bool	syntax_error_msg(char *msg)
 {
-	return (0);
+	printf("%s\n", msg);
+	return (false);
 }

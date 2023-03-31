@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 20:31:59 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/03/30 18:32:00 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/03/31 19:02:22 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_token	*parse_redir(t_token *token, t_cmd *cmd)
 {
 	t_cmd	*current;
 
-	if (!(token->next) || token->next->type != TOK_CMD)
+	if (!(token->next) || token->next->type != TOK_WRD)
 		exit_minishell(SYNTAX_ERR, "Syntax error: REDIRECT"); //! ERROR HANDLING
 	current = cmd_last(cmd);
 	if (token->type == TOK_REDIR_IN && add_redir(token, &(current->in), RED_IPUT))

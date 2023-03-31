@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2022/12/07 14:43:52 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/03/31 21:31:53 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 typedef enum e_toktype
 {
-	TOK_CMD,
+	TOK_WRD,
 	TOK_REDIR_IN,
 	TOK_REDIR_OUT,
 	TOK_PIPE,
@@ -61,7 +61,6 @@ typedef struct s_lexer
 }	t_lexer;
 
 bool		lexer(t_lexer *lexer);
-void		tokenizer(t_lexer *lexer);
 t_lexstate	get_state(char c);
 void		delimit_token(t_lexer *lexer, size_t start, t_toktype type);
 

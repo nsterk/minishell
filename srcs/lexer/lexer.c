@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/12 13:31:08 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/12/20 15:28:34 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/03/31 21:32:25 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static t_toktype	s_get_type(t_lexstate state)
 	[S_REDIR_IN] = TOK_REDIR_IN,
 	[S_REDIR_OUT] = TOK_REDIR_OUT,
 	[S_PIPE] = TOK_PIPE,
-	[S_WORD] = TOK_CMD,
-	[S_DQUOTE] = TOK_CMD,
-	[S_SQUOTE] = TOK_CMD,
+	[S_WORD] = TOK_WRD,
+	[S_DQUOTE] = TOK_WRD,
+	[S_SQUOTE] = TOK_WRD,
 	[S_EOF] = TOK_EOF
 	};
 
@@ -33,7 +33,7 @@ static bool	s_lexfunction(t_lexer *lexer, t_toktype type)
 {
 	static const t_lexfunction lex[] = {
 		[TOK_SPACE] = &lex_space,
-		[TOK_CMD] = &lex_word,
+		[TOK_WRD] = &lex_word,
 		[TOK_REDIR_IN] = &lex_operator,
 		[TOK_REDIR_OUT] = &lex_operator,
 		[TOK_PIPE] = &lex_operator
@@ -44,11 +44,15 @@ static bool	s_lexfunction(t_lexer *lexer, t_toktype type)
 bool	lexer(t_lexer *lexer)
 {
 	lexer->state = get_state(lexer->str[0]);
-	while (lexer->state != S_EOF)
+	while (lexer->state != S_EOF)                                                                       
 	{
-		s_lexfunction(lexer, s_get_type(lexer->state)); //if false don't go into parsing and shit but clean and show prompt again
+		if (s_lexfunction(lexer, s_get_type(lexer->state)))
+		{
+			//cleany clean
+			return (true);
+		}	
 	}
-	return (true);
+	return (false);
 }
 
 void	delimit_token(t_lexer *lexer, size_t start, t_toktype type)

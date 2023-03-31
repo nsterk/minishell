@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 20:31:55 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/03/30 19:37:16 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/03/31 19:02:07 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	get_cmd_argc(t_token *token)
 
 	i = 0;
 	tmp = token;
-	while (tmp && tmp->type == TOK_CMD)
+	while (tmp && tmp->type == TOK_WRD)
 	{
 		i++;
 		tmp = tmp->next;

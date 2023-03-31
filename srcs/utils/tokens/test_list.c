@@ -6,12 +6,13 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/22 11:31:11 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/12/06 18:27:37 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/03/31 18:24:32 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 #include "utils.h"
+#include "colours.h"
 
 void	token_printHtT(t_token *lst)
 {
@@ -23,7 +24,7 @@ void	token_printHtT(t_token *lst)
 		printf("%s", tmp->word);
 		printf(" (state: %d)", tmp->state);
 		if (tmp->next)
-			printf(" - ");
+			printf(RED" - "RST);
 		tmp = tmp->next;
 	}
 	printf("\n");
