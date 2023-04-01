@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:05:45 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/04/01 01:07:55 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/01 20:50:35 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,16 @@ typedef struct s_data
 
 int			main(void);
 int			prompt(t_lexer *lexer);
+
+/**
+ * Exit functions.
+ */
 void		exit_minishell(int status, char *msg);
+
+/**
+ * Error functions.
+ */
+bool		error_msg(char *msg);
 
 /**
  * Init functions.

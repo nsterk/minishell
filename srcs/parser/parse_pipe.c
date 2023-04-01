@@ -6,41 +6,43 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 20:31:59 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/04/01 01:02:42 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/01 21:25:39 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	add_redir(t_token **token, t_red **red, t_red_type type);
+static bool	add_redir(t_token **token, t_red **red, t_red_type type);
 
-t_token	*parse_pipe(t_token **token, t_cmd **cmd)
+bool	parse_pipe(t_token **token, t_cmd **cmd)
 {
 	t_cmd	*current;
 
 	current = cmd_last(*cmd);
-	if (!current->argc || (*token)->next == NULL || (*token)->next->type == TOK_PIPE)
-		exit_minishell(SYNTAX_ERR, "Syntax error: PIPE"); //! ERROR HANDLING
+	if (syntax_pipe(cmd, *token))
+		return (true);
 	if (cmd_append(cmd, cmd_new()))
-		exit(EXIT_FAILURE);
-	return ((*token)->next);
+		exit_minishell(MALLOC_ERR, "Malloc failure in parse_pipe");
+	*token = (*token)->next;
+	return (false);
 }
 
-t_token	*parse_redir(t_token **token, t_cmd *cmd)
+bool	parse_redir(t_token **token, t_cmd *cmd)
 {
 	t_cmd	*current;
 
 	if (!((*token)->next) || (*token)->next->type != TOK_WRD)
-		exit_minishell(SYNTAX_ERR, "Syntax error: REDIRECT"); //! ERROR HANDLING
+		return (error_msg("syntax error encountered in parse_redir"));
 	current = cmd_last(cmd);
 	if ((*token)->type == TOK_REDIR_IN && add_redir(token, &(current->in), RED_IPUT))
-		exit_minishell(SYNTAX_ERR, "Malloc failure in parse_redir (in)"); //! ERROR HANDLING
+		exit_minishell(MALLOC_ERR, "Malloc failure in parse_redir (in)");
 	if ((*token)->type == TOK_REDIR_OUT && add_redir(token, &(current->out), RED_OPUT))
-		exit_minishell(SYNTAX_ERR, "Malloc failure in parse_redir (out)"); //! ERROR HANDLING
-	return ((*token)->next->next);
+		exit_minishell(MALLOC_ERR, "Malloc failure in parse_redir (out)");
+	*token = (*token)->next;
+	return (false);
 }
 
-static int	add_redir(t_token **token, t_red **red, t_red_type type)
+static bool	add_redir(t_token **token, t_red **red, t_red_type type)
 {
 	t_red	*new;
 
@@ -52,10 +54,9 @@ static int	add_redir(t_token **token, t_red **red, t_red_type type)
 		new->type++;
 	new->filename = ft_strdup((*token)->next->word);
 	if (!new->filename)
-		return (1);
-	new->fd = -1; //initing fd to -1 and I don't know why but it feels like i have to init it at something and then a non-valid fd seems like the logical choice
-	new->next = NULL;
+		return (true);
+	new->fd = -1;
 	if (red_append(red, new))
-		return (1);
-	return (0);
+		return (true);
+	return (false);
 }

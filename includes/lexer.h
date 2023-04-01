@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/03/31 21:31:53 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/01 20:46:30 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,7 @@ int			token_addafter(t_token **spot, t_token *new);
 t_token		*token_last(t_token *token);
 t_token		*token_first(t_token **token);
 int			token_append(t_token **token, t_token *new);
-void		token_prepend(t_token **token, t_token *new);
+// void		token_prepend(t_token **token, t_token *new);
 t_token		*token_remove(t_token **head, t_token *token);
-
-t_toktype	get_type(char c);
-
-void		print_tokens(t_token *tokens, size_t len);
 
 #endif

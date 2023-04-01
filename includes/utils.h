@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 12:09:43 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/04/01 01:05:53 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/01 20:42:35 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,6 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }	t_list;
-
-/**
- * Exit functions.
- */
-void				exit_minishell(int status, char *msg);
-
-/**
- * Error functions.
- */
-bool				error_msg(char *msg);
 
 /**
  * GNL functions.

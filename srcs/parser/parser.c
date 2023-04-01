@@ -6,11 +6,11 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 12:18:59 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/04/01 01:05:15 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/01 21:17:49 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "minishell.h"
 #include "test.h"
 
 bool	parser(t_token *token, t_cmd **cmd)
@@ -23,13 +23,14 @@ bool	parser(t_token *token, t_cmd **cmd)
 		exit_minishell(MALLOC_ERR, "Malloc failure in parser");
 	while (tmp)
 	{
-		tmp = parse_command(&tmp, cmd);
+		if (parse_command(&tmp, cmd))
+			return (true);
 	}
 	print_tbl(*cmd);
 	return (false);
 }
 
-t_token	*parse_command(t_token **token, t_cmd **cmd)
+bool	parse_command(t_token **token, t_cmd **cmd)
 {
 	if ((*token)->type == TOK_WRD)
 		return (parse_args(token, *cmd));
@@ -37,11 +38,11 @@ t_token	*parse_command(t_token **token, t_cmd **cmd)
 		return (parse_redir(token, *cmd));
 	if ((*token)->type == TOK_PIPE)
 		return (parse_pipe(token, cmd));
-	return (NULL);
+	return (false);
 }
 
-bool	syntax_error_msg(char *msg)
+bool	error_msg(char *msg)
 {
-	printf("%s\n", msg);
-	return (false);
+	printf("momoshell: %s\n", msg);
+	return (true);
 }

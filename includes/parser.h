@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/04/01 00:59:23 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/01 21:07:06 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,31 +74,35 @@ typedef struct s_tbl
 	t_cmd			*cmds;
 }	t_tbl;
 
-bool		parser(t_token *token, t_cmd **cmd);
-t_token		*parse_command(t_token **token, t_cmd **cmd);
-t_token		*init_cmd(t_token **token, t_cmd *cmd, int argc);
-t_token		*parse_args(t_token **token, t_cmd *cmd);
-t_token		*parse_redir(t_token **token, t_cmd *cmd);
-t_token		*parse_pipe(t_token **token, t_cmd **cmd);
+bool	parser(t_token *token, t_cmd **cmd);
+bool	parse_command(t_token **token, t_cmd **cmd);
+bool	parse_args(t_token **token, t_cmd *cmd);
+bool	parse_redir(t_token **token, t_cmd *cmd);
+bool	parse_pipe(t_token **token, t_cmd **cmd);
 
 /**
- * Parser utils
+ * Syntax grammar rules
 */
+
+bool	syntax_red_in(t_cmd *cmd, t_token *token);
+bool	syntax_red_out(t_cmd *cmd, t_token *token);
+bool	syntax_pipe(t_cmd *cmd, t_token *token);
+bool	syntax_word(t_token *token);
 
 
 /**
  * Command node utils
  */
-t_cmd		*cmd_new(void);
-t_cmd		*cmd_last(t_cmd	*cmd);
-int			cmd_append(t_cmd **cmd, t_cmd *new);
-void		cmdclear(t_cmd **cmd, void (*del)(void*));
-void		cmd_delone(t_cmd *cmd, void (*del)(void*));
+t_cmd	*cmd_new(void);
+t_cmd	*cmd_last(t_cmd	*cmd);
+int		cmd_append(t_cmd **cmd, t_cmd *new);
+void	cmdclear(t_cmd **cmd, void (*del)(void*));
+void	cmd_delone(t_cmd *cmd, void (*del)(void*));
 
-t_red		*red_new(t_red_type type);
-t_red		*red_last(t_red	*red);
-int			red_append(t_red **red, t_red *new);
-void		redclear(t_red **red, void (*del)(void*));
-void		red_delone(t_red *red, void (*del)(void*));
+t_red	*red_new(t_red_type type);
+t_red	*red_last(t_red	*red);
+int		red_append(t_red **red, t_red *new);
+void	redclear(t_red **red, void (*del)(void*));
+void	red_delone(t_red *red, void (*del)(void*));
 
 #endif
