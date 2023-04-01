@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 12:18:59 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/03/31 22:04:14 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/01 01:05:15 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,19 @@ bool	parser(t_token *token, t_cmd **cmd)
 		exit_minishell(MALLOC_ERR, "Malloc failure in parser");
 	while (tmp)
 	{
-		tmp = parse_command(tmp, cmd);
+		tmp = parse_command(&tmp, cmd);
 	}
 	print_tbl(*cmd);
-	return ;
+	return (false);
 }
 
-t_token	*parse_command(t_token *token, t_cmd **cmd)
+t_token	*parse_command(t_token **token, t_cmd **cmd)
 {
-	if (token->type == TOK_WRD)
+	if ((*token)->type == TOK_WRD)
 		return (parse_args(token, *cmd));
-	if (token->type == TOK_REDIR_IN || token->type == TOK_REDIR_OUT)
+	if ((*token)->type == TOK_REDIR_IN || (*token)->type == TOK_REDIR_OUT)
 		return (parse_redir(token, *cmd));
-	if (token->type == TOK_PIPE)
+	if ((*token)->type == TOK_PIPE)
 		return (parse_pipe(token, cmd));
 	return (NULL);
 }

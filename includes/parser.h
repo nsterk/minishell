@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/03/31 22:04:24 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/01 00:59:23 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,11 @@ typedef struct s_tbl
 }	t_tbl;
 
 bool		parser(t_token *token, t_cmd **cmd);
-t_token		*parse_command(t_token *token, t_cmd **cmd);
-t_token		*init_cmd(t_token *token, t_cmd *cmd, int argc);
-t_token		*parse_args(t_token *token, t_cmd *cmd);
-t_token		*parse_redir(t_token *token, t_cmd *cmd);
-t_token		*parse_pipe(t_token *token, t_cmd **cmd);
+t_token		*parse_command(t_token **token, t_cmd **cmd);
+t_token		*init_cmd(t_token **token, t_cmd *cmd, int argc);
+t_token		*parse_args(t_token **token, t_cmd *cmd);
+t_token		*parse_redir(t_token **token, t_cmd *cmd);
+t_token		*parse_pipe(t_token **token, t_cmd **cmd);
 
 /**
  * Parser utils

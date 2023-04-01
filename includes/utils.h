@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 12:09:43 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/03/31 21:14:47 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/01 01:05:53 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
 
 typedef enum e_status
 {
