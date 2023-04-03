@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 20:31:59 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/04/01 21:25:39 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/03 16:01:55 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	parse_pipe(t_token **token, t_cmd **cmd)
 	t_cmd	*current;
 
 	current = cmd_last(*cmd);
-	if (syntax_pipe(cmd, *token))
+	if (syntax_pipe(*cmd, *token))
 		return (true);
 	if (cmd_append(cmd, cmd_new()))
 		exit_minishell(MALLOC_ERR, "Malloc failure in parse_pipe");

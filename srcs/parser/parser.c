@@ -6,12 +6,14 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 12:18:59 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/04/01 21:17:49 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/03 15:59:58 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "test.h"
+
+static bool	s_parse_command(t_token **token, t_cmd **cmd);
 
 bool	parser(t_token *token, t_cmd **cmd)
 {
@@ -23,14 +25,14 @@ bool	parser(t_token *token, t_cmd **cmd)
 		exit_minishell(MALLOC_ERR, "Malloc failure in parser");
 	while (tmp)
 	{
-		if (parse_command(&tmp, cmd))
+		if (s_parse_command(&tmp, cmd))
 			return (true);
 	}
 	print_tbl(*cmd);
 	return (false);
 }
 
-bool	parse_command(t_token **token, t_cmd **cmd)
+static bool	s_parse_command(t_token **token, t_cmd **cmd)
 {
 	if ((*token)->type == TOK_WRD)
 		return (parse_args(token, *cmd));

@@ -6,14 +6,14 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 20:31:55 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/04/01 20:51:04 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/03 17:04:17 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int		get_cmd_argc(t_token *token);
-static bool		add_args(t_token **token, t_cmd *cmd);
+static int		s_get_argc(t_token *token);
+static bool		s_add_args(t_token **token, t_cmd *cmd);
 
 bool	parse_args(t_token **token, t_cmd *cmd)
 {
@@ -22,15 +22,15 @@ bool	parse_args(t_token **token, t_cmd *cmd)
 	current = cmd_last(cmd);
 	if (current->argc)
 		return (error_msg("Syntax error encountered in parse_args"));
-	current->argc = get_cmd_argc(*token);
+	current->argc = s_get_argc(*token);
 	current->args = malloc(sizeof(char *) * (current->argc + 1));
 	if (!current->args)
 		exit_minishell(MALLOC_ERR, "Malloc failure in parse_args");
 	current->args[current->argc] = NULL;
-	return (add_args(token, current));
+	return (s_add_args(token, current));
 }
 
-static int	get_cmd_argc(t_token *token)
+static int	s_get_argc(t_token *token)
 {
 	int		i;
 	t_token	*tmp;
@@ -45,7 +45,7 @@ static int	get_cmd_argc(t_token *token)
 	return (i);
 }
 
-static bool	add_args(t_token **token, t_cmd *cmd)
+static bool	s_add_args(t_token **token, t_cmd *cmd)
 {
 	int	i;
 

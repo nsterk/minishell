@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/01 21:01:38 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/04/01 21:31:00 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/03 16:03:06 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 bool	syntax_red_in(t_cmd *cmd, t_token *token)
 {
+	(void)cmd;
 	if (!token->next)
 		return (error_msg("syntax error near unexpected token 'newline'"));
 	return (false);
@@ -21,6 +22,8 @@ bool	syntax_red_in(t_cmd *cmd, t_token *token)
 
 bool	syntax_red_out(t_cmd *cmd, t_token *token)
 {
+	(void)cmd;
+	(void)token;
 	return (false);
 }
 

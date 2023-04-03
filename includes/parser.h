@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/04/01 21:07:06 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/03 16:03:33 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct s_tbl
 }	t_tbl;
 
 bool	parser(t_token *token, t_cmd **cmd);
-bool	parse_command(t_token **token, t_cmd **cmd);
+// bool	parse_command(t_token **token, t_cmd **cmd);
 bool	parse_args(t_token **token, t_cmd *cmd);
 bool	parse_redir(t_token **token, t_cmd *cmd);
 bool	parse_pipe(t_token **token, t_cmd **cmd);
@@ -88,7 +88,6 @@ bool	syntax_red_in(t_cmd *cmd, t_token *token);
 bool	syntax_red_out(t_cmd *cmd, t_token *token);
 bool	syntax_pipe(t_cmd *cmd, t_token *token);
 bool	syntax_word(t_token *token);
-
 
 /**
  * Command node utils
