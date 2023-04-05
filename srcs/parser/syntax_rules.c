@@ -6,13 +6,13 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/01 21:01:38 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/04/03 16:03:06 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/04 19:01:29 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	syntax_red_in(t_cmd *cmd, t_token *token)
+bool	syntax_red(t_cmd *cmd, t_token *token)
 {
 	(void)cmd;
 	if (!token->next)
@@ -20,21 +20,12 @@ bool	syntax_red_in(t_cmd *cmd, t_token *token)
 	return (false);
 }
 
-bool	syntax_red_out(t_cmd *cmd, t_token *token)
-{
-	(void)cmd;
-	(void)token;
-	return (false);
-}
-
 bool	syntax_pipe(t_cmd *cmd, t_token *token)
 {
-	if (!cmd->argc)
-		return (error_msg("syntax error - no cmd to pipe output from"));
-	if (!token || !token->next)
-		return (error_msg("syntax error - no cmd to pipe output to"));
-	if (token->next->type == TOK_PIPE)
-		return (error_msg("|| not supported"));
+	// if (!cmd->argc)
+	// 	return (error_msg("syntax error - no cmd to pipe output from"));
+	if (!token || !token->next || token->next->type == TOK_PIPE)
+		return (error_msg("syntax error near unexpected token '|'"));
 	return (false);
 }
 

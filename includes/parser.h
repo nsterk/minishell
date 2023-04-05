@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/04/03 16:03:33 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/04 18:32:51 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,7 @@ bool	parse_pipe(t_token **token, t_cmd **cmd);
  * Syntax grammar rules
 */
 
-bool	syntax_red_in(t_cmd *cmd, t_token *token);
-bool	syntax_red_out(t_cmd *cmd, t_token *token);
+bool	syntax_red(t_cmd *cmd, t_token *token);
 bool	syntax_pipe(t_cmd *cmd, t_token *token);
 bool	syntax_word(t_token *token);
 

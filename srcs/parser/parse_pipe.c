@@ -6,13 +6,13 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 20:31:59 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/04/03 16:01:55 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/04 15:17:47 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static bool	add_redir(t_token **token, t_red **red, t_red_type type);
+static bool	s_add_redir(t_token **token, t_red **red, t_red_type type);
 
 bool	parse_pipe(t_token **token, t_cmd **cmd)
 {
@@ -34,15 +34,15 @@ bool	parse_redir(t_token **token, t_cmd *cmd)
 	if (!((*token)->next) || (*token)->next->type != TOK_WRD)
 		return (error_msg("syntax error encountered in parse_redir"));
 	current = cmd_last(cmd);
-	if ((*token)->type == TOK_REDIR_IN && add_redir(token, &(current->in), RED_IPUT))
+	if ((*token)->type == TOK_REDIR_IN && s_add_redir(token, &(current->in), RED_IPUT))
 		exit_minishell(MALLOC_ERR, "Malloc failure in parse_redir (in)");
-	if ((*token)->type == TOK_REDIR_OUT && add_redir(token, &(current->out), RED_OPUT))
+	if ((*token)->type == TOK_REDIR_OUT && s_add_redir(token, &(current->out), RED_OPUT))
 		exit_minishell(MALLOC_ERR, "Malloc failure in parse_redir (out)");
 	*token = (*token)->next;
 	return (false);
 }
 
-static bool	add_redir(t_token **token, t_red **red, t_red_type type)
+static bool	s_add_redir(t_token **token, t_red **red, t_red_type type)
 {
 	t_red	*new;
 
