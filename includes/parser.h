@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/01/06 15:15:51 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/04/17 17:10:40 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,94 @@
 # define PARSER_H
 
 # include "lexer.h"
-
+// # include "executor.h"
+# include "colours.h"
 # include <stdio.h>
 
-typedef struct s_io
+/**
+ * Redirection type enum.
+ * 	- red. input
+ * 	- here_doc
+ * 	- red. output
+ * 	- red. output append
+*/
+
+typedef enum e_red_type
 {
-	int		fd;
-	char	*filename;
-}	t_io;
+	DEFAULT,
+	RED_IPUT,
+	HERE_DOC,
+	RED_OPUT,
+	RED_OPUT_A
+}	t_red_type;
 
-// typedef struct s_cmd
-// {
-// 	char	*cmd;
-// 	char	**args;
-// 	int		len;
-// 	t_io	*in;
-// 	t_io	*out;
-// 	struct s_cmd *next;
-// }	t_cmd;
+/**
+ * Redirection data:
+ * 	- redirection type
+ * 	- file name
+ * 	- here_doc (file descriptor)
+ * 	- next command (next here_doc or NULL)
+*/
 
-typedef struct s_table
+typedef struct s_red
 {
-	// t_cmd	*cmd;
-	// t_io	*in;
-	// t_io	*out;
-}	t_table;
+	t_red_type		type;
+	char			*filename;
+	int				fd;
+	struct s_red	*next;
+}	t_red;
 
-t_table		*parser(t_token *token);
+/**
+ * Command data: 
+ * 	- execution info
+ * 	- input (can be NULL)
+ *  - output (can be NULL)
+ *  - next command (pipes or NULL) <-- removed this b/c information about
+ * 	pipe will be added to the cmd info itself
+*/
+
+typedef struct s_cmd
+{
+	char			*cmd;
+	char			**args;
+	int				argc;
+	t_red			*in;
+	t_red			*out;
+	struct s_cmd	*next;
+}	t_cmd;
+
+typedef struct s_tbl
+{
+	t_cmd			*cmds;
+}	t_tbl;
+
+bool	parser(t_token *token, t_cmd **cmd);
+// bool	parse_command(t_token **token, t_cmd **cmd);
+bool	parse_args(t_token **token, t_cmd *cmd);
+bool	parse_redir(t_token **token, t_cmd *cmd);
+bool	parse_pipe(t_token **token, t_cmd **cmd);
+
+/**
+ * Syntax grammar rules
+*/
+
+bool	syntax_red(t_cmd *cmd, t_token *token);
+bool	syntax_pipe(t_cmd *cmd, t_token *token);
+bool	syntax_word(t_token *token);
+
+/**
+ * Command node utils
+ */
+t_cmd	*cmd_new(void);
+t_cmd	*cmd_last(t_cmd	*cmd);
+int		cmd_append(t_cmd **cmd, t_cmd *new);
+void	cmdclear(t_cmd **cmd, void (*del)(void*));
+void	cmd_delone(t_cmd *cmd, void (*del)(void*));
+
+t_red	*red_new(t_red_type type);
+t_red	*red_last(t_red	*red);
+int		red_append(t_red **red, t_red *new);
+void	redclear(t_red **red, void (*del)(void*));
+void	red_delone(t_red *red, void (*del)(void*));
 
 #endif

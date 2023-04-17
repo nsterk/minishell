@@ -6,31 +6,35 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/11 19:40:39 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/10/19 21:37:32 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/03/31 21:51:14 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
 
-typedef enum e_ttoktype
-{
-	TOK_EERROR,
-	TOK_CCMD,
-	TOK_AARG,
-	TOK_PIPE,
-	TOK_MAX
-}			t_ttoktype;
+# define CH_SQUOTE		'\''
+# define CH_DQUOTE 		'"'
+# define CH_PIPE		'|'
+# define CH_REDIR_IN	'<'
+# define CH_REDIR_OUT	'>'
 
-typedef enum e_chr_class
-{
-	CHR_ERROR,
-	CHR_WORD,
-	CHR_DIGIT,
-	CHR_SPACE,
-	CHR_DASH,
-	CHR_AND,
-	CHR_MAX
-}			t_chr_class;
+/**
+ * Token flags. Flags are set in one int, with different bits corresponding
+ * to different flags.
+ * 
+ * F_SQUOTE		set if token is in single quoted state
+ * F_DQUOTE		set if token is in double quoted state
+ * F_EXPAND		set if token contains expansion
+ * F_APPEND		special redirection (heredoc for redir_in, append for redir_out)
+ */
+
+# define SQUOTE		1
+# define DQUOTE		2
+# define LESS		4
+# define DLESS		8
+# define GREAT		16
+# define DGREAT		32
+# define F_APPEND	64
 
 #endif

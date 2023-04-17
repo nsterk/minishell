@@ -6,20 +6,24 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2023/01/22 11:40:25 by arthurbezni   ########   odam.nl          #
+#    Updated: 2023/04/17 17:15:46 by nsterk        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:=	minishell
 
 # Readline paths (change this to your machine)
-## ? Codam Arthur
+# ## ? Codam Arthur
 # export RL_LIB	:= -L/Users/abeznik/.brew/opt/readline/lib
 # export RL_INC	:= -I/Users/abeznik/.brew/opt/readline/include
 
+# ## ? Codam Naomi
+# export RL_LIB	:= -L/Users/nsterk/.brew/opt/readline/lib
+# export RL_INC	:= -I/Users/nsterk/.brew/opt/readline/include
+
 ## ? Mac Arthur
-export RL_LIB	:= -L/usr/local/opt/readline/lib
-export RL_INC	:= -I/usr/local/opt/readline/include
+# export RL_LIB	:= -L/usr/local/opt/readline/lib
+# export RL_INC	:= -I/usr/local/opt/readline/include
 
 # Colours
 RED 		:=	\033[1;31m
@@ -55,6 +59,7 @@ SRCS		:=	main.c \
 				export_utils.c \
 				ms_unset.c \
 				builtins_utils.c \
+				exit.c \
 				get_next_line.c \
 				get_next_line_utils.c \
 				ms_gnl.c \
@@ -86,9 +91,8 @@ SRCS		:=	main.c \
 				token_last.c \
 				token_remove.c \
 				token_first.c \
-				token_size.c \
-				ft_lstclear.c \
-				test_list.c \
+				token_size.c token_clear.c \
+				\
 				init_data.c \
 				init_lexer.c \
 				state_type.c \
@@ -106,7 +110,8 @@ SRCS		:=	main.c \
 				ft_isdigit.c \
 				ft_isalnum.c \
 				ft_isalpha.c \
-				testing_init.c \
+				parse_args.c parse_pipe.c syntax_rules.c \
+				test_list.c test_parser.c
 
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 

@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 19:02:19 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/22 11:00:38 by arthurbezni   ########   odam.nl         */
+/*   Updated: 2023/04/17 17:07:37 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,23 @@ int	check_builtin(t_cmd *cmds, t_data_exe *data_exe)
 {
 	char	*tmp;
 	
-	tmp = cmds->exec->cmd; // ? testing
+	tmp = cmds->cmd; // ? testing
 
 	if (!cmds)
 		return (EXIT_FAILURE);
 	if (!ft_strncmp(tmp, "echo", 5))
-		return (exec_echo(cmds->exec->args, data_exe));
+		return (exec_echo(cmds->args, data_exe));
 	else if (!ft_strncmp(tmp, "cd", 2))
-		return (exec_cd(cmds->exec->args, data_exe));
+		return (exec_cd(cmds->args, data_exe));
 	else if (!ft_strncmp(tmp, "pwd", 3))
 		return (exec_pwd(data_exe));
 	else if (!ft_strncmp(tmp, "export", 7))
-		return (exec_export(cmds->exec->args, data_exe));
+		return (exec_export(cmds->args, data_exe));
 	else if (!ft_strncmp(tmp, "unset", 6))
 		return (EXIT_SUCCESS);
 	else if (!ft_strncmp(tmp, "env", 3))
 		return (exec_env(data_exe->envp, data_exe));
 	else if (!ft_strncmp(tmp, "exit", 4))
-		return (exec_exit(cmds->exec, data_exe));
+		return (exec_exit(cmds, data_exe));
 	return (EXIT_FAILURE);
 }

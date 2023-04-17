@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/24 11:50:43 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/09 21:52:47 by arthurbezni   ########   odam.nl         */
+/*   Updated: 2023/04/17 17:04:39 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ int	init_heredoc(t_cmd *cmd)
 			printf("in: %s\n", i->filename);
 			if (i->type == HERE_DOC)
 			{
-				i->here_doc = here_doc(i->filename);
+				i->fd = here_doc(i->filename);
 				// i->here_doc = 3;
-				if (i->here_doc == -1)
+				if (i->fd == -1)
 					return (EXIT_FAILURE);
 			}
 			i = i->next;

@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 17:41:10 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/22 11:56:06 by arthurbezni   ########   odam.nl         */
+/*   Updated: 2023/04/17 17:01:33 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ static t_proc	*st_simple_cmd(t_cmd *cmd, t_data_exe *data_exe)
 {
 	t_proc	*proc;
 
-	if (special_builtin(cmd->exec->cmd))
+	if (special_builtin(cmd->cmd))
 	{
 		if (redirect_in(cmd->in, STDIN_FILENO, data_exe))
 			return (NULL);
@@ -142,7 +142,7 @@ static t_proc	*st_simple_cmd(t_cmd *cmd, t_data_exe *data_exe)
 			exit(data_exe->last_pid);
 		if (redirect_out(cmd->out, STDOUT_FILENO, data_exe))
 			exit(data_exe->last_pid);
-		execute_cmd(cmd, cmd->exec, data_exe);
+		execute_cmd(cmd, data_exe);
 	}
 	return (proc);
 }
@@ -168,9 +168,8 @@ void	executor(t_lexer *lexer, int last_pid)
 	t_proc 		*proc;
 	t_cmd 		*cmd;
 	t_data_exe	*data_exe;
-	t_exec		*exec;
 
-	init_lexer_data(lexer, &cmd, &data_exe, &exec); // ? testing
+	init_lexer_data(lexer, &cmd, &data_exe); // ? testing
 	data_exe->last_pid = last_pid; // ? testing
 
 	if (init_heredoc(cmd))
@@ -178,7 +177,7 @@ void	executor(t_lexer *lexer, int last_pid)
 		data_exe->last_pid = 1;
 		return ;
 	}
-	if (!cmd->exec->cmd)
+	if (!cmd->cmd)
 		return ;
 	signal(SIGQUIT, sigquit_handler);
 	data_exe->paths = init_paths(data_exe->envp);

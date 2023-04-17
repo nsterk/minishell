@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 12:09:43 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/22 10:53:05 by arthurbezni   ########   odam.nl         */
+/*   Updated: 2023/04/17 16:23:59 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,13 @@
 # include <stdbool.h>
 # include <errno.h>
 # include <stdio.h>
+# include <stdbool.h>
 
 typedef enum e_status
 {
-	EXIT_MINISHELL
+	SUCCESS,
+	MALLOC_ERR,
+	SYNTAX_ERR
 }	t_status;
 
 typedef struct s_list

@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/04 13:48:56 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/09 10:43:56 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/04/17 17:04:15 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,16 @@ static char	*st_get_full_cmd(char *cmd, char **paths)
  * 	3. If not command => throw cmd not found error.
  * 	4. Execute command using execve => throw error if failure.
 */
-void	execute_cmd(t_cmd *cmd, t_exec *exec, t_data_exe *data_exe)
+void	execute_cmd(t_cmd *cmd, t_data_exe *data_exe)
 {
 	char	*full_cmd;
 
 	if (!check_builtin(cmd, data_exe))
 		exit(data_exe->last_pid);
-	full_cmd = st_get_full_cmd(exec->cmd, data_exe->paths);
+	full_cmd = st_get_full_cmd(cmd->cmd, data_exe->paths);
 	if (!full_cmd)
-		st_cmd_not_found(exec->cmd);
-	if (execve(full_cmd, exec->args, data_exe->envp) < 0)
+		st_cmd_not_found(cmd->cmd);
+	if (execve(full_cmd, cmd->args, data_exe->envp) < 0)
 		exit_error(errno, "momoshell", " : No such file or directory");
 }
 
@@ -101,7 +101,7 @@ static void	st_child_process(t_cmd *cmd, t_data_exe *data_exe, int pend[2], int 
 	}
 	if (status)
 		exit(data_exe->last_pid);
-	execute_cmd(cmd, cmd->exec, data_exe);
+	execute_cmd(cmd, data_exe);
 }
 
 /**

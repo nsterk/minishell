@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/29 12:50:02 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/22 11:54:15 by arthurbezni   ########   odam.nl         */
+/*   Updated: 2023/04/17 17:01:49 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,12 @@ typedef struct s_proc {
  * 	- red. output
  * 	- red. output append
 */
-typedef enum e_red_type {
-	RED_IPUT,
-	HERE_DOC,
-	RED_OPUT,
-	RED_OPUT_A
-}	t_red_type;
+// typedef enum e_red_type {
+// 	RED_IPUT,
+// 	HERE_DOC,
+// 	RED_OPUT,
+// 	RED_OPUT_A
+// }	t_red_type;
 
 /**
  * Redirection data:
@@ -74,12 +74,12 @@ typedef enum e_red_type {
  * 	- here_doc (file descriptor)
  * 	- next command (next here_doc or NULL)
 */
-typedef struct s_red {
-	t_red_type		type;
-	char			*filename;
-	int				here_doc;
-	struct s_red	*next;
-}	t_red;
+// typedef struct s_red {
+// 	t_red_type		type;
+// 	char			*filename;
+// 	int				here_doc;
+// 	struct s_red	*next;
+// }	t_red;
 
 /**
  * Command execution data: 
@@ -87,11 +87,11 @@ typedef struct s_red {
  * 	- args
  * 	- argument count
 */
-typedef struct s_exec {
-	char	*cmd;
-	char	**args;
-	int		argc;
-}	t_exec;
+// typedef struct s_exec {
+// 	char	*cmd;
+// 	char	**args;
+// 	int		argc;
+// }	t_exec;
 
 /**
  * Command data: 
@@ -100,12 +100,12 @@ typedef struct s_exec {
  *  - output (can be NULL)
  *  - next command (pipes or NULL)
 */
-typedef struct s_cmd {
-	t_exec			*exec;
-	t_red			*in;
-	t_red			*out;
-	struct s_cmd	*next;
-}	t_cmd;
+// typedef struct s_cmd {
+// 	t_exec			*exec;
+// 	t_red			*in;
+// 	t_red			*out;
+// 	struct s_cmd	*next;
+// }	t_cmd;
 
 /**
  * Executor data:
@@ -157,7 +157,7 @@ int			redirect_out(t_red *output, int fd, t_data_exe *data_exe);
 */
 int			exec_piped_cmd(t_proc *proc, t_cmd *cmd, \
 				t_data_exe *data_exe, int fd);
-void		execute_cmd(t_cmd *cmd, t_exec *exec, t_data_exe *data_exe);
+void		execute_cmd(t_cmd *cmd, t_data_exe *data_exe);
 // static char		*st_get_full_cmd(char *command, char **paths);
 // static void		st_cmd_not_found(char *cmd);
 // static void		st_child_process(int end[2], char *delim);
@@ -169,6 +169,6 @@ int			file_error(const char *filename);
 
 // ! testing
 void	init_lexer_data(t_lexer *lexer, t_cmd **cmd, \
-			t_data_exe **data_exe, t_exec **exec);
+			t_data_exe **data_exe);
 
 #endif

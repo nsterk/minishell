@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/14 21:37:42 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/01/09 12:30:18 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/04/17 16:52:40 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,3 +53,10 @@ void	exit_minishell(int status)
 	//free input
 	exit(status);
 }
+
+// bool	error_msg(char *msg)
+// {
+// 	if (msg)
+// 		printf("%s\n", msg);
+// 	return (true);
+// }

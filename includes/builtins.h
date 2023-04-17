@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 19:02:58 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/22 11:41:13 by arthurbezni   ########   odam.nl         */
+/*   Updated: 2023/04/17 17:05:27 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int			exec_echo(char **args, t_data_exe *data_exe);
  * exit
 */
 // int			exec_exit(void); // ? testing
-int			exec_exit(t_exec *exec, t_data_exe *data_exe);
+int			exec_exit(t_cmd *cmd, t_data_exe *data_exe);
 
 /**
  * env

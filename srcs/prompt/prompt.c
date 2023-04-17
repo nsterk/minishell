@@ -6,45 +6,27 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 17:07:39 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/01/09 15:25:11 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/04/17 16:51:52 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
-#include "prompt.h"
-// #include <readline/readline.h>
-// #include <readline/history.h>
-// #include "signals.h"
-
-/**
- * instead of while (1) can do while (prompt). prompt can return an int
- * depending on whether minishell needs to exit or not. Prompt will handle:
- * - display prompt
- * - grabbing the input
- * - sanitizing the input
- * - checking if exit command was called
- * - input->input can then be passed along to lexer to produce tokens.
- */
+#include "minishell.h"
+#include <readline/readline.h>
+#include <readline/history.h>
 
 int	prompt(t_lexer *lexer)
 {
 	g_state = COMMAND;
 	init_signals(); // ? testing
-	lexer->input = grab_input("momoshell-0.5 🐈 "); // ! :3
+	// lexer->input = grab_input("momoshell-0.5 🐈 "); // ! :3
 	// lexer->input = grab_input("momoshell-0.5$ ");
-	printf("input: %s\n", lexer->input); // ? testing
-	if (!lexer->input)
+	lexer->str = readline("momoshell-0.5 🐈 ");
+	// printf("input: %s\n", lexer->str); // ? testing
+	if (!lexer->str)
 		exit(EXIT_SUCCESS);
-	if (*lexer->input)
-		add_history(lexer->input);
+	if (*lexer->str)
+		add_history(lexer->str);
+	if (!lexer->str)
+		return (1);
 	return (1);
-}
-
-char	*grab_input(const char *PROMPT)
-{
-	char	*line;
-
-	// init_signals(); // ? testing
-	line = readline(PROMPT);
-	return (line);
 }
