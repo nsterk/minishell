@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:03:59 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/04/22 17:55:06 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/22 18:31:38 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	enter_shell(int argc, char **argv, char **envp)
 			}
 		}
 		reinit_data(&data);
-		printf("\n"); // ? I think we need this after every cmd right?
+		write(STDOUT_FILENO, "\n", 1);
 	}
 }
 

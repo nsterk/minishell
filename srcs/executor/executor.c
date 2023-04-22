@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 17:41:10 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/04/22 17:21:50 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/22 19:32:14 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ void	executor(t_data *data, int last_pid)
 		exit_error(1, "executor", "malloc failure");
 	tmp = data->cmd;
 	data_exe->last_pid = last_pid; // ? testing
-	data_exe->envp = data->envp;
+	data_exe->envp = data->envp;	
 	if (init_heredoc(tmp))
 	{
 		data_exe->last_pid = 1;
@@ -192,4 +192,5 @@ void	executor(t_data *data, int last_pid)
 	if (proc)
 		st_wait_processes(proc, data_exe);
 	ft_free_array(data_exe->paths);
+	free(data_exe);
 }
