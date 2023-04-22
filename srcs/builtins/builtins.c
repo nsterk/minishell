@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 19:02:19 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/04/17 17:07:37 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/22 17:04:23 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	check_builtin(t_cmd *cmds, t_data_exe *data_exe)
 {
 	char	*tmp;
 	
-	tmp = cmds->cmd; // ? testing
+	tmp = cmds->args[0]; // ? testing
 
 	if (!cmds)
 		return (EXIT_FAILURE);

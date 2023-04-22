@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:03:59 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/04/22 15:38:03 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/22 16:51:47 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,17 @@ void	enter_shell(int argc, char **argv, char **envp)
 	// ? to remove annoying errors
 	if (argv)
 		argc++;
-
 	init_data(&data, envp);
 	data.lexer.envp = envp;
+	data.envp = envp;
 	while (prompt(&data.lexer))
 	{
 		if (!lexer(&data.lexer))
 		{
-			token_printHtT(data.lexer.tokens);
 			if (!parser(data.lexer.tokens, &data.cmd))
 			{
 				g_state = EXECUTING;
-				executor(&data.lexer, data.last_pid); // ? testing
+				executor(&data, data.last_pid); // ? testing
 			}
 		}
 		reinit_data(&data);

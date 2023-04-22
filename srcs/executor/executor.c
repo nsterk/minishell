@@ -6,11 +6,12 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 17:41:10 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/04/22 14:30:05 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/22 17:21:50 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
+// #include "minishell.h"
 
 /**
  * Wait for processes to end.
@@ -123,7 +124,7 @@ static t_proc	*st_simple_cmd(t_cmd *cmd, t_data_exe *data_exe)
 {
 	t_proc	*proc;
 
-	if (special_builtin(cmd->cmd))
+	if (special_builtin(cmd->args[0]))
 	{
 		if (redirect_in(cmd->in, STDIN_FILENO, data_exe))
 			return (NULL);
@@ -162,29 +163,32 @@ static t_proc	*st_simple_cmd(t_cmd *cmd, t_data_exe *data_exe)
  * 	4. If pipes, wait processes to finish.
  * 	5. Free executor data.
 */
-// void	executor(t_lexer *lexer, t_cmd *cmd, t_data_exe *data_exe)
-void	executor(t_lexer *lexer, int last_pid)
+
+void	executor(t_data *data, int last_pid)
 {
 	t_proc 		*proc;
-	t_cmd 		*cmd;
+	t_cmd 		*tmp;
 	t_data_exe	*data_exe;
 
-	// init_lexer_data(lexer, &cmd, &data_exe); // ? testing
+	data_exe = (t_data_exe *)malloc(sizeof(t_data_exe));
+	if (!data_exe)
+		exit_error(1, "executor", "malloc failure");
+	tmp = data->cmd;
 	data_exe->last_pid = last_pid; // ? testing
-
-	if (init_heredoc(cmd))
+	data_exe->envp = data->envp;
+	if (init_heredoc(tmp))
 	{
 		data_exe->last_pid = 1;
 		return ;
 	}
-	if (!cmd->cmd)
+	if (!tmp->cmd)
 		return ;
 	signal(SIGQUIT, sigquit_handler);
 	data_exe->paths = init_paths(data_exe->envp);
-	if (!cmd->next)
-		proc = st_simple_cmd(cmd, data_exe);
+	if (!tmp->next)
+		proc = st_simple_cmd(tmp, data_exe);
 	else
-		st_piped_cmd(&proc, cmd, data_exe);
+		st_piped_cmd(&proc, tmp, data_exe);
 	if (proc)
 		st_wait_processes(proc, data_exe);
 	ft_free_array(data_exe->paths);

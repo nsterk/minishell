@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/04 13:48:56 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/04/17 17:04:15 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/22 17:11:32 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ void	execute_cmd(t_cmd *cmd, t_data_exe *data_exe)
 
 	if (!check_builtin(cmd, data_exe))
 		exit(data_exe->last_pid);
-	full_cmd = st_get_full_cmd(cmd->cmd, data_exe->paths);
+	full_cmd = st_get_full_cmd(cmd->args[0], data_exe->paths);
 	if (!full_cmd)
-		st_cmd_not_found(cmd->cmd);
+		st_cmd_not_found(cmd->args[0]);
 	if (execve(full_cmd, cmd->args, data_exe->envp) < 0)
 		exit_error(errno, "momoshell", " : No such file or directory");
 }

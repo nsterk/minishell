@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/29 12:50:02 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/04/17 17:01:49 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/22 16:37:12 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
  */
 # include "parser.h"
 # include "signals.h"
+# include "minishell.h"
 
 // # include "minishell.h"
 // # include "builtins.h"
@@ -42,6 +43,8 @@ int	g_state;
 # define EXECUTING 0
 # define COMMAND 1
 # define HEREDOC_INPUT 2
+
+typedef struct s_data t_data;
 
 /**
  * Process data:
@@ -113,6 +116,7 @@ typedef struct s_proc {
  * 	- paths of commands
  * 	- last process id
 */
+
 typedef struct s_data_exe {
 	char	**envp;
 	char	**paths;
@@ -124,7 +128,7 @@ typedef struct s_data_exe {
 */
 // void		executor(t_lexer *lexer, t_cmd *cmd, t_data_exe *data_exe);
 // void		executor(t_lexer *lexer); // ? testing
-void		executor(t_lexer *lexer, int last_pid); // ? testing
+void		executor(t_data *data, int last_pid); // ? testing
 // static int		st_simple_cmd(t_cmd *cmd, t_data_exe *data_exe);
 // static void		st_piped_cmd(t_proc **current, t_cmd *cmd, t_data_exe *data_exe);
 // static void		st_wait_processes(t_proc *proc, t_data_exe *data_exe);
@@ -167,8 +171,8 @@ int			special_builtin(char *cmd);
 
 int			file_error(const char *filename);
 
-// ! testing
-void	init_lexer_data(t_lexer *lexer, t_cmd **cmd, \
-			t_data_exe **data_exe);
+// // ! testing
+// void	init_lexer_data(t_lexer *lexer, t_cmd **cmd, \
+// 			t_data_exe **data_exe);
 
 #endif

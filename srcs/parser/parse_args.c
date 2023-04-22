@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 20:31:55 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/04/17 17:12:09 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/22 17:02:39 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static bool	s_add_args(t_token **token, t_cmd *cmd)
 	int	i;
 
 	i = 0;
+	// cmd->cmd = ft_strdup()
 	while (i < cmd->argc)
 	{
 		cmd->args[i] = ft_strdup((*token)->word);

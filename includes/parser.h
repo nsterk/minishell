@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/04/17 17:10:40 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/22 16:02:35 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 
 typedef enum e_red_type
 {
-	DEFAULT,
 	RED_IPUT,
 	HERE_DOC,
 	RED_OPUT,
@@ -39,8 +38,8 @@ typedef enum e_red_type
  * Redirection data:
  * 	- redirection type
  * 	- file name
- * 	- here_doc (file descriptor)
- * 	- next command (next here_doc or NULL)
+ * 	- file descriptor
+ * 	- next redirection data
 */
 
 typedef struct s_red
@@ -50,15 +49,6 @@ typedef struct s_red
 	int				fd;
 	struct s_red	*next;
 }	t_red;
-
-/**
- * Command data: 
- * 	- execution info
- * 	- input (can be NULL)
- *  - output (can be NULL)
- *  - next command (pipes or NULL) <-- removed this b/c information about
- * 	pipe will be added to the cmd info itself
-*/
 
 typedef struct s_cmd
 {
@@ -76,7 +66,6 @@ typedef struct s_tbl
 }	t_tbl;
 
 bool	parser(t_token *token, t_cmd **cmd);
-// bool	parse_command(t_token **token, t_cmd **cmd);
 bool	parse_args(t_token **token, t_cmd *cmd);
 bool	parse_redir(t_token **token, t_cmd *cmd);
 bool	parse_pipe(t_token **token, t_cmd **cmd);

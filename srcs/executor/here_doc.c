@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/24 11:52:56 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/09 10:27:57 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/04/22 17:23:56 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ static int	st_delim_in_line(char *line, char *delim, int len)
 }
 
 /**
- * Gets the text based on the delimeter.
+ * Gets the text based on the delimiter.
  * 	Loop:
  * 		1. Display "> ".
  * 		2. Get user input line.
- * 		3. If delimeter in line:
+ * 		3. If delimiter in line:
  * 			- free line, and
  * 			- break out of loop.
  * 		4. Append line to saved text.

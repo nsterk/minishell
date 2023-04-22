@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 16:26:52 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/03/30 19:00:14 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/22 16:38:03 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ static void	print_args(t_cmd *cmd)
 static void	print_redir(t_red *red, char *str)
 {
 	static const char	type[6][15] = {
-	[DEFAULT] = "default",
 	[RED_IPUT] = "<",
 	[HERE_DOC] = "<<",
 	[RED_OPUT] = ">",

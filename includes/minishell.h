@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:05:45 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/04/22 14:33:14 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/22 16:41:17 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "lexer.h"
 # include "utils.h"
 # include "signals.h"
+# include "colours.h"
 
 /**
  * Needed libs.

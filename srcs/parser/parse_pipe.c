@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 20:31:59 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/04/22 14:34:57 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/22 17:27:12 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,9 @@ bool	parse_redir(t_token **token, t_cmd *cmd)
 		return (error_msg("syntax error encountered in parse_redir"));
 	current = cmd_last(cmd);
 	if ((*token)->type == TOK_REDIR_IN && s_add_redir(token, &(current->in), RED_IPUT))
-		exit_minishell(MALLOC_ERR);
-		// exit_minishell(MALLOC_ERR, "Malloc failure in parse_redir (in)");
+		exit_error(1, "parse_redir-in", "malloc failure");
 	if ((*token)->type == TOK_REDIR_OUT && s_add_redir(token, &(current->out), RED_OPUT))
-		exit_minishell(MALLOC_ERR);
-		// exit_minishell(MALLOC_ERR, "Malloc failure in parse_redir (out)");
+		exit_error(1, "parse_redir-out", "malloc failure");
 	*token = (*token)->next;
 	return (false);
 }

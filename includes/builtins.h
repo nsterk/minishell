@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 19:02:58 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/04/17 17:05:27 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/22 16:37:37 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define UNSET 0
 # define NOT_FOUND -1
 # define ADD_NEW -2
+
+typedef struct s_data_exe t_data_exe;
 
 /**
  * builtins
