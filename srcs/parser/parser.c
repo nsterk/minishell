@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 12:18:59 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/04/17 16:52:52 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/22 15:39:10 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	parser(t_token *token, t_cmd **cmd)
 		if (s_parse_command(&tmp, cmd))
 			return (true);
 	}
-	print_tbl(*cmd);
+	// print_tbl(*cmd);
 	return (false);
 }
 
