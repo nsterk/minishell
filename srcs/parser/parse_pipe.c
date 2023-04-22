@@ -6,11 +6,12 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 20:31:59 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/04/17 17:13:56 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/22 14:34:57 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "utils.h"
 
 static bool	s_add_redir(t_token **token, t_red **red, t_red_type type);
 

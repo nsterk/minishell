@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 17:41:10 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/04/17 17:01:33 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/22 14:30:05 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ void	executor(t_lexer *lexer, int last_pid)
 	t_cmd 		*cmd;
 	t_data_exe	*data_exe;
 
-	init_lexer_data(lexer, &cmd, &data_exe); // ? testing
+	// init_lexer_data(lexer, &cmd, &data_exe); // ? testing
 	data_exe->last_pid = last_pid; // ? testing
 
 	if (init_heredoc(cmd))
