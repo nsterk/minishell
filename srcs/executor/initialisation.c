@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/24 11:50:43 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/04/17 17:04:39 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/24 16:17:06 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	init_heredoc(t_cmd *cmd)
 		// printf("in: %s\n", i->filename);
 		while (i)
 		{
-			printf("in: %s\n", i->filename);
+			// printf("in: %s\n", i->filename);
 			if (i->type == HERE_DOC)
 			{
 				i->fd = here_doc(i->filename);

@@ -6,23 +6,20 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:03:59 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/04/22 18:31:38 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/24 20:07:51 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "test.h"
+#include <readline/readline.h>
+#include <readline/history.h>
 
-void	enter_shell(int argc, char **argv, char **envp)
+void	enter_shell(char **argv, char **envp)
 {
 	t_data	data;
 	
-	// ? to remove annoying errors
-	if (argv)
-		argc++;
 	init_data(&data, envp);
-	data.lexer.envp = envp;
-	data.envp = envp;
 	while (prompt(&data.lexer))
 	{
 		if (!lexer(&data.lexer))
@@ -30,16 +27,31 @@ void	enter_shell(int argc, char **argv, char **envp)
 			if (!parser(data.lexer.tokens, &data.cmd))
 			{
 				g_state = EXECUTING;
-				executor(&data, data.last_pid); // ? testing
+				executor(&data, data.last_pid);
 			}
 		}
 		reinit_data(&data);
-		write(STDOUT_FILENO, "\n", 1);
 	}
+}
+
+int	prompt(t_lexer *lexer)
+{
+	g_state = COMMAND;
+	init_signals(); // ? testing
+	while (lexer->str == NULL || lexer->str[0] == '\0')
+	{
+		lexer->str = readline("momoshell-1.0 🐈 ");
+		if (!lexer->str)
+			exit(EXIT_SUCCESS);
+		if (*lexer->str)
+			add_history(lexer->str);
+	}
+	return (1);
 }
 
 int	main(int argc, char **argv, char **envp)
 {
-	enter_shell(argc, argv, envp);
+	if (argc) 
+		enter_shell(argv, envp);
 	return (0);
 }

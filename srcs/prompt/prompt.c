@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 17:07:39 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/04/22 15:36:38 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/04/24 16:11:50 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@ int	prompt(t_lexer *lexer)
 {
 	g_state = COMMAND;
 	init_signals(); // ? testing
-	lexer->str = readline("momoshell-1.0 \U0001F408 ");
-	if (!lexer->str)
-		exit(EXIT_SUCCESS);
-	if (*lexer->str)
-		add_history(lexer->str);
-	if (!lexer->str)
-		return (1);
+	while (lexer->str == NULL || lexer->str[0] == '\0')
+	{
+		lexer->str = readline("momoshell-1.0 🐈 ");
+		if (!lexer->str)
+			exit(EXIT_SUCCESS);
+		if (*lexer->str)
+			add_history(lexer->str);
+	}
 	return (1);
 }

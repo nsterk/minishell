@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2023/04/22 14:34:49 by nsterk        ########   odam.nl          #
+#    Updated: 2023/04/24 16:13:36 by nsterk        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,6 @@ VPATH 		:=	$(subst $(space),:,$(shell find srcs -type d))
 
 # Srcs
 SRCS		:=	main.c \
-				prompt.c \
 				lexer.c \
 				parser.c \
 				executor.c \
@@ -93,7 +92,6 @@ SRCS		:=	main.c \
 				token_remove.c \
 				token_first.c \
 				token_size.c token_clear.c \
-				\
 				init_data.c \
 				init_lexer.c \
 				state_type.c \
