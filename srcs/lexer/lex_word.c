@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/01 20:52:51 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/03/31 21:35:45 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/05/01 18:50:57 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,16 @@ bool	lex_word(t_lexer *lexer, t_toktype type)
 
 	start = lexer->idx;
 	if ((lexer->state == S_SQUOTE || lexer->state == S_DQUOTE) && \
-		s_lex_quote(lexer, lexer->str[start]))
+		s_lex_quote(lexer, lexer->str[start])) 
 		return (true);
 	else
 	{
 		while (lexer->state == get_state(lexer->str[lexer->idx + 1]))
+		{
+			if (lexer->str[lexer->idx] == CH_EXPAND)
+				lexer->exp_loc = lexer->idx;
 			lexer->idx++;
+		}
 		delimit_token(lexer, start, type);
 	}
 	switch_state(lexer, get_state(lexer->str[lexer->idx + 1]));

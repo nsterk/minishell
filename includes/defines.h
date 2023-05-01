@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/11 19:40:39 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/03/31 21:51:14 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/05/01 18:49:37 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define CH_PIPE		'|'
 # define CH_REDIR_IN	'<'
 # define CH_REDIR_OUT	'>'
+# define CH_EXPAND		'$'
 
 /**
  * Token flags. Flags are set in one int, with different bits corresponding
@@ -36,5 +37,6 @@
 # define GREAT		16
 # define DGREAT		32
 # define F_APPEND	64
+# define F_EXPAND	128
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/04/25 20:33:11 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/05/01 18:41:25 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_lexer
 	char		*str;
 	t_token		*tokens;
 	size_t		idx;
+	size_t		exp_loc;
 	t_lexstate	state;
 	int			flags;
 	char		**envp;
