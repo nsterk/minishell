@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:05:45 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/04/22 16:41:17 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/05/03 13:09:05 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "executor.h"
 # include "parser.h"
 # include "lexer.h"
+# include "defines.h"
 # include "utils.h"
 # include "signals.h"
 # include "colours.h"
@@ -33,6 +34,7 @@
 // # include <signal.h>
 
 # include <unistd.h>
+# include <stdio.h>
 
 typedef struct s_data
 {

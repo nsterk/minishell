@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2023/04/24 16:13:36 by nsterk        ########   odam.nl          #
+#    Updated: 2023/05/03 13:45:41 by nsterk        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME		:=	minishell
 # export RL_LIB	:= -L/Users/abeznik/.brew/opt/readline/lib
 # export RL_INC	:= -I/Users/abeznik/.brew/opt/readline/include
 
-# ## ? Codam Naomi
+# # ## ? Codam Naomi
 export RL_LIB	:= -L/Users/nsterk/.brew/opt/readline/lib
 export RL_INC	:= -I/Users/nsterk/.brew/opt/readline/include
 
@@ -98,6 +98,7 @@ SRCS		:=	main.c \
 				lex_word.c \
 				lex_operator.c \
 				lex_space.c \
+				delimit_token.c \
 				ft_putendl_fd.c \
 				ft_putstr_fd.c \
 				ft_putchar_fd.c \

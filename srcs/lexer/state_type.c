@@ -6,13 +6,13 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/01 19:38:05 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/12/06 21:19:40 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/05/03 12:58:53 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "minishell.h"
 
-t_lexstate	get_state(char c)
+t_lexstate	get_state(int c)
 {
 	if (c == '\0')
 		return (S_EOF);

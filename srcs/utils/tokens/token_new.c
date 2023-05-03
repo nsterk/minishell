@@ -6,25 +6,46 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/03 14:04:12 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/03/27 23:38:05 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/05/03 12:57:59 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
-#include "parser.h"
+#include "minishell.h"
 
-t_token	*token_new(t_toktype type, t_lexstate state, char *str)
+static t_token	*st_allocate_token(size_t exp_count)
+{
+	t_token	*new;
+
+	new = ft_calloc(1, sizeof(t_token));
+	check_malloc(new, "st_allocate_token");
+	if (!exp_count)
+		new->exp = NULL;
+	else
+	{
+		new->exp = ft_calloc(exp_count, sizeof(t_expansion));
+		check_malloc(new->exp, "st_allocate_token");
+		while (exp_count)
+		{
+			new->exp[exp_count - 1].parameter = NULL;
+			new->exp[exp_count - 1].start = 0;
+			new->exp[exp_count - 1].end = 0;
+			exp_count--;
+		}
+	}
+	return (new);
+}
+
+t_token	*token_new(t_toktype type, t_lexstate state, char *str, size_t exps)
 {
 	t_token	*new;
 
 	if (!str)
 		return (NULL);
-	new = malloc(sizeof(t_token));
-	if (!new)
-		return (NULL);
+	new = st_allocate_token(exps);
 	new->prev = NULL;
 	new->next = NULL;
 	new->word = str;
+	new->exp_count = exps;
 	new->type = type;
 	new->state = state;
 	return (new);
