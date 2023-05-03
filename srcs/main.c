@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/07 15:03:59 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/05/03 13:27:57 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/05/03 15:37:39 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@
 
 void	enter_shell(char **argv, char **envp)
 {
-	t_data	*data;
+	t_data	data;
 
-	data = ft_calloc(1, sizeof(t_data));
-	check_malloc(data, "enter_shell");
-	init_data(data, envp);
-	while (prompt(&data->lexer))
+	// data = ft_calloc(1, sizeof(t_data));
+	// check_malloc(data, "enter_shell");
+	init_data(&data, envp);
+	while (prompt(&data.lexer))
 	{
-		if (!lexer(&data->lexer))
+		if (!lexer(&data.lexer))
 		{
-			if (!parser(data->lexer.tokens, &data->cmd))
+			if (!parser(data.lexer.tokens, &data.cmd))
 			{
 				g_state = EXECUTING;
-				executor(&data, data->last_pid);
+				executor(&data, data.last_pid);
 			}
 		}
 		reinit_data(&data);

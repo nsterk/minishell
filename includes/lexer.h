@@ -6,15 +6,19 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/05/03 13:09:07 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/05/03 15:38:45 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
 
-# include "minishell.h"
+# include "utils.h"
+
 # include <stdbool.h>
+# include "utils.h"
+# include "defines.h"
+# include <stdio.h>
 
 typedef enum e_toktype
 {

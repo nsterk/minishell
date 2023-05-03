@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 12:18:59 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/05/03 13:36:43 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/05/03 15:41:47 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ bool	parser(t_token *token, t_cmd **cmd)
 	*cmd = cmd_new();
 	if (!(*cmd))
 		exit_minishell(MALLOC_ERR);
-	printf(GRN_B"MADE IT\n"RST);
 	while (tmp)
 	{
 		if (s_parse_command(&tmp, cmd))
