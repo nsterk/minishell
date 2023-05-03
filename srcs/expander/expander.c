@@ -1,4 +1,7 @@
 
+
+#include "minishell.h"
+
 /**
  * Expand environment variable.
  * 	Loop through envp until env var found. Then:
@@ -14,4 +17,8 @@
  * 
  */
 
-int	expander(char **envp, )
+int	expander(char **envp, t_lexer *lex)
+{
+	prep_expansion(lex);
+	return (0);
+}

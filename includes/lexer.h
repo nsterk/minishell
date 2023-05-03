@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/05/03 15:38:45 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/05/03 20:38:00 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,11 @@ bool		lex_word(t_lexer *lexer, t_toktype type);
 bool		lex_space(t_lexer *lexer, t_toktype type);
 
 void		switch_state(t_lexer *lexer, t_lexstate new_state);
+
+// Expander functions
+int			expander(char **envp, t_lexer *lex);
+void		prep_expansion(t_lexer *lex);
+
 
 /**
  * Token list functions.

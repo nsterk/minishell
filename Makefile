@@ -6,7 +6,7 @@
 #    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2023/05/03 13:45:41 by nsterk        ########   odam.nl          #
+#    Updated: 2023/05/03 20:41:50 by nsterk        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ VPATH 		:=	$(subst $(space),:,$(shell find srcs -type d))
 SRCS		:=	main.c \
 				lexer.c \
 				parser.c \
+				expander.c \
 				executor.c \
 				execution.c \
 				here_doc.c \
@@ -99,6 +100,7 @@ SRCS		:=	main.c \
 				lex_operator.c \
 				lex_space.c \
 				delimit_token.c \
+				prep_expansion.c \
 				ft_putendl_fd.c \
 				ft_putstr_fd.c \
 				ft_putchar_fd.c \
