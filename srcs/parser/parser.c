@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/15 12:18:59 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/05/03 15:41:47 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/05/09 18:08:09 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ bool	parser(t_token *token, t_cmd **cmd)
 
 	tmp = token;
 	*cmd = cmd_new();
-	if (!(*cmd))
-		exit_minishell(MALLOC_ERR);
+	check_malloc(*cmd, "parser");
 	while (tmp)
 	{
 		if (s_parse_command(&tmp, cmd))

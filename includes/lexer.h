@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/05/03 20:38:00 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/05/09 17:15:57 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void		switch_state(t_lexer *lexer, t_lexstate new_state);
 
 // Expander functions
 int			expander(char **envp, t_lexer *lex);
-void		prep_expansion(t_lexer *lex);
+int			prep_expansion(t_lexer *lex);
 
 
 /**

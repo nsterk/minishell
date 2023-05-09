@@ -11,14 +11,10 @@
  */
 
 
-/**
- * Kan ook in de lexer zelf al het expanden doen. Dan doe ik ft split op de env var en voor elke str
- * in de array die ft_split terug geeft doe ik delimit token met als type tok_wrd
- * 
- */
-
 int	expander(char **envp, t_lexer *lex)
 {
-	prep_expansion(lex);
+	if (prep_expansion(lex))
+		return (1);
+
 	return (0);
 }
