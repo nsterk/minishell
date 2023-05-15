@@ -6,15 +6,17 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/01 20:52:51 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/05/03 12:48:33 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/05/15 16:19:25 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
 bool		error_msg(char *msg);
+static bool	st_lex_quote(t_lexer *lex, int quote);
+// static bool	st_same_state(t_lexer *lex);
 
-static bool	s_lex_quote(t_lexer *lex, int quote)
+static bool	st_lex_quote(t_lexer *lex, int quote)
 {
 	size_t	start;
 
@@ -30,11 +32,18 @@ static bool	s_lex_quote(t_lexer *lex, int quote)
 		if (lex->state == S_DQUOTE && lex->str[lex->idx] == CH_EXPAND)
 			lex->expansions++;
 	}
-	delimit_token(lex, start, TOK_WRD);
+	// delimit_token(lex, start, TOK_WRD);
 	lex->idx++;
 	return (false);
 }
 
+
+/**
+ * 
+ * while (not at delimiter)
+ * 
+ *  
+ */
 bool	lex_word(t_lexer *lexer, t_toktype type)
 {
 	size_t	start;
@@ -42,7 +51,7 @@ bool	lex_word(t_lexer *lexer, t_toktype type)
 	start = lexer->idx;
 	if ((lexer->state == S_SQUOTE || lexer->state == S_DQUOTE))
 	{
-		if (s_lex_quote(lexer, lexer->str[start])) 
+		if (st_lex_quote(lexer, lexer->str[start])) 
 			return (true);
 	}
 	else
@@ -58,3 +67,12 @@ bool	lex_word(t_lexer *lexer, t_toktype type)
 	switch_state(lexer, get_state(lexer->str[lexer->idx + 1]));
 	return (false);
 }
+
+// static bool	st_same_state(t_lexer *lex)
+// {
+// 	if (lex->state == S_SQUOTE && lex->str[lex->idx + 1] == CH_SQUOTE)
+// 		return (true);
+// 	if (lex->state == S_DQUOTE && lex->str[lex->idx + 1] != CH_DQUOTE)
+// 		return (true);
+// 	return (lex);
+// }

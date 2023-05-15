@@ -6,7 +6,7 @@
 /*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/05/09 17:15:57 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/05/15 13:09:24 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ typedef struct s_expansion
 {
 	size_t	start;
 	size_t	end;
+	int		quoted;
 	char 	*parameter;
+	
 }	t_expansion;
 
 typedef struct s_token
