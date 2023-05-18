@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        ::::::::            */
-/*   lexer.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/09/13 19:58:52 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/05/15 13:09:24 by nsterk        ########   odam.nl         */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
@@ -38,8 +27,6 @@ typedef enum e_lexstate
 	S_REDIR_OUT,
 	S_PIPE,
 	S_WORD,
-	S_DQUOTE,
-	S_SQUOTE,
 	S_EOF
 }	t_lexstate;
 

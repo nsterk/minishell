@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        ::::::::            */
-/*   lexer.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/09/12 13:31:08 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/05/02 20:38:07 by nsterk        ########   odam.nl         */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "lexer.h"
 #include "test.h"
@@ -21,8 +10,6 @@ static t_toktype	s_get_type(t_lexstate state)
 	[S_REDIR_OUT] = TOK_REDIR_OUT,
 	[S_PIPE] = TOK_PIPE,
 	[S_WORD] = TOK_WRD,
-	[S_DQUOTE] = TOK_WRD,
-	[S_SQUOTE] = TOK_WRD,
 	[S_EOF] = TOK_EOF
 	};
 

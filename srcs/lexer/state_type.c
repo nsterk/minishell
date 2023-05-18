@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        ::::::::            */
-/*   state_type.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/11/01 19:38:05 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/05/03 12:58:53 by nsterk        ########   odam.nl         */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -16,10 +5,6 @@ t_lexstate	get_state(int c)
 {
 	if (c == '\0')
 		return (S_EOF);
-	if (c == CH_SQUOTE)
-		return (S_SQUOTE);
-	if (c == CH_DQUOTE)
-		return (S_DQUOTE);
 	if (ft_isspace(c))
 		return (S_SPACE);
 	if (c == CH_REDIR_IN)
