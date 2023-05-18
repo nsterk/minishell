@@ -15,5 +15,6 @@ int	expander(char **envp, t_lexer *lex)
 		return (1);
 	// this is a comment
 	// this is a comment 1
+	// this is a comment 2
 	return (0);
 }
