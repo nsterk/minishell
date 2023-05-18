@@ -13,6 +13,6 @@ int	expander(char **envp, t_lexer *lex)
 {
 	if (prep_expansion(lex))
 		return (1);
-
+	// this is a comment
 	return (0);
 }
