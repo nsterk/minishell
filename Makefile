@@ -1,31 +1,9 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: arthurbeznik <arthurbeznik@student.coda      +#+                      #
-#                                                    +#+                       #
-#    Created: 2022/09/07 15:02:59 by arthurbezni   #+#    #+#                  #
-#    Updated: 2023/05/04 13:02:20 by nsterk        ########   odam.nl          #
-#                                                                              #
-# **************************************************************************** #
 
 NAME		:=	minishell
 
-# if path is unset might not be able to use lhistory so fix that
-
-# Readline paths (change this to your machine)
-# ## ? Codam Arthur
-# export RL_LIB	:= -L/Users/abeznik/.brew/opt/readline/lib
-# export RL_INC	:= -I/Users/abeznik/.brew/opt/readline/include
-
-# # ## ? Codam Naomi
-export RL_LIB	:= -L/Users/nsterk/.brew/opt/readline/lib
-export RL_INC	:= -I/Users/nsterk/.brew/opt/readline/include
-
-## ? Mac Arthur
-# export RL_LIB	:= -L/usr/local/opt/readline/lib
-# export RL_INC	:= -I/usr/local/opt/readline/include
+USER		:=	$(shell whoami)
+export RL_LIB	:= -L/Users/$(USER)/.brew/opt/readline/lib
+export RL_INC	:= -I/Users/$(USER)/.brew/opt/readline/include
 
 # Colours
 RED 		:=	\033[1;31m
