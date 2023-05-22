@@ -1,17 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        ::::::::            */
-/*   cd_utils.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/01/22 10:28:10 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/01/22 10:58:01 by arthurbezni   ########   odam.nl         */
-/*                                                                            */
-/* ************************************************************************** */
 
-// #include "builtins.h"
-#include "../../includes/builtins.h" // ? I need this on my mac
+#include "builtins.h"
+// #include "../../includes/builtins.h" // ? I need this on my mac
 
 char	*get_envp_value(char **envp, char *key)
 {

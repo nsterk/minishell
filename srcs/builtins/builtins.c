@@ -1,17 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        ::::::::            */
-/*   builtins.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/10/05 19:02:19 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/05/18 15:09:21 by nsterk        ########   odam.nl         */
-/*                                                                            */
-/* ************************************************************************** */
 
-// #include "builtins.h"
-#include "../../includes/builtins.h"
+#include "builtins.h"
+// #include "../../includes/builtins.h"
 
 /**
  * Builtins:
