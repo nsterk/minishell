@@ -1,110 +1,130 @@
 
-NAME		:=	minishell
+NAME			:=	minishell
 
-USER		:=	$(shell whoami)
+USER			:=	$(shell whoami)
 export RL_LIB	:= -L/Users/$(USER)/.brew/opt/readline/lib
 export RL_INC	:= -I/Users/$(USER)/.brew/opt/readline/include
 
 # Colours
-RED 		:=	\033[1;31m
-GRN 		:=	\033[1;32m
-BLUE		:=	\033[1;36m
-YEL 		:=	\033[0;33m
-DEF 		:=	\033[0m
+RED 			:=	\033[1;31m
+GRN 			:=	\033[1;32m
+BLUE			:=	\033[1;36m
+YEL 			:=	\033[0;33m
+DEF 			:=	\033[0m
 
 # Directories
-INCL_DIR	:=	includes
-SRCS_DIR	:=	srcs
-OBJ_DIR		:=	objs
-VPATH 		:=	$(subst $(space),:,$(shell find srcs -type d))
+INCL_DIR		:=	includes
+SRCS_DIR		:=	srcs
+OBJ_DIR			:=	objs
+VPATH 			:=	$(subst $(space),:,$(shell find srcs -type d))
 
-# Srcs
-SRCS		:=	main.c \
-				lexer.c \
-				parser.c \
-				expander.c \
-				executor.c \
-				execution.c \
-				here_doc.c \
-				initialisation.c \
-				redirection.c \
-				builtins.c \
-				ms_echo.c \
-				ms_pwd.c \
-				ms_env.c \
-				ms_exit.c \
-				ms_cd.c \
-				cd_utils.c \
-				ms_export.c \
-				export_utils.c \
-				ms_unset.c \
-				builtins_utils.c \
-				get_next_line.c \
-				get_next_line_utils.c \
-				ms_gnl.c \
-				ms_gnl_utils.c \
-				strjoin_free.c \
-				ft_arraylen.c \
-				ft_atoi.c \
-				ft_bzero.c \
-				ft_calloc.c \
-				ft_free_array.c \
-				ft_itoa.c \
-				ft_strlen.c \
-				ft_strcmp.c \
-				ft_strncmp.c \
-				ft_skipspace.c \
-				ft_strchr.c \
-				ft_isspace.c \
-				ft_strlcpy.c \
-				ft_strcpy.c \
-				ft_substr.c \
-				ft_strtrim.c \
-				ft_strdup.c \
-				ft_strjoin.c \
-				ft_split.c \
-				ft_putnbr_fd.c \
-				token_new.c \
-				token_append.c \
-				token_insert.c \
-				token_last.c \
-				token_remove.c \
-				token_first.c \
-				token_size.c token_clear.c \
-				init_data.c \
-				init_lexer.c \
-				state_type.c \
-				lex_word.c \
-				lex_operator.c \
-				lex_space.c \
-				delimit_token.c \
-				prep_expansion.c \
-				ft_putendl_fd.c \
-				ft_putstr_fd.c \
-				ft_putchar_fd.c \
-				ft_memcpy.c \
-				exit.c \
-				malloc_check.c \
-				signals.c \
-				ft_strcheck.c \
-				ft_isdigit.c \
-				ft_isalnum.c \
-				ft_isalpha.c \
-				parse_args.c parse_pipe.c syntax_rules.c \
-				test_list.c test_parser.c
+# "Main" srcs
+SRCS			:=	main.c \
+					lexer.c \
+					parser.c \
+					expander.c \
+					executor.c \
+					builtins.c \
+					signals.c \
+					prompt.c \
 
-OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
+# Parser srcs
+SRCS_PARSER		:=	parse_args.c \
+					parse_pipe.c \
+					syntax_rules.c \
+
+# Lexer srcs
+SRCS_LEXER		:=	delimit_token.c \
+					lex_operator.c \
+					lex_space.c \
+					lex_word.c \
+					state_type.c \
+
+# Expander srcs
+SRCS_EXPANDER	:=	prep_expansion.c \
+
+# Signals srcs
+SRCS_SIGNALS	:=	init_signals.c \
+
+# Executor srcs
+SRCS_EXEC		:=	execution.c \
+					here_doc.c \
+					initialisation.c \
+					redirection.c \
+
+# Builtins srcs
+SRCS_BUILTINS	:=	builtins_utils.c \
+					cd_utils.c \
+					export_utils.c \
+					ms_cd.c \
+					ms_echo.c \
+					ms_env.c \
+					ms_exit.c \
+					ms_export.c \
+					ms_pwd.c \
+					ms_unset.c \
+# Utils srcs
+SRCS_UTILS		:=	exits.c \
+					gnl.c \
+					gnl_utils.c \
+					init_data.c \
+					init_lexer.c \
+					init_parser.c \
+					ft_array_len.c \
+					ft_atoi.c \
+					ft_bzero.c \
+					ft_calloc.c \
+					ft_free_array.c \
+					ft_isalnum.c \
+					ft_isalpha.c \
+					ft_isdigit.c \
+					ft_isspace.c \
+					ft_itoa.c \
+					ft_memcpy.c \
+					ft_putchar_fd.c \
+					ft_putendl_fd.c \
+					ft_putnbr_fd.c \
+					ft_putstr_fd.c \
+					ft_skipspace.c \
+					ft_split.c \
+					ft_strcheck.c \
+					ft_strchr.c \
+					ft_strcpy.c \
+					ft_strdup.c \
+					ft_strjoin.c \
+					ft_strlcpy.c \
+					ft_strlen.c \
+					ft_strncmp.c \
+					ft_strndup.c \
+					token_append.c \
+					token_last.c \
+					token_clear.c \
+					token_remove.c \
+					token_new.c \
+					malloc_check.c \
+					strjoin_free.c \
+
+
+# Objects
+OBJS			:=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
+OBJS_P			:=	$(addprefix $(OBJ_DIR)/, $(SRCS_PARSER:.c=.o))
+OBJS_L			:=	$(addprefix $(OBJ_DIR)/, $(SRCS_LEXER:.c=.o))
+OBJS_X			:=	$(addprefix $(OBJ_DIR)/, $(SRCS_EXPANDER:.c=.o))
+OBJS_S			:=	$(addprefix $(OBJ_DIR)/, $(SRCS_SIGNALS:.c=.o))
+OBJS_E			:=	$(addprefix $(OBJ_DIR)/, $(SRCS_EXEC:.c=.o))
+OBJS_B			:=	$(addprefix $(OBJ_DIR)/, $(SRCS_BUILTINS:.c=.o))
+OBJS_U			:=	$(addprefix $(OBJ_DIR)/, $(SRCS_UTILS:.c=.o))
 
 # Config
-CC			:=	cc
-FLAGS		:= -Wall -Wextra -g -fsanitize=address
-LIBS		:=	-lreadline -lhistory
+CC				:=	cc
+FLAGS			:=	-Wall -Wextra -g -fsanitize=address
+LIBS			:=	-lreadline -lhistory
 
 all:		$(NAME)
 
-$(NAME):	$(OBJS)
+$(NAME):	$(OBJS) $(OBJS_P) $(OBJS_L) $(OBJS_X) $(OBJS_S) $(OBJS_E) $(OBJS_B) $(OBJS_U)
 	@printf "$(YEL)\n\n  Compiling objects\n$(DEF)"
-	$(CC) $(OBJS) $(FLAGS) $(LIBS) $(RL_LIB) -o $(NAME)
+	$(CC) $(OBJS) $(OBJS_P) $(OBJS_L) $(OBJS_X) $(OBJS_S) $(OBJS_E) $(OBJS_B) $(OBJS_U) $(FLAGS) $(LIBS) $(RL_LIB) -o $(NAME)
 	@printf "$(GRN)\n  Success!$(DEF)"
 
 $(OBJ_DIR)/%.o: $(notdir %.c)

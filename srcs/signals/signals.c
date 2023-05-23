@@ -1,5 +1,5 @@
 
-#include "signals.h"
+#include <signals.h>
 
 // #include <signal.h>
 // #include <stdio.h>
@@ -15,7 +15,7 @@
  * Signal interrupt handler. (signum = 2)
  * 	Handles 'ctrl-C'.
  */
-static void st_sigint_handler(int signum)
+void	sigint_handler(int signum)
 {
 	ft_putstr_fd("sigint_handler\nsignum: ", 2); // ? testing
 	ft_putnbr_fd(signum, 2); // ? testing
@@ -49,18 +49,6 @@ void sigquit_handler(int signum)
 	ft_putchar_fd('\n', fd);
 	close(fd);
 	exit(233);
-}
-
-/**
- * Initiliases signals.
- * 	- SIGINIT + handler => ctrl-C
- * 	- SIGQUIT + SIG_IGN => ctrl-D
- */
-void init_signals(void)
-{
-	// ft_putstr_fd("init signals\n", 2); // ? testing
-	signal(SIGINT, st_sigint_handler);
-	signal(SIGQUIT, SIG_IGN);
 }
 
 /**
