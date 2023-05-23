@@ -163,7 +163,8 @@ void	executor(t_data *data, int last_pid)
 		exit_error(1, "executor", "malloc failure");
 	tmp = data->cmd;
 	data_exe->last_pid = last_pid; // ? testing
-	data_exe->envp = data->envp;
+	data_exe->envp = data->envp; // TODO fix data->envp null
+	fprintf(stderr, "envp[%d]: %s\n", 0, data->envp[0]);
 	if (init_heredoc(tmp))
 	{
 		data_exe->last_pid = 1;
