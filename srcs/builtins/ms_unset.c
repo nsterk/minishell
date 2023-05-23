@@ -1,17 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        ::::::::            */
-/*   ms_unset.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/01/22 11:27:10 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/01/22 11:31:24 by arthurbezni   ########   odam.nl         */
-/*                                                                            */
-/* ************************************************************************** */
 
-// #include "builtins.h"
-#include "../../includes/builtins.h"
+#include "builtins.h"
+// #include "../../includes/builtins.h"
 
 static char	**st_edit_envp_unset(char **envp, int exl_row, int size_old_envp)
 {
