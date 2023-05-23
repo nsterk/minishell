@@ -1,17 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        ::::::::            */
-/*   ms_exit.c                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/11/22 11:46:53 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/04/17 17:06:56 by nsterk        ########   odam.nl         */
-/*                                                                            */
-/* ************************************************************************** */
 
-// #include "builtins.h"
-#include "../../includes/builtins.h" // ? I need this on my mac
+#include "builtins.h"
+// #include "../../includes/builtins.h" // ? I need this on my mac
 
 /**
  * Bash overflows with exit codes over 255.

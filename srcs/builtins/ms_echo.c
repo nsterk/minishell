@@ -1,20 +1,9 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        ::::::::            */
-/*   ms_echo.c                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/11/22 10:37:54 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/01/22 09:31:05 by arthurbezni   ########   odam.nl         */
-/*                                                                            */
-/* ************************************************************************** */
 
-// #include "builtins.h"
-#include "../../includes/builtins.h" // ? I need this on my mac
+#include "builtins.h"
+// #include "../../includes/builtins.h" // ? I need this on my mac
 
-#include "stdlib.h"
-#include "unistd.h"
+// #include "stdlib.h"
+// #include "unistd.h"
 
 static void	st_print_args(char **args, bool add_newline, int i)
 {

@@ -1,17 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        ::::::::            */
-/*   ms_export.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/01/22 10:31:12 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/01/22 11:32:12 by arthurbezni   ########   odam.nl         */
-/*                                                                            */
-/* ************************************************************************** */
 
-// #include "builtins.h"
-#include "../../includes/builtins.h" // ? I need this on my mac
+#include "builtins.h"
+// #include "../../includes/builtins.h" // ? I need this on my mac
 
 static char	**st_edit_envp_export(char **envp, char *args, int row_nr, int size_envp)
 {
