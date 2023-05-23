@@ -1,17 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        ::::::::            */
-/*   export_utils.c                                     :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: arthurbeznik <arthurbeznik@student.coda      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/01/22 10:33:24 by arthurbezni   #+#    #+#                 */
-/*   Updated: 2023/01/22 10:35:32 by arthurbezni   ########   odam.nl         */
-/*                                                                            */
-/* ************************************************************************** */
 
-// #include "builtins.h"
-#include "../../includes/builtins.h" // ? I need this on my mac
+#include "builtins.h"
+// #include "../../includes/builtins.h" // ? I need this on my mac
 
 void	error_message(char *arg, t_data_exe *data_exe)
 {

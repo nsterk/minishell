@@ -1,17 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        ::::::::            */
-/*   builtins.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/10/05 19:02:19 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/04/22 17:04:23 by nsterk        ########   odam.nl         */
-/*                                                                            */
-/* ************************************************************************** */
 
-// #include "builtins.h"
-#include "../../includes/builtins.h"
+#include "builtins.h"
+// #include "../../includes/builtins.h"
 
 /**
  * Builtins:
@@ -44,7 +33,8 @@ int	check_builtin(t_cmd *cmds, t_data_exe *data_exe)
 	char	*tmp;
 	
 	tmp = cmds->args[0]; // ? testing
-
+	// this is a comment
+	// this is a comment 1
 	if (!cmds)
 		return (EXIT_FAILURE);
 	if (!ft_strncmp(tmp, "echo", 5))
