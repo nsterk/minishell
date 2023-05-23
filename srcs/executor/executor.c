@@ -151,13 +151,13 @@ static t_proc	*st_simple_cmd(t_cmd *cmd, t_data_exe *data_exe)
  * 	4. If pipes, wait processes to finish.
  * 	5. Free executor data.
 */
-
 void	executor(t_data *data, int last_pid)
 {
 	t_proc 		*proc;
 	t_cmd 		*tmp;
 	t_data_exe	*data_exe;
 
+	// fprintf(stderr, "data->cmd: %s\n", data->cmd->cmd); // ? testing
 	data_exe = (t_data_exe *)malloc(sizeof(t_data_exe));
 	if (!data_exe)
 		exit_error(1, "executor", "malloc failure");
@@ -169,8 +169,14 @@ void	executor(t_data *data, int last_pid)
 		data_exe->last_pid = 1;
 		return ;
 	}
-	if (!tmp->cmd)
+	if (!tmp->cmd) // TODO check if command is only spaces
 		return ;
+	/* Example */
+	tmp->cmd = " ";
+	// fprintf(stderr, "tmp->cmd: %s\n", tmp->cmd); // ? testing
+	if (!tmp->cmd || !ft_strncmp(tmp->cmd, " ", 2))
+		return ;
+	/* ------- */
 	signal(SIGQUIT, sigquit_handler);
 	data_exe->paths = init_paths(data_exe->envp);
 	if (!tmp->next)
