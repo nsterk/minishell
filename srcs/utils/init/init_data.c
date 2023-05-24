@@ -22,7 +22,7 @@ static void	st_init_envp(t_data *data, char **envp)
 {
 	size_t	len;
 
-	len = ft_arraylen(envp);
+	len = ft_array_len(envp);
 	data->envp = ft_calloc(len + 1, sizeof(char *)); //! maybe going to want to strdup all of this so that we don't have a free error when cd is being executed
 	check_malloc(data->envp, "st_init_envp **");
 	data->envp[len] = NULL;
