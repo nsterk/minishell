@@ -117,7 +117,13 @@ OBJS_U			:=	$(addprefix $(OBJ_DIR)/, $(SRCS_UTILS:.c=.o))
 
 # Config
 CC				:=	cc
-FLAGS			:=	-Wall -Wextra -g -fsanitize=address
+ifdef debug
+	FLAGS		:=	-g -fsanitize=address
+else ifdef dev
+	FLAGS		:=	-Wall -Wextra -g -fsanitize=address
+else
+	FLAGS		:=	-Wall -Wextra -Werror
+endif
 LIBS			:=	-lreadline -lhistory
 
 all:		$(NAME)
