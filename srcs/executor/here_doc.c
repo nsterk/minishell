@@ -35,7 +35,7 @@ static char	*st_get_text(char *delim)
 	while (true)
 	{
 		ft_putstr_fd("> ", 2);
-		line = ms_get_next_line(STDIN_FILENO);
+		line = gnl(STDIN_FILENO);
 		if (st_delim_in_line(line, delim, len))
 		{
 			free(line);
