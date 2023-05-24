@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstdelone.c                                     :+:    :+:            */
+/*   ft_arraylen.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/11/03 17:50:34 by nsterk        #+#    #+#                 */
-/*   Updated: 2022/09/22 17:40:43 by nsterk        ########   odam.nl         */
+/*   Created: 2022/09/15 20:49:11 by nsterk        #+#    #+#                 */
+/*   Updated: 2022/09/15 20:50:44 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-#include "lexer.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+size_t	ft_array_len(char **arr)
 {
-	if (!lst || !del)
-		return ;
-	del(lst->content);
-	free(lst);
-}
+	size_t	i;
 
-// void	token_delone(t_token *token, void (*del)(void*))
-// {
-// 	if (!token || !del)
-// 		return ;
-// 	del(token->word);
-// 	free(token);
-// }
+	i = 0;
+	if (arr)
+	{
+		while (arr[i])
+			i++;
+	}
+	return (i);
+}

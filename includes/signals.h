@@ -11,6 +11,6 @@
 void	init_signals(void);
 void	sigquit_handler(int signum);
 void 	quit_handler(int signum);
-// static void	st_sigint_handler(int signum);
+void	sigint_handler(int signum);
 
 #endif
