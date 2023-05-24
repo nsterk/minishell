@@ -31,7 +31,7 @@ bool	lex_word(t_lexer *lexer, t_toktype type)
 
 static bool	st_lex_quote(t_lexer *lex, int quote)
 {
-	size_t	start;
+	size_t	star
 
 	lex->idx++;
 	if (!ft_strchr(lex->str + lex->idx, quote))
