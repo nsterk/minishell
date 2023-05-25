@@ -1,6 +1,5 @@
 
 #include "builtins.h"
-// #include "../../includes/builtins.h" // ? I need this on my mac
 
 static char	**st_edit_envp_export(char **envp, char *args, int row_nr, int size_envp)
 {
@@ -28,7 +27,7 @@ static char	**st_edit_envp_export(char **envp, char *args, int row_nr, int size_
 	return (new_envp);
 }
 
-int	search_envp(char *args, char **envp, t_data_exe *data_exe, char c)
+int	search_envp(char *args, char **envp, t_data *data, char c)
 {
 	int		orig_len;
 	int		len;
@@ -49,13 +48,13 @@ int	search_envp(char *args, char **envp, t_data_exe *data_exe, char c)
 		i++;
 	}
 	if (len == 0)
-		error_message(args, data_exe);
+		error_message(args, data);
 	if (len < orig_len)
 		return (ADD_NEW);
 	return (NOT_FOUND);
 }
 
-char	**ft_export(char *arg, char **envp, t_data_exe *data_exe)
+char	**ft_export(char *arg, char **envp, t_data *data)
 {
 	int		row_nr;
 	int		size_envp;
@@ -64,7 +63,7 @@ char	**ft_export(char *arg, char **envp, t_data_exe *data_exe)
 	size_envp = 0;
 	while (envp[size_envp])
 		size_envp++;
-	row_nr = search_envp(arg, envp, data_exe, '=');
+	row_nr = search_envp(arg, envp, data, '=');
 	if (row_nr == NOT_FOUND)
 		return (envp);
 	else if (row_nr == ADD_NEW)
@@ -74,23 +73,23 @@ char	**ft_export(char *arg, char **envp, t_data_exe *data_exe)
 	}
 	new_envp = st_edit_envp_export(envp, arg, row_nr, size_envp);
 	check_malloc(new_envp, "ft_export");
-	data_exe->last_pid = 0;
+	data->last_pid = 0;
 	return (new_envp);
 }
 
-int	exec_export(char **args, t_data_exe *data_exe)
+int	exec_export(char **args, t_data *data)
 {
 	int	i;
 
 	if (!args[1])
-		ms_single_export(data_exe->envp);
+		ms_single_export(data->envp);
 	i = 1;
 	while (args[i])
 	{
-		if (check_for_error(args[i], EXPORT, data_exe->envp))
-			error_message(args[i], data_exe);
+		if (check_for_error(args[i], EXPORT, data->envp))
+			error_message(args[i], data);
 		else
-			data_exe->envp = ft_export(args[i], data_exe->envp, data_exe);
+			data->envp = ft_export(args[i], data->envp, data);
 		i++;
 	}
 	return (EXIT_SUCCESS);
