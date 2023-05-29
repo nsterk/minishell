@@ -17,7 +17,7 @@ void	enter_shell(char **argv, char **envp)
 			if (!parser(data.lexer.tokens, &data.cmd))
 			{
 				g_state = EXECUTING;
-				executor(&data, data.last_pid);
+				executor(&data);
 			}
 		}
 		reinit_data(&data);
