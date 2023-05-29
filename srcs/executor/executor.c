@@ -12,7 +12,7 @@
  * 		- Y => set last pid to exit status.
  * 		- N => WTERMSIG determines which signal was raised by the child process.
 */
-static void	st_wait_processes(t_proc *proc, t_data_exe *data_exe)
+static void	st_wait_processes(t_proc *proc, t_data *data)
 {
 	int		status;
 	t_proc	*next;
@@ -26,9 +26,9 @@ static void	st_wait_processes(t_proc *proc, t_data_exe *data_exe)
 		proc = next;
 	}
 	if (WIFEXITED(status))
-		data_exe->last_pid = WEXITSTATUS(status);
+		data->last_pid = WEXITSTATUS(status);
 	else if (WIFSIGNALED(status))
-		data_exe->last_pid = WTERMSIG(status) + 128;
+		data->last_pid = WTERMSIG(status) + 128;
 }
 
 /**
@@ -68,7 +68,7 @@ static t_proc	*st_new_process(t_proc *proc)
  * 		4. Go to next command.
  * 	Close fd.
 */
-static void	st_piped_cmd(t_proc **current, t_cmd *cmd, t_data_exe *data_exe)
+static void	st_piped_cmd(t_proc **current, t_cmd *cmd, t_data *data)
 {
 	t_proc	*proc;
 	int		fd;
@@ -85,7 +85,7 @@ static void	st_piped_cmd(t_proc **current, t_cmd *cmd, t_data_exe *data_exe)
 			*current = proc;
 			first_cmd = false;
 		}
-		fd = exec_piped_cmd(proc, cmd, data_exe, fd);
+		fd = exec_piped_cmd(proc, cmd, data, fd);
 		cmd = cmd->next;
 	}
 	close(fd);
@@ -108,17 +108,17 @@ static void	st_piped_cmd(t_proc **current, t_cmd *cmd, t_data_exe *data_exe)
  * 			c. execute command
  * 	5. Return process struct.
 */
-static t_proc	*st_simple_cmd(t_cmd *cmd, t_data_exe *data_exe)
+static t_proc	*st_simple_cmd(t_cmd *cmd, t_data *data)
 {
 	t_proc	*proc;
 
 	if (special_builtin(cmd->args[0]))
 	{
-		if (redirect_in(cmd->in, STDIN_FILENO, data_exe))
+		if (redirect_in(cmd->in, STDIN_FILENO, data))
 			return (NULL);
-		if (redirect_out(cmd->out, STDOUT_FILENO, data_exe))
+		if (redirect_out(cmd->out, STDOUT_FILENO, data))
 			return (NULL);
-		check_builtin(cmd, data_exe);
+		check_builtin(cmd, data);
 		return (NULL);
 	}
 	proc = st_new_process(NULL);
@@ -127,11 +127,11 @@ static t_proc	*st_simple_cmd(t_cmd *cmd, t_data_exe *data_exe)
 		exit_error(errno, "simple_cmd", NULL);
 	else if (proc->pid == CHILD)
 	{
-		if (redirect_in(cmd->in, STDIN_FILENO, data_exe))
-			exit(data_exe->last_pid);
-		if (redirect_out(cmd->out, STDOUT_FILENO, data_exe))
-			exit(data_exe->last_pid);
-		execute_cmd(cmd, data_exe);
+		if (redirect_in(cmd->in, STDIN_FILENO, data))
+			exit(data->last_pid);
+		if (redirect_out(cmd->out, STDOUT_FILENO, data))
+			exit(data->last_pid);
+		execute_cmd(cmd, data);
 	}
 	return (proc);
 }
@@ -152,33 +152,26 @@ static t_proc	*st_simple_cmd(t_cmd *cmd, t_data_exe *data_exe)
  * 	5. Free executor data.
 */
 
-void	executor(t_data *data, int last_pid)
+void	executor(t_data *data)
 {
 	t_proc 		*proc;
 	t_cmd 		*tmp;
-	t_data_exe	*data_exe;
 
-	data_exe = (t_data_exe *)malloc(sizeof(t_data_exe));
-	if (!data_exe)
-		exit_error(1, "executor", "malloc failure");
 	tmp = data->cmd;
-	data_exe->last_pid = last_pid; // ? testing
-	data_exe->envp = data->envp;
 	if (init_heredoc(tmp))
 	{
-		data_exe->last_pid = 1;
+		data->last_pid = 1;
 		return ;
 	}
 	if (!tmp->cmd)
 		return ;
 	signal(SIGQUIT, sigquit_handler);
-	data_exe->paths = init_paths(data_exe->envp);
+	data->paths = init_paths(data->envp);
 	if (!tmp->next)
-		proc = st_simple_cmd(tmp, data_exe);
+		proc = st_simple_cmd(tmp, data);
 	else
-		st_piped_cmd(&proc, tmp, data_exe);
+		st_piped_cmd(&proc, tmp, data);
 	if (proc)
-		st_wait_processes(proc, data_exe);
-	ft_free_array(data_exe->paths);
-	free(data_exe);
+		st_wait_processes(proc, data);
+	ft_free_array(data->paths);
 }
