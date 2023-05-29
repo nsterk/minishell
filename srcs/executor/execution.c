@@ -48,16 +48,16 @@ static char	*st_get_full_cmd(char *cmd, char **paths)
  * 	3. If not command => throw cmd not found error.
  * 	4. Execute command using execve => throw error if failure.
 */
-void	execute_cmd(t_cmd *cmd, t_data_exe *data_exe)
+void	execute_cmd(t_cmd *cmd, t_data *data)
 {
 	char	*full_cmd;
 
-	if (!check_builtin(cmd, data_exe))
-		exit(data_exe->last_pid);
-	full_cmd = st_get_full_cmd(cmd->args[0], data_exe->paths);
+	if (!check_builtin(cmd, data))
+		exit(data->last_pid);
+	full_cmd = st_get_full_cmd(cmd->args[0], data->paths);
 	if (!full_cmd)
 		st_cmd_not_found(cmd->args[0]);
-	if (execve(full_cmd, cmd->args, data_exe->envp) < 0)
+	if (execve(full_cmd, cmd->args, data->envp) < 0)
 		exit_error(errno, "momoshell", " : No such file or directory");
 }
 
@@ -74,23 +74,23 @@ void	execute_cmd(t_cmd *cmd, t_data_exe *data_exe)
  * 		=> exit last pid
  * 	5. Execute command.
 */
-static void	st_child_process(t_cmd *cmd, t_data_exe *data_exe, int pend[2], int fd)
+static void	st_child_process(t_cmd *cmd, t_data *data, int pend[2], int fd)
 {
 	int	status;
 
 	close(pend[READ]);
-	if (redirect_in(cmd->in, fd, data_exe))
-		exit(data_exe->last_pid);
+	if (redirect_in(cmd->in, fd, data))
+		exit(data->last_pid);
 	if (cmd->next)
-		status = redirect_out(cmd->out, pend[WRITE], data_exe);
+		status = redirect_out(cmd->out, pend[WRITE], data);
 	else
 	{
 		close(pend[WRITE]);
-		status = redirect_out(cmd->out, STDOUT_FILENO, data_exe);
+		status = redirect_out(cmd->out, STDOUT_FILENO, data);
 	}
 	if (status)
-		exit(data_exe->last_pid);
-	execute_cmd(cmd, data_exe);
+		exit(data->last_pid);
+	execute_cmd(cmd, data);
 }
 
 /**
@@ -104,7 +104,7 @@ static void	st_child_process(t_cmd *cmd, t_data_exe *data_exe, int pend[2], int 
  * 			- close pipe write end
  * 	4. Return pipe read end.
 */
-int	exec_piped_cmd(t_proc *proc, t_cmd *cmd, t_data_exe *data_exe, int fd)
+int	exec_piped_cmd(t_proc *proc, t_cmd *cmd, t_data *data, int fd)
 {
 	int		pend[2];
 
@@ -114,7 +114,7 @@ int	exec_piped_cmd(t_proc *proc, t_cmd *cmd, t_data_exe *data_exe, int fd)
 	if (proc->pid < 0)
 		exit_error(errno, "exec_piped_cmd fork", NULL);
 	else if (proc->pid == CHILD)
-		st_child_process(cmd, data_exe, pend, fd);
+		st_child_process(cmd, data, pend, fd);
 	else if (proc->pid > 0)
 	{
 		if (fd != 0)

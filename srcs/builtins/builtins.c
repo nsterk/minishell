@@ -1,6 +1,5 @@
 
 #include "builtins.h"
-// #include "../../includes/builtins.h"
 
 /**
  * Builtins:
@@ -28,28 +27,26 @@ int	special_builtin(char *cmd)
 	return (0);
 }
 
-int	check_builtin(t_cmd *cmds, t_data_exe *data_exe)
+int	check_builtin(t_cmd *cmds, t_data *data)
 {
 	char	*tmp;
 	
 	tmp = cmds->args[0]; // ? testing
-	// this is a comment
-	// this is a comment 1
 	if (!cmds)
 		return (EXIT_FAILURE);
 	if (!ft_strncmp(tmp, "echo", 5))
-		return (exec_echo(cmds->args, data_exe));
+		return (exec_echo(cmds->args, data));
 	else if (!ft_strncmp(tmp, "cd", 2))
-		return (exec_cd(cmds->args, data_exe));
+		return (exec_cd(cmds->args, data));
 	else if (!ft_strncmp(tmp, "pwd", 3))
-		return (exec_pwd(data_exe));
+		return (exec_pwd(data));
 	else if (!ft_strncmp(tmp, "export", 7))
-		return (exec_export(cmds->args, data_exe));
+		return (exec_export(cmds->args, data));
 	else if (!ft_strncmp(tmp, "unset", 6))
-		return (EXIT_SUCCESS);
+		return (exec_unset(cmds->args, data));
 	else if (!ft_strncmp(tmp, "env", 3))
-		return (exec_env(data_exe->envp, data_exe));
+		return (exec_env(data->envp, data));
 	else if (!ft_strncmp(tmp, "exit", 4))
-		return (exec_exit(cmds, data_exe));
+		return (exec_exit(cmds, data));
 	return (EXIT_FAILURE);
 }
