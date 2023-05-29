@@ -19,14 +19,14 @@ int	file_error(const char *filename)
 	return (1);
 }
 
-static int	st_duplicate(int fd, int in_out_fileno, t_data_exe *data_exe)
+static int	st_duplicate(int fd, int in_out_fileno, t_data *data)
 {
 	int	exit_status;
 
 	if (dup2(fd, in_out_fileno) < 0)
 	{
 		perror(ft_itoa(errno)); // ! error check itoa
-		data_exe->last_pid = errno;
+		data->last_pid = errno;
 		exit_status = EXIT_FAILURE;
 	}
 	exit_status = EXIT_SUCCESS;
@@ -35,7 +35,7 @@ static int	st_duplicate(int fd, int in_out_fileno, t_data_exe *data_exe)
 	return (exit_status);
 }
 
-int	redirect_in(t_red *input, int fd, t_data_exe *data_exe)
+int	redirect_in(t_red *input, int fd, t_data *data)
 {
 	while (input)
 	{
@@ -49,10 +49,10 @@ int	redirect_in(t_red *input, int fd, t_data_exe *data_exe)
 			return (file_error(input->filename));
 		input = input->next;
 	}
-	return (st_duplicate(fd, STDIN_FILENO, data_exe));
+	return (st_duplicate(fd, STDIN_FILENO, data));
 }
 
-int	redirect_out(t_red *output, int fd, t_data_exe *data_exe)
+int	redirect_out(t_red *output, int fd, t_data *data)
 {
 	int		flags;
 
@@ -70,5 +70,5 @@ int	redirect_out(t_red *output, int fd, t_data_exe *data_exe)
 			return (file_error(output->filename));
 		output = output->next;
 	}
-	return (st_duplicate(fd, STDOUT_FILENO, data_exe));
+	return (st_duplicate(fd, STDOUT_FILENO, data));
 }

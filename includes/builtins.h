@@ -16,57 +16,54 @@
 # define NOT_FOUND -1
 # define ADD_NEW -2
 
-typedef struct s_data_exe t_data_exe;
+typedef struct s_data t_data;
 
 /**
  * builtins
 */
-int			check_builtin(t_cmd *cmd, t_data_exe *exec);
+int			check_builtin(t_cmd *cmd, t_data *data);
 int			special_builtin(char *cmd);
 
 /**
  * pwd
 */
 // int			exec_pwd(void); // ? testing
-int			exec_pwd(t_data_exe *data_exe);
+int			exec_pwd(t_data *data);
 
 /**
  * echo
 */
-// int			exec_echo(char *cmd, char *option, const char *STRING); // ? testing
-int			exec_echo(char **args, t_data_exe *data_exe);
+int			exec_echo(char **args, t_data *data);
 
 /**
  * exit
 */
-// int			exec_exit(void); // ? testing
-int			exec_exit(t_cmd *cmd, t_data_exe *data_exe);
+int			exec_exit(t_cmd *cmd, t_data *data);
 
 /**
  * env
 */
-// int			exec_env(char **envp); // ? testing
-int			exec_env(char **envp, t_data_exe *data_exe);
+int			exec_env(char **envp, t_data *data);
 
 /**
  * export
 */
-int			exec_export(char **args, t_data_exe *data_exe);
-char		**ft_export(char *arg, char **envp, t_data_exe *data_exe);
-int			search_envp(char *args, char **envp, t_data_exe *data_exe, char c);
-void		error_message(char *arg, t_data_exe *data_exe);
+int			exec_export(char **args, t_data *data);
+char		**ft_export(char *arg, char **envp, t_data *data);
+int			search_envp(char *args, char **envp, t_data *data, char c);
+void		error_message(char *arg, t_data *data);
 void		ms_single_export(char **envp);
 
 /**
  * unset
 */
-int			exec_unset(char **args, t_data_exe *data_exe);
+int			exec_unset(char **args, t_data *data);
 
 /**
  * cd
 */
-int			exec_cd(char **args, t_data_exe *data_exe);
-void		set_new_paths(char *new_pwd, char *old_pwd, t_data_exe *data_exe);
+int			exec_cd(char **args, t_data *data);
+void		set_new_paths(char *new_pwd, char *old_pwd, t_data *data);
 char		*get_envp_value(char **envp, char *key);
 
 /**

@@ -1,15 +1,14 @@
 
 #include "builtins.h"
-// #include "../../includes/builtins.h" // ? I need this on my mac
 
-void	error_message(char *arg, t_data_exe *data_exe)
+void	error_message(char *arg, t_data *data)
 {
 	ft_putstr_fd("momoshell: ", 2);
 	ft_putchar_fd('\'', 2);
 	ft_putstr_fd(arg, 2);
 	ft_putchar_fd('\'', 2);
 	ft_putendl_fd(": not a valid identifier", 2);
-	data_exe->last_pid = 1;
+	data->last_pid = 1;
 	return ;
 }
 

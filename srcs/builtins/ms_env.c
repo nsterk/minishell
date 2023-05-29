@@ -1,8 +1,7 @@
 
 #include "builtins.h"
-// #include "../../includes/builtins.h" // ? I need this on my mac
 
-int	exec_env(char **envp, t_data_exe *data_exe)
+int	exec_env(char **envp, t_data *data)
 {
 	int		i;
 
@@ -12,6 +11,6 @@ int	exec_env(char **envp, t_data_exe *data_exe)
 		ft_putendl_fd(envp[i], STDOUT_FILENO);
 		i++;
 	}
-	data_exe->last_pid = 0;
+	data->last_pid = 0;
 	return (EXIT_SUCCESS);
 }

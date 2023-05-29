@@ -30,7 +30,8 @@ typedef struct s_data
 	t_lexer	lexer;
 	t_cmd	*cmd;
 	char	**envp;
-	int		last_pid;
+	char	**paths;
+	pid_t	last_pid;
 }	t_data;
 
 int			prompt(t_lexer *lexer);
