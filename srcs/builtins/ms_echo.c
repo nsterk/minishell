@@ -1,9 +1,5 @@
 
 #include "builtins.h"
-// #include "../../includes/builtins.h" // ? I need this on my mac
-
-// #include "stdlib.h"
-// #include "unistd.h"
 
 static void	st_print_args(char **args, bool add_newline, int i)
 {
@@ -52,8 +48,7 @@ static int	st_check_option(char **args, char c, bool *add_newline)
  * 	4. Set last pid to 0.
  * 	5. Return success.
 */
-// int	exec_echo(char *cmd, char *option, const char *STRING)
-int	exec_echo(char **args, t_data_exe *data_exe)
+int	exec_echo(char **args, t_data *data)
 {
 	bool	add_newline;
 	int		i;
@@ -68,6 +63,6 @@ int	exec_echo(char **args, t_data_exe *data_exe)
 	if (!ft_strncmp(args[1], "-n", 2))
 		i = st_check_option(args, args[1][1], &add_newline);
 	st_print_args(args, add_newline, i);
-	data_exe->last_pid = 0;
+	data->last_pid = 0;
 	return (EXIT_SUCCESS);
 }
