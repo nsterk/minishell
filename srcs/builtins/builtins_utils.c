@@ -1,6 +1,5 @@
 
 #include "builtins.h"
-// #include "../../includes/builtins.h" // ? I need this on my mac
 
 void	copy_line_envp(char **new_env, char **env, int new_env_i, int env_i)
 {
