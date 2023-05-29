@@ -1,6 +1,5 @@
 
 #include "builtins.h"
-// #include "../../includes/builtins.h" // ? I need this on my mac
 
 char	*get_envp_value(char **envp, char *key)
 {
@@ -18,7 +17,7 @@ char	*get_envp_value(char **envp, char *key)
 	return (NULL);
 }
 
-void	set_new_paths(char *new_pwd, char *old_pwd, t_data_exe *data_exe)
+void	set_new_paths(char *new_pwd, char *old_pwd, t_data *data)
 {
 	char	*new_curr_pwd;
 	char	*new_old_pwd;
@@ -27,8 +26,8 @@ void	set_new_paths(char *new_pwd, char *old_pwd, t_data_exe *data_exe)
 	check_malloc(new_curr_pwd, "home_path");
 	new_old_pwd = ft_strjoin("OLDPWD=", old_pwd);
 	check_malloc(new_old_pwd, "home_path");
-	data_exe->envp = ft_export(new_curr_pwd, data_exe->envp, data_exe);
-	data_exe->envp = ft_export(new_old_pwd, data_exe->envp, data_exe);
+	data->envp = ft_export(new_curr_pwd, data->envp, data);
+	data->envp = ft_export(new_old_pwd, data->envp, data);
 	free(new_curr_pwd);
 	free(new_old_pwd);
 	return ;
