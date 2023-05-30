@@ -3,14 +3,14 @@
 
 bool		error_msg(char *msg);
 static bool	st_lex_quote(t_lexer *lex, int quote);
-static bool	st_right_state(t_lexer *lex);
+static bool	st_word_state(t_lexer *lex);
 
 bool	lex_word(t_lexer *lexer, t_toktype type)
 {
 	size_t	start;
 
 	start = lexer->idx;
-	while (st_right_state(lexer))
+	while (st_word_state(lexer))
 	{
 		if (lexer->str[lexer->idx] == CH_SQUOTE || lexer->str[lexer->idx] == CH_DQUOTE)
 		{
@@ -21,8 +21,8 @@ bool	lex_word(t_lexer *lexer, t_toktype type)
 		{
 			if (lexer->str[lexer->idx] == CH_EXPAND)
 				lexer->expansions++;
+			lexer->idx++;
 		}
-		lexer->idx++;
 	}
 	delimit_token(lexer, start, type);
 	switch_state(lexer, get_state(lexer->str[lexer->idx + 1]));
@@ -31,7 +31,7 @@ bool	lex_word(t_lexer *lexer, t_toktype type)
 
 static bool	st_lex_quote(t_lexer *lex, int quote)
 {
-	size_t	star
+	size_t	start;
 
 	lex->idx++;
 	if (!ft_strchr(lex->str + lex->idx, quote))
@@ -49,9 +49,13 @@ static bool	st_lex_quote(t_lexer *lex, int quote)
 	return (false);
 }
 
-static bool	st_right_state(t_lexer *lex)
+bool	st_word_state(t_lexer *lex)
 {
-	if (lex->str[lex->idx] == CH_SQUOTE || lex->str[lex->idx] == CH_DQUOTE)
-		return (true);
-	return (lex->state == get_state(lex->str[lex->idx + 1]));
+	if (lex->str[lex->idx + 1] == '\0' || \
+		lex->str[lex->idx + 1] == CH_REDIR_IN || \
+		lex->str[lex->idx + 1] == CH_REDIR_OUT || \
+		lex->str[lex->idx + 1] == CH_PIPE)
+		return (false);
+	return (true);
 }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
