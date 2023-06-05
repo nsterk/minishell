@@ -7,6 +7,10 @@ t_lexstate	get_state(int c)
 		return (S_EOF);
 	if (ft_isspace(c))
 		return (S_SPACE);
+	if (c == CH_SQUOTE)
+		return (S_SQUOTE);
+	if (c == CH_DQUOTE)
+		return (S_DQUOTE);
 	if (c == CH_REDIR_IN)
 		return (S_REDIR_IN);
 	if (c == CH_REDIR_OUT)

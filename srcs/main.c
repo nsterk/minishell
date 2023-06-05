@@ -13,12 +13,13 @@ void	enter_shell(char **argv, char **envp)
 	{
 		if (!lexer(&data.lexer))
 		{
-			expander(data.envp, &data.lexer);
-			if (!parser(data.lexer.tokens, &data.cmd))
-			{
-				g_state = EXECUTING;
-				executor(&data);
-			}
+			token_printHtT(data.lexer.tokens);
+			// expander(data.envp, &data.lexer);
+			// if (!parser(data.lexer.tokens, &data.cmd))
+			// {
+				// g_state = EXECUTING;
+				// executor(&data);
+			// }
 		}
 		reinit_data(&data);
 	}
