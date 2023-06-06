@@ -15,6 +15,7 @@ bool	lex_space(t_lexer *lexer, t_toktype type)
 	new->exp_count = 0;
 	new->type = type;
 	new->state = S_SPACE;
+	new->flags |= F_SPACE;
 	if (token_append(&(lexer->tokens), new))
 		exit(EXIT_FAILURE);
 	switch_state(lexer, get_state(lexer->str[lexer->idx + 1]));

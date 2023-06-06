@@ -8,12 +8,16 @@ bool	lex_quote(t_lexer *lexer, t_toktype type)
 	int		quote;
 
 	quote = lexer->str[lexer->idx];
+	if (type == TOK_SQUOTE)
+		lexer->flags += F_SQUOTE;
+	if (type == TOK_DQUOTE)
+		lexer->flags += F_DQUOTE;
 	if (!ft_strchr(lexer->str + lexer->idx + 1, quote))
 		return (error_msg("Unclosed quotes not supported by momoshell"));
-	lexer->idx++;
-	start = lexer->idx;
-	if (type == TOK_DQUOTE && lexer->str[start] == CH_EXPAND)
-		lexer->expansions++;
+	// lexer->idx++;
+	start = lexer->idx + 1;
+	// if (type == TOK_DQUOTE && lexer->str[start] == CH_EXPAND)
+	// 	lexer->expansions++;
 	while (lexer->str[lexer->idx + 1] != quote)
 	{
 		lexer->idx++;
@@ -22,7 +26,6 @@ bool	lex_quote(t_lexer *lexer, t_toktype type)
 	}
 	delimit_token(lexer, start, type);
 	lexer->idx++;
-	// lexer->idx--;
 	switch_state(lexer, get_state(lexer->str[lexer->idx + 1]));
 	return (false);
 }

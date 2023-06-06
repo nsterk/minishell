@@ -22,13 +22,19 @@ bool	parse_args(t_token **token, t_cmd *cmd)
 static int	s_get_argc(t_token *token)
 {
 	int		i;
+	int		flags;
 	t_token	*tmp;
+
 
 	i = 0;
 	tmp = token;
-	while (tmp && tmp->type == TOK_WRD)
+	while (tmp)
 	{
-		i++;
+		flags = tmp->flags;
+		if (flags & (F_WORD + F_SQUOTE + F_DQUOTE))
+			i++;
+		else if (flags & F_OPERATOR)
+			break ;
 		tmp = tmp->next;
 	}
 	return (i);
@@ -37,16 +43,20 @@ static int	s_get_argc(t_token *token)
 static bool	s_add_args(t_token **token, t_cmd *cmd)
 {
 	int	i;
+	int	flags;
 
 	i = 0;
-	// cmd->cmd = ft_strdup()
 	while (i < cmd->argc)
 	{
-		cmd->args[i] = ft_strdup((*token)->word);
-		if (!cmd->args[i])
-			exit_minishell(MALLOC_ERR);
+		flags = (*token)->flags;
+		if (flags & (F_WORD + F_SQUOTE + F_DQUOTE))
+		{
+			cmd->args[i] = ft_strdup((*token)->word);
+			if (!cmd->args[i])
+				exit_minishell(MALLOC_ERR);
+			i++;
+		}
 		*token = (*token)->next;
-		i++;
 	}
 	return (false);
 }

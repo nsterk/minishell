@@ -13,4 +13,5 @@ void	delimit_token(t_lexer *lex, size_t start, t_toktype type)
 	if (token_append(&(lex->tokens), new))
 		exit(EXIT_FAILURE);
 	lex->expansions = 0;
+	lex->flags = 0;
 }

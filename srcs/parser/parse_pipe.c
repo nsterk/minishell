@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 20:31:59 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/04/22 17:53:17 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/06/06 11:53:42 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ bool	parse_redir(t_token **token, t_cmd *cmd)
 		exit_error(1, "parse_redir-out", "malloc failure");
 	*token = (*token)->next;
 	return (false);
-}
+} 
 
 static bool	s_add_redir(t_token **token, t_red **red, t_red_type type)
 {

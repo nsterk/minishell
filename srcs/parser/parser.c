@@ -13,7 +13,9 @@ bool	parser(t_token *token, t_cmd **cmd)
 	check_malloc(*cmd, "parser");
 	while (tmp)
 	{
-		if (s_parse_command(&tmp, cmd))
+		if (tmp->type == TOK_SPACE)
+			tmp = tmp->next;
+		else if (s_parse_command(&tmp, cmd))
 			return (true);
 	}
 	// print_tbl(*cmd);
@@ -22,7 +24,7 @@ bool	parser(t_token *token, t_cmd **cmd)
 
 static bool	s_parse_command(t_token **token, t_cmd **cmd)
 {
-	if ((*token)->type == TOK_WRD)
+	if ((*token)->type == TOK_WRD || (*token)->type == TOK_SQUOTE || (*token)->type == TOK_DQUOTE)
 		return (parse_args(token, *cmd));
 	if ((*token)->type == TOK_REDIR_IN || (*token)->type == TOK_REDIR_OUT)
 		return (parse_redir(token, *cmd));

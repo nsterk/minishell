@@ -11,9 +11,9 @@ t_lexstate	get_state(int c)
 		return (S_SQUOTE);
 	if (c == CH_DQUOTE)
 		return (S_DQUOTE);
-	if (c == CH_REDIR_IN)
+	if (c == CH_LESS)
 		return (S_REDIR_IN);
-	if (c == CH_REDIR_OUT)
+	if (c == CH_GREAT)
 		return (S_REDIR_OUT);
 	if (c == CH_PIPE)
 		return (S_PIPE);
