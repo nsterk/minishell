@@ -22,7 +22,6 @@ bool	parse_args(t_token **token, t_cmd *cmd)
 static int	s_get_argc(t_token *token)
 {
 	int		i;
-	int		flags;
 	t_token	*tmp;
 
 
@@ -30,10 +29,9 @@ static int	s_get_argc(t_token *token)
 	tmp = token;
 	while (tmp)
 	{
-		flags = tmp->flags;
-		if (flags & (F_WORD + F_SQUOTE + F_DQUOTE))
+		if (tmp->flags & (F_WORD + F_SQUOTE + F_DQUOTE))
 			i++;
-		else if (flags & F_OPERATOR)
+		else if (tmp->flags & F_OPERATOR)
 			break ;
 		tmp = tmp->next;
 	}

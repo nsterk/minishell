@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 20:31:59 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/06/06 11:53:42 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/06/07 17:49:08 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ bool	parse_redir(t_token **token, t_cmd *cmd)
 {
 	t_cmd	*current;
 
-	if (!((*token)->next) || (*token)->next->type != TOK_WRD)
-		return (error_msg("syntax error encountered in parse_redir"));
+	if (syntax_red(cmd, *token))
+		return (true);
 	current = cmd_last(cmd);
 	if ((*token)->type == TOK_REDIR_IN && s_add_redir(token, &(current->in), RED_IPUT))
 		exit_error(1, "parse_redir-in", "malloc failure");
@@ -48,12 +48,13 @@ static bool	s_add_redir(t_token **token, t_red **red, t_red_type type)
 	t_red	*new;
 
 	new = malloc(sizeof(t_red));
-	if (!new)
-		return (1);
+	check_malloc(new, "s_add_redir");
 	new->next = NULL;
 	new->type = type;
-	if (ft_strlen((*token)->word) == 2)
+	if ((*token)->flags & F_APPEND)
 		new->type++;
+	if ((*token)->next->flags & F_SPACE)
+		*token = (*token)->next;
 	new->filename = ft_strdup((*token)->next->word);
 	if (!new->filename)
 		return (true);
