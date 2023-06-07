@@ -104,7 +104,8 @@ SRCS_UTILS		:=	exits.c \
 					token_new.c \
 					malloc_check.c \
 					strjoin_free.c \
-					test_list.c
+					test_list.c \
+					test_parser.c 
 
 
 # Objects

@@ -15,10 +15,10 @@ bool	parser(t_token *token, t_cmd **cmd)
 	{
 		if (tmp->type == TOK_SPACE)
 			tmp = tmp->next;
-		else if (s_parse_command(&tmp, cmd))
+		if (s_parse_command(&tmp, cmd))
 			return (true);
 	}
-	// print_tbl(*cmd);
+	print_tbl(*cmd);
 	return (false);
 }
 
