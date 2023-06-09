@@ -24,7 +24,7 @@ bool	parser(t_token *token, t_cmd **cmd)
 
 static bool	s_parse_command(t_token **token, t_cmd **cmd)
 {
-	if ((*token)->type == TOK_WRD || (*token)->type == TOK_SQUOTE || (*token)->type == TOK_DQUOTE)
+	if ((*token)->flags & F_WORD)
 		return (parse_args(token, *cmd));
 	if ((*token)->type == TOK_REDIR_IN || (*token)->type == TOK_REDIR_OUT)
 		return (parse_redir(token, *cmd));

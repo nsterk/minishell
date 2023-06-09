@@ -12,6 +12,7 @@ void	token_printHtT(t_token *lst)
 	{
 		printf("%s", tmp->word);
 		printf(" (state: %d)", tmp->state);
+		printf(" expansions: %zu", tmp->exp_count);
 		if (tmp->next)
 			printf(RED" - "RST);
 		tmp = tmp->next;

@@ -1,11 +1,6 @@
 
 #include "minishell.h"
 
-/**
- * valid scenarios:
- * 		1: token->next is space and token->next->next is word
- * 		2: token->next is word
- */
 bool	syntax_red(t_cmd *cmd, t_token *token) //! no idea why i'm passing the cmd too probably need to remove
 {
 	t_token	*tmp;

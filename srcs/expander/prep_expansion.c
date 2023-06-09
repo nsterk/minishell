@@ -37,7 +37,7 @@ static int		st_prep_token(t_token *token)
 			}
 			pos++;
 		}
-		// printf("exp[%zu].start: %zu	exp[%zu].end: %zu	exp[%zu].param: %s\n", i, token->exp[i].start, i, token->exp[i].end, i, token->exp[i].parameter);
+		printf("exp[%zu].start: %zu	exp[%zu].end: %zu	exp[%zu].param: %s\n", i, token->exp[i].start, i, token->exp[i].end, i, token->exp[i].parameter);
 		i++;
 	}
 	return (0);

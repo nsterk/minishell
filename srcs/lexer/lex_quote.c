@@ -1,6 +1,6 @@
 
-#include "lexer.h"
-bool	error_msg(char *msg);
+#include "minishell.h"
+// bool	error_msg(char *msg);
 
 bool	lex_quote(t_lexer *lexer, t_toktype type)
 {
@@ -9,15 +9,13 @@ bool	lex_quote(t_lexer *lexer, t_toktype type)
 
 	quote = lexer->str[lexer->idx];
 	if (type == TOK_SQUOTE)
-		lexer->flags += F_SQUOTE;
+		lexer->flags |= F_SQUOTE;
 	if (type == TOK_DQUOTE)
-		lexer->flags += F_DQUOTE;
+		lexer->flags |= F_DQUOTE;
+	lexer->flags |= F_WORD;
 	if (!ft_strchr(lexer->str + lexer->idx + 1, quote))
 		return (error_msg("Unclosed quotes not supported by momoshell"));
-	// lexer->idx++;
 	start = lexer->idx + 1;
-	// if (type == TOK_DQUOTE && lexer->str[start] == CH_EXPAND)
-	// 	lexer->expansions++;
 	while (lexer->str[lexer->idx + 1] != quote)
 	{
 		lexer->idx++;

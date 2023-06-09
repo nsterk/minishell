@@ -86,6 +86,7 @@ SRCS_UTILS		:=	exits.c \
 					ft_putendl_fd.c \
 					ft_putnbr_fd.c \
 					ft_putstr_fd.c \
+					ft_replace.c \
 					ft_skipspace.c \
 					ft_split.c \
 					ft_strcheck.c \
@@ -97,6 +98,7 @@ SRCS_UTILS		:=	exits.c \
 					ft_strlen.c \
 					ft_strncmp.c \
 					ft_strndup.c \
+					ft_substr.c \
 					token_append.c \
 					token_last.c \
 					token_clear.c \

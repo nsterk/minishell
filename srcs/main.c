@@ -25,7 +25,7 @@ void	enter_shell(char **argv, char **envp)
 	}
 }
 
-// int	prompt(t_lexer *lexer)
+// int	prompt(t_lexer *lex er)
 // {
 // 	g_state = COMMAND;
 // 	init_signals(); // ? testing
