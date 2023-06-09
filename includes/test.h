@@ -12,6 +12,6 @@ void	token_printHtT(t_token *lst);
 /* Print tokens tail to head */
 void	token_printTtH(t_token *lst);
 
-void	print_tbl(t_cmd *cmd);
+void	print_tbl(t_cmd *cmd);  
 
 #endif

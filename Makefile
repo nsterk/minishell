@@ -38,6 +38,7 @@ SRCS_LEXER		:=	delimit_token.c \
 					lex_operator.c \
 					lex_space.c \
 					lex_word.c \
+					lex_quote.c \
 					state_type.c \
 
 # Expander srcs
@@ -85,6 +86,7 @@ SRCS_UTILS		:=	exits.c \
 					ft_putendl_fd.c \
 					ft_putnbr_fd.c \
 					ft_putstr_fd.c \
+					ft_replace.c \
 					ft_skipspace.c \
 					ft_split.c \
 					ft_strcheck.c \
@@ -96,6 +98,7 @@ SRCS_UTILS		:=	exits.c \
 					ft_strlen.c \
 					ft_strncmp.c \
 					ft_strndup.c \
+					ft_substr.c \
 					token_append.c \
 					token_last.c \
 					token_clear.c \
@@ -103,6 +106,8 @@ SRCS_UTILS		:=	exits.c \
 					token_new.c \
 					malloc_check.c \
 					strjoin_free.c \
+					test_list.c \
+					test_parser.c 
 
 
 # Objects

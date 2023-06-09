@@ -1,11 +1,19 @@
 
 #include "minishell.h"
 
-bool	syntax_red(t_cmd *cmd, t_token *token)
+bool	syntax_red(t_cmd *cmd, t_token *token) //! no idea why i'm passing the cmd too probably need to remove
 {
-	(void)cmd;
-	if (!token->next)
+	t_token	*tmp;
+
+	tmp = token;
+	if (!tmp->next)
 		return (error_msg("syntax error near unexpected token 'newline'"));
+	if (tmp->next->flags & F_SPACE)
+		tmp = tmp->next;
+	if (!tmp->next)
+		return (error_msg("syntax error near unexpected token 'newline'"));
+	if (tmp->next->flags & F_OPERATOR)
+		return (error_msg("syntax error near unexpected token 'operator'"));
 	return (false);
 }
 

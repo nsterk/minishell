@@ -13,16 +13,18 @@ bool	parser(t_token *token, t_cmd **cmd)
 	check_malloc(*cmd, "parser");
 	while (tmp)
 	{
+		if (tmp->type == TOK_SPACE)
+			tmp = tmp->next;
 		if (s_parse_command(&tmp, cmd))
 			return (true);
 	}
-	// print_tbl(*cmd);
+	print_tbl(*cmd);
 	return (false);
 }
 
 static bool	s_parse_command(t_token **token, t_cmd **cmd)
 {
-	if ((*token)->type == TOK_WRD)
+	if ((*token)->flags & F_WORD)
 		return (parse_args(token, *cmd));
 	if ((*token)->type == TOK_REDIR_IN || (*token)->type == TOK_REDIR_OUT)
 		return (parse_redir(token, *cmd));
