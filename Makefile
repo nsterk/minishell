@@ -42,7 +42,7 @@ SRCS_LEXER		:=	delimit_token.c \
 					state_type.c \
 
 # Expander srcs
-SRCS_EXPANDER	:=	prep_expansion.c \
+SRCS_EXPANDER	:=	expand_utils.c \
 
 # Signals srcs
 SRCS_SIGNALS	:=	init_signals.c \
@@ -108,7 +108,6 @@ SRCS_UTILS		:=	exits.c \
 					strjoin_free.c \
 					test_list.c \
 					test_parser.c 
-
 
 # Objects
 OBJS			:=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
