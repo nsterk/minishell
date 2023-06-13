@@ -19,10 +19,7 @@ bool	do_expanding(t_token *token, t_expansion *exp, size_t *pos, char **envp)
 	st_get_param(token, exp, pos);
 	env_val = get_envp_value(envp, exp->parameter);
 	new_len = ft_strlen(env_val);
-	if (!new_len)
-		token->word = ft_replace(token->word, ft_strdup(env_val), exp->start, exp->end);
-	else
-		token->word = ft_replace(token->word, NULL, exp->start, exp->end);
+	token->word = ft_replace(token->word, ft_strdup(env_val), exp->start, exp->end);
 	*pos = exp->start + new_len;
 	return (false);
 }
@@ -43,7 +40,3 @@ static void	st_get_param(t_token *token, t_expansion *exp, size_t *pos)
 	check_malloc(exp->parameter, "st_get_param");
 }
 
-// static char *st_env_not_found(t_token *token, size_t start, size_t end)
-// {
-
-// }

@@ -6,12 +6,20 @@ static int		st_handle_token(t_token *token, char **envp);
 int	expander(char **envp, t_lexer *lex)
 {
 	t_token *tmp;
+	t_token	*ryan;
 
 	tmp = lex->tokens;
 	while (tmp)
 	{
 		if (st_handle_token(tmp, envp))
 			return (1);
+		if (!tmp->word && tmp->flags & F_WORD)
+		{
+			ryan = tmp;
+			tmp = tmp->next;
+			
+			// - gotta remove this node
+		}
 		tmp = tmp->next;
 	}
 	return (0);
