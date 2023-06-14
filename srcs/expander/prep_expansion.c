@@ -1,24 +1,24 @@
 
 #include "minishell.h"
 
-static int		st_prep_token(t_token *token);
+static int		st_prep_token(t_token *token, char **envp);
 static int		st_find_end(t_token *token, size_t i, size_t *pos);
 
-int	prep_expansion(t_lexer *lex)
+int	prep_expansion(t_lexer *lex, char **envp)
 {
 	t_token	*tmp;
 
 	tmp = lex->tokens;
 	while (tmp)
 	{
-		if (st_prep_token(tmp))
+		if (st_prep_token(tmp, envp))
 			return (1);
 		tmp = tmp->next;
 	}
 	return (0);
 }
 
-static int		st_prep_token(t_token *token)
+static int		st_prep_token(t_token *token, char **envp)
 {
 	size_t	i;
 	size_t	pos;
@@ -33,15 +33,42 @@ static int		st_prep_token(t_token *token)
 			{
 				if (st_find_end(token, i, &pos))
 					return (1);
+				printf("found it: %s\n", get_envp_value(envp, token->exp[i].parameter));
 				break ;
 			}
 			pos++;
 		}
-		// printf("exp[%zu].start: %zu	exp[%zu].end: %zu	exp[%zu].param: %s\n", i, token->exp[i].start, i, token->exp[i].end, i, token->exp[i].parameter);
+		printf("exp[%zu].start: %zu	exp[%zu].end: %zu	exp[%zu].param: %s\n", i, token->exp[i].start, i, token->exp[i].end, i, token->exp[i].parameter);
 		i++;
 	}
 	return (0);
 }
+
+
+// static int		st_prep_token(t_token *token, char **envp)
+// {
+// 	size_t	i;
+// 	size_t	pos;
+
+// 	i = 0;
+// 	pos = 0;
+// 	while (i < token->exp_count)
+// 	{
+// 		while (token->word[pos])
+// 		{
+// 			if (token->word[pos] == CH_EXPAND)
+// 			{
+// 				if (st_find_end(token, i, &pos))
+// 					return (1);
+// 				break ;
+// 			}
+// 			pos++;
+// 		}
+// 		printf("exp[%zu].start: %zu	exp[%zu].end: %zu	exp[%zu].param: %s\n", i, token->exp[i].start, i, token->exp[i].end, i, token->exp[i].parameter);
+// 		i++;
+// 	}
+// 	return (0);
+// }
 
 static int	st_find_end(t_token *token, size_t i, size_t *pos)
 {
@@ -59,7 +86,6 @@ static int	st_find_end(t_token *token, size_t i, size_t *pos)
 		exp->end = *pos - 1;
 	}
 	exp->parameter = ft_strndup(token->word + exp->start + 1, exp->end - exp->start);
-	if (!(exp->parameter))
-		return (1);
+	check_malloc(exp->parameter, "st_find_end");
 	return (0);
 }

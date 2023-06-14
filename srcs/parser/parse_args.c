@@ -13,8 +13,7 @@ bool	parse_args(t_token **token, t_cmd *cmd)
 		return (error_msg("Syntax error encountered in parse_args"));
 	current->argc = s_get_argc(*token);
 	current->args = malloc(sizeof(char *) * (current->argc + 1));
-	if (!current->args)
-		exit_minishell(MALLOC_ERR);
+	check_malloc(current->args, "parse_args");
 	current->args[current->argc] = NULL;
 	return (s_add_args(token, current));
 }
@@ -26,9 +25,12 @@ static int	s_get_argc(t_token *token)
 
 	i = 0;
 	tmp = token;
-	while (tmp && tmp->type == TOK_WRD)
+	while (tmp)
 	{
-		i++;
+		if (tmp->flags & (F_WORD + F_SQUOTE + F_DQUOTE))
+			i++;
+		else if (tmp->flags & F_OPERATOR)
+			break ;
 		tmp = tmp->next;
 	}
 	return (i);
@@ -39,14 +41,15 @@ static bool	s_add_args(t_token **token, t_cmd *cmd)
 	int	i;
 
 	i = 0;
-	// cmd->cmd = ft_strdup()
 	while (i < cmd->argc)
 	{
-		cmd->args[i] = ft_strdup((*token)->word);
-		if (!cmd->args[i])
-			exit_minishell(MALLOC_ERR);
+		if ((*token)->flags & (F_WORD + F_SQUOTE + F_DQUOTE))
+		{
+			cmd->args[i] = ft_strdup((*token)->word);
+			check_malloc(cmd->args[i], "s_add_args");
+			i++;
+		}
 		*token = (*token)->next;
-		i++;
 	}
 	return (false);
 }

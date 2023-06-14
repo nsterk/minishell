@@ -11,11 +11,13 @@
 
 typedef enum e_toktype
 {
-	TOK_WRD,
+	TOK_SPACE,
+	TOK_DQUOTE,
+	TOK_SQUOTE,
 	TOK_REDIR_IN,
 	TOK_REDIR_OUT,
 	TOK_PIPE,
-	TOK_SPACE,
+	TOK_WRD,
 	TOK_EOF,
 	TOK_MAX
 }	t_toktype;
@@ -23,20 +25,21 @@ typedef enum e_toktype
 typedef enum e_lexstate
 {
 	S_SPACE,
+	S_DQUOTE,
+	S_SQUOTE,
 	S_REDIR_IN,
 	S_REDIR_OUT,
 	S_PIPE,
 	S_WORD,
-	S_EOF
+	S_EOF,
+	S_MAX
 }	t_lexstate;
 
 typedef struct s_expansion
 {
 	size_t	start;
 	size_t	end;
-	int		quoted;
 	char 	*parameter;
-	
 }	t_expansion;
 
 typedef struct s_token
@@ -71,13 +74,12 @@ void		delimit_token(t_lexer *lexer, size_t start, t_toktype type);
 typedef bool	(*t_lexfunction)(t_lexer *lexer, t_toktype type);
 bool		lex_operator(t_lexer *lexer, t_toktype type);
 bool		lex_word(t_lexer *lexer, t_toktype type);
+bool		lex_quote(t_lexer *lexer, t_toktype type);
 bool		lex_space(t_lexer *lexer, t_toktype type);
 
 void		switch_state(t_lexer *lexer, t_lexstate new_state);
 
 // Expander functions
-int			expander(char **envp, t_lexer *lex);
-int			prep_expansion(t_lexer *lex);
 
 
 /**

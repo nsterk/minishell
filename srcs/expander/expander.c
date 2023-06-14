@@ -1,18 +1,49 @@
 
 #include "minishell.h"
 
-/**
- * Expand environment variable.
- * 	Loop through envp until env var found. Then:
- * 		1. ft_split on str with space as delim --> what if separated by a tab or whatever?
- * 		2. for each str in the array of strings, create a new token of type tok_wrd
- * 		3. insert those tokens into the token list in the place of the original token
- */
+static int		st_handle_token(t_token *token, char **envp);
 
 int	expander(char **envp, t_lexer *lex)
 {
-	if (prep_expansion(lex))
-		return (1);
+	t_token *tmp;
+	t_token	*ryan;
 
+	tmp = lex->tokens;
+	while (tmp)
+	{
+		if (st_handle_token(tmp, envp))
+			return (1);
+		if (tmp->flags & F_WORD && !(*tmp->word))
+		{
+			ryan = tmp;
+			tmp = tmp->prev;
+			token_remove(&(lex->tokens), ryan);
+		}
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+static int		st_handle_token(t_token *token, char **envp)
+{
+	size_t	i;
+	size_t	pos;
+
+	i = 0;
+	pos = 0;
+	while (i < token->exp_count)
+	{
+		while (token->word[pos])
+		{
+			if (token->word[pos] == CH_EXPAND)
+			{
+				if (do_expanding(token, &(token->exp[i]), &pos, envp))
+					return (1);
+				break ;
+			}
+			pos++;
+		}
+		i++;
+	}
 	return (0);
 }

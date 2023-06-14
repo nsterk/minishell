@@ -49,7 +49,6 @@ int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
 void				*ft_calloc(size_t count, size_t size);
 char				*ft_itoa(int n);
-// int					ft_isspace(int c);
 void				*ft_memcpy(void *dst, const void *src, size_t n);
 // void				*ft_memccpy(void *dst, const void *src, int c, size_t n);
 // void				*ft_memchr(const void *s, int c, size_t n);
@@ -69,7 +68,7 @@ size_t				ft_strlen(const char *s);
 int					ft_strncmp(const char *s1, const char *s2, size_t len);
 // int					ft_strcmp(char *s1, char *s2);
 // char				*ft_strtrim(char const *s1, char const *set);
-// char				*ft_substr(char const *s, unsigned int start, size_t len);
+char				*ft_substr(char const *s, size_t start, size_t len);
 const char			*ft_skipspace(const char *str);
 int					ft_free_array(char **str);
 size_t				ft_array_len(char **arr);
@@ -81,7 +80,7 @@ int					ft_isdigit(int c);
 int					ft_strcheck(char const *s, int (*f)(int));
 int					ft_isalpha(int c);
 int					ft_isalnum(int c);
-// int					ft_isalpha(int c);
+char				*ft_replace(char *dst, char *src, size_t start, size_t end);
 
 
 #	endif
