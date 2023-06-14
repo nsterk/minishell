@@ -13,12 +13,11 @@ int	expander(char **envp, t_lexer *lex)
 	{
 		if (st_handle_token(tmp, envp))
 			return (1);
-		if (!tmp->word && tmp->flags & F_WORD)
+		if (tmp->flags & F_WORD && !(*tmp->word))
 		{
 			ryan = tmp;
-			tmp = tmp->next;
-			
-			// - gotta remove this node
+			tmp = tmp->prev;
+			token_remove(&(lex->tokens), ryan);
 		}
 		tmp = tmp->next;
 	}
