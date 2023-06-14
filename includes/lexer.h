@@ -39,7 +39,6 @@ typedef struct s_expansion
 {
 	size_t	start;
 	size_t	end;
-	int		quoted;
 	char 	*parameter;
 }	t_expansion;
 
@@ -81,8 +80,6 @@ bool		lex_space(t_lexer *lexer, t_toktype type);
 void		switch_state(t_lexer *lexer, t_lexstate new_state);
 
 // Expander functions
-int			expander(char **envp, t_lexer *lex);
-int			prep_expansion(t_lexer *lex);
 
 
 /**

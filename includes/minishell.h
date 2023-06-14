@@ -5,7 +5,7 @@
 /**
  * Minishell libs.
  */
-// # include "prompt.h"
+
 # include "builtins.h"
 # include "executor.h"
 # include "parser.h"
@@ -49,5 +49,11 @@ void		init_data(t_data *data, char **envp);
 void		reinit_data(t_data *data);
 void		init_lexer(t_lexer *lexer);
 void		reinit_lexer(t_lexer *lexer);
+
+/**
+ * Expander
+ */
+int			expander(char **envp, t_lexer *lex);
+bool		do_expanding(t_token *token, t_expansion *exp, size_t *pos, char **envp);
 
 #endif

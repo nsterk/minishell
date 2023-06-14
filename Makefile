@@ -32,6 +32,8 @@ SRCS			:=	main.c \
 SRCS_PARSER		:=	parse_args.c \
 					parse_pipe.c \
 					syntax_rules.c \
+					cmd_utils.c \
+					red_utils.c \
 
 # Lexer srcs
 SRCS_LEXER		:=	delimit_token.c \
@@ -40,9 +42,13 @@ SRCS_LEXER		:=	delimit_token.c \
 					lex_word.c \
 					lex_quote.c \
 					state_type.c \
+					token_add.c \
+					token_find.c \
+					token_free.c \
+					token_remove.c \
 
 # Expander srcs
-SRCS_EXPANDER	:=	prep_expansion.c \
+SRCS_EXPANDER	:=	expand_utils.c \
 
 # Signals srcs
 SRCS_SIGNALS	:=	init_signals.c \
@@ -99,16 +105,10 @@ SRCS_UTILS		:=	exits.c \
 					ft_strncmp.c \
 					ft_strndup.c \
 					ft_substr.c \
-					token_append.c \
-					token_last.c \
-					token_clear.c \
-					token_remove.c \
-					token_new.c \
 					malloc_check.c \
 					strjoin_free.c \
 					test_list.c \
 					test_parser.c 
-
 
 # Objects
 OBJS			:=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
