@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 20:31:59 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/06/15 18:18:38 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/06/15 19:07:46 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ static bool	s_add_redir(t_token **token, t_red **red, t_red_type type)
 	new->type = type;
 	if ((*token)->flags & F_APPEND)
 		new->type++;
-	// if ((*token)->next->flags & F_SPACE)
-	// 	*token = (*token)->next;
 	new->filename = ft_strdup((*token)->next->word);
 	if (!new->filename)
 		return (true);
