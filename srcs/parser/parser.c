@@ -18,7 +18,7 @@ bool	parser(t_token *token, t_cmd **cmd)
 		if (s_parse_command(&tmp, cmd))
 			return (true);
 	}
-	print_tbl(*cmd);
+	// print_tbl(*cmd);
 	return (false);
 }
 
