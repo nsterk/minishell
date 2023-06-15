@@ -12,6 +12,7 @@ bool	do_expanding(t_token *token, t_expansion *exp, size_t *pos, char **envp)
 	env_val = get_envp_value(envp, exp->parameter);
 	new_len = ft_strlen(env_val);
 	token->word = ft_replace(token->word, ft_strdup(env_val), exp->start, exp->end);
+	
 	*pos = exp->start + new_len;
 	return (false);
 }
