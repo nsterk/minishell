@@ -34,7 +34,9 @@ static bool	s_lexfunction(t_lexer *lexer, t_toktype type)
 
 bool	lexer(t_lexer *lexer)
 {
-	lexer->state = get_state(lexer->str[0]);
+	while (ft_isspace(lexer->str[lexer->idx]))
+		lexer->idx++;
+	lexer->state = get_state(lexer->str[lexer->idx]);
 	while (lexer->state != S_EOF)                                                                       
 	{
 		if (s_lexfunction(lexer, s_get_type(lexer->state)))

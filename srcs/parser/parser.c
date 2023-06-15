@@ -13,8 +13,8 @@ bool	parser(t_token *token, t_cmd **cmd)
 	check_malloc(*cmd, "parser");
 	while (tmp)
 	{
-		if (tmp->type == TOK_SPACE)
-			tmp = tmp->next;
+		// if (tmp->type == TOK_SPACE)
+		// 	tmp = tmp->next;
 		if (s_parse_command(&tmp, cmd))
 			return (true);
 	}
