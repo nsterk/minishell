@@ -49,6 +49,7 @@ SRCS_LEXER		:=	delimit_token.c \
 
 # Expander srcs
 SRCS_EXPANDER	:=	expand_utils.c \
+					expand_unquoted.c \
 
 # Signals srcs
 SRCS_SIGNALS	:=	init_signals.c \

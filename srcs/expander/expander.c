@@ -5,7 +5,7 @@ static bool	st_handle_token(t_token *token, char **envp);
 static void	st_clean_token(t_lexer *lexer, t_token **token);
 static void	st_rm_tokenspace(t_lexer *lexer);
 
-int	expander(char **envp, t_lexer *lex)
+bool	expander(char **envp, t_lexer *lex)
 {
 	t_token *tmp;
 
@@ -13,13 +13,13 @@ int	expander(char **envp, t_lexer *lex)
 	while (tmp)
 	{
 		if (st_handle_token(tmp, envp))
-			return (1);
+			return (true);
 		if (tmp->flags & F_WORD)
 			st_clean_token(lex, &tmp);
 		tmp = tmp->next;
 	}
 	st_rm_tokenspace(lex);
-	return (0);
+	return (false);
 }
 
 static bool	st_handle_token(t_token *token, char **envp)
