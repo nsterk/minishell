@@ -95,6 +95,6 @@ t_token		*token_last(t_token *token);
 t_token		*token_first(t_token **token);
 int			token_append(t_token **token, t_token *new);
 // void		token_prepend(t_token **token, t_token *new);
-t_token		*token_remove(t_token **head, t_token *token);
+t_token		*token_remove(t_token **head, t_token **token);
 
 #endif
