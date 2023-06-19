@@ -7,7 +7,7 @@ static void	st_rm_tokenspace(t_lexer *lexer);
 
 bool	expander(char **envp, t_lexer *lex)
 {
-	t_token *tmp;
+	t_token	*tmp;
 
 	tmp = lex->tokens;
 	while (tmp)
@@ -16,9 +16,11 @@ bool	expander(char **envp, t_lexer *lex)
 			return (true);
 		if (tmp->flags & F_WORD)
 			st_clean_token(lex, &tmp);
-		tmp = tmp->next;
+		if (tmp)
+			tmp = tmp->next;
 	}
-	st_rm_tokenspace(lex);
+	if (lex->tokens)
+		st_rm_tokenspace(lex);
 	return (false);
 }
 
@@ -61,9 +63,9 @@ static void	st_clean_token(t_lexer *lex, t_token **token)
 	}
 	if (!(*token)->word || !(*(*token)->word))
 	{
-		ryan = *token;
-		*token = (*token)->prev;
-		token_remove(&(lex->tokens), ryan);
+		// ryan = *token;
+		// *token = (*token)->prev;
+		*token = token_remove(&(lex->tokens), token);
 	}
 }
 
@@ -77,10 +79,11 @@ static void	st_rm_tokenspace(t_lexer *lexer)
 	{
 		if (tmp->flags & F_SPACE)
 		{
-			ryan = tmp;
-			tmp = ryan->prev;
-			token_remove(&(lexer->tokens), ryan);
+			// ryan = tmp;
+			// tmp = ryan->prev;
+			tmp = token_remove(&(lexer->tokens), &tmp);
 		}
-		tmp = tmp->next;
+		else
+			tmp = tmp->next;
 	}
 }

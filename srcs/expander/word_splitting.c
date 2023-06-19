@@ -16,6 +16,7 @@ bool	split_words(t_lexer *lex, t_token **token)
 	size_t	i;
 	size_t	len;
 
+	i = 0;
 	words = ft_split((*token)->word, ' ');
 	check_malloc(words, "split_words");
 	len = ft_array_len(words);

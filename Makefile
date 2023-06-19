@@ -1,9 +1,13 @@
 
 NAME			:=	minishell
 
-USER			:=	$(shell whoami)
-export RL_LIB	:= -L/Users/$(USER)/.brew/opt/readline/lib
-export RL_INC	:= -I/Users/$(USER)/.brew/opt/readline/include
+# won't compile on my mac
+export RL_LIB	:= -L/usr/local/opt/readline/lib
+export RL_INC	:= -I/usr/local/opt/readline/include
+
+# USER			:=	$(shell whoami)
+# export RL_LIB	:= -L/Users/$(USER)/.brew/opt/readline/lib
+# export RL_INC	:= -I/Users/$(USER)/.brew/opt/readline/include
 
 # Colours
 RED 			:=	\033[1;31m
@@ -138,6 +142,11 @@ $(NAME):	$(OBJS) $(OBJS_P) $(OBJS_L) $(OBJS_X) $(OBJS_S) $(OBJS_E) $(OBJS_B) $(O
 	@printf "$(YEL)\n\n  Compiling objects\n$(DEF)"
 	$(CC) $(OBJS) $(OBJS_P) $(OBJS_L) $(OBJS_X) $(OBJS_S) $(OBJS_E) $(OBJS_B) $(OBJS_U) $(FLAGS) $(LIBS) $(RL_LIB) -o $(NAME)
 	@printf "$(GRN)\n  Success!$(DEF)"
+
+# $(NAME):	$(OBJS) $(OBJS_P) $(OBJS_L) $(OBJS_X) $(OBJS_S) $(OBJS_E) $(OBJS_B) $(OBJS_U)
+# 	@printf "$(YEL)\n\n  Compiling objects\n$(DEF)"
+# 	$(CC) $(OBJS) $(OBJS_P) $(OBJS_L) $(OBJS_X) $(OBJS_S) $(OBJS_E) $(OBJS_B) $(OBJS_U) $(FLAGS) $(LIBS) -lhistory -lreadline -o $(NAME)
+# 	@printf "$(GRN)\n  Success!$(DEF)"
 
 $(OBJ_DIR)/%.o: $(notdir %.c)
 	@mkdir -p $(OBJ_DIR)
