@@ -12,11 +12,13 @@ void	token_printHtT(t_token *lst)
 	{
 		// if (tmp->flags & F_SPACE)
 		// 	printf(GRN"");
-		printf("%s", tmp->word);
+		if (tmp->word)
+			printf("%s", tmp->word);
 		printf(" (state: %d)", tmp->state);
 		// printf(" expansions: %zu", tmp->exp_count);
 		if (tmp->next)
 			printf(RED" - "RST);
+		write(1, '\n', 1);
 		tmp = tmp->next;
 	}
 	printf("\n");

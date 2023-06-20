@@ -1,9 +1,10 @@
 
 #include "minishell.h"
+#include "test.h"
 
-static bool	st_handle_token(t_token *token, char **envp);
-static void	st_clean_token(t_lexer *lexer, t_token **token);
-static void	st_rm_tokenspace(t_lexer *lexer);
+static bool		st_handle_token(t_token *token, char **envp);
+static t_token	*st_clean_token(t_lexer *lexer, t_token **token);
+static void		st_rm_tokenspace(t_lexer *lexer);
 
 bool	expander(char **envp, t_lexer *lex)
 {
@@ -14,12 +15,9 @@ bool	expander(char **envp, t_lexer *lex)
 	{
 		if (st_handle_token(tmp, envp))
 			return (true);
-		if (tmp->flags & F_WORD)
-			st_clean_token(lex, &tmp);
-		if (tmp)
-			tmp = tmp->next;
+		tmp = st_clean_token(lex, &tmp);
 	}
-	if (lex->tokens)
+	if (lex->tokens) //misschien hier in general doen lex->tokens = rm_tokenspace
 		st_rm_tokenspace(lex);
 	return (false);
 }
@@ -48,11 +46,12 @@ static bool	st_handle_token(t_token *token, char **envp)
 	return (false);
 }
 
-static void	st_clean_token(t_lexer *lex, t_token **token)
+static t_token	*st_clean_token(t_lexer *lex, t_token **token)
 {
-	t_token	*ryan;
 	char	*tmp;
 
+	if ((*token)->flags ^ F_WORD)
+		return ((*token)->next);
 	if ((*token)->prev && (*token)->prev->flags & F_WORD)
 	{
 		tmp = ft_strjoin((*token)->prev->word, (*token)->word);
@@ -62,27 +61,19 @@ static void	st_clean_token(t_lexer *lex, t_token **token)
 		(*token)->word[0] = '\0';
 	}
 	if (!(*token)->word || !(*(*token)->word))
-	{
-		// ryan = *token;
-		// *token = (*token)->prev;
-		*token = token_remove(&(lex->tokens), token);
-	}
+		return (token_remove(&(lex->tokens), *token));
+	return ((*token)->next);
 }
 
 static void	st_rm_tokenspace(t_lexer *lexer)
 {
 	t_token	*tmp;
-	t_token	*ryan;
 
 	tmp = lexer->tokens;
 	while (tmp)
 	{
 		if (tmp->flags & F_SPACE)
-		{
-			// ryan = tmp;
-			// tmp = ryan->prev;
-			tmp = token_remove(&(lexer->tokens), &tmp);
-		}
+			tmp = token_remove(&(lexer->tokens), tmp);
 		else
 			tmp = tmp->next;
 	}

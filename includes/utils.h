@@ -82,5 +82,4 @@ int					ft_isalpha(int c);
 int					ft_isalnum(int c);
 char				*ft_replace(char *dst, char *src, size_t start, size_t end);
 
-
-#	endif
+#endif
