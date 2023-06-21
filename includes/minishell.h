@@ -53,7 +53,7 @@ void	reinit_lexer(t_lexer *lexer);
 /**
  * Expander
  */
-bool	expander(char **envp, t_lexer *lex);
-bool	do_expanding(t_token *token, t_expansion *exp, size_t *pos, char **envp);
+// bool	expander(char **envp, t_lexer *lex);
+// bool	do_expanding(t_token *token, t_expansion *exp, size_t *pos, char **envp);
 
 #endif

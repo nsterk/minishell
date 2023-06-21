@@ -7,7 +7,7 @@ t_token	*token_new(t_toktype type, t_lexstate state, char *str, size_t exps)
 {
 	t_token	*new;
 
-	if (!str)
+	if (type != TOK_SPACE && !str)
 		return (NULL);
 	new = st_allocate_token(exps);
 	new->prev = NULL;
@@ -69,6 +69,7 @@ int	token_addafter(t_token **spot, t_token *new)
 	new->prev = *spot;
 	(*spot)->next = new;
 	new->next = next;
-	next->prev = new;
+	if (next)
+		next->prev = new;
 	return (0);
 }
