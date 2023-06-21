@@ -18,7 +18,6 @@ bool	expander(char **envp, t_lexer *lex)
 		tmp = st_clean_token(lex, &tmp);
 		// if (tmp->exp_count && token->flags ^ F_DQUOTE)
 	}
-	// printf(RED"high level debugging\n"RST);
 	if (lex->tokens) //misschien hier in general doen lex->tokens = rm_tokenspace
 		st_rm_tokenspace(lex);
 	return (false);
@@ -74,7 +73,7 @@ static t_token	*st_clean_token(t_lexer *lex, t_token **token)
 		return (token_remove(&(lex->tokens), *token));
 	// write(1, "3", 1);
 	// token_printHtT(lex->tokens);
-	if (split)
+	if (split && contains_space((*token)->word))
 		return (split_words(lex, token));
 	return ((*token)->next);
 }

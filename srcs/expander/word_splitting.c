@@ -15,14 +15,6 @@ static t_token	*st_add_space(t_token **token);
  * 		c. token = token->next
  */
 
-/**
- * @brief ok ik ben er helemaal klar mee voor nu. tokens verdwijnen hier ergns? ofzo? who the fuck knows. both the lexer as well as i are losing our head 
- * 
- * @param lex 
- * @param token 
- * @return t_token* 
- */
-
 t_token	*split_words(t_lexer *lex, t_token **token)
 {
 	char	**words;

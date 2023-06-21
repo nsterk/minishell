@@ -17,6 +17,20 @@ bool	do_expanding(t_token *token, t_expansion *exp, size_t *pos, char **envp)
 	return (false);
 }
 
+bool	contains_space(char *str)
+{
+	size_t	len;
+
+	len = ft_strlen(str);
+	while (len)
+	{
+		if (ft_isspace(str[len - 1]))
+			return (true);
+		len--;
+	}
+	return (false);
+}
+
 static void	st_get_param(t_token *token, t_expansion *exp, size_t *pos)
 {
 	exp->start = *pos;

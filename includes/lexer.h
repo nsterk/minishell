@@ -83,6 +83,7 @@ void		switch_state(t_lexer *lexer, t_lexstate new_state);
 bool		expander(char **envp, t_lexer *lex);
 bool		do_expanding(t_token *token, t_expansion *exp, size_t *pos, char **envp);
 t_token		*split_words(t_lexer *lex, t_token **token);
+bool		contains_space(char *str);
 
 /**
  * Token list functions.
