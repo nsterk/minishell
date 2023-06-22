@@ -1,6 +1,5 @@
 
 #include "minishell.h"
-#include "test.h"
 
 static bool	s_parse_command(t_token **token, t_cmd **cmd);
 
@@ -18,9 +17,6 @@ bool	parser(t_token *token, t_cmd **cmd)
 		if (s_parse_command(&tmp, cmd))
 			return (true);
 	}
-	// if (!(*cmd)->args)
-	// 	return (true);
-	// print_tbl(*cmd);
 	return (false);
 }
 
@@ -33,10 +29,4 @@ static bool	s_parse_command(t_token **token, t_cmd **cmd)
 	if ((*token)->type == TOK_PIPE)
 		return (parse_pipe(token, cmd));
 	return (false);
-}
-
-bool	error_msg(char *msg)
-{
-	printf("momoshell: %s\n", msg);
-	return (true);
 }

@@ -1,5 +1,5 @@
 
-#include "minishell.h"
+#include "parser.h"
 
 t_red	*red_new(t_red_type type)
 {
@@ -9,7 +9,7 @@ t_red	*red_new(t_red_type type)
 	if (!red)
 		return (NULL);
 	red->type = type;
-	red->fd = -1; //dunno why i'm initing it to -1 maybe change later
+	red->fd = -1;
 	red->filename = NULL;
 	red->next = NULL;
 	return (red);

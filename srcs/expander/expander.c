@@ -16,9 +16,8 @@ bool	expander(char **envp, t_lexer *lex)
 		if (st_handle_token(tmp, envp))
 			return (true);
 		tmp = st_clean_token(lex, &tmp);
-		// if (tmp->exp_count && token->flags ^ F_DQUOTE)
 	}
-	if (lex->tokens) //misschien hier in general doen lex->tokens = rm_tokenspace
+	if (lex->tokens)
 		st_rm_tokenspace(lex);
 	return (false);
 }
@@ -55,8 +54,6 @@ static t_token	*st_clean_token(t_lexer *lex, t_token **token)
 	if ((*token)->flags ^ F_WORD)
 		return ((*token)->next);
 	split = false;
-	// write(1, "1", 1);
-	// token_printHtT(lex->tokens);
 	if ((*token)->exp_count && (*token)->flags ^ F_DQUOTE)
 		split = true;
 	if ((*token)->prev && (*token)->prev->flags & F_WORD)
@@ -67,14 +64,10 @@ static t_token	*st_clean_token(t_lexer *lex, t_token **token)
 		(*token)->prev->word = tmp;
 		(*token)->word[0] = '\0';
 	}
-	// write(1, "2", 1);
-	// token_printHtT(lex->tokens);
 	if (!(*token)->word || !(*(*token)->word))
 		return (token_remove(&(lex->tokens), *token));
-	// write(1, "3", 1);
-	// token_printHtT(lex->tokens);
 	if (split && contains_space((*token)->word))
-		return (split_words(lex, token));
+		return (split_words(token));
 	return ((*token)->next);
 }
 
@@ -85,7 +78,6 @@ static void	st_rm_tokenspace(t_lexer *lexer)
 	tmp = lexer->tokens;
 	while (tmp)
 	{
-		// token_printHtT(lexer->tokens);
 		if (tmp->flags & F_SPACE)
 			tmp = token_remove(&(lexer->tokens), tmp);
 		else

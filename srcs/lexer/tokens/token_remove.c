@@ -9,8 +9,8 @@
  */
 
 static t_token	*remove_head(t_token **head, t_token *token);
-static t_token	*remove_mid(t_token **head, t_token *token);
-static t_token	*remove_tail(t_token **head, t_token *token);
+static t_token	*remove_mid(t_token *token);
+static t_token	*remove_tail(t_token *token);
 
 t_token	*token_remove(t_token **head, t_token *token)
 {
@@ -19,9 +19,9 @@ t_token	*token_remove(t_token **head, t_token *token)
 	if (!token->prev)
 		return (remove_head(head, token));
 	if (token->prev && token->next)
-		return (remove_mid(head, token));
+		return (remove_mid(token));
 	if (token->prev && !token->next)
-		return (remove_tail(head, token));
+		return (remove_tail(token));
 	return (NULL);
 }
 
@@ -38,7 +38,7 @@ static t_token	*remove_head(t_token **head, t_token *token)
 	return (*head);
 }
 
-static t_token	*remove_mid(t_token **head, t_token *token)
+static t_token	*remove_mid(t_token *token)
 {
 	t_token	*tmp;
 
@@ -49,7 +49,7 @@ static t_token	*remove_mid(t_token **head, t_token *token)
 	return (tmp);
 }
 
-static t_token	*remove_tail(t_token **head, t_token *token)
+static t_token	*remove_tail(t_token *token)
 {
 	t_token	*tmp;
 

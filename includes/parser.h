@@ -63,9 +63,10 @@ bool	parse_pipe(t_token **token, t_cmd **cmd);
  * Syntax grammar rules
 */
 
-bool	syntax_red(t_cmd *cmd, t_token *token);
-bool	syntax_pipe(t_cmd *cmd, t_token *token);
-bool	syntax_word(t_token *token);
+bool	syntax_red(t_token *token);
+bool	syntax_pipe(t_token *token);
+bool	error_msg(char *msg);
+// bool	syntax_word(t_token *token);
 
 /**
  * Command node utils

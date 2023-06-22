@@ -1,5 +1,5 @@
 
-#include "minishell.h"
+#include "parser.h"
 
 t_cmd	*cmd_new(void)
 {
@@ -64,7 +64,7 @@ void	cmd_delone(t_cmd *cmd, void (*del)(void*))
 	if (!cmd || !del)
 		return ;
 	if (cmd->args)
-		ft_free_array(cmd->args); //! no check in ft_free_array before dereferencing str so check if that isnt a problem
+		ft_free_array(cmd->args);
 	if (cmd->in)
 		redclear(&cmd->in, del);
 	if (cmd->out)

@@ -1,7 +1,8 @@
 
-#include "minishell.h"
+#include "lexer.h"
+#include "parser.h"
 
-bool	syntax_red(t_cmd *cmd, t_token *token) //! no idea why i'm passing the cmd too probably need to remove
+bool	syntax_red(t_token *token)
 {
 	t_token	*tmp;
 
@@ -17,17 +18,15 @@ bool	syntax_red(t_cmd *cmd, t_token *token) //! no idea why i'm passing the cmd 
 	return (false);
 }
 
-bool	syntax_pipe(t_cmd *cmd, t_token *token)
+bool	syntax_pipe(t_token *token)
 {
-	// if (!cmd->argc)
-	// 	return (error_msg("syntax error - no cmd to pipe output from"));
 	if (!token || !token->next || token->next->type == TOK_PIPE)
 		return (error_msg("syntax error near unexpected token '|'"));
 	return (false);
 }
 
-bool	syntax_word(t_token *token)
+bool	error_msg(char *msg)
 {
-	(void)token;
-	return (false);
+	printf("momoshell: %s\n", msg);
+	return (true);
 }

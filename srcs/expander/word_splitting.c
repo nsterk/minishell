@@ -1,21 +1,12 @@
 
-#include "minishell.h"
-#include "test.h"
+#include "lexer.h"
+// #include "test.h"
 
 static void		st_first_param(char *str, t_token *token);
 static t_token	*st_other_params(char *str, t_token **token);
 static t_token	*st_add_space(t_token **token);
 
-/**
- * 1. ft_split op token->word (don't lose the **)
- * 2. delete node. prev becomes current.
- * 3. for each word:
- * 		a. create a new token
- * 		b. add_after
- * 		c. token = token->next
- */
-
-t_token	*split_words(t_lexer *lex, t_token **token)
+t_token	*split_words(t_token **token)
 {
 	char	**words;
 	t_token	*tmp;
@@ -23,7 +14,6 @@ t_token	*split_words(t_lexer *lex, t_token **token)
 	size_t	len;
 
 	i = 0;
-	// token_printHtT(lex->tokens);
 	words = ft_split((*token)->word, ' ');
 	check_malloc(words, "split_words");
 	len = ft_array_len(words);

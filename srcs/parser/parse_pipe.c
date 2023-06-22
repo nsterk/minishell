@@ -6,12 +6,12 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 20:31:59 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/06/15 19:07:46 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/06/22 14:41:38 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "utils.h"
+#include "lexer.h"
+#include "parser.h"
 
 static bool	s_add_redir(t_token **token, t_red **red, t_red_type type);
 
@@ -20,7 +20,7 @@ bool	parse_pipe(t_token **token, t_cmd **cmd)
 	t_cmd	*current;
 
 	current = cmd_last(*cmd);
-	if (syntax_pipe(*cmd, *token))
+	if (syntax_pipe(*token))
 		return (true);
 	if (cmd_append(cmd, cmd_new()))
 		exit_minishell(MALLOC_ERR);
@@ -32,7 +32,7 @@ bool	parse_redir(t_token **token, t_cmd *cmd)
 {
 	t_cmd	*current;
 
-	if (syntax_red(cmd, *token))
+	if (syntax_red(*token))
 		return (true);
 	current = cmd_last(cmd);
 	if ((*token)->type == TOK_REDIR_IN && s_add_redir(token, &(current->in), RED_IPUT))

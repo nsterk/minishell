@@ -4,7 +4,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-void	enter_shell(char **argv, char **envp)
+void	enter_shell(char **envp)
 {
 	t_data	data;
 
@@ -13,9 +13,7 @@ void	enter_shell(char **argv, char **envp)
 	{
 		if (!lexer(&data.lexer))
 		{
-			// token_printHtT(data.lexer.tokens);
 			expander(data.envp, &data.lexer);
-			// token_printHtT(data.lexer.tokens);
 			if (!parser(data.lexer.tokens, &data.cmd))
 			{
 				g_state = EXECUTING;
@@ -43,7 +41,7 @@ void	enter_shell(char **argv, char **envp)
 
 int	main(int argc, char **argv, char **envp)
 {
-	if (argc) 
-		enter_shell(argv, envp);
+	if (argc && argv) 
+		enter_shell(envp);
 	return (0);
 }

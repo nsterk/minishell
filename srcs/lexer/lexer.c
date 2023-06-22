@@ -40,10 +40,7 @@ bool	lexer(t_lexer *lexer)
 	while (lexer->state != S_EOF)                                                                       
 	{
 		if (s_lexfunction(lexer, s_get_type(lexer->state)))
-		{
-			//cleany clean
 			return (true);
-		}	
 	}
 	return (false);
 }
