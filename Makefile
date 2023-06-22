@@ -30,7 +30,7 @@ SRCS			:=	main.c \
 					executor.c \
 					builtins.c \
 					signals.c \
-					prompt.c \
+					#prompt.c \
 
 # Parser srcs
 SRCS_PARSER		:=	parse_args.c \

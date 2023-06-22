@@ -1,6 +1,6 @@
 
-#include "minishell.h"
-#include "test.h"
+#include "expander.h"
+#include "defines.h"
 
 static bool		st_handle_token(t_token *token, char **envp);
 static t_token	*st_clean_token(t_lexer *lexer, t_token **token);

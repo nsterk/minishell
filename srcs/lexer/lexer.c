@@ -1,6 +1,21 @@
 
 #include "lexer.h"
-#include "test.h"
+
+static t_toktype	s_get_type(t_lexstate state);
+static bool			s_lexfunction(t_lexer *lexer, t_toktype type);
+
+bool	lexer(t_lexer *lexer)
+{
+	while (ft_isspace(lexer->str[lexer->idx]))
+		lexer->idx++;
+	lexer->state = get_state(lexer->str[lexer->idx]);
+	while (lexer->state != S_EOF)                                                                       
+	{
+		if (s_lexfunction(lexer, s_get_type(lexer->state)))
+			return (true);
+	}
+	return (false);
+}
 
 static t_toktype	s_get_type(t_lexstate state)
 {
@@ -30,17 +45,4 @@ static bool	s_lexfunction(t_lexer *lexer, t_toktype type)
 		[TOK_PIPE] = &lex_operator
 	};
 	return (lex[type](lexer, type));
-}
-
-bool	lexer(t_lexer *lexer)
-{
-	while (ft_isspace(lexer->str[lexer->idx]))
-		lexer->idx++;
-	lexer->state = get_state(lexer->str[lexer->idx]);
-	while (lexer->state != S_EOF)                                                                       
-	{
-		if (s_lexfunction(lexer, s_get_type(lexer->state)))
-			return (true);
-	}
-	return (false);
 }

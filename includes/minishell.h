@@ -3,13 +3,19 @@
 # define MINISHELL_H
 
 /**
- * Minishell libs.
+ * Minishell feature libs.
  */
 
-# include "builtins.h"
-# include "executor.h"
-# include "parser.h"
 # include "lexer.h"
+# include "expander.h"
+# include "parser.h"
+# include "executor.h"
+# include "builtins.h"
+
+/**
+ * Minishell util libs.
+ */
+
 # include "defines.h"
 # include "utils.h"
 # include "signals.h"
@@ -18,9 +24,6 @@
 /**
  * Needed libs.
  */
-// # include <readline/history.h>
-// # include <readline/readline.h>
-// # include <signal.h>
 
 # include <unistd.h>
 # include <stdio.h>
@@ -34,7 +37,7 @@ typedef struct s_data
 	pid_t	last_pid;
 }	t_data;
 
-int		prompt(t_lexer *lexer);
+// int		prompt(t_lexer *lexer);
 
 /**
  * Init functions.

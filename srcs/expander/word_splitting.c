@@ -1,6 +1,5 @@
 
 #include "lexer.h"
-// #include "test.h"
 
 static void		st_first_param(char *str, t_token *token);
 static t_token	*st_other_params(char *str, t_token **token);
