@@ -8,9 +8,11 @@ static void		st_rm_tokenspace(t_lexer *lexer);
 
 bool	expander(char **envp, t_lexer *lex)
 {
-	t_token	*tmp;
+	t_token		*tmp;
+	// t_expander	expander;
 
 	tmp = lex->tokens;
+	// expander.envp = envp;
 	while (tmp)
 	{
 		if (st_handle_token(tmp, envp))
@@ -24,22 +26,26 @@ bool	expander(char **envp, t_lexer *lex)
 
 static bool	st_handle_token(t_token *token, char **envp)
 {
-	size_t	i;
-	size_t	pos;
+	size_t		i;
+	t_expander	expander;
+	// size_t	pos;
 
 	i = 0;
-	pos = 0;
+	expander.token = token;
+	expander.envp = envp;
+	expander.pos = i;
 	while (i < token->exp_count)
 	{
-		while (token->word[pos])
+		expander.exp = &(token->exp[i]);
+		while (token->word[expander.pos])
 		{
-			if (token->word[pos] == CH_EXPAND)
+			if (token->word[expander.pos] == CH_EXPAND)
 			{
-				if (do_expanding(token, &(token->exp[i]), &pos, envp))
+				if (do_expanding(&expander))
 					return (true);
 				break ;
 			}
-			pos++;
+			expander.pos++;
 		}
 		i++;
 	}
