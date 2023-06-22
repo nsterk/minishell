@@ -23,7 +23,7 @@ t_token	*split_words(t_lexer *lex, t_token **token)
 	size_t	len;
 
 	i = 0;
-	token_printHtT(lex->tokens);
+	// token_printHtT(lex->tokens);
 	words = ft_split((*token)->word, ' ');
 	check_malloc(words, "split_words");
 	len = ft_array_len(words);
@@ -34,7 +34,7 @@ t_token	*split_words(t_lexer *lex, t_token **token)
 			st_first_param(words[i], tmp);
 		else
 			tmp = st_other_params(words[i], &tmp);
-		if (i < (len  - 1))
+		if (i < (len - 1))
 			tmp = st_add_space(&tmp);
 		i++;
 	}

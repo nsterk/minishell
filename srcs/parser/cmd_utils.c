@@ -10,6 +10,7 @@ t_cmd	*cmd_new(void)
 		return (NULL);
 	cmd->argc = 0;
 	cmd->args = NULL;
+	cmd->cmd = NULL;
 	cmd->in = NULL;
 	cmd->out = NULL;
 	cmd->next = NULL;

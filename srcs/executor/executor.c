@@ -163,7 +163,7 @@ void	executor(t_data *data)
 		data->last_pid = 1;
 		return ;
 	}
-	if (!tmp->cmd)
+	if (!tmp->args)
 		return ;
 	signal(SIGQUIT, sigquit_handler);
 	data->paths = init_paths(data->envp);
