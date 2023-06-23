@@ -6,11 +6,12 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 20:31:59 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/06/22 14:41:38 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/06/23 15:59:13 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
+// #include "defines.h"
 #include "parser.h"
 
 static bool	s_add_redir(t_token **token, t_red **red, t_red_type type);

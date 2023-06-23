@@ -8,14 +8,25 @@ void	init_data(t_data *data, char **envp)
 	init_lexer(&data->lexer);
 	st_init_envp(data, envp);
 	data->last_pid = 0; // ! important
+	init_expander(data);
 	data->cmd = NULL;
 }
 
-void	reinit_data(t_data *data)
+void	init_lexer(t_lexer *lexer)
 {
-	reinit_lexer(&data->lexer);
-	cmdclear(&data->cmd, free);
-	data->cmd = NULL;
+	lexer->str = NULL;
+	lexer->tokens = NULL;
+	lexer->idx = 0;
+	lexer->expansions = 0;
+	lexer->flags = 0;
+}
+
+void	init_expander(t_data *data)
+{
+	data->expander.exp = NULL;
+	data->expander.pos = 0;
+	data->expander.envp = data->envp;
+	data->expander.status = &(data->last_pid);
 }
 
 static void	st_init_envp(t_data *data, char **envp)

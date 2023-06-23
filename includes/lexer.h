@@ -3,6 +3,7 @@
 # define LEXER_H
 
 # include "utils.h"
+# include "defines.h"
 
 typedef enum e_toktype
 {

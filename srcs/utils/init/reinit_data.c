@@ -1,13 +1,11 @@
 
 #include "minishell.h"
 
-void	init_lexer(t_lexer *lexer)
+void	reinit_data(t_data *data)
 {
-	lexer->str = NULL;
-	lexer->tokens = NULL;
-	lexer->idx = 0;
-	lexer->expansions = 0;
-	lexer->flags = 0;
+	reinit_lexer(&data->lexer);
+	cmdclear(&data->cmd, free);
+	data->cmd = NULL;
 }
 
 void	reinit_lexer(t_lexer *lexer)

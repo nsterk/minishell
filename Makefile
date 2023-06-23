@@ -80,7 +80,7 @@ SRCS_UTILS		:=	exits.c \
 					gnl.c \
 					gnl_utils.c \
 					init_data.c \
-					init_lexer.c \
+					reinit_data.c \
 					init_parser.c \
 					ft_array_len.c \
 					ft_atoi.c \

@@ -20,7 +20,7 @@ static void	enter_shell(char **envp)
 	{
 		if (!lexer(&data.lexer))
 		{
-			expander(data.envp, &data.lexer);
+			expander(&data.expander, &data.lexer);
 			if (!parser(data.lexer.tokens, &data.cmd))
 			{
 				g_state = EXECUTING;

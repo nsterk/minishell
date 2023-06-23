@@ -30,11 +30,12 @@
 
 typedef struct s_data
 {
-	t_lexer	lexer;
-	t_cmd	*cmd;
-	char	**envp;
-	char	**paths;
-	pid_t	last_pid;
+	t_lexer		lexer;
+	t_expander	expander;
+	t_cmd		*cmd;
+	char		**envp;
+	char		**paths;
+	pid_t		last_pid;
 }	t_data;
 
 // int		prompt(t_lexer *lexer);
@@ -44,6 +45,7 @@ typedef struct s_data
  */
 
 void	init_data(t_data *data, char **envp);
+void	init_expander(t_data *data);
 void	reinit_data(t_data *data);
 void	init_lexer(t_lexer *lexer);
 void	reinit_lexer(t_lexer *lexer);
