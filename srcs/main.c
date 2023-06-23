@@ -4,7 +4,7 @@
 static void	enter_shell(char **envp);
 static bool	prompt(t_lexer *lexer);
 
-int			main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
 	if (argc && argv) 
 		enter_shell(envp);

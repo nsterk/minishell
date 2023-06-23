@@ -33,7 +33,7 @@ static bool	st_handle_token(t_token *token, char **envp)
 	i = 0;
 	expander.token = token;
 	expander.envp = envp;
-	expander.pos = i;
+	expander.pos = 0;
 	while (i < token->exp_count)
 	{
 		expander.exp = &(token->exp[i]);
