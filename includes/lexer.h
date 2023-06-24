@@ -35,7 +35,7 @@ typedef struct s_expansion
 {
 	size_t	start;
 	size_t	end;
-	char 	*parameter;
+	char	*param;
 }	t_expansion;
 
 typedef struct s_token
@@ -81,7 +81,8 @@ void		switch_state(t_lexer *lexer, t_lexstate new_state);
  * Token list functions.
  */
 
-t_token		*token_new(t_toktype type, t_lexstate state, char *str, size_t exps);
+t_token		*token_new(t_toktype type, t_lexstate state, char *str, \
+	size_t exps);
 int			token_size(t_token *token);
 void		token_delone(t_token *token, void (*del)(void*));
 void		tokenclear(t_token **token, void (*del)(void*));

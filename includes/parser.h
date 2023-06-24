@@ -37,12 +37,12 @@ typedef struct s_red
 	t_red_type		type;
 	char			*filename;
 	int				fd;
+	bool			ambig_redir;
 	struct s_red	*next;
 }	t_red;
 
 typedef struct s_cmd
 {
-	char			*cmd;
 	char			**args;
 	int				argc;
 	t_red			*in;

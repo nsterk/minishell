@@ -32,8 +32,8 @@ static void	free_expansion(t_expansion *expansion, size_t i)
 {
 	while (i)
 	{
-		if (expansion[i - 1].parameter)
-			free(expansion[i - 1].parameter);
+		if (expansion[i - 1].param)
+			free(expansion[i - 1].param);
 		i--;
 	}
 	free(expansion);

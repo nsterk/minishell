@@ -8,7 +8,7 @@ void	copy_line_envp(char **new_env, char **env, int new_env_i, int env_i)
 	len = ft_strlen(env[env_i]);
 	new_env[new_env_i] = (char *)ft_calloc((len + 1), sizeof(char));
 	check_malloc(new_env[new_env_i], "copy_line_env");
-	ft_strlcpy(new_env[new_env_i], env[env_i], len);
+	ft_strlcpy(new_env[new_env_i], env[env_i], len + 1);
 }
 
 static int	st_check_export_error(char *arg, int i)

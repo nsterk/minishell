@@ -7,7 +7,7 @@ void	init_data(t_data *data, char **envp)
 {
 	init_lexer(&data->lexer);
 	st_init_envp(data, envp);
-	data->last_pid = 0; // ! important
+	data->last_pid = 0;
 	init_expander(data);
 	data->cmd = NULL;
 }

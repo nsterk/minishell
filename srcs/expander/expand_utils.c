@@ -72,7 +72,7 @@ t_token	*clean_token(t_lexer *lex, t_token **token)
 
 void	get_param(t_expander *expander, t_token *token)
 {
-	t_expansion *exp;
+	t_expansion	*exp;
 	size_t		*pos;
 
 	exp = expander->exp;
@@ -83,10 +83,17 @@ void	get_param(t_expander *expander, t_token *token)
 		exp->end = *pos;
 	else
 	{
-		while (token->word[*pos] != CH_EXPAND && get_state(token->word[*pos]) == S_WORD)
+		while (token->word[*pos] != CH_EXPAND && \
+			get_state(token->word[*pos]) == S_WORD)
 			(*pos)++;
 		exp->end = *pos - 1;
 	}
-	exp->parameter = ft_strndup(token->word + exp->start + 1, exp->end - exp->start);
-	check_malloc(exp->parameter, "st_get_param");
+	exp->param = ft_strndup(token->word + exp->start + 1, \
+		exp->end - exp->start);
+	check_malloc(exp->param, "st_get_param");
+}
+
+void	env_not_found(t_token *token, t_expander *expander)
+{
+
 }

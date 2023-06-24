@@ -33,7 +33,7 @@ static t_token	*st_allocate_token(size_t exp_count)
 		check_malloc(new->exp, "st_allocate_token");
 		while (exp_count)
 		{
-			new->exp[exp_count - 1].parameter = NULL;
+			new->exp[exp_count - 1].param = NULL;
 			new->exp[exp_count - 1].start = 0;
 			new->exp[exp_count - 1].end = 0;
 			exp_count--;

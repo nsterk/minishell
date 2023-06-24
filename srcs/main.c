@@ -6,7 +6,7 @@ static bool	prompt(t_lexer *lexer);
 
 int	main(int argc, char **argv, char **envp)
 {
-	if (argc && argv) 
+	if (argc && argv)
 		enter_shell(envp);
 	return (0);
 }
