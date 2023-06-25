@@ -30,6 +30,6 @@
 # define F_WORD		128
 # define F_EXPAND	256
 # define F_APPEND	512
-# define F_AMBIG	1024
+# define F_FILENAME	1024
 
 #endif

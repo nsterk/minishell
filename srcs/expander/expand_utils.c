@@ -45,31 +45,6 @@ bool	contains_space(char *str)
 	return (false);
 }
 
-t_token	*clean_token(t_lexer *lex, t_token **token)
-{
-	char	*tmp;
-	bool	split;
-
-	if ((*token)->flags ^ F_WORD)
-		return ((*token)->next);
-	split = false;
-	if ((*token)->exp_count && (*token)->flags ^ F_DQUOTE)
-		split = true;
-	if ((*token)->prev && (*token)->prev->flags & F_WORD)
-	{
-		tmp = ft_strjoin((*token)->prev->word, (*token)->word);
-		check_malloc(tmp, "st_clean_token");
-		free((*token)->prev->word);
-		(*token)->prev->word = tmp;
-		(*token)->word[0] = '\0';
-	}
-	if (!(*token)->word || !(*(*token)->word))
-		return (token_remove(&(lex->tokens), *token));
-	if (split && contains_space((*token)->word))
-		return (split_words(token));
-	return ((*token)->next);
-}
-
 void	get_param(t_expander *expander, t_token *token)
 {
 	t_expansion	*exp;
@@ -93,7 +68,7 @@ void	get_param(t_expander *expander, t_token *token)
 	check_malloc(exp->param, "st_get_param");
 }
 
-void	env_not_found(t_token *token, t_expander *expander)
-{
+// void	env_not_found(t_token *token, t_expander *expander)
+// {
 
-}
+// }
