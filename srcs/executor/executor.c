@@ -112,7 +112,7 @@ static t_proc	*st_simple_cmd(t_cmd *cmd, t_data *data)
 {
 	t_proc	*proc;
 
-	if (special_builtin(cmd->args[0]))
+	if (cmd->args && special_builtin(cmd->args[0]))
 	{
 		if (redirect_in(cmd->in, STDIN_FILENO, data))
 			return (NULL);
@@ -163,8 +163,8 @@ void	executor(t_data *data)
 		data->last_pid = 1;
 		return ;
 	}
-	if (!tmp->args)
-		return ;
+	// if (!tmp->args)
+	// 	return ;
 	signal(SIGQUIT, sigquit_handler);
 	data->paths = init_paths(data->envp);
 	if (!tmp->next)

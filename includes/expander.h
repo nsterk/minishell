@@ -28,6 +28,6 @@ void		get_param(t_expander *expr, t_token *token);
 t_token		*split_words(t_token **token);
 bool		contains_space(char *str);
 void		rm_tokenspace(t_lexer *lexer);
-void		env_not_found(t_token *token, t_expander *expander);
+// void		env_not_found(t_token *token, t_expander *expander);
 
 #endif

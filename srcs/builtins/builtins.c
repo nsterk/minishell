@@ -30,10 +30,10 @@ int	special_builtin(char *cmd)
 int	check_builtin(t_cmd *cmds, t_data *data)
 {
 	char	*tmp;
-	
-	tmp = cmds->args[0]; // ? testing
+
 	if (!cmds)
 		return (EXIT_FAILURE);
+	tmp = cmds->args[0]; // ? testing
 	if (!ft_strncmp(tmp, "echo", 5))
 		return (exec_echo(cmds->args, data));
 	else if (!ft_strncmp(tmp, "cd", 2))
