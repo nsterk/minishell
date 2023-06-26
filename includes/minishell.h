@@ -38,8 +38,6 @@ typedef struct s_data
 	pid_t		last_pid;
 }	t_data;
 
-// int		prompt(t_lexer *lexer);
-
 /**
  * Init functions.
  */

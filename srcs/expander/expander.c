@@ -13,10 +13,8 @@ static bool		st_handle_token(t_expander *expander, t_token *token);
 bool	expander(t_expander *expander, t_lexer *lexer)
 {
 	t_token	*tmp;
-	// bool	split;
 
 	tmp = lexer->tokens;
-	// split = false;
 	while (tmp)
 	{
 		if (st_handle_token(expander, tmp))
@@ -31,7 +29,6 @@ bool	expander(t_expander *expander, t_lexer *lexer)
 bool	do_expanding(t_expander *expander, t_token *token)
 {
 	char		*env_val;
-	char		*tmp;
 	size_t		new_len;
 
 	get_param(expander, token);
@@ -66,7 +63,7 @@ t_token	*clean_token(t_lexer *lex, t_token **token)
 		(*token)->prev->word = tmp;
 		(*token)->word[0] = '\0';
 	}
-	if ((*token)->flags ^ F_FILENAME && !(*token)->word || !(*(*token)->word))
+	if ((*token)->flags ^ F_FILENAME && (!(*token)->word || !(*(*token)->word)))
 		return (token_remove(&(lex->tokens), *token));
 	if (split && contains_space((*token)->word))
 		return (split_words(token));

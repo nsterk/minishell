@@ -113,7 +113,7 @@ SRCS_UTILS		:=	exits.c \
 					malloc_check.c \
 					strjoin_free.c \
 					test_list.c \
-					test_parser.c 
+					test_parser.c \
 
 # Objects
 OBJS			:=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
