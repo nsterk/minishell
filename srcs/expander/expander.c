@@ -66,7 +66,7 @@ t_token	*clean_token(t_lexer *lex, t_token **token)
 		(*token)->prev->word = tmp;
 		(*token)->word[0] = '\0';
 	}
-	if (!(*token)->word || !(*(*token)->word))
+	if ((*token)->flags ^ F_FILENAME && !(*token)->word || !(*(*token)->word))
 		return (token_remove(&(lex->tokens), *token));
 	if (split && contains_space((*token)->word))
 		return (split_words(token));

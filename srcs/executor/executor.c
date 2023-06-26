@@ -128,9 +128,9 @@ static t_proc	*st_simple_cmd(t_cmd *cmd, t_data *data)
 	else if (proc->pid == CHILD)
 	{
 		if (redirect_in(cmd->in, STDIN_FILENO, data))
-			exit(data->last_pid);
+			exit(1); //! changed this because we gave exit status 0 if file not found error for indirect
 		if (redirect_out(cmd->out, STDOUT_FILENO, data))
-			exit(data->last_pid);
+			exit(1);
 		execute_cmd(cmd, data);
 	}
 	return (proc);
@@ -158,6 +158,7 @@ void	executor(t_data *data)
 	t_cmd 		*tmp;
 
 	tmp = data->cmd;
+	proc = NULL; //! init to NULL so that we don't get stuck in st_wait_processes
 	if (init_heredoc(tmp))
 	{
 		data->last_pid = 1;
