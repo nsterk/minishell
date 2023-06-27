@@ -1,22 +1,6 @@
 
 #include "minishell.h"
 
-// bool	do_expanding(t_token *token, t_expansion *exp, size_t *pos, char **envp)
-// {
-// 	char		*env_val;
-// 	size_t		new_len;
-
-// 	st_get_param(token, exp, pos);
-// 	if (ft_strncmp("?", exp->parameter, 2))
-// 		expand_exit_status();
-// 	env_val = get_envp_value(envp, exp->parameter);
-// 	new_len = ft_strlen(env_val);
-// 	token->word = ft_replace(token->word, ft_strdup(env_val), exp->start, exp->end);
-// 	check_malloc(token->word, "do_expanding");
-// 	*pos = exp->start + new_len;
-// 	return (false);
-// }
-
 void	rm_tokenspace(t_lexer *lexer)
 {
 	t_token	*tmp;
@@ -67,8 +51,3 @@ void	get_param(t_expander *expander, t_token *token)
 		exp->end - exp->start);
 	check_malloc(exp->param, "st_get_param");
 }
-
-// void	env_not_found(t_token *token, t_expander *expander)
-// {
-
-// }
