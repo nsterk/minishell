@@ -43,6 +43,7 @@ typedef struct s_data
  */
 
 void	init_data(t_data *data, char **envp);
+void	init_envp(t_data *data, char **envp);
 void	init_expander(t_data *data);
 void	reinit_data(t_data *data);
 void	init_lexer(t_lexer *lexer);
