@@ -112,7 +112,7 @@ static t_proc	*st_simple_cmd(t_cmd *cmd, t_data *data)
 {
 	t_proc	*proc;
 
-	if (cmd->args && special_builtin(cmd->args[0]))
+	if (cmd->argv && special_builtin(cmd->argv[0]))
 	{
 		if (redirect_in(cmd->in, STDIN_FILENO, data))
 			return (NULL);
@@ -128,7 +128,7 @@ static t_proc	*st_simple_cmd(t_cmd *cmd, t_data *data)
 	else if (proc->pid == CHILD)
 	{
 		if (redirect_in(cmd->in, STDIN_FILENO, data))
-			exit(1); //! changed this because we gave exit status 0 if file not found error for indirect
+			exit(1);
 		if (redirect_out(cmd->out, STDOUT_FILENO, data))
 			exit(1);
 		execute_cmd(cmd, data);
@@ -154,18 +154,16 @@ static t_proc	*st_simple_cmd(t_cmd *cmd, t_data *data)
 
 void	executor(t_data *data)
 {
-	t_proc 		*proc;
-	t_cmd 		*tmp;
+	t_proc	*proc;
+	t_cmd	*tmp;
 
 	tmp = data->cmd;
-	proc = NULL; //! init to NULL so that we don't get stuck in st_wait_processes
+	proc = NULL;
 	if (init_heredoc(tmp))
 	{
 		data->last_pid = 1;
 		return ;
 	}
-	// if (!tmp->args)
-	// 	return ;
 	signal(SIGQUIT, sigquit_handler);
 	data->paths = init_paths(data->envp);
 	if (!tmp->next)

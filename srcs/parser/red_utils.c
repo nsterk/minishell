@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   red_utils.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/06/28 18:27:00 by nsterk        #+#    #+#                 */
+/*   Updated: 2023/06/28 18:27:01 by nsterk        ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "parser.h"
 
@@ -27,12 +38,12 @@ t_red	*red_last(t_red	*red)
 	return (current);
 }
 
-int	red_append(t_red **red, t_red *new)
+bool	red_append(t_red **red, t_red *new)
 {
 	t_red	*tail;
 
 	if (!red || !new)
-		return (1);
+		return (true);
 	if (*red == NULL)
 		*red = new;
 	else
@@ -40,7 +51,7 @@ int	red_append(t_red **red, t_red *new)
 		tail = red_last(*red);
 		tail->next = new;
 	}
-	return (0);
+	return (false);
 }
 
 void	redclear(t_red **red, void (*del)(void*))

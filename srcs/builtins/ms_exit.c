@@ -21,7 +21,7 @@ static bool	st_is_numeric_arg(t_cmd *cmd)
 	i = 2;
 	while (i < cmd->argc)
 	{
-		if (!ft_strcheck(cmd->args[i], ft_isdigit))
+		if (!ft_strcheck(cmd->argv[i], ft_isdigit))
 			return (true);
 		i++;
 	}
@@ -30,7 +30,7 @@ static bool	st_is_numeric_arg(t_cmd *cmd)
 
 static bool	st_help_exit(t_cmd *cmd, t_data *data)
 {
-	if (!ft_strcheck(cmd->args[1], ft_isdigit))
+	if (!ft_strcheck(cmd->argv[1], ft_isdigit))
 	{
 		if (cmd->argc > 2)
 		{
@@ -38,11 +38,11 @@ static bool	st_help_exit(t_cmd *cmd, t_data *data)
 			return (false);
 		}
 		else
-			data->last_pid = ft_atoi(cmd->args[1]);
+			data->last_pid = ft_atoi(cmd->argv[1]);
 	}
 	else
 	{
-		error(cmd->args[1], ": numeric argument required", 255, data);
+		error(cmd->argv[1], ": numeric argument required", 255, data);
 		return (st_is_numeric_arg(cmd));
 	}
 	return (true);

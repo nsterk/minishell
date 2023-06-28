@@ -20,7 +20,7 @@
  * F_WORD		token is word
  * F_EXPAND		token contains expansion
  * F_APPEND		token is special redirect (heredoc for redir_in, append for redir_out)
- * F_AMBIG		token leads to ambiguous redirect
+ * F_FILENAME	token is a filename
  */
 
 # define F_SQUOTE	1

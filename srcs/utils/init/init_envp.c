@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   init_envp.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/06/28 18:32:41 by nsterk        #+#    #+#                 */
+/*   Updated: 2023/06/28 18:39:56 by nsterk        ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
+static void	st_copy_envp(t_data *data, size_t len, char **envp);
 static char	*st_check_lvl(const char *val, bool *found);
 static bool	st_check_numeric(const char *val);
 static int	st_get_lvl(const char *val);
@@ -17,7 +29,14 @@ void	init_envp(t_data *data, char **envp)
 	data->envp = ft_calloc(len + 1, sizeof(char *));
 	check_malloc(data->envp, "init_envp **");
 	data->envp[len] = NULL;
-	len--;
+	st_copy_envp(data, len - 1, envp);
+}
+
+static void	st_copy_envp(t_data *data, size_t len, char **envp)
+{
+	bool	found;
+
+	found = false;
 	while (len + 1)
 	{
 		if (!len && !found)
@@ -53,9 +72,9 @@ static char	*st_check_lvl(const char *val, bool *found)
 	}
 	else
 		entry = ft_strdup("SHLVL=");
-	check_malloc(entry, "st_check_lvl");
 	if (lvl)
 		free(lvl);
+	check_malloc(entry, "st_check_lvl");
 	return (entry);
 }
 

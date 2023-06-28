@@ -26,7 +26,6 @@ typedef struct s_list
 /**
  * Exit functions.
  */
-void			exit_minishell(int status);
 void			exit_error(const int code, const char *func, const char *msg);
 
 /**

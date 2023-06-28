@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   parse_args.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/06/28 18:26:47 by nsterk        #+#    #+#                 */
+/*   Updated: 2023/06/28 18:26:49 by nsterk        ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -12,9 +23,9 @@ bool	parse_args(t_token **token, t_cmd *cmd)
 	if (current->argc)
 		return (error_msg("Syntax error encountered in parse_args"));
 	current->argc = s_get_argc(*token);
-	current->args = malloc(sizeof(char *) * (current->argc + 1));
-	check_malloc(current->args, "parse_args");
-	current->args[current->argc] = NULL;
+	current->argv = malloc(sizeof(char *) * (current->argc + 1));
+	check_malloc(current->argv, "parse_args");
+	current->argv[current->argc] = NULL;
 	return (s_add_args(token, current));
 }
 
@@ -45,8 +56,8 @@ static bool	s_add_args(t_token **token, t_cmd *cmd)
 	{
 		if ((*token)->flags & (F_WORD + F_SQUOTE + F_DQUOTE))
 		{
-			cmd->args[i] = ft_strdup((*token)->word);
-			check_malloc(cmd->args[i], "s_add_args");
+			cmd->argv[i] = ft_strdup((*token)->word);
+			check_malloc(cmd->argv[i], "s_add_args");
 			i++;
 		}
 		*token = (*token)->next;

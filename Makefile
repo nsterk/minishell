@@ -39,10 +39,11 @@ SRCS_PARSER		:=	parse_args.c \
 					red_utils.c \
 
 # Lexer srcs
-SRCS_LEXER		:=	delimit_token.c \
-					lex_operator.c \
+SRCS_LEXER		:=	lex_word.c \
 					lex_space.c \
-					lex_word.c \
+					lex_operator.c \
+					lexer_utils.c \
+					token_new.c \
 					token_add.c \
 					token_find.c \
 					token_free.c \
@@ -109,8 +110,6 @@ SRCS_UTILS		:=	exits.c \
 					ft_substr.c \
 					malloc_check.c \
 					strjoin_free.c \
-					test_list.c \
-					test_parser.c \
 
 # Objects
 OBJS			:=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
@@ -139,11 +138,6 @@ $(NAME):	$(OBJS) $(OBJS_P) $(OBJS_L) $(OBJS_X) $(OBJS_S) $(OBJS_E) $(OBJS_B) $(O
 	@printf "$(YEL)\n\n  Compiling objects\n$(DEF)"
 	$(CC) $(OBJS) $(OBJS_P) $(OBJS_L) $(OBJS_X) $(OBJS_S) $(OBJS_E) $(OBJS_B) $(OBJS_U) $(FLAGS) $(LIBS) $(RL_LIB) -o $(NAME)
 	@printf "$(GRN)\n  Success!$(DEF)"
-
-# $(NAME):	$(OBJS) $(OBJS_P) $(OBJS_L) $(OBJS_X) $(OBJS_S) $(OBJS_E) $(OBJS_B) $(OBJS_U)
-# 	@printf "$(YEL)\n\n  Compiling objects\n$(DEF)"
-# 	$(CC) $(OBJS) $(OBJS_P) $(OBJS_L) $(OBJS_X) $(OBJS_S) $(OBJS_E) $(OBJS_B) $(OBJS_U) $(FLAGS) $(LIBS) -lhistory -lreadline -o $(NAME)
-# 	@printf "$(GRN)\n  Success!$(DEF)"
 
 $(OBJ_DIR)/%.o: $(notdir %.c)
 	@mkdir -p $(OBJ_DIR)

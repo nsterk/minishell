@@ -52,6 +52,19 @@ void	token_printaddress(t_token *lst)
 	}
 }
 
+// int	token_size(t_token *token)
+// {
+// 	int		i;
+
+// 	i = 0;
+// 	while (token)
+// 	{
+// 		token = token->next;
+// 		i++;
+// 	}
+// 	return (i);
+// }
+
 // void	test_insert(t_token **lst)
 // {
 // 	t_token	*tmp;

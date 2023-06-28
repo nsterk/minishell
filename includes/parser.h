@@ -3,9 +3,6 @@
 # define PARSER_H
 
 # include "lexer.h"
-// # include "defines.h"
-// # include "executor.h"
-# include "colours.h"
 # include <stdio.h>
 
 /**
@@ -40,9 +37,14 @@ typedef struct s_red
 	struct s_red	*next;
 }	t_red;
 
+/**
+ * Cmd data:
+ *  - argv
+ * 
+ */
 typedef struct s_cmd
 {
-	char			**args;
+	char			**argv;
 	int				argc;
 	t_red			*in;
 	t_red			*out;
@@ -67,7 +69,7 @@ bool	error_msg(char *msg);
  */
 t_cmd	*cmd_new(void);
 t_cmd	*cmd_last(t_cmd	*cmd);
-int		cmd_append(t_cmd **cmd, t_cmd *new);
+bool	cmd_append(t_cmd **cmd, t_cmd *new);
 void	cmdclear(t_cmd **cmd, void (*del)(void*));
 void	cmd_delone(t_cmd *cmd, void (*del)(void*));
 
@@ -77,7 +79,7 @@ void	cmd_delone(t_cmd *cmd, void (*del)(void*));
 
 t_red	*red_new(t_red_type type);
 t_red	*red_last(t_red	*red);
-int		red_append(t_red **red, t_red *new);
+bool	red_append(t_red **red, t_red *new);
 void	redclear(t_red **red, void (*del)(void*));
 void	red_delone(t_red *red, void (*del)(void*));
 
