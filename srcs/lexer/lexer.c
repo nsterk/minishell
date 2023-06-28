@@ -1,8 +1,8 @@
 
 #include "lexer.h"
 
-static t_toktype	s_get_type(t_lexstate state);
-static bool			s_lexfunction(t_lexer *lexer, t_toktype type);
+static t_toktype	st_get_type(t_lexstate state);
+static bool			st_lexfunction(t_lexer *lexer, t_toktype type);
 
 bool	lexer(t_lexer *lexer)
 {
@@ -11,13 +11,38 @@ bool	lexer(t_lexer *lexer)
 	lexer->state = get_state(lexer->str[lexer->idx]);
 	while (lexer->state != S_EOF)                                                                       
 	{
-		if (s_lexfunction(lexer, s_get_type(lexer->state)))
+		if (st_lexfunction(lexer, st_get_type(lexer->state)))
 			return (true);
 	}
 	return (false);
 }
 
-static t_toktype	s_get_type(t_lexstate state)
+t_lexstate	get_state(int c)
+{
+	if (c == '\0')
+		return (S_EOF);
+	if (ft_isspace(c))
+		return (S_SPACE);
+	if (c == CH_SQUOTE)
+		return (S_SQUOTE);
+	if (c == CH_DQUOTE)
+		return (S_DQUOTE);
+	if (c == CH_LESS)
+		return (S_REDIR_IN);
+	if (c == CH_GREAT)
+		return (S_REDIR_OUT);
+	if (c == CH_PIPE)
+		return (S_PIPE);
+	return (S_WORD);
+}
+
+void	switch_state(t_lexer *lexer, t_lexstate new_state)
+{
+	lexer->state = new_state;
+	lexer->idx++;
+}
+
+static t_toktype	st_get_type(t_lexstate state)
 {
 	static const t_toktype	s_type[] = {
 	[S_SPACE] = TOK_SPACE,
@@ -33,7 +58,7 @@ static t_toktype	s_get_type(t_lexstate state)
 	return (s_type[state]);
 }
 
-static bool	s_lexfunction(t_lexer *lexer, t_toktype type)
+static bool	st_lexfunction(t_lexer *lexer, t_toktype type)
 {
 	static const t_lexfunction lex[] = {
 		[TOK_SPACE] = &lex_space,

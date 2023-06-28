@@ -1,7 +1,7 @@
 
 #include "minishell.h"
 
-static bool	s_parse_command(t_token **token, t_cmd **cmd);
+static bool	st_parse_command(t_token **token, t_cmd **cmd);
 
 bool	parser(t_token *token, t_cmd **cmd)
 {
@@ -14,13 +14,13 @@ bool	parser(t_token *token, t_cmd **cmd)
 	check_malloc(*cmd, "parser");
 	while (tmp)
 	{
-		if (s_parse_command(&tmp, cmd))
+		if (st_parse_command(&tmp, cmd))
 			return (true);
 	}
 	return (false);
 }
 
-static bool	s_parse_command(t_token **token, t_cmd **cmd)
+static bool	st_parse_command(t_token **token, t_cmd **cmd)
 {
 	if ((*token)->flags & F_WORD)
 		return (parse_args(token, *cmd));

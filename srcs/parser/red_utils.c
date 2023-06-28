@@ -11,7 +11,6 @@ t_red	*red_new(t_red_type type)
 	red->type = type;
 	red->fd = -1;
 	red->filename = NULL;
-	red->ambig_redir = false;
 	red->next = NULL;
 	return (red);
 }

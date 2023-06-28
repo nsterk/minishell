@@ -30,7 +30,6 @@ SRCS			:=	main.c \
 					executor.c \
 					builtins.c \
 					signals.c \
-					#prompt.c \
 
 # Parser srcs
 SRCS_PARSER		:=	parse_args.c \
@@ -44,8 +43,6 @@ SRCS_LEXER		:=	delimit_token.c \
 					lex_operator.c \
 					lex_space.c \
 					lex_word.c \
-					lex_quote.c \
-					state_type.c \
 					token_add.c \
 					token_find.c \
 					token_free.c \
@@ -82,7 +79,6 @@ SRCS_UTILS		:=	exits.c \
 					init_data.c \
 					init_envp.c \
 					reinit_data.c \
-					init_parser.c \
 					ft_array_len.c \
 					ft_atoi.c \
 					ft_bzero.c \
