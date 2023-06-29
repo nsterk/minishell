@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/28 18:26:47 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/06/28 18:26:49 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/06/29 18:06:54 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	parse_args(t_token **token, t_cmd *cmd)
 
 static int	s_get_argc(t_token *token)
 {
-	int		i;
+	size_t	i;
 	t_token	*tmp;
 
 	i = 0;
@@ -49,7 +49,7 @@ static int	s_get_argc(t_token *token)
 
 static bool	s_add_args(t_token **token, t_cmd *cmd)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (i < cmd->argc)

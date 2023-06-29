@@ -82,20 +82,16 @@ char	**ft_export(char *arg, char **envp, t_data *data)
 int	exec_export(char **args, t_data *data)
 {
 	int		i;
-	char	*tmp;
 
 	if (!args[1])
 		ms_single_export(data->envp);
 	i = 1;
 	while (args[i])
 	{
-		tmp = ft_strtrim(args[i], "\"");
-		check_malloc(tmp, "exec_export");
-		if (check_for_error(tmp, EXPORT, data->envp))
-			error_message(tmp, data);
+		if (check_for_error(args[i], EXPORT, data->envp))
+			error_message(args[i], data);
 		else
-			data->envp = ft_export(tmp, data->envp, data);
-		free(tmp);
+			data->envp = ft_export(args[i], data->envp, data);
 		i++;
 	}
 	return (EXIT_SUCCESS);

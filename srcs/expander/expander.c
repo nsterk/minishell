@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/28 18:19:08 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/06/28 18:19:10 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/06/29 17:42:45 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static t_token	*st_clean_token(t_lexer *lex, t_token **token)
 	bool	split;
 
 	split = false;
-	if ((*token)->flags ^ F_WORD)
+	if ((*token)->flags & (F_SPACE + F_OPERATOR))
 		return ((*token)->next);
 	if ((*token)->exp_count && (*token)->flags ^ F_DQUOTE)
 		split = true;

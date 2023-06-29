@@ -13,7 +13,7 @@ void	copy_line_envp(char **new_env, char **env, int new_env_i, int env_i)
 
 static int	st_check_export_error(char *arg, int i)
 {
-	while (arg[i] && ft_strchr("\'\"\\$ ,.:/[{]}+=-?&*^%#@!~", arg[i]))
+	while (arg[i] && ft_strchr("\'\"\\$,.:/[{]}+=-?&*^%#@!~", arg[i]))
 		i++;
 	if (ft_isalpha(arg[i]) || ft_isalnum(arg[i]))
 		return (EXIT_SUCCESS);
@@ -59,7 +59,7 @@ int	check_for_error(char *arg, int type, char **env)
 	i = 0;
 	if (!ft_isalpha(arg[i]) && arg[i] != '_')
 		return (EXIT_FAILURE);
-	while (arg[i] && !ft_strchr("\'\"\\$ ,.:/[{]}+=-?&*^%#@!~", arg[i]))
+	while (arg[i] && !ft_strchr("\'\"\\$,.:/[{]}+=-?&*^%#@!~", arg[i]))
 		i++;
 	if (arg[i] == '+' && arg[i + 1] == '=')
 		arg = st_change_arg(arg, env, &i);
