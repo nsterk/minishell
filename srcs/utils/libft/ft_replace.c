@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   ft_replace.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/06/29 18:11:30 by nsterk        #+#    #+#                 */
+/*   Updated: 2023/06/29 18:13:07 by nsterk        ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "utils.h"
 
@@ -14,7 +25,7 @@ static char	*clean_replace(char *dst, char *src, char *front, char *back)
 	return (NULL);
 }
 
-char *ft_replace(char *dst, char *src, size_t start, size_t end)
+char	*ft_replace(char *dst, char *src, size_t start, size_t end)
 {
 	char	*front;
 	char	*back;
