@@ -33,7 +33,7 @@ int	check_builtin(t_cmd *cmds, t_data *data)
 
 	if (!cmds)
 		return (EXIT_FAILURE);
-	tmp = cmds->argv[0]; // ? testing
+	tmp = cmds->argv[0];
 	if (!ft_strncmp(tmp, "echo", 5))
 		return (exec_echo(cmds->argv, data));
 	else if (!ft_strncmp(tmp, "cd", 2))

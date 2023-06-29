@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/28 18:32:41 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/06/28 18:39:56 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/06/29 12:29:23 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static int	st_get_lvl(const char *val)
 	return (old_lvl + 1);
 }
 
-static bool st_check_numeric(const char *val)
+static bool	st_check_numeric(const char *val)
 {
 	bool	has_digit;
 
