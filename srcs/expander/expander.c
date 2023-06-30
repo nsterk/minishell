@@ -1,49 +1,100 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   expander.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/06/28 18:19:08 by nsterk        #+#    #+#                 */
+/*   Updated: 2023/06/29 17:42:45 by nsterk        ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
-static int		st_handle_token(t_token *token, char **envp);
+static t_token	*st_clean_token(t_lexer *lex, t_token **token);
+static bool		st_handle_token(t_expander *expander, t_token *token);
 
-int	expander(char **envp, t_lexer *lex)
+bool	expander(t_expander *expander, t_lexer *lexer)
 {
-	t_token *tmp;
-	t_token	*ryan;
+	t_token	*tmp;
 
-	tmp = lex->tokens;
+	tmp = lexer->tokens;
 	while (tmp)
 	{
-		if (st_handle_token(tmp, envp))
-			return (1);
-		if (tmp->flags & F_WORD && !(*tmp->word))
-		{
-			ryan = tmp;
-			tmp = tmp->prev;
-			token_remove(&(lex->tokens), ryan);
-		}
-		tmp = tmp->next;
+		if (st_handle_token(expander, tmp))
+			return (true);
+		tmp = st_clean_token(lexer, &(tmp));
 	}
-	return (0);
+	if (lexer->tokens)
+		rm_tokenspace(lexer);
+	return (false);
 }
 
-static int		st_handle_token(t_token *token, char **envp)
+bool	do_expanding(t_expander *expander, t_token *token)
 {
-	size_t	i;
-	size_t	pos;
+	char		*env_val;
+	size_t		new_len;
+
+	get_param(expander, token);
+	if (!ft_strncmp("?", expander->exp->param, 2))
+		env_val = ft_itoa(*(expander->status));
+	else
+		env_val = ft_strdup(get_envp_value(expander->envp, \
+			expander->exp->param));
+	new_len = ft_strlen(env_val);
+	token->word = ft_replace(token->word, env_val, expander->exp->start, \
+		expander->exp->end);
+	check_malloc(token->word, "do_expanding");
+	expander->pos = expander->exp->start + new_len;
+	return (false);
+}
+
+static t_token	*st_clean_token(t_lexer *lex, t_token **token)
+{
+	char	*tmp;
+	bool	split;
+
+	split = false;
+	if ((*token)->flags & (F_SPACE + F_OPERATOR))
+		return ((*token)->next);
+	if ((*token)->exp_count && (*token)->flags ^ F_DQUOTE)
+		split = true;
+	if ((*token)->prev && (*token)->prev->flags & F_WORD)
+	{
+		tmp = ft_strjoin((*token)->prev->word, (*token)->word);
+		check_malloc(tmp, "st_clean_token");
+		free((*token)->prev->word);
+		(*token)->prev->word = tmp;
+		(*token)->word[0] = '\0';
+	}
+	if ((*token)->flags ^ F_FILENAME && (!(*token)->word || !(*(*token)->word)))
+		return (token_remove(&(lex->tokens), *token));
+	if (split && contains_space((*token)->word))
+		return (split_words(token));
+	return ((*token)->next);
+}
+
+static bool	st_handle_token(t_expander *expander, t_token *token)
+{
+	size_t		i;
 
 	i = 0;
-	pos = 0;
+	expander->pos = 0;
 	while (i < token->exp_count)
 	{
-		while (token->word[pos])
+		expander->exp = &(token->exp[i]);
+		while (token->word[expander->pos])
 		{
-			if (token->word[pos] == CH_EXPAND)
+			if (token->word[expander->pos] == CH_EXPAND)
 			{
-				if (do_expanding(token, &(token->exp[i]), &pos, envp))
-					return (1);
+				if (do_expanding(expander, token))
+					return (true);
 				break ;
 			}
-			pos++;
+			expander->pos++;
 		}
 		i++;
 	}
-	return (0);
+	return (false);
 }

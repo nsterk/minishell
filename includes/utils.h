@@ -6,7 +6,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdbool.h>
 # include <errno.h>
 # include <stdio.h>
 # include <stdbool.h>
@@ -27,7 +26,6 @@ typedef struct s_list
 /**
  * Exit functions.
  */
-void			exit_minishell(int status);
 void			exit_error(const int code, const char *func, const char *msg);
 
 /**
@@ -66,8 +64,7 @@ char				*ft_strcpy(char *dest, char *src);
 size_t				ft_strlcpy(char *dest, const char *src, size_t size);
 size_t				ft_strlen(const char *s);
 int					ft_strncmp(const char *s1, const char *s2, size_t len);
-// int					ft_strcmp(char *s1, char *s2);
-// char				*ft_strtrim(char const *s1, char const *set);
+char				*ft_strtrim(char const *s1, char const *set);
 char				*ft_substr(char const *s, size_t start, size_t len);
 const char			*ft_skipspace(const char *str);
 int					ft_free_array(char **str);
@@ -82,5 +79,4 @@ int					ft_isalpha(int c);
 int					ft_isalnum(int c);
 char				*ft_replace(char *dst, char *src, size_t start, size_t end);
 
-
-#	endif
+#endif

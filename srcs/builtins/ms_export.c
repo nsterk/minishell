@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "builtins.h"
+#include "utils.h"
 
 static char	**st_edit_envp_export(char **envp, char *args, \
 	int row_nr, int size_envp)
@@ -91,7 +92,7 @@ char	**ft_export(char *arg, char **envp, t_data *data)
 
 int	exec_export(char **args, t_data *data)
 {
-	int	i;
+	int		i;
 
 	if (!args[1])
 		ms_single_export(data->envp);

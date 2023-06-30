@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/30 11:43:16 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/06/30 11:44:07 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/06/30 14:43:24 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	copy_line_envp(char **new_env, char **env, int new_env_i, int env_i)
 	len = ft_strlen(env[env_i]);
 	new_env[new_env_i] = (char *)ft_calloc((len + 1), sizeof(char));
 	check_malloc(new_env[new_env_i], "copy_line_env");
-	ft_strcpy(new_env[new_env_i], env[env_i]);
+	ft_strlcpy(new_env[new_env_i], env[env_i], len + 1);
 }
 
 static int	st_check_export_error(char *arg, int i)
 {
-	while (arg[i] && ft_strchr("\'\"\\$ ,.:/[{]}+=-?&*^%#@!~", arg[i]))
+	while (arg[i] && ft_strchr("\'\"\\$,.:/[{]}+=-?&*^%#@!~", arg[i]))
 		i++;
 	if (ft_isalpha(arg[i]) || ft_isalnum(arg[i]))
 		return (EXIT_SUCCESS);
@@ -70,7 +70,7 @@ int	check_for_error(char *arg, int type, char **env)
 	i = 0;
 	if (!ft_isalpha(arg[i]) && arg[i] != '_')
 		return (EXIT_FAILURE);
-	while (arg[i] && !ft_strchr("\'\"\\$ ,.:/[{]}+=-?&*^%#@!~", arg[i]))
+	while (arg[i] && !ft_strchr("\'\"\\$,.:/[{]}+=-?&*^%#@!~", arg[i]))
 		i++;
 	if (arg[i] == '+' && arg[i + 1] == '=')
 		arg = st_change_arg(arg, env, &i);

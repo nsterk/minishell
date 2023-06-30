@@ -1,6 +1,10 @@
 
 NAME			:=	minishell
 
+# to compile this bullshit on Naomi's macbook
+# export RL_LIB	:= -L/usr/local/opt/readline/lib
+# export RL_INC	:= -I/usr/local/opt/readline/include
+
 USER			:=	$(shell whoami)
 export RL_LIB	:= -L/Users/$(USER)/.brew/opt/readline/lib
 export RL_INC	:= -I/Users/$(USER)/.brew/opt/readline/include
@@ -26,7 +30,6 @@ SRCS			:=	main.c \
 					executor.c \
 					builtins.c \
 					signals.c \
-					prompt.c \
 
 # Parser srcs
 SRCS_PARSER		:=	parse_args.c \
@@ -36,12 +39,11 @@ SRCS_PARSER		:=	parse_args.c \
 					red_utils.c \
 
 # Lexer srcs
-SRCS_LEXER		:=	delimit_token.c \
-					lex_operator.c \
+SRCS_LEXER		:=	lex_word.c \
 					lex_space.c \
-					lex_word.c \
-					lex_quote.c \
-					state_type.c \
+					lex_operator.c \
+					lexer_utils.c \
+					token_new.c \
 					token_add.c \
 					token_find.c \
 					token_free.c \
@@ -49,6 +51,7 @@ SRCS_LEXER		:=	delimit_token.c \
 
 # Expander srcs
 SRCS_EXPANDER	:=	expand_utils.c \
+					word_splitting.c \
 
 # Signals srcs
 SRCS_SIGNALS	:=	init_signals.c \
@@ -75,8 +78,8 @@ SRCS_UTILS		:=	exits.c \
 					gnl.c \
 					gnl_utils.c \
 					init_data.c \
-					init_lexer.c \
-					init_parser.c \
+					init_envp.c \
+					reinit_data.c \
 					ft_array_len.c \
 					ft_atoi.c \
 					ft_bzero.c \
@@ -104,11 +107,10 @@ SRCS_UTILS		:=	exits.c \
 					ft_strlen.c \
 					ft_strncmp.c \
 					ft_strndup.c \
+					ft_strtrim.c \
 					ft_substr.c \
 					malloc_check.c \
 					strjoin_free.c \
-					test_list.c \
-					test_parser.c 
 
 # Objects
 OBJS			:=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

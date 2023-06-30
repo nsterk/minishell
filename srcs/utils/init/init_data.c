@@ -1,36 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   init_data.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/06/28 18:32:18 by nsterk        #+#    #+#                 */
+/*   Updated: 2023/06/28 18:32:20 by nsterk        ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	st_init_envp(t_data *data, char **envp);
 
 void	init_data(t_data *data, char **envp)
 {
 	init_lexer(&data->lexer);
-	st_init_envp(data, envp);
-	data->last_pid = 0; // ! important
+	init_envp(data, envp);
+	data->last_pid = 0;
+	init_expander(data);
 	data->cmd = NULL;
 }
 
-void	reinit_data(t_data *data)
+void	init_lexer(t_lexer *lexer)
 {
-	reinit_lexer(&data->lexer);
-	cmdclear(&data->cmd, free);
-	data->cmd = NULL;
+	lexer->str = NULL;
+	lexer->tokens = NULL;
+	lexer->idx = 0;
+	lexer->expansions = 0;
+	lexer->flags = 0;
 }
 
-static void	st_init_envp(t_data *data, char **envp)
+void	init_expander(t_data *data)
 {
-	size_t	len;
-
-	len = ft_array_len(envp);
-	data->envp = ft_calloc(len + 1, sizeof(char *)); //! maybe going to want to strdup all of this so that we don't have a free error when cd is being executed
-	check_malloc(data->envp, "st_init_envp **");
-	data->envp[len] = NULL;
-	len--;
-	while (len + 1)
-	{
-		data->envp[len] = ft_strdup(envp[len]);
-		check_malloc(data->envp, "st_init_envp *");
-		len--;
-	}
+	data->expander.exp = NULL;
+	data->expander.pos = 0;
+	data->expander.envp = data->envp;
+	data->expander.status = &(data->last_pid);
 }

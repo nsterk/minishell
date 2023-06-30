@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   token_free.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/06/28 18:24:00 by nsterk        #+#    #+#                 */
+/*   Updated: 2023/06/28 18:24:01 by nsterk        ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -32,8 +43,8 @@ static void	free_expansion(t_expansion *expansion, size_t i)
 {
 	while (i)
 	{
-		if (expansion[i - 1].parameter)
-			free(expansion[i - 1].parameter);
+		if (expansion[i - 1].param)
+			free(expansion[i - 1].param);
 		i--;
 	}
 	free(expansion);

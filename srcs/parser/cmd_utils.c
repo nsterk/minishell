@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   cmd_utils.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/06/28 18:26:26 by nsterk        #+#    #+#                 */
+/*   Updated: 2023/06/28 18:26:27 by nsterk        ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "minishell.h"
+#include "parser.h"
 
 t_cmd	*cmd_new(void)
 {
@@ -9,7 +20,7 @@ t_cmd	*cmd_new(void)
 	if (!cmd)
 		return (NULL);
 	cmd->argc = 0;
-	cmd->args = NULL;
+	cmd->argv = NULL;
 	cmd->in = NULL;
 	cmd->out = NULL;
 	cmd->next = NULL;
@@ -28,12 +39,12 @@ t_cmd	*cmd_last(t_cmd	*cmd)
 	return (current);
 }
 
-int	cmd_append(t_cmd **cmd, t_cmd *new)
+bool	cmd_append(t_cmd **cmd, t_cmd *new)
 {
 	t_cmd	*tail;
 
 	if (!cmd || !new)
-		return (1);
+		return (true);
 	if (*cmd == NULL)
 		*cmd = new;
 	else
@@ -41,7 +52,7 @@ int	cmd_append(t_cmd **cmd, t_cmd *new)
 		tail = cmd_last(*cmd);
 		tail->next = new;
 	}
-	return (0);
+	return (false);
 }
 
 void	cmdclear(t_cmd **cmd, void (*del)(void*))
@@ -62,8 +73,8 @@ void	cmd_delone(t_cmd *cmd, void (*del)(void*))
 {
 	if (!cmd || !del)
 		return ;
-	if (cmd->args)
-		ft_free_array(cmd->args); //! no check in ft_free_array before dereferencing str so check if that isnt a problem
+	if (cmd->argv)
+		ft_free_array(cmd->argv);
 	if (cmd->in)
 		redclear(&cmd->in, del);
 	if (cmd->out)

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   exits.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/06/28 18:28:36 by nsterk        #+#    #+#                 */
+/*   Updated: 2023/06/28 18:29:24 by nsterk        ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "utils.h"
 
@@ -35,10 +46,4 @@ void	exit_error(const int code, const char *function, const char *message)
 	if (function || message)
 		st_write_msg(function, message);
 	exit(code);
-}
-
-void	exit_minishell(int status)
-{
-	//free input
-	exit(status);
 }
