@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   builtins.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/06/30 11:44:20 by abeznik       #+#    #+#                 */
+/*   Updated: 2023/06/30 11:45:05 by abeznik       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "builtins.h"
 
@@ -11,7 +22,6 @@
  * 	env
  * 	exit
  */
-
 int	special_builtin(char *cmd)
 {
 	if (!cmd)
@@ -30,8 +40,8 @@ int	special_builtin(char *cmd)
 int	check_builtin(t_cmd *cmds, t_data *data)
 {
 	char	*tmp;
-	
-	tmp = cmds->args[0]; // ? testing
+
+	tmp = cmds->args[0];
 	if (!cmds)
 		return (EXIT_FAILURE);
 	if (!ft_strncmp(tmp, "echo", 5))
