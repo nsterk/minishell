@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/30 11:55:15 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/06/30 11:57:40 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/06/30 14:45:25 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * Signal interrupt handler. (signum = 2)
  * 	Handles 'ctrl-C'.
  */
-static void	sigint_handler(int signum)
+void	sigint_handler(int signum)
 {
 	(void)signum;
 	rl_replace_line("", 0);

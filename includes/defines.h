@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   defines.h                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/06/30 14:47:52 by abeznik       #+#    #+#                 */
+/*   Updated: 2023/06/30 14:48:31 by abeznik       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
@@ -19,10 +30,10 @@
  * F_SPACE		token is space
  * F_WORD		token is word
  * F_EXPAND		token contains expansion
- * F_APPEND		token is special redirect (heredoc for redir_in, append for redir_out)
+ * F_APPEND		token is special redirect (heredoc for redir_in, 
+ * 					append for redir_out)
  * F_FILENAME	token is a filename
  */
-
 # define F_SQUOTE	1
 # define F_DQUOTE	2
 # define F_OPERATOR	16
