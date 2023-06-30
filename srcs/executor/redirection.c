@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   redirection.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/06/30 11:54:05 by abeznik       #+#    #+#                 */
+/*   Updated: 2023/06/30 11:54:06 by abeznik       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "executor.h"
 
@@ -19,13 +30,16 @@ int	file_error(const char *filename)
 	return (1);
 }
 
+/**
+ * TODO error check itoa
+*/
 static int	st_duplicate(int fd, int in_out_fileno, t_data *data)
 {
 	int	exit_status;
 
 	if (dup2(fd, in_out_fileno) < 0)
 	{
-		perror(ft_itoa(errno)); // ! error check itoa
+		perror(ft_itoa(errno));
 		data->last_pid = errno;
 		exit_status = EXIT_FAILURE;
 	}
