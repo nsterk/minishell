@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strcheck.c                                      :+:    :+:            */
+/*   token_find.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/06/29 18:12:37 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/06/29 18:12:39 by nsterk        ########   odam.nl         */
+/*   Created: 2023/06/28 18:23:54 by nsterk        #+#    #+#                 */
+/*   Updated: 2023/06/28 18:23:55 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "minishell.h"
 
-int	ft_strcheck(char const *s, int (*f)(int))
+t_token	*token_first(t_token **token)
 {
-	int	i;
+	t_token	*current;
 
-	if (!s || !f)
-		return (EXIT_FAILURE);
-	i = 0;
-	while (s[i])
-	{
-		if (!f(s[i]))
-			return (EXIT_FAILURE);
-		i++;
-	}
-	return (EXIT_SUCCESS);
+	if (!token || !(*token))
+		return (NULL);
+	current = (*token);
+	while (current->prev)
+		current = current->prev;
+	return (current);
+}
+
+t_token	*token_last(t_token *token)
+{
+	t_token	*current;
+
+	if (!token)
+		return (NULL);
+	current = token;
+	while (current->next != NULL)
+		current = current->next;
+	return (current);
 }

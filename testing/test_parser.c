@@ -20,8 +20,8 @@ void	print_tbl(t_cmd *cmd)
 			print_redir(tmp->in, "in");
 		if (tmp->out)
 			print_redir(tmp->out, "out");
-		if (tmp->next && tmp->next->args)
-			printf("next: %s\n", tmp->next->args[0]);
+		if (tmp->next && tmp->next->argv)
+			printf("next: %s\n", tmp->next->argv[0]);
 		else
 			printf("next: (null)\n");
 		tmp = tmp->next;
@@ -37,9 +37,9 @@ static void	print_args(t_cmd *cmd)
 	while (i <= cmd->argc)
 	{
 		if (!i)
-			printf("[%i] "WHT_B"%s "RST, i, cmd->args[i]);
+			printf("[%i] "WHT_B"%s "RST, i, cmd->argv[i]);
 		else
-			printf("[%i] %s ", i, cmd->args[i]);
+			printf("[%i] %s ", i, cmd->argv[i]);
 		if (i == cmd->argc)
 			printf("\n");
 		i++;

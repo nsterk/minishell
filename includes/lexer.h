@@ -1,21 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   lexer.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/06/30 14:51:17 by abeznik       #+#    #+#                 */
+/*   Updated: 2023/06/30 14:51:19 by abeznik       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
 
 # include "utils.h"
-
-# include <stdbool.h>
-# include "utils.h"
 # include "defines.h"
-# include <stdio.h>
 
 typedef enum e_toktype
 {
-	TOK_WRD,
+	TOK_SPACE,
+	TOK_DQUOTE,
+	TOK_SQUOTE,
 	TOK_REDIR_IN,
 	TOK_REDIR_OUT,
 	TOK_PIPE,
-	TOK_SPACE,
+	TOK_WRD,
 	TOK_EOF,
 	TOK_MAX
 }	t_toktype;
@@ -23,20 +32,21 @@ typedef enum e_toktype
 typedef enum e_lexstate
 {
 	S_SPACE,
+	S_DQUOTE,
+	S_SQUOTE,
 	S_REDIR_IN,
 	S_REDIR_OUT,
 	S_PIPE,
 	S_WORD,
-	S_EOF
+	S_EOF,
+	S_MAX
 }	t_lexstate;
 
 typedef struct s_expansion
 {
 	size_t	start;
 	size_t	end;
-	int		quoted;
-	char 	*parameter;
-	
+	char	*param;
 }	t_expansion;
 
 typedef struct s_token
@@ -62,37 +72,35 @@ typedef struct s_lexer
 	char		**envp;
 }	t_lexer;
 
-bool		lexer(t_lexer *lexer);
-t_lexstate	get_state(int c);
-void		delimit_token(t_lexer *lexer, size_t start, t_toktype type);
-
-// Lexer functions and dispatch table to these functions.
-
-typedef bool	(*t_lexfunction)(t_lexer *lexer, t_toktype type);
-bool		lex_operator(t_lexer *lexer, t_toktype type);
-bool		lex_word(t_lexer *lexer, t_toktype type);
-bool		lex_space(t_lexer *lexer, t_toktype type);
-
-void		switch_state(t_lexer *lexer, t_lexstate new_state);
-
-// Expander functions
-int			expander(char **envp, t_lexer *lex);
-int			prep_expansion(t_lexer *lex);
-
+bool			lexer(t_lexer *lexer);
 
 /**
- * Token list functions.
+ * Lexer functions.
  */
+typedef bool	(*t_lexfunction)(t_lexer *lexer, t_toktype type);
+bool			lex_operator(t_lexer *lexer, t_toktype type);
+bool			lex_word(t_lexer *lexer, t_toktype type);
+bool			lex_quote(t_lexer *lexer, t_toktype type);
+bool			lex_space(t_lexer *lexer, t_toktype type);
 
-t_token		*token_new(t_toktype type, t_lexstate state, char *str, size_t exps);
-int			token_size(t_token *token);
-void		token_delone(t_token *token, void (*del)(void*));
-void		tokenclear(t_token **token, void (*del)(void*));
-int			token_addafter(t_token **spot, t_token *new);
-t_token		*token_last(t_token *token);
-t_token		*token_first(t_token **token);
-int			token_append(t_token **token, t_token *new);
-// void		token_prepend(t_token **token, t_token *new);
-t_token		*token_remove(t_token **head, t_token *token);
+/**
+ * Lexer utils.
+ */
+t_lexstate		get_state(int c);
+void			switch_state(t_lexer *lexer, t_lexstate new_state);
+void			delimit_token(t_lexer *lexer, size_t start, t_toktype type);
+
+/**
+ * Token functions.
+ */
+t_token			*token_new(t_toktype type, t_lexstate state, char *str, \
+				size_t exps);
+void			token_delone(t_token *token, void (*del)(void*));
+void			tokenclear(t_token **token, void (*del)(void*));
+bool			token_addafter(t_token **spot, t_token *new);
+t_token			*token_last(t_token *token);
+t_token			*token_first(t_token **token);
+bool			token_append(t_token **token, t_token *new);
+t_token			*token_remove(t_token **head, t_token *token);
 
 #endif

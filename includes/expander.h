@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   test.h                                             :+:    :+:            */
+/*   expander.h                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/06/30 14:53:15 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/06/30 14:53:29 by abeznik       ########   odam.nl         */
+/*   Created: 2023/06/30 14:51:12 by abeznik       #+#    #+#                 */
+/*   Updated: 2023/06/30 14:51:14 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_H
-# define TEST_H
+#ifndef EXPANDER_H
+# define EXPANDER_H
 
 # include "lexer.h"
-# include "parser.h"
-# include "utils.h"
 
-/* Print tokens head to tail */
-void	token_printHtT(t_token *lst);
+typedef struct s_expander
+{
+	t_expansion	*exp;
+	size_t		pos;
+	char		**envp;
+	pid_t		*status;
+}	t_expander;
 
-/* Print tokens tail to head */
-void	token_printTtH(t_token *lst);
-
-void	print_tbl(t_cmd *cmd);
+bool		expander(t_expander *expander, t_lexer *lexer);
+bool		do_expanding(t_expander *expr, t_token *token);
+void		get_param(t_expander *expr, t_token *token);
+t_token		*split_words(t_token **token);
+bool		contains_space(char *str);
+void		rm_tokenspace(t_lexer *lexer);
 
 #endif

@@ -1,49 +1,92 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   lex_word.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/06/28 18:20:27 by nsterk        #+#    #+#                 */
+/*   Updated: 2023/06/28 18:20:29 by nsterk        ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "lexer.h"
+#include "minishell.h"
 
-bool		error_msg(char *msg);
-static bool	st_lex_quote(t_lexer *lex, int quote);
-
-static bool	st_lex_quote(t_lexer *lex, int quote)
-{
-	size_t	start;
-
-	lex->idx++;
-	if (!ft_strchr(lex->str + lex->idx, quote))
-		return (error_msg("Unclosed quotes not supported by momoshell"));
-	start = lex->idx;
-	if (quote == CH_DQUOTE && lex->str[start] == CH_EXPAND)
-		lex->expansions++;
-	while (lex->str[lex->idx + 1] && lex->str[lex->idx + 1] != quote)
-	{
-		lex->idx++;
-		if (quote == CH_DQUOTE && lex->str[lex->idx] == CH_EXPAND)
-			lex->expansions++;
-	}
-	lex->idx++;
-	return (false);
-}
+static bool	st_check_heredoc(t_token *last);
+static void	st_check_filename(t_lexer *lexer, t_token *last, bool heredoc);
 
 bool	lex_word(t_lexer *lexer, t_toktype type)
 {
 	size_t	start;
+	t_token	*last;
+	bool	heredoc;
 
 	start = lexer->idx;
+	last = token_last(lexer->tokens);
+	heredoc = st_check_heredoc(last);
+	st_check_filename(lexer, last, heredoc);
 	while (lexer->state == get_state(lexer->str[lexer->idx + 1]))
 	{
-		if (lexer->str[lexer->idx] == CH_SQUOTE || lexer->str[lexer->idx] == CH_DQUOTE)
-		{
-			if (st_lex_quote(lexer, lexer->str[lexer->idx]))
-				return (true);
-		}
-		else
-		{
-			if (lexer->str[lexer->idx] == CH_EXPAND)
-				lexer->expansions++;
-		}
+		if (!heredoc && lexer->str[lexer->idx] == CH_EXPAND)
+			lexer->expansions++;
 		lexer->idx++;
 	}
 	delimit_token(lexer, start, type);
+	switch_state(lexer, get_state(lexer->str[lexer->idx + 1]));
+	return (false);
+}
+
+static bool	st_check_heredoc(t_token *last)
+{
+	if (!last)
+		return (false);
+	if (last->type == TOK_REDIR_IN && last->flags & F_APPEND)
+		return (true);
+	if (last->type == TOK_SPACE && last->prev)
+	{
+		if (last->prev->type == TOK_REDIR_IN && \
+			last->prev->flags & F_APPEND)
+			return (true);
+	}
+	return (false);
+}
+
+static void	st_check_filename(t_lexer *lexer, t_token *last, bool heredoc)
+{
+	if (!last)
+		return ;
+	if ((last->type == TOK_REDIR_IN && !heredoc) || last->type == TOK_REDIR_OUT)
+		lexer->flags |= F_FILENAME;
+	else if (last->flags & F_SPACE && last->prev)
+	{
+		if ((last->prev->type == TOK_REDIR_IN && !heredoc) || \
+			last->prev->type == TOK_REDIR_OUT)
+			lexer->flags |= F_FILENAME;
+	}
+}
+
+bool	lex_quote(t_lexer *lexer, t_toktype type)
+{
+	size_t	start;
+	int		quote;
+
+	quote = lexer->str[lexer->idx];
+	if (type == TOK_SQUOTE)
+		lexer->flags |= F_SQUOTE;
+	if (type == TOK_DQUOTE)
+		lexer->flags |= F_DQUOTE;
+	lexer->flags |= F_WORD;
+	if (!ft_strchr(lexer->str + lexer->idx + 1, quote))
+		return (error_msg("Unclosed quotes not supported by momoshell"));
+	start = lexer->idx + 1;
+	while (lexer->str[lexer->idx + 1] != quote)
+	{
+		lexer->idx++;
+		if (quote == CH_DQUOTE && lexer->str[lexer->idx] == CH_EXPAND)
+			lexer->expansions++;
+	}
+	delimit_token(lexer, start, type);
+	lexer->idx++;
 	switch_state(lexer, get_state(lexer->str[lexer->idx + 1]));
 	return (false);
 }

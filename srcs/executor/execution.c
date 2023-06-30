@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   execution.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/06/30 11:52:18 by abeznik       #+#    #+#                 */
+/*   Updated: 2023/06/30 11:52:19 by abeznik       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "executor.h"
 
@@ -54,10 +65,10 @@ void	execute_cmd(t_cmd *cmd, t_data *data)
 
 	if (!check_builtin(cmd, data))
 		exit(data->last_pid);
-	full_cmd = st_get_full_cmd(cmd->args[0], data->paths);
+	full_cmd = st_get_full_cmd(cmd->argv[0], data->paths);
 	if (!full_cmd)
-		st_cmd_not_found(cmd->args[0]);
-	if (execve(full_cmd, cmd->args, data->envp) < 0)
+		st_cmd_not_found(cmd->argv[0]);
+	if (execve(full_cmd, cmd->argv, data->envp) < 0)
 		exit_error(errno, "momoshell", " : No such file or directory");
 }
 

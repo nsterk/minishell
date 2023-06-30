@@ -1,12 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   builtins.h                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/06/30 14:46:12 by abeznik       #+#    #+#                 */
+/*   Updated: 2023/06/30 14:47:13 by abeznik       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef BUILTINS_H
 # define BUILTINS_H
 
-// # include "parser.h"
 # include "executor.h"
-
-// # include "minishell.h"
-// # include "utils.h"
 
 # include "stdlib.h" // getenv, EXIT_...
 # include "unistd.h"
@@ -16,7 +23,7 @@
 # define NOT_FOUND -1
 # define ADD_NEW -2
 
-typedef struct s_data t_data;
+typedef struct s_data	t_data;
 
 /**
  * builtins
@@ -70,6 +77,7 @@ char		*get_envp_value(char **envp, char *key);
  * utils
 */
 int			check_for_error(char *arg, int type, char **env);
-void		copy_line_envp(char **new_env, char **env, int new_env_i, int env_i);
+void		copy_line_envp(char **new_env, char **env, \
+	int new_env_i, int env_i);
 
 #endif

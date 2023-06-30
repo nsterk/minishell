@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   initialisation.c                                   :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/06/30 11:53:18 by abeznik       #+#    #+#                 */
+/*   Updated: 2023/06/30 11:53:26 by abeznik       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "executor.h"
 
@@ -70,24 +81,18 @@ int	init_heredoc(t_cmd *cmd)
 
 	while (cmd)
 	{
-		// printf("cmd: %s\n", cmd->exec->cmd);
 		i = cmd->in;
-		// printf("in: %s\n", i->filename);
 		while (i)
 		{
-			// printf("in: %s\n", i->filename);
 			if (i->type == HERE_DOC)
 			{
 				i->fd = here_doc(i->filename);
-				// i->here_doc = 3;
 				if (i->fd == -1)
 					return (EXIT_FAILURE);
 			}
 			i = i->next;
-			// printf("type: %d\n", i->type);
 		}
 		cmd = cmd->next;
-		// printf("filename: %s\n", cmd->in->filename);
 	}
 	return (EXIT_SUCCESS);
 }

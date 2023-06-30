@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   init_signals.c                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/06/30 11:55:11 by abeznik       #+#    #+#                 */
+/*   Updated: 2023/06/30 11:57:35 by abeznik       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <signals.h>
 
@@ -6,9 +17,8 @@
  * 	- SIGINIT + handler => ctrl-C
  * 	- SIGQUIT + SIG_IGN => ctrl-D
  */
-void init_signals(void)
+void	init_signals(void)
 {
-	// ft_putstr_fd("init signals\n", 2); // ? testing
 	signal(SIGINT, sigint_handler);
 	signal(SIGQUIT, SIG_IGN);
 }

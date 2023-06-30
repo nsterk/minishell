@@ -1,10 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   parser.h                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/06/30 14:51:31 by abeznik       #+#    #+#                 */
+/*   Updated: 2023/06/30 14:51:33 by abeznik       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
 # include "lexer.h"
-// # include "executor.h"
-# include "colours.h"
 # include <stdio.h>
 
 /**
@@ -39,20 +48,19 @@ typedef struct s_red
 	struct s_red	*next;
 }	t_red;
 
+/**
+ * Cmd data:
+ *  - argv
+ * 
+ */
 typedef struct s_cmd
 {
-	char			*cmd;
-	char			**args;
+	char			**argv;
 	int				argc;
 	t_red			*in;
 	t_red			*out;
 	struct s_cmd	*next;
 }	t_cmd;
-
-typedef struct s_tbl
-{
-	t_cmd			*cmds;
-}	t_tbl;
 
 bool	parser(t_token *token, t_cmd **cmd);
 bool	parse_args(t_token **token, t_cmd *cmd);
@@ -61,24 +69,28 @@ bool	parse_pipe(t_token **token, t_cmd **cmd);
 
 /**
  * Syntax grammar rules
-*/
+ */
 
-bool	syntax_red(t_cmd *cmd, t_token *token);
-bool	syntax_pipe(t_cmd *cmd, t_token *token);
-bool	syntax_word(t_token *token);
+bool	syntax_red(t_token *token);
+bool	syntax_pipe(t_token *token);
+bool	error_msg(char *msg);
 
 /**
  * Command node utils
  */
 t_cmd	*cmd_new(void);
 t_cmd	*cmd_last(t_cmd	*cmd);
-int		cmd_append(t_cmd **cmd, t_cmd *new);
+bool	cmd_append(t_cmd **cmd, t_cmd *new);
 void	cmdclear(t_cmd **cmd, void (*del)(void*));
 void	cmd_delone(t_cmd *cmd, void (*del)(void*));
 
+/**
+ * Redirection node utils
+ */
+
 t_red	*red_new(t_red_type type);
 t_red	*red_last(t_red	*red);
-int		red_append(t_red **red, t_red *new);
+bool	red_append(t_red **red, t_red *new);
 void	redclear(t_red **red, void (*del)(void*));
 void	red_delone(t_red *red, void (*del)(void*));
 

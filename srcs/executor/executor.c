@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   executor.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/06/30 11:52:27 by abeznik       #+#    #+#                 */
+/*   Updated: 2023/06/30 11:52:50 by abeznik       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "executor.h"
 
@@ -112,7 +123,7 @@ static t_proc	*st_simple_cmd(t_cmd *cmd, t_data *data)
 {
 	t_proc	*proc;
 
-	if (special_builtin(cmd->args[0]))
+	if (cmd->argv && special_builtin(cmd->argv[0]))
 	{
 		if (redirect_in(cmd->in, STDIN_FILENO, data))
 			return (NULL);
@@ -128,9 +139,9 @@ static t_proc	*st_simple_cmd(t_cmd *cmd, t_data *data)
 	else if (proc->pid == CHILD)
 	{
 		if (redirect_in(cmd->in, STDIN_FILENO, data))
-			exit(data->last_pid);
+			exit(1);
 		if (redirect_out(cmd->out, STDOUT_FILENO, data))
-			exit(data->last_pid);
+			exit(1);
 		execute_cmd(cmd, data);
 	}
 	return (proc);
@@ -151,20 +162,18 @@ static t_proc	*st_simple_cmd(t_cmd *cmd, t_data *data)
  * 	4. If pipes, wait processes to finish.
  * 	5. Free executor data.
 */
-
 void	executor(t_data *data)
 {
-	t_proc 		*proc;
-	t_cmd 		*tmp;
+	t_proc	*proc;
+	t_cmd	*tmp;
 
 	tmp = data->cmd;
+	proc = NULL;
 	if (init_heredoc(tmp))
 	{
 		data->last_pid = 1;
 		return ;
 	}
-	if (!tmp->cmd)
-		return ;
 	signal(SIGQUIT, sigquit_handler);
 	data->paths = init_paths(data->envp);
 	if (!tmp->next)

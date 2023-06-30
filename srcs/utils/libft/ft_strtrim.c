@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strdup.c                                        :+:    :+:            */
+/*   ft_strtrim.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: nsterk <marvin@codam.nl>                     +#+                     */
+/*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/09/24 21:24:38 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/06/12 18:34:09 by nsterk        ########   odam.nl         */
+/*   Created: 2020/10/29 21:10:11 by nsterk        #+#    #+#                 */
+/*   Updated: 2023/06/29 12:31:14 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-/**
- * @brief duplicates a string on the heap
- * 
- * @param src 
- * @return char* 
- */
-char	*ft_strdup(const char *src)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*rstr;
-	size_t	len;
+	size_t	end;
 
-	if (!src)
+	if (!s1)
 		return (NULL);
-	len = ft_strlen((char *)src);
-	rstr = ft_calloc(len + 1, sizeof(*rstr));
-	if (!rstr)
-		return (NULL);
-	rstr = ft_strcpy(rstr, (char *)src);
+	if (s1 && !set)
+		return (ft_strdup(s1));
+	while (*s1 && ft_strchr(set, *s1))
+		s1++;
+	end = ft_strlen(s1);
+	while (end && ft_strchr(set, s1[end]))
+		end--;
+	rstr = ft_substr(s1, 0, end + 1);
 	return (rstr);
 }

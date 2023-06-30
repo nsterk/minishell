@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   builtins.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/06/30 11:44:20 by abeznik       #+#    #+#                 */
+/*   Updated: 2023/06/30 14:42:34 by abeznik       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "builtins.h"
 
@@ -11,7 +22,6 @@
  * 	env
  * 	exit
  */
-
 int	special_builtin(char *cmd)
 {
 	if (!cmd)
@@ -30,20 +40,20 @@ int	special_builtin(char *cmd)
 int	check_builtin(t_cmd *cmds, t_data *data)
 {
 	char	*tmp;
-	
-	tmp = cmds->args[0]; // ? testing
+
 	if (!cmds)
 		return (EXIT_FAILURE);
+	tmp = cmds->argv[0];
 	if (!ft_strncmp(tmp, "echo", 5))
-		return (exec_echo(cmds->args, data));
+		return (exec_echo(cmds->argv, data));
 	else if (!ft_strncmp(tmp, "cd", 2))
-		return (exec_cd(cmds->args, data));
+		return (exec_cd(cmds->argv, data));
 	else if (!ft_strncmp(tmp, "pwd", 3))
 		return (exec_pwd(data));
 	else if (!ft_strncmp(tmp, "export", 7))
-		return (exec_export(cmds->args, data));
+		return (exec_export(cmds->argv, data));
 	else if (!ft_strncmp(tmp, "unset", 6))
-		return (exec_unset(cmds->args, data));
+		return (exec_unset(cmds->argv, data));
 	else if (!ft_strncmp(tmp, "env", 3))
 		return (exec_env(data->envp, data));
 	else if (!ft_strncmp(tmp, "exit", 4))

@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strcheck.c                                      :+:    :+:            */
+/*   ft_substr.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/06/29 18:12:37 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/06/29 18:12:39 by nsterk        ########   odam.nl         */
+/*   Created: 2023/06/29 18:13:33 by nsterk        #+#    #+#                 */
+/*   Updated: 2023/06/29 18:14:12 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-int	ft_strcheck(char const *s, int (*f)(int))
+char	*ft_substr(char const *s, size_t start, size_t len)
 {
-	int	i;
+	size_t	i;
+	char	*sub;
 
-	if (!s || !f)
-		return (EXIT_FAILURE);
+	if (!s)
+		return (NULL);
+	if ((ft_strlen(s) - start) < len)
+		len = ft_strlen(s) - start;
+	if (start >= ft_strlen(s))
+		len = 0;
+	sub = (char *)malloc(sizeof(*s) * (len + 1));
+	if (!sub)
+		return (NULL);
 	i = 0;
-	while (s[i])
+	while (s[start + i] != '\0' && i < len)
 	{
-		if (!f(s[i]))
-			return (EXIT_FAILURE);
+		sub[i] = s[start + i];
 		i++;
 	}
-	return (EXIT_SUCCESS);
+	sub[i] = '\0';
+	return (sub);
 }

@@ -1,7 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   ms_export.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/06/30 11:46:40 by abeznik       #+#    #+#                 */
+/*   Updated: 2023/06/30 11:46:42 by abeznik       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "builtins.h"
+#include "utils.h"
 
-static char	**st_edit_envp_export(char **envp, char *args, int row_nr, int size_envp)
+static char	**st_edit_envp_export(char **envp, char *args, \
+	int row_nr, int size_envp)
 {
 	char	**new_envp;
 	int		i;
@@ -79,7 +92,7 @@ char	**ft_export(char *arg, char **envp, t_data *data)
 
 int	exec_export(char **args, t_data *data)
 {
-	int	i;
+	int		i;
 
 	if (!args[1])
 		ms_single_export(data->envp);
