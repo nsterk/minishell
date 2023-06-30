@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/28 18:26:14 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/06/28 18:26:16 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/06/30 14:59:11 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static bool	prompt(t_lexer *lexer)
 	init_signals();
 	while (lexer->str == NULL || lexer->str[0] == '\0')
 	{
-		lexer->str = readline("momoshell-1.0 🐈 ");
+		lexer->str = readline("momoshell-2.0 🐈 ");
 		if (!lexer->str)
 			exit(EXIT_SUCCESS);
 		if (*lexer->str)
