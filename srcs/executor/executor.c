@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   executor.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/06/30 11:52:27 by abeznik       #+#    #+#                 */
+/*   Updated: 2023/06/30 11:52:50 by abeznik       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "executor.h"
 
@@ -151,11 +162,10 @@ static t_proc	*st_simple_cmd(t_cmd *cmd, t_data *data)
  * 	4. If pipes, wait processes to finish.
  * 	5. Free executor data.
 */
-
 void	executor(t_data *data)
 {
-	t_proc 		*proc;
-	t_cmd 		*tmp;
+	t_proc	*proc;
+	t_cmd	*tmp;
 
 	tmp = data->cmd;
 	if (init_heredoc(tmp))
