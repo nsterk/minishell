@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/28 18:26:14 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/06/30 14:59:11 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/07/01 16:12:15 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ static void	enter_shell(char **envp)
 		if (!lexer(&data.lexer))
 		{
 			expander(&data.expander, &data.lexer);
-			if (!parser(data.lexer.tokens, &data.cmd))
+			if (parser(data.lexer.tokens, &data.cmd))
+				data.last_pid = 258;
+			else
 			{
 				g_state = EXECUTING;
 				executor(&data);

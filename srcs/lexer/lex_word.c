@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/28 18:20:27 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/06/28 18:20:29 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/07/01 16:11:37 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ bool	lex_quote(t_lexer *lexer, t_toktype type)
 	while (lexer->str[lexer->idx + 1] != quote)
 	{
 		lexer->idx++;
-		if (quote == CH_DQUOTE && lexer->str[lexer->idx] == CH_EXPAND)
+		if (quote == CH_DQUOTE && lexer->str[lexer->idx + 1] != quote && \
+			lexer->str[lexer->idx] == CH_EXPAND)
 			lexer->expansions++;
 	}
 	delimit_token(lexer, start, type);

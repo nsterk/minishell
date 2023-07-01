@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/28 18:19:08 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/06/29 17:42:45 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/07/01 16:12:30 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ bool	do_expanding(t_expander *expander, t_token *token)
 	size_t		new_len;
 
 	get_param(expander, token);
-	if (!ft_strncmp("?", expander->exp->param, 2))
+	if (!ft_strcmp("?", expander->exp->param))
 		env_val = ft_itoa(*(expander->status));
 	else
 		env_val = ft_strdup(get_envp_value(expander->envp, \

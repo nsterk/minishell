@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/28 18:18:38 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/07/01 13:52:38 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/07/01 15:16:30 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void	get_param(t_expander *expander, t_token *token)
 		exp->end = *pos;
 	else
 	{
-		while (ft_isalnum(token->word[*pos]) || token->word[*pos] == '_')
+		while (token->word[*pos] && \
+			(ft_isalnum(token->word[*pos]) || token->word[*pos] == '_'))
 			(*pos)++;
 		exp->end = *pos - 1;
 	}
