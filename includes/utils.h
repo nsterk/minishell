@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/30 14:51:46 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/06/30 14:53:11 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/06/30 16:54:56 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strcpy(char *dest, char *src);
 size_t			ft_strlcpy(char *dest, const char *src, size_t size);
 size_t			ft_strlen(const char *s);
+int				ft_strcmp(char *s1, char *s2);
 int				ft_strncmp(const char *s1, const char *s2, size_t len);
 char			*ft_strtrim(char const *s1, char const *set);
 char			*ft_substr(char const *s, size_t start, size_t len);
