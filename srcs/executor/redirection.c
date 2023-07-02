@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/30 11:54:05 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/06/30 11:54:06 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/07/02 12:13:59 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,6 @@ int	file_error(const char *filename)
 	return (1);
 }
 
-/**
- * TODO error check itoa
-*/
 static int	st_duplicate(int fd, int in_out_fileno, t_data *data)
 {
 	int	exit_status;
