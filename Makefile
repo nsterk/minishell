@@ -5,7 +5,7 @@ NAME			:=	minishell
 # export RL_LIB	:= -L/usr/local/opt/readline/lib
 # export RL_INC	:= -I/usr/local/opt/readline/include
 
-# USER			:=	$(shell whoami)
+USER			:=	$(shell whoami)
 export RL_LIB	:= -L/Users/$(USER)/.brew/opt/readline/lib
 export RL_INC	:= -I/Users/$(USER)/.brew/opt/readline/include
 
