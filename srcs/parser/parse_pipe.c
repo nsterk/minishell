@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 20:31:59 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/06/28 18:31:02 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/07/02 14:38:39 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ static bool	st_add_redir(t_token **token, t_red **red, t_red_type type);
 
 bool	parse_pipe(t_token **token, t_cmd **cmd)
 {
-	t_cmd	*current;
-
-	current = cmd_last(*cmd);
 	if (syntax_pipe(*token))
 		return (true);
 	if (cmd_append(cmd, cmd_new()))
