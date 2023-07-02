@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/30 14:46:12 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/06/30 14:47:13 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/07/02 12:15:08 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int			special_builtin(char *cmd);
 /**
  * pwd
 */
-// int			exec_pwd(void); // ? testing
 int			exec_pwd(t_data *data);
 
 /**
