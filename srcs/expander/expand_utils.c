@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/28 18:18:38 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/07/01 15:16:30 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/07/02 12:16:04 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,9 @@ void	get_param(t_expander *expander, t_token *token)
 	exp->param = ft_strndup(token->word + exp->start + 1, \
 		exp->end - exp->start);
 	check_malloc(exp->param, "st_get_param");
+}
+
+bool	is_parameter(int c)
+{
+	return (c == '?' || c == '_' || ft_isalpha(c));
 }
