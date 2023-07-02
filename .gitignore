@@ -1,7 +1,3 @@
-*.o
+.gitignore
 minishell
-a.out
 objs/
-srcs/utils/get_next_line/submit/*
-.vscode
-*.a
