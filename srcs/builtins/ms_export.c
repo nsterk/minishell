@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/30 11:46:40 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/06/30 16:40:50 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/07/03 11:55:30 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,11 @@ char	**ft_export(char *arg, char **envp, t_data *data)
 	{
 		size_envp++;
 		row_nr = size_envp - 1;
+	}
+	if (ft_strchr(arg, '=') == NULL)
+	{
+		data->last_pid = 0;
+		return (envp);
 	}
 	new_envp = st_edit_envp_export(envp, arg, row_nr, size_envp);
 	check_malloc(new_envp, "ft_export");
