@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/30 14:51:12 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/07/02 12:14:33 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/07/03 17:50:42 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef struct s_expander
 }	t_expander;
 
 bool		expander(t_expander *expander, t_lexer *lexer);
-bool		do_expanding(t_expander *expr, t_token *token);
 void		get_param(t_expander *expr, t_token *token);
 bool		is_parameter(int c);
 t_token		*split_words(t_token **token);

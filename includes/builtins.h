@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/30 14:46:12 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/07/02 12:15:08 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/07/03 15:34:09 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "executor.h"
 
-# include "stdlib.h" // getenv, EXIT_...
+# include "stdlib.h"// getenv, EXIT_...
 # include "unistd.h"
 
 # define EXPORT 1

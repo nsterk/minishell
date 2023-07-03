@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/30 14:48:37 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/07/02 12:15:51 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/07/03 15:33:55 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 /**
  * Needed libs.
  */
-# include <unistd.h> // execve
-# include <fcntl.h> // open/read/... modes
+# include <unistd.h>// execve
+# include <fcntl.h>// open/read/... modes
 
 /**
  * Minishell libs.
