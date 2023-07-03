@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/28 18:19:08 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/07/01 16:12:30 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/07/03 15:15:45 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ static t_token	*st_clean_token(t_lexer *lex, t_token **token)
 	split = false;
 	if ((*token)->flags & (F_SPACE + F_OPERATOR))
 		return ((*token)->next);
-	if ((*token)->exp_count && (*token)->flags ^ F_DQUOTE)
+	if ((*token)->exp_count && (*token)->type != TOK_DQUOTE && \
+		!(*token)->filename)
 		split = true;
 	if ((*token)->prev && (*token)->prev->flags & F_WORD)
 	{
@@ -68,7 +69,7 @@ static t_token	*st_clean_token(t_lexer *lex, t_token **token)
 		(*token)->prev->word = tmp;
 		(*token)->word[0] = '\0';
 	}
-	if ((*token)->flags ^ F_FILENAME && (!(*token)->word || !(*(*token)->word)))
+	if (!(*token)->filename && (!(*token)->word || !(*(*token)->word)))
 		return (token_remove(&(lex->tokens), *token));
 	if (split && contains_space((*token)->word))
 		return (split_words(token));

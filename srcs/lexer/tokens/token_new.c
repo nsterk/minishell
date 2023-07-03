@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/28 18:24:31 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/06/28 18:24:33 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/07/03 15:12:21 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_token	*token_new(t_toktype type, t_lexstate state, char *str, size_t exps)
 	new->next = NULL;
 	new->word = str;
 	new->exp_count = exps;
+	new->filename = false;
 	new->type = type;
 	new->state = state;
 	return (new);

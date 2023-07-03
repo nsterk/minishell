@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/28 18:18:45 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/06/28 18:18:47 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/07/03 15:13:14 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	delimit_token(t_lexer *lex, size_t start, t_toktype type)
 	new->flags = lex->flags;
 	if (type == TOK_WRD)
 		new->flags |= F_WORD;
+	if (lex->flags & F_FILENAME)
+		new->filename = true;
 	if (token_append(&(lex->tokens), new))
 		exit(EXIT_FAILURE);
 	lex->expansions = 0;
