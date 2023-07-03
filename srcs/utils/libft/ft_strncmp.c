@@ -6,7 +6,7 @@
 /*   By: nsterk <marvin@codam.nl>                     +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/22 10:35:14 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/07/02 14:47:31 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/07/03 12:25:56 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ int	ft_strncmp(const char *s1, const char *s2, size_t len)
 		else
 			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 	}
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	return (0);
 }
