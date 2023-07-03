@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/28 18:19:08 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/07/03 15:15:45 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/07/03 15:25:58 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ bool	do_expanding(t_expander *expander, t_token *token)
 	else
 		env_val = ft_strdup(get_envp_value(expander->envp, \
 			expander->exp->param));
+	if (env_val && token->filename && token->type != TOK_DQUOTE && contains_space(env_val))
+	{
+		env_val[0] = '\0';	
+	}
 	new_len = ft_strlen(env_val);
 	token->word = ft_replace(token->word, env_val, expander->exp->start, \
 		expander->exp->end);
