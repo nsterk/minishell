@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/28 18:26:14 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/07/04 12:39:48 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/07/04 12:52:26 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,11 @@ static bool	prompt(t_lexer *lexer);
 
 int	main(int argc, char **argv, char **envp)
 {
-	if (argc != 1 && argv)
+	(void)argv;
+	if (argc != 1)
 	{
-		ft_putstr_fd("momoshell: ", STDERR_FILENO);
-		ft_putstr_fd(argv[1], STDERR_FILENO);
-		ft_putendl_fd(": No such file or directory", STDERR_FILENO);
-		return (127);
+		ft_putstr_fd("momoshell: Incorrect usage: ./minishell", STDERR_FILENO);
+		return (1);
 	}
 	enter_shell(envp);
 	return (0);
