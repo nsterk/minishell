@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/28 18:20:27 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/07/01 16:11:37 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/07/02 12:19:39 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ bool	lex_word(t_lexer *lexer, t_toktype type)
 	st_check_filename(lexer, last, heredoc);
 	while (lexer->state == get_state(lexer->str[lexer->idx + 1]))
 	{
-		if (!heredoc && lexer->str[lexer->idx] == CH_EXPAND)
+		if (!heredoc && lexer->str[lexer->idx] == CH_EXPAND && \
+			is_parameter(lexer->str[lexer->idx + 1]))
 			lexer->expansions++;
 		lexer->idx++;
 	}
@@ -82,8 +83,8 @@ bool	lex_quote(t_lexer *lexer, t_toktype type)
 	while (lexer->str[lexer->idx + 1] != quote)
 	{
 		lexer->idx++;
-		if (quote == CH_DQUOTE && lexer->str[lexer->idx + 1] != quote && \
-			lexer->str[lexer->idx] == CH_EXPAND)
+		if (quote == CH_DQUOTE && lexer->str[lexer->idx] == CH_EXPAND \
+			&& is_parameter(lexer->str[lexer->idx + 1]))
 			lexer->expansions++;
 	}
 	delimit_token(lexer, start, type);

@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/30 14:51:17 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/06/30 14:51:19 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/07/03 15:11:47 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_token
 	struct s_token	*next;
 	char			*word;
 	size_t			exp_count;
+	bool			filename;
 	t_toktype		type;
 	t_lexstate		state;
 	int				flags;

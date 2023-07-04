@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/30 11:52:27 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/06/30 11:52:50 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/07/02 14:35:16 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,9 +176,9 @@ void	executor(t_data *data)
 	}
 	signal(SIGQUIT, sigquit_handler);
 	data->paths = init_paths(data->envp);
-	if (!tmp->next)
+	if (!tmp->next && tmp->argv)
 		proc = st_simple_cmd(tmp, data);
-	else
+	else if (tmp->argv)
 		st_piped_cmd(&proc, tmp, data);
 	if (proc)
 		st_wait_processes(proc, data);

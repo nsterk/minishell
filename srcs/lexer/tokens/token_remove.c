@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/28 18:24:11 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/06/28 18:24:59 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/07/02 14:39:23 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,6 @@ t_token	*token_remove(t_token **head, t_token *token)
 
 static t_token	*remove_head(t_token **head, t_token *token)
 {
-	t_token	*tmp;
-
-	tmp = *head;
 	*head = (*head)->next;
 	if (*head)
 		(*head)->prev = NULL;

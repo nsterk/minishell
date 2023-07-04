@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/30 11:46:10 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/06/30 11:46:12 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/07/02 11:56:42 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	exec_exit(t_cmd *cmd, t_data *data)
 {
 	bool	should_exit;
 
-	ft_putendl_fd("exit", STDERR_FILENO);
+	ft_putendl_fd("exit", STDOUT_FILENO);
 	should_exit = true;
 	if (cmd->argc > 1)
 		should_exit = st_help_exit(cmd, data);

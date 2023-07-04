@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/28 18:19:48 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/06/28 18:22:21 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/07/02 14:23:39 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ bool	lexer(t_lexer *lexer)
 	while (ft_isspace(lexer->str[lexer->idx]))
 		lexer->idx++;
 	lexer->state = get_state(lexer->str[lexer->idx]);
+	if (lexer->state == S_EOF)
+		return (true);
 	while (lexer->state != S_EOF)
 	{
 		if (st_lexfunction(lexer, st_get_type(lexer->state)))
