@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/28 18:19:08 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/07/03 17:50:35 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/07/04 11:18:12 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,8 @@ static t_token	*st_clean_token(t_lexer *lex, t_token **token)
 		split = true;
 	if ((*token)->prev && (*token)->prev->flags & F_WORD)
 		st_join_words(&joined, token);
-	if (!(*token)->filename && (!(*token)->word || !(*(*token)->word)) && joined)
+	if (!(*token)->filename && (!(*token)->word || \
+		!(*(*token)->word)) && joined)
 		return (token_remove(&(lex->tokens), *token));
 	if (split && contains_space((*token)->word))
 		return (split_words(token));
