@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/28 18:26:14 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/07/04 12:52:26 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/07/04 18:42:08 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,14 @@
 static void	enter_shell(char **envp);
 static bool	prompt(t_lexer *lexer);
 
+void	check(void)
+{
+	system("leaks -q minishell");
+}
+
 int	main(int argc, char **argv, char **envp)
 {
+	atexit(&check);
 	(void)argv;
 	if (argc != 1)
 	{
@@ -51,13 +57,19 @@ static void	enter_shell(char **envp)
 
 static bool	prompt(t_lexer *lexer)
 {
+	char	*tmp;
+
 	g_state = COMMAND;
 	init_signals();
 	while (lexer->str == NULL || lexer->str[0] == '\0')
 	{
-		lexer->str = readline("momoshell-2.0 🐈 ");
-		if (!lexer->str)
+		tmp = readline("momoshell-2.0 🐈 ");
+		if (!tmp)
 			exit(EXIT_SUCCESS);
+		if (lexer->str != NULL)
+			free(lexer->str);
+		lexer->str = ft_strdup(tmp);
+		free(tmp);
 		if (*lexer->str)
 			add_history(lexer->str);
 	}

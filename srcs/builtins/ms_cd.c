@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/30 11:45:51 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/06/30 11:45:52 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/07/04 18:08:24 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ static int	st_relative_path(t_data *data, char *path)
 	curr_pwd = getcwd(NULL, 0);
 	check_malloc(curr_pwd, "relative_path");
 	if (chdir(path) == -1)
+	{
+		free(curr_pwd);
 		return (file_error(path));
+	}
 	new_pwd = getcwd(NULL, 0);
 	check_malloc(new_pwd, "relative_path");
 	set_new_paths(new_pwd, curr_pwd, data);
