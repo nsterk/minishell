@@ -149,15 +149,6 @@ $(OBJ_DIR)/%.o: $(notdir %.c)
 db: all
 	lldb $(NAME)
 
-norm:
-	norminette srcs/*
-
-run: all
-	./$(NAME)
-
-test: all
-	./$(NAME) $(ARGS)
-
 clean:
 	rm -rf $(OBJ_DIR)
 
