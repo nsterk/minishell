@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/28 18:26:14 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/07/04 18:42:08 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/07/04 18:56:15 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv, char **envp)
 		return (1);
 	}
 	enter_shell(envp);
-	return (0);
+	// return (0);
 }
 
 static void	enter_shell(char **envp)
@@ -69,6 +69,11 @@ static bool	prompt(t_lexer *lexer)
 		if (lexer->str != NULL)
 			free(lexer->str);
 		lexer->str = ft_strdup(tmp);
+		if (!lexer->str)
+		{
+			free(tmp);
+			exit(EXIT_SUCCESS);
+		}
 		free(tmp);
 		if (*lexer->str)
 			add_history(lexer->str);
