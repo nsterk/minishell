@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/05 17:38:31 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/07/05 17:48:56 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/07/05 17:57:41 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int	ft_isdigital(char *str)
 
 	i = 1;
 	if (!ft_isdigit(str[0]) && str[0] != '-' && str[0] != '+')
-		return (0);
-	while (str[i])
+		return (1);
+	while (str[i] != '\0')
 	{
 		if (!ft_isdigit(str[i]))
-			return (0);
+			return (1);
 		i++;
 	}
-	return (1);
+	return (0);
 }
