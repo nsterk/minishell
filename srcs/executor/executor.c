@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/30 11:52:27 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/07/02 14:35:16 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/07/05 18:34:01 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ static void	st_piped_cmd(t_proc **current, t_cmd *cmd, t_data *data)
 			first_cmd = false;
 		}
 		fd = exec_piped_cmd(proc, cmd, data, fd);
+		if (fd < 0)
+			return ;
 		cmd = cmd->next;
 	}
 	close(fd);
