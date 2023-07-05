@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/30 11:52:18 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/06/30 11:52:19 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/07/05 18:00:28 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	st_cmd_not_found(char *cmd)
 		ft_putstr_fd("momoshell: ", 2);
 		ft_putstr_fd(cmd, 2);
 		ft_putendl_fd(": no such file or directory", 2);
-		exit(2);
+		exit(127);
 	}
 	else
 	{
