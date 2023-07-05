@@ -88,6 +88,7 @@ SRCS_UTILS		:=	exits.c \
 					ft_isalnum.c \
 					ft_isalpha.c \
 					ft_isdigit.c \
+					ft_isdigital.c \
 					ft_isspace.c \
 					ft_itoa.c \
 					ft_memcpy.c \

@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/30 11:46:10 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/07/02 11:56:42 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/07/05 17:49:06 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static void	error(char *arg, char *error, int code, t_data *data)
 
 static bool	st_is_numeric_arg(t_cmd *cmd)
 {
-	int	i;
+	int		i;
 
 	i = 2;
 	while (i < cmd->argc)
 	{
-		if (!ft_strcheck(cmd->argv[i], ft_isdigit))
+		if (!ft_isdigital(cmd->argv[i]))
 			return (true);
 		i++;
 	}
@@ -41,7 +41,7 @@ static bool	st_is_numeric_arg(t_cmd *cmd)
 
 static bool	st_help_exit(t_cmd *cmd, t_data *data)
 {
-	if (!ft_strcheck(cmd->argv[1], ft_isdigit))
+	if (!ft_isdigital(cmd->argv[1]))
 	{
 		if (cmd->argc > 2)
 		{

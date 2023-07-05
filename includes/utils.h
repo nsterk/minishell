@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/30 14:51:46 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/07/02 12:16:30 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/07/05 17:41:03 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void			ft_putstr_fd(const char *s, int fd);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putnbr_fd(int n, int fd);
 int				ft_isdigit(int c);
+int				ft_isdigital(char *str);
 int				ft_strcheck(char const *s, int (*f)(int));
 int				ft_isalpha(int c);
 int				ft_isalnum(int c);
