@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/30 11:53:36 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/06/30 11:53:37 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/07/05 18:10:02 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static char	*st_get_text(char *delim)
 	{
 		ft_putstr_fd("> ", 2);
 		line = gnl(STDIN_FILENO);
+		if (!line)
+			break ;
 		if (st_delim_in_line(line, delim, len))
 		{
 			free(line);

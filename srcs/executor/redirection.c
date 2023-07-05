@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/30 11:54:05 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/07/05 13:44:56 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/07/05 18:10:36 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	file_error(const char *filename)
 static int	st_duplicate(int fd, int in_out_fileno, t_data *data)
 {
 	int		exit_status;
-	char	str;
+	char	*str;
 
 	str = NULL;
 	if (dup2(fd, in_out_fileno) < 0)
