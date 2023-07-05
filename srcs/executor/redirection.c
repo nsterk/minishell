@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/30 11:54:05 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/07/02 12:13:59 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/07/05 12:17:38 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,15 @@ int	file_error(const char *filename)
 
 static int	st_duplicate(int fd, int in_out_fileno, t_data *data)
 {
-	int	exit_status;
+	int		exit_status;
+	char	str;
 
+	str = NULL;
 	if (dup2(fd, in_out_fileno) < 0)
 	{
-		perror(ft_itoa(errno));
+		str = ft_itoa(errno);
+		check_malloc(str, "st_duplicate");
+		perror(str);
 		data->last_pid = errno;
 		exit_status = EXIT_FAILURE;
 	}
