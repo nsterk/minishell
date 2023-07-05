@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/28 18:32:41 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/07/01 21:12:19 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/07/05 11:52:32 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,24 @@ static int	st_get_lvl(const char *val);
 void	init_envp(t_data *data, char **envp)
 {
 	size_t	len;
+	bool	found;
 
+	found = true;
 	len = ft_array_len(envp);
 	if (!get_envp_value(envp, "SHLVL"))
+	{
 		len++;
+		found = false;
+	}
 	data->envp = ft_calloc(len + 1, sizeof(char *));
 	check_malloc(data->envp, "init_envp **");
 	data->envp[len] = NULL;
+	if (!found)
+	{
+		len--;
+		data->envp[len] = ft_strdup("SHLVL=1");
+		check_malloc(data->envp[len], "init_envp");
+	}
 	st_copy_envp(data, len - 1, envp);
 }
 

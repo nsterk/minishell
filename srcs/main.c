@@ -6,7 +6,7 @@
 /*   By: nsterk <nsterk@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/28 18:26:14 by nsterk        #+#    #+#                 */
-/*   Updated: 2023/07/04 18:56:15 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/07/05 11:54:04 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 static void	enter_shell(char **envp);
 static bool	prompt(t_lexer *lexer);
 
+/*
 void	check(void)
 {
 	system("leaks -q minishell");
 }
-
+*/
 int	main(int argc, char **argv, char **envp)
 {
-	atexit(&check);
 	(void)argv;
 	if (argc != 1)
 	{
@@ -30,7 +30,7 @@ int	main(int argc, char **argv, char **envp)
 		return (1);
 	}
 	enter_shell(envp);
-	// return (0);
+	return (0);
 }
 
 static void	enter_shell(char **envp)
@@ -60,6 +60,7 @@ static bool	prompt(t_lexer *lexer)
 	char	*tmp;
 
 	g_state = COMMAND;
+	tmp = NULL;
 	init_signals();
 	while (lexer->str == NULL || lexer->str[0] == '\0')
 	{

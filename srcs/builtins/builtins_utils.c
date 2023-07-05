@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/30 11:43:16 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/06/30 14:43:24 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/07/05 12:03:27 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static char	*st_change_arg(char *arg, char **env, int *i)
 	new_arg_var = ft_strjoin(env_var, arg_var);
 	free(arg);
 	arg = ft_strjoin(env_name, new_arg_var);
+	check_malloc(arg, "st_change_arg");
 	free(env_name);
 	free(arg_var);
 	free(new_arg_var);
