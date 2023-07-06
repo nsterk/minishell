@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/30 11:44:20 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/06/30 16:51:27 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/07/06 17:15:55 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	check_builtin(t_cmd *cmds, t_data *data)
 	else if (!ft_strcmp(tmp, "unset"))
 		return (exec_unset(cmds->argv, data));
 	else if (!ft_strcmp(tmp, "env"))
-		return (exec_env(data->envp, data));
+		return (exec_env(cmds->argv, data));
 	else if (!ft_strcmp(tmp, "exit"))
 		return (exec_exit(cmds, data));
 	return (EXIT_FAILURE);

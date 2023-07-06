@@ -6,20 +6,22 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/30 11:46:05 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/06/30 11:46:07 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/07/06 17:16:57 by nsterk        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-int	exec_env(char **envp, t_data *data)
+int	exec_env(char **args, t_data *data)
 {
 	int		i;
 
+	if (args[1])
+		return (EXIT_FAILURE);
 	i = 0;
-	while (envp[i])
+	while (data->envp[i])
 	{
-		ft_putendl_fd(envp[i], STDOUT_FILENO);
+		ft_putendl_fd(data->envp[i], STDOUT_FILENO);
 		i++;
 	}
 	data->last_pid = 0;
