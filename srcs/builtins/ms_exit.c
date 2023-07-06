@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/30 11:46:10 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/07/05 17:49:06 by nsterk        ########   odam.nl         */
+/*   Updated: 2023/07/06 14:05:34 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ static bool	st_help_exit(t_cmd *cmd, t_data *data)
  * exit with no option.
  * 	If no option is given, the exit status is 
  * 	that of the last command executed.
+ * ! Only case where it does NOT exit is "exit <number> <letter>"
+ * ! Exit always exits with "exit <arg>", no matter the <arg> type
 */
 int	exec_exit(t_cmd *cmd, t_data *data)
 {
@@ -72,6 +74,8 @@ int	exec_exit(t_cmd *cmd, t_data *data)
 	should_exit = true;
 	if (cmd->argc > 1)
 		should_exit = st_help_exit(cmd, data);
+	if (cmd->argc == 2)
+		should_exit = true;
 	if (should_exit)
 		exit((unsigned char)data->last_pid);
 	return (data->last_pid);
