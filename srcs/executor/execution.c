@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/30 11:52:18 by abeznik       #+#    #+#                 */
-/*   Updated: 2023/07/06 14:14:24 by abeznik       ########   odam.nl         */
+/*   Updated: 2023/07/06 16:42:28 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,8 @@ int	exec_piped_cmd(t_proc *proc, t_cmd *cmd, t_data *data, int fd)
 		exit_error(errno, "exec_piped_cmd pipe", NULL);
 	proc->pid = fork();
 	if (proc->pid < 0)
-		exit_error(errno, "minishell: fork", "Resource temporarily unavailable");
+		exit_error(errno, "minishell: fork", \
+		"Resource temporarily unavailable");
 	else if (proc->pid == CHILD)
 		st_child_process(cmd, data, pend, fd);
 	else if (proc->pid > 0)
